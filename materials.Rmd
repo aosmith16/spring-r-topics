@@ -1,0 +1,48 @@
+---
+title: "Class Materials"
+description: |
+     Materials for class will be added here throughout the term.
+editor_options: 
+  markdown: 
+    wrap: 72
+output: 
+    distill::distill_article:
+       toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Week 1: Introducing Git and GitHub
+
+### Goals
+
+-Install Git  
+-Introduce yourself to Git  
+-Create GitHub account  
+-Create first repository and link to it in R/RStudio  
+
+### Resources
+
+We will rely heavily on [Happy Git and GitHub with
+R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 12...
+
+### Slides
+
+## Week 2: Create a distill website
+
+### Goals
+
+-Create distill website in version-controlled Directory  
+-Edit index.Rmd to use postcard  
+-Add personal details  
+-Edit `_site.yml` to change menus  
+
+### Resources
+
+There are all kinds of good introductory resources on the package website: https://rstudio.github.io/distill/  
+Thomas Mock as a useful introduction: https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/#step-2-new-project-from-distill-blog  
+Alison Hill's post on **postcards**: https://alison.rbind.io/post/2020-12-22-postcards-distill/  
+
+## Week 3: Deploy website

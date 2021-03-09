@@ -1,0 +1,51 @@
+---
+title: "Advanced R Topics"
+description: |
+site: distill::distill_website
+output: 
+    distill::distill_article:
+       toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+
+## Overview
+
+Welcome to FES/FOR 505, Advanced R Topics. This is an informal class for students wanting to get a little extra practice in R.
+
+The class will meet once per week for 2 hours over 10 weeks. Each class will be a mix of instruction on the topic, discussion, and active work in R.  Materials (slides, links, R scripts) will be listed on the [Materials](materials.html) page throughout the quarter, so check back each week.
+
+The plan so far:   
+-  Introduction to Git/GitHub\
+-  Build a personal website with **distill** and **postcards**\
+-  Deploy website using GitHub Pages - Learn to write functions\
+-  Explore **gt** for making tables\
+-  Animated graphics (with **gganimate**)\
+-  Interactive graphics (?)   
+-  More Git: pull requests   
+-  Other topics of interest  
+
+## Software
+
+We will be working in R via RStudio. Make sure you have up-to-date versions of both of these. Current versions:  
+R 4.0.4  
+RStudio 1.4  
+
+## Packages
+
+I'll be adding to the package list throughout the term as we hammer out exactly what topics will be covered. You'll want to install these on your computer so you're ready to go.
+
+**distill v. 1.2**  
+**postcards v. 0.2.0**  
+**gt v. 0.2.2**  
+**gganimate v. 1.0.7**  
+**plotly v. 4.9.3**   

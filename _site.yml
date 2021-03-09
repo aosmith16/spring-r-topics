@@ -1,0 +1,14 @@
+name: "."
+title: "Advanced R Topics"
+description: |
+output_dir: "docs"
+theme: theme.css
+navbar:
+  right:
+    - text: "Syllabus"
+      href: index.html
+    - text: "Materials"
+      href: materials.html
+    - icon: fab fa-github
+      href: https://github.com/aosmith16/spring-r-topics
+output: distill::distill_article
