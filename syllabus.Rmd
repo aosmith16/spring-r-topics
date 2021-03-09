@@ -1,0 +1,16 @@
+---
+title: "Syllabus"
+description: |
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Put Syllabus here
+
+
+
+
+
