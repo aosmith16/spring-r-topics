@@ -5,15 +5,15 @@
       "title": "Advanced R Topics",
       "author": [],
       "contents": "\r\n\r\nContents\r\nOverview\r\nSoftware\r\nPackages\r\n\r\nOverview\r\nWelcome to FES/FOR 505, Advanced R Topics. This is an informal class for students wanting to get a little extra practice in R.\r\nThe class will meet once per week for 2 hours over 10 weeks. Each class will be a mix of instruction on the topic, discussion, and active work in R. Materials (slides, links, R scripts) will be listed on the Materials page throughout the quarter, so check back each week.\r\nThe plan so far:\r\n- Introduction to Git/GitHub\r\n- Build a personal website with distill and postcards\r\n- Deploy website using GitHub Pages - Learn to write functions\r\n- Explore gt for making tables\r\n- Animated graphics (with gganimate)\r\n- Interactive graphics (?)\r\n- More Git: pull requests\r\n- Other topics of interest\r\nSoftware\r\nWe will be working in R via RStudio. Make sure you have up-to-date versions of both of these. Current versions:\r\nR 4.0.4\r\nRStudio 1.4\r\nPackages\r\nI’ll be adding to the package list throughout the term as we hammer out exactly what topics will be covered. You’ll want to install these on your computer so you’re ready to go.\r\ndistill v. 1.2postcards v. 0.2.0gt v. 0.2.2gganimate v. 1.0.7plotly v. 4.9.3\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-09T09:19:05-08:00"
+      "last_modified": "2021-03-09T09:25:36-08:00"
     },
     {
       "path": "materials.html",
       "title": "Class Materials",
       "description": "Materials for class will be added here throughout the term.\n",
       "author": [],
-      "contents": "\r\n\r\nContents\r\nWeek 1: Introducing Git and GitHub\r\nGoals\r\nResources\r\nSlides\r\n\r\nWeek 2: Create a distill website\r\nGoals\r\nResources\r\n\r\nWeek 3: Deploy website\r\n\r\nWeek 1: Introducing Git and GitHub\r\nGoals\r\n-Install Git\r\n-Introduce yourself to Git\r\n-Create GitHub account\r\n-Create first repository and link to it in R/RStudio\r\nResources\r\nWe will rely heavily on Happy Git and GitHub with R, in particular chapters 4, 6, 7, 12…\r\nSlides\r\nWeek 2: Create a distill website\r\nGoals\r\n-Create distill website in version-controlled Directory\r\n-Edit index.Rmd to use postcard\r\n-Add personal details\r\n-Edit _site.yml to change menus\r\nResources\r\nThere are all kinds of good introductory resources on the package website: https://rstudio.github.io/distill/\r\nThomas Mock has a nice intro here[https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/]\r\nAlison Hill’s post on postcards here[https://alison.rbind.io/post/2020-12-22-postcards-distill/]\r\nWeek 3: Deploy website\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-09T09:19:06-08:00"
+      "contents": "\r\n\r\nContents\r\nWeek 1: Introducing Git and GitHub\r\nGoals\r\nResources\r\nSlides\r\n\r\nWeek 2: Create a distill website\r\nGoals\r\nResources\r\n\r\nWeek 3: Deploy website\r\n\r\nWeek 1: Introducing Git and GitHub\r\nGoals\r\n-Install Git\r\n-Introduce yourself to Git\r\n-Create GitHub account\r\n-Create first repository and link to it in R/RStudio\r\nResources\r\nWe will rely heavily on Happy Git and GitHub with R, in particular chapters 4, 6, 7, 12…\r\nSlides\r\nWeek 2: Create a distill website\r\nGoals\r\n-Create distill website in version-controlled Directory\r\n-Edit index.Rmd to use postcard\r\n-Add personal details\r\n-Edit _site.yml to change menus\r\nResources\r\nThere are all kinds of good introductory resources on the package website: https://rstudio.github.io/distill/\r\nThomas Mock has a nice intro here\r\nAlison Hill’s post on postcards here\r\nWeek 3: Deploy website\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-09T09:25:37-08:00"
     }
   ],
   "collections": []

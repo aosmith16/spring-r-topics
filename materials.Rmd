@@ -42,7 +42,7 @@ R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 12...
 ### Resources
 
 There are all kinds of good introductory resources on the package website: https://rstudio.github.io/distill/  
-Thomas Mock has a nice intro here[https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/]  
-Alison Hill's post on **postcards** here[https://alison.rbind.io/post/2020-12-22-postcards-distill/]  
+Thomas Mock has a nice intro [here](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/)  
+Alison Hill's post on **postcards** [here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)  
 
 ## Week 3: Deploy website
