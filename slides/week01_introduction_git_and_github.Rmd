@@ -4,7 +4,6 @@ subtitle: '&#xFE0F; `r icons::fontawesome("git-square")` + `r icons::fontawesome
 author: 
   - "<br/><br/><br/>Ariel Muldoon"
 date: 'March 30, 2021'
-twitterImage: /slides/share-card.png
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -40,6 +39,29 @@ style_duo_accent(
   base_font_size = "22px",
   link_color = "#F4790B"
 )
+```
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+    meta_name("github-repo" = "gadenbuie/build-your-own-universe") %>% 
+    meta_social(
+        title = "Getting started wtih Git and GitHub",
+        description = paste(
+            "Intro working sessions for Git and R.",
+            "Spring 2021."
+        ),
+        url = "https://aosmith16.github.io/spring-r-topics/slides/week01_introduction_git_and_github.html",
+        image = "https://aosmith16.github.io/spring-r-topics/slides/week01_introduction_git_and_github.html/week01-social-card.png",
+        image_alt = paste(
+            "Title Getting started wtih Git and GitHub", 
+            "Working sessions class spring 2021"
+        ),
+        og_type = "website",
+        og_author = "Ariel Muldoon",
+        twitter_card_type = "summary_large_image",
+        twitter_creator = "@aosmith16"
+    )
 ```
 
 ```{r xaringan-scribble, echo = FALSE}
