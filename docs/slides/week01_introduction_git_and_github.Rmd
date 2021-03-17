@@ -98,7 +98,7 @@ Read at https://happygitwithr.com/
 --
 <br/><br/><br/>
 ```{r githurts, echo = FALSE, out.width = "25%", out.extra='style="background-color: #1c5253; padding:6px; display: block;margin-left: auto;margin-right: auto;vertical-align: middle;"'}
-knitr::include_graphics("figs/week01_files/git_hurts.png")
+knitr::include_graphics("figs/week01_files/git_hurts.PNG")
 ```
 .center[*From Happy Git with R*]
 
@@ -303,7 +303,7 @@ And, voila, you have created your first repository. `r emo::ji("clinking_glasses
 
 Once the repository has been created, click the `Code` button and copy the URL to the clipboard with the clipboard button.
 
-.center[![](figs/week01_files/github_clone.png)]
+.center[![](figs/week01_files/github_clone.PNG)]
 
 ---
 
@@ -564,7 +564,7 @@ Go to your GitHub repository.
 ]
 
 .pull-right[
-.center[![](figs/week01_files/github_settings.PNG)]
+.center[![](figs/week01_files/github_settings.png)]
 ]
 
 ---
@@ -579,7 +579,7 @@ Go to your GitHub repository.
 ]
 
 .pull-right[
-.center[![](figs/week01_files/github_ssh.PNG)]
+.center[![](figs/week01_files/github_ssh.png)]
 ]
 
 ---
