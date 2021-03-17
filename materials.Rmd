@@ -18,31 +18,40 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### Goals
 
--Install Git  
--Introduce yourself to Git  
--Create GitHub account  
--Create first repository and link to it in R/RStudio  
+**Create version-controlled directory for your future website!**
+
+But also:  
+-    Create GitHub account  
+-    Install Git  
+-    Introduce yourself to Git  
+-    Create first repository and link to it in R/RStudio  
 
 ### Resources
 
 We will rely heavily on [Happy Git and GitHub with
-R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 12...
+R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
+12
 
 ### Slides
+
+[Week 01 slides](slides/week01_introduction_git_and_github.html)
 
 ## Week 2: Create a distill website
 
 ### Goals
 
--Create distill website in version-controlled Directory  
--Edit index.Rmd to use postcard  
--Add personal details  
--Edit `_site.yml` to change menus  
+-Create distill website in version-controlled Directory\
+-Edit index.Rmd to use postcard\
+-Add personal details\
+-Edit `_site.yml` to change menus
 
 ### Resources
 
-There are all kinds of good introductory resources on the package website: https://rstudio.github.io/distill/  
-Thomas Mock has a nice intro [here](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/)  
-Alison Hill's post on **postcards** [here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)  
+There are all kinds of good introductory resources on the package
+website: <https://rstudio.github.io/distill/>\
+Thomas Mock has a nice intro
+[here](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/)\
+Alison Hill's post on **postcards**
+[here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)
 
 ## Week 3: Deploy website
