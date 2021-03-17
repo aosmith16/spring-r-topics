@@ -52,7 +52,7 @@ meta() %>%
             "Spring 2021."
         ),
         url = "https://aosmith16.github.io/spring-r-topics/slides/week01_introduction_git_and_github.html",
-        image = "https://aosmith16.github.io/spring-r-topics/slides/week01_introduction_git_and_github.html/week01-social-card.png",
+        image = "https://aosmith16.github.io/spring-r-topics/slides/week01_introduction_git_and_github.html/week01-share-card.png",
         image_alt = paste(
             "Title Getting started wtih Git and GitHub", 
             "Working sessions class spring 2021"
