@@ -356,7 +356,7 @@ You can `Browse` to choose a specific directory to save your local repository to
 .pull-left[
 The remote files will be downloaded into the new folder and the new Project will open.  
 
-If this all worked, you will have a `Git` tab in RStudio. I believe it will be near your "Environment" Pane by default.
+If this all worked, you will have a `Git` tab in RStudio. I believe it will be near your `Environment` Pane by default.
 
 ![](figs/week01_files/rstudio_gittab.PNG)
 ]
@@ -408,9 +408,24 @@ If the path is wrong, change the path to the correct one, push `OK`, restart RSt
 
 ## Update GitHub `r icons::fontawesome("github")` with local changes
 
-Once the project is open and you can see the files, open `README.md` and add some text.
+Once the project is open and you can see the files in the `Files` pane, open the `README.md` and add some text. 
 
-In the `Git` tab in RStudio, *stage* the README file by clicking on the box next to it. Staging tells Git you are getting ready to make the changed file part of the repository.
+Save the file.
+
+.center[![](figs/week01_files/rstudio_readme.PNG)]
+
+---
+
+## Update GitHub `r icons::fontawesome("github")` with local changes
+
+In the `Git` tab in RStudio you will now see this file as well as the `.Rproj` file. 
+
+
+*Stage* these files by clicking on the boxes next to each file. 
+
+.center[![](figs/week01_files/rstudio_stage.PNG)]
+
+Staging tells Git you are getting ready to make the changed file part of the repository.
 
 ---
 
@@ -420,19 +435,33 @@ Now select `Commit` in the `Git` tab.
 
 Write a message in the "Commit message" box in the pop-up window that opens. This message should be short but useful. Commit messages help you find previous versions of your work.
 
-Then hit the `Commit` button. You are *committing* to make the edited files part of the repository.
+.center[![](figs/week01_files/rstudio_commit.PNG)]
+
+--
+
+Then hit the `Commit` button under the `Commit message` box. You are *committing* to make the edited files part of the repository.
 
 ---
 
 ## Update GitHub `r icons::fontawesome("github")` with local changes
 
-Finally, `Push` the edited files to the remote repository.  
-
-You will be asked for your username and password.
+.pull-left[
+Finally, `Push` the edited files to the remote repository. The button is in the right-hand corner of the `Commit` pop-up window.
 
 ![](figs/week01_files/rstudio_push.PNG)
 
+You will be asked for your username and password.
+]
+
+--
+
+.pull-right[
+If you've pushed successfully you will see a message like the one below.  
+
+.center[![](figs/week01_files/rstudio_committed.PNG)]
+
 Go to your GitHub repository to see the changes. You may need to refresh.
+]
 
 ---
 
@@ -448,7 +477,7 @@ We can also work on it more together after we finish up the next section.
 
 ## Adding SSH key for authentication
 
-Once you start making a fair number of changes, entering your GitHub credentials every time you want to push becomes a pain.  I think the easiest thing to do is to add a SSH key in RStudio.
+Once you start working with Git regularly, entering your GitHub credentials every time you want to push becomes a pain.  I think the easiest thing to do is to add a SSH key.
 
 --
 
@@ -480,7 +509,7 @@ Then add the key via `ssh-add`.
 ssh-add ~/.ssh/id_rsa
 ```
 
-In the past I have had to write out the whole directory path in Windows. RStudio stores the key pair in your `Users` folder so the path I had to write out was `c:/Users/muldoona/.ssh/id_rsa` (my Users folder is named `muldoona` in this example). 
+In the past I have had to write out the whole directory path in Windows. RStudio stores the key pair in your `Users` folder so the path I had to write out was `c:/Users/Owner/.ssh/id_rsa` (my Users folder is named `Owner` in this example). 
 
 ---
 
@@ -546,7 +575,7 @@ Go to your GitHub repository.
 ## Paste the key to GitHub `r icons::fontawesome("github")`
 
 .pull-left[
-Go to your repository on GitHub.  
+Go to your GitHub repository.  
 
 1. Choose `Settings` under the drop-down menu in the upper righthand corner.  
 2. Choose `SSH & GPG keys` from the menu on the left and then click `New SSH key`.
