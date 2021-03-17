@@ -4,6 +4,7 @@ subtitle: '&#xFE0F; `r icons::fontawesome("git-square")` + `r icons::fontawesome
 author: 
   - "<br/><br/><br/>Ariel Muldoon"
 date: 'March 30, 2021'
+twitterImage: /slides/share-card.png
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
