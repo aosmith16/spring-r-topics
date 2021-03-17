@@ -49,12 +49,24 @@ xaringanExtra::use_scribble()
 xaringanExtra::use_clipboard()
 ```
 
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
 ## Today's Goal
+
+Overall
 
 - **Create version-controlled directory for your website**
 
 --
 
+Plus 
+-     Start using Git and GitHub
 -     Create local version of initial repository from GitHub  
 -     Stage, commit, push local work to GitHub  
 
@@ -295,7 +307,7 @@ Once the repository has been created, click the `Code` button and copy the URL t
 
 ---
 
-## Connect to GitHub via RStudio
+## Connect to GitHub `r icons::fontawesome("github")` via RStudio
 
 Let's switch to using RStudio instead of the shell.  You can always go back to using the command line from the shell if that's what you are comfortable with.
 
