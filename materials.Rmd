@@ -20,7 +20,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 **Create version-controlled directory for your future website!**
 
-But also:  
+But also: 
+
 -    Create GitHub account  
 -    Install Git  
 -    Introduce yourself to Git  
@@ -40,18 +41,24 @@ R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
 
 ### Goals
 
--Create distill website in version-controlled Directory\
--Edit index.Rmd to use postcard\
--Add personal details\
--Edit `_site.yml` to change menus
+**Create a personal website to showcase your work**
+
+- Create distill website in version-controlled directory  
+- Edit index.Rmd to add personal details with **postcard**  
+- Edit `_site.yml` to control website design  
+- Do a basic theme change  
 
 ### Resources
 
-There are all kinds of good introductory resources on the package
-website: <https://rstudio.github.io/distill/>\
-Thomas Mock has a nice intro
+The **distill** website has great material for getting started: <https://rstudio.github.io/distill/>\
+Tom Mock has a nice intro to **distill**
 [here](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/)\
 Alison Hill's post on **postcards**
-[here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)
+[here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)  
+The [distillery showcase](https://jhelvy.github.io/distillery/showcase.html) is great for inspiration and ideas on website design
+
+### Slides
+
+[Week 02 slides in progress](slides/week02_distill_websites.html)
 
 ## Week 3: Deploy website

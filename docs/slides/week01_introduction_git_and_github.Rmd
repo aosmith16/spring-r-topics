@@ -44,7 +44,7 @@ style_duo_accent(
 ```{r metathis, echo=FALSE}
 library(metathis)
 meta() %>%
-    meta_name("github-repo" = "gadenbuie/build-your-own-universe") %>% 
+    meta_name("github-repo" = "aosmith16/spring-r-topics") %>% 
     meta_social(
         title = "Getting started wtih Git and GitHub",
         description = paste(

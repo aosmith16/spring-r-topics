@@ -229,7 +229,7 @@ class Scribble {
     if (color.substr(0, 1) === '#') {
       return color
     }
-    const digits = /rgb\((\d+), (\d+), (\d+)\)/.exec(color)
+    const digits = /rgb\((\d+),\s*(\d+),\s*(\d+)/.exec(color)
 
     const red = parseInt(digits[1])
     const green = parseInt(digits[2])
@@ -314,7 +314,7 @@ class Scribble {
 
   toggleToolbox (show) {
     const isMinimized = this.toolBox.matches('.minimized')
-    if (show && show === !isMinimized) return
+    if (typeof show !== 'undefined' && show === !isMinimized) return
 
     this.hideToolbox = !(show || isMinimized)
     this.toolBox.classList.toggle('minimized')
@@ -470,7 +470,6 @@ class Scribble {
     this.eraseMode = true
     this.drawMode = false
     this.eraseBtn.title = 'Stop Erasing'
-    this.eraserCursor.classList.remove('hidden')
     this.eraserCursor.style.backgroundColor = this.eraserColor()
     this.colorPicker.classList.add('hidden')
 
@@ -480,6 +479,13 @@ class Scribble {
 
     document.addEventListener('mousemove', this.eraserCursorMovement)
     document.addEventListener('touchmove', this.eraserCursorMovement)
+
+    const self = this
+    ;['mousemove', 'touchmove'].forEach(function (action) {
+      document.addEventListener(action, function (ev) {
+        self.eraserCursor.classList.remove('hidden')
+      }, { once: true })
+    })
 
     document.addEventListener('keydown', this.undo)
     document.addEventListener('keydown', this.redo)
