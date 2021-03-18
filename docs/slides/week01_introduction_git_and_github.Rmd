@@ -485,7 +485,7 @@ Finally, `Push` the edited files to the remote repository. The button is in the 
 
 ![](figs/week01_files/rstudio_push.PNG)
 
-You will be asked for your username and password.
+You may be asked for your GitHub username and password.
 ]
 
 --
@@ -512,13 +512,13 @@ We can also work on it more together after we finish up the next section.
 
 ## Adding SSH key for authentication
 
-Once you start working with Git regularly, entering your GitHub credentials every time you want to push becomes a pain.  I think the easiest thing to do is to add a SSH key.
+Once you start working with Git regularly, entering your GitHub credentials when you want to push becomes a pain.  I think one way to avoid this is to add a SSH key.
 
 --
 
 ### Set up SSH key pair in RStudio
 
-RStudio makes this pretty easy to do this.  You can (add likely should) add a passphrase for this, but I am skipping that step here.
+RStudio makes this pretty easy to do.  You can (add likely should) add a passphrase when doing this, but I am skipping that step here.
 
 In RStudio, go to `Tools > Global Options... > Git/SVN`.
 
@@ -626,9 +626,12 @@ You should now be able to push and pull from GitHub without having to authentica
 - Find an image you want to represent you on your website
 
 .footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
 Slides created via the R packages:  
-[**xaringan**](https://github.com/yihui/xaringan)<br>
-[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)<br>
-[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra)
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
 ]
 
