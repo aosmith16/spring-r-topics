@@ -59,8 +59,9 @@
 class: center, middle, title-slide
 
 # Build a personal website with distill
+## Part 1: Basic website with postcard
 
-&lt;img src="figs/distill.png" width="20%" /&gt;
+&lt;img src="figs/distill.png" width="15%" /&gt;
 
 ### Ariel Muldoon
 
@@ -89,18 +90,627 @@ We will
 - The **distill** website has great material for getting started: https://rstudio.github.io/distill/  
 - Thomas Mock has a nice intro to **distill** [here](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/)  
 - Alison Hill's post on **postcards**
-[here](https://alison.rbind.io/post/2020-12-22-postcards-distill/) is a great start  
+[here](https://alison.rbind.io/post/2020-12-22-postcards-distill/) is super helpful  
 - The [distillery showcase](https://jhelvy.github.io/distillery/showcase.html) is great for inspiration and ideas on website design. Check out the GitHub repos of pages you want to emulate!
 
 &lt;img src="figs/week02_files/distillery.png" width="30%" style="display: block;margin-left: auto;margin-right: auto;vertical-align: middle;" /&gt;
 
 ---
 
+## Why distill?
+
+.pull-left[
+- Based on Rmarkdown
+- Comparatively simple and easy to maintain  
+- Templates for building interactive academic articles    
+- **Con**: Not particularly flexible for customizing site layout or style 
+
+*Alternatives: blogdown, hugodown*
+]
+
+.pull-right[
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;Blogdown vs distill overview&lt;/p&gt;&amp;mdash; Shannon Pileggi (@PipingHotData) &lt;a href="https://twitter.com/WeAreRLadies/status/1363144545677017089"&gt;February 20, 2021&lt;/a&gt;&lt;/blockquote&gt;
+]
+
+---
+
 ## Where are we going?
 
+The focus today will be on making personal websites to showcase ourselves. The home page will have a pic, contact info, and a text introduction to your background. You will add additional pages to showcase your work, such as publications and presentations.
+
+(Put screenshot of my example after running through this process here)
+
+---
+
+## Examples for inspiration
+
+.pull-left[
+A lot of my own approach to building a website involves looking at other websites to see what I like and what I can do. Along those lines, I'll show two example websites here along with links to the site and source code.  
+
+The first example is a fairly complex **distill** website by [John Paul Helveston](https://jhelvy.github.io/). You'll notice he uses separate pages to showcase, e.g., publications and teaching.
+
+]
+
+.pull-right[
+.center[&lt;img src="figs/week02_files/helveston.png" width=600&gt;]
+[Site](https://jhelvy.github.io/)  
+[Source code](https://github.com/jhelvy/jhelvy.github.io)
+]
+
+---
+
+## Examples for inspiration
+
+.pull-left[
+The second example is a somewhat simpler **distill** website from [Harry Fisher](https://www.hfshr.xyz/).  One thing you might notice is the use of icons instead of labels for social and navigation links.
+
+Take a few minutes to look at these website examples and/or go to the [distillery showcase](https://jhelvy.github.io/distillery/showcase.html) and scroll through some examples there to start thinking about what you like.
+
+&lt;br/&gt;
+&lt;br/&gt;
+Other examples you might want to check out:  
+[Ijeamaka Anyene](https://ijeamaka-anyene.netlify.app/)  
+[Jeff Leek's](http://jtleek.com/) super simple, one-page website  
+[Jannik M. Buhr](https://jmbuhr.de/)
+]
+
+.pull-right[
+.center[&lt;img src="figs/week02_files/fisher.png" width='600'&gt;]
+[Site](https://www.hfshr.xyz/)  
+[Source code](https://github.com/hfshr/distill_blog)
+]
+
+---
+
+class: center, middle, inverse, hide-logo
+
+# &lt;font style="font-family: cursive; font-style:italic"&gt;Let's get started!&lt;/font&gt;
+
+---
+
+## Create distill website
+
+Open the version-controlled Project you created last week. Mine is called `personal-website`.
+
+We'll make a website within this directory using `distill::create_website()`.  
+
+Copy and paste the following code example into R. Change the `title` to your name before running:
+
+
+```r
+distill::create_website(dir = ".", 
+                        title = "Ariel Muldoon", 
+                        gh_pages = TRUE)
+```
+
+*Code explainer:*
+- Since we already have a directory for the website, we use `dir = "."`. 
+- You'll need to name the website with `title`. For a personal website this is usually your name.
+- Finally, since we will be deploying the website via GitHub Pages, set `gh_pages` to `TRUE`.
+
+---
+
+## Basic website files
+
+After running the code from the last slide you will get the basic skeleton of a **distill** website. 
+
+.center[
+&lt;img src="figs/week02_files/distill_basic.png" width="60%" /&gt;
+]
+
+We'll be going through the files that were created, editing them to personalize our websites.
+
+???
+
+In particular note _site.yml, index.Rmd, about.Rmd and the new "docs" folder.
+
+---
+
+## Build basic website
+
+.pull-left[
+**Important**: Before we proceed any further, close RStudio and then reopen your website Project.  
+
+Once you reopen you should see a `Build` tab near your `Environment` pane. 
+
+.center[![](figs/week02_files/distill_build.png)]
+]
+
+--
+
+.pull-right[
+Go to the `Build` tab and click `Build website`. The basic website will build and then pop open in a new window.
+&lt;br/&gt;&lt;br/&gt;
+.center[![](figs/week02_files/basic_website.png)]
+Click around on the navigation bar to see what is on each page. This will set us up to talk about the files we now have.
+]
+
+---
+
+## Basic overview
+
+- `index.Rmd`: every **distill** website *must* have an `index.Rmd` file and it needs to be in the root directory. Don't move it.   
+In addition, you must have a `title` and `site: distill::distill_website` in your YAML header.
+
+--
+
+- `about.Rmd`: an additional example RMD file that is associated. The content is currently associated with the `About` navigation bar button.
+
+--
+
+- `_site.yml`: you control many aspects of your website from here, including your navigation bar.
+
+--
+
+- `docs` folder: where the files that make up your website are stored. Publish your website based on this folder.
+
+???
+
+This is a very basic overview. You may want to know more about each of these, in which case I recommend the distill "Creating a website" page.
+
+---
+
+## Edit `index.Rmd`
+
+**You control your home page content by making changes to `index.Rmd`.**
+
+.pull-left[
+To start, delete the two lines of `description` in the YAML header. (You can always add this back if you want. 😉)
+
+My header now looks like
+
+```
+---
+title: "Ariel Muldoon"
+site: distill::distill_website
+---
+```
+]
+
+--
+
+.pull-right[
+Add text, code, and images to the body of `index.Rmd` using standard R markdown syntax. 
+
+For practice, add a line of text but leave the setup chunk at the top of the document.
+
+I added
+
+```
+## This is my *new* website.
+
+### I hope you like it.
+```
+under the setup chunk.
+]
+
+---
+
+## Knitting vs Building
+
+.pull-left[
+If you change a single document, like we just did with `index.Rmd`, you can use the `Knit` button at the top of your Source pane to preview the changes you made. 
+
+Do that now and see how the output file has changed.
+]
+
+.pull-right[
+.center[![](figs/week02_files/first_edit.png)]
+&lt;br/&gt;&lt;br/&gt;
+After making changes to multiple files you'll want to `Build` the entire dataset like we did after we first created our skeleton website.
+]
+
+---
+
+## More on the `docs` folder
+
+.pull-left[
+Every time we `Knit` a file in the root directory or `Build` the entire website, all files and folders are placed in the `docs` folder.
+
+Generally speaking you will not be doing any work in `docs` manually.
+
+&lt;br/&gt;&lt;br/&gt;
+
+Take a look at the contents of that folder.  
+
+]
+
+--
+
+.pull-right[
+.center[![](figs/week02_files/distill_docs.png)]
+Note two HTML output files from `index.Rmd` and `about.Rmd` are here (same names but end in `html`). These are literally the files that make our website. 
+
+]
+
+???
+
+Distill is a static site generator, so is based on HTML documents we create. Since we are using GitHub pages to publish/deploy we have a "docs" folder by default and all HTML output from our Rmd files in the root directory are saved there.
+
+---
+
+## Edit the navigation bar
+
+.pull-left[
+The `_site.yml` file is key in controlling many aspects of your website. 
+
+We will keep most of the defaults and focus on changes to the navigation bar.
+
+The navigation bar settings are controlled under `navbar`.
+]
+
+--
+
+.pull-right[
+
+
+```r
+name: "."
+title: "Ariel Muldoon"
+description: |
+  Ariel Muldoon
+output_dir: "docs"
+*navbar:  
+*  right:  
+*    - text: "Home"  
+*      href: index.html  
+*    - text: "About"  
+*      href: about.html  
+output: distill::distill_article
+```
+
+At the moment our navigation menu is on the right and we're using the names `Home` and `About`.
+
+]
+
+---
+
+## Edit the navigation bar
+
+You can move the navigation menus to the right or left. Right now they are all on the right.
+
+Change the `text` to change the menu names.
+
+
+```r
+ navbar:
+   right:
+*    - text: "Hello"
+       href: index.html
+*    - text: "Publications"
+       href: about.html
+```
+
+Build or knit `index.Rmd` to see the changes.
+
+.center[![](figs/week02_files/change_index.png)]
+
+---
+
+## Edit the navigation bar
+
+You can use *icons* instead of text using Font Awesome identifiers
+
+I'll add a link to my GitHub using the &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="rfa" style="height:0.75em;fill:currentColor;position:relative;"&gt;&lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/&gt;&lt;/svg&gt; icon. `href` refers to a link, so must link to a web page either in `docs` or somewhere on the web.
+
+
+```r
+ navbar:
+   right:
+     - text: "Hello"
+       href: index.html
+     - text: "Publications"
+       href: about.html
+*    - icon: fab fa-github
+*      href: https://github.com/aosmith16/personal-website
+```
+.center[![](figs/week02_files/index_github.png)]
+
+---
+
+## Add a navigation menu
+
+If we want a local HTML file associated with a new menu we'll need a new .Rmd file.
+
+We can do make the new file using RStudio's drop-down menus.
+
+Go to `File &gt; New File &gt; R Markdown...`
+
+Click `From Template` and then choose a `Distill Article`.
+
+.center[![](figs/week02_files/new_article.png)]
+
+---
+
+## Add a navigation menu
+
+Save the file into the root directory.
+
+I named mine `teaching.Rmd`, so it will create an HTML file called `teaching.html`.
+
+Add a new `navbar` menu in `_site.yml` that is associated with this file and `Build`.
+
+
+```r
+navbar:
+  right:
+    - text: "Hello"
+      href: index.html
+    - text: "Publications"
+      href: about.html
+*   - text: "Teaching"
+*     href: teaching.html
+    - icon: fab fa-github
+      href: https://github.com/aosmith16/personal-website
+```
+
+.center[![](figs/week02_files/new_menu.png)]
+
+---
+
+## Add a postcard to your website
+
+The [**postcards** package](https://github.com/seankross/postcards) is a convenient way to create a nice landing page for your website.
+
+Before we proceed, save whatever image you'd like to represent you in a folder called `images` in the root directory of your current Project. My file is named `ao_small.png`.
+
+--
+
+We'll create a postcard using `distill::create_article()`. 
+
+
+```r
+distill::create_article(file = "postcard",  
+                        template = "jolla",    
+                        package = "postcards")
+```
+
+*Code explainer:*
+- Create the name of the .Rmd file with `file`. 
+- Chose a [template](https://github.com/seankross/postcards/blob/main/README.md#the-templates) from package **postcards** with `template`.
+- In `package` we list the name of the package that has the template.
+
+???
+
+There are currently 4 templates to choose from. See link for examples.
+
+---
+
+## Add a postcard to your website
+
+Let's change the YAML header filler info to our own before we knit. Delete `label`/`url` for links you don't have.
+
+.pull-left[
+Here's what we start with:
+
+```r
+---
+title: "Tobi Burns"
+image: "tobi.jpg"
+links:
+  - label: LinkedIn
+    url: "https://linkedin.com/"
+  - label: Twitter
+    url: "https://twitter.com/"
+  - label: GitHub
+    url: "https://github.com/"
+  - label: Email
+    url: "mailto:email@email.com"
+output:
+  postcards::jolla
+---
+```
+]
+
+--
+
+.pull-right[
+And here are my edits:
+
+```r
+---
+title: "Ariel Muldoon"
+image: "images/ao_small.png"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/arielmuldoon/"
+  - label: Twitter
+    url: "https://twitter.com/aosmith16"
+  - label: GitHub
+    url: "https://github.com/aosmith16"
+  - label: Email
+    url: "mailto:ariel.muldoon@gmail.com"
+output:
+  postcards::jolla
+---
+```
+]
+
+???
+
+Note my picture is in my "images" folder, so I had to write out the path. Delete the `label` and `url` lines for any social links you don't have or add others.
+
+---
+
+## Add a postcard to your website
+
+Knit `postcard.Rmd` to see the first draft.
+
+.center[
+&lt;img src="figs/week02_files/postcard_start.png" width="60%" /&gt;
+]
+
+---
+
+## Using icons in your postcard
+
+I like using icons instead of words for my social links. I'll do this using R code and package **fontawesome**.
+
+I'll try a new template while I'm at it by using `postcards::trestles` instead of `postcards::jolla`.
+
+
+```r
+---
+title: "Ariel Muldoon"
+image: "images/ao_small.png"
+links:
+  - label: '`r fontawesome::fa("linkedin", height = 25)`'
+    url: "https://www.linkedin.com/in/arielmuldoon/"
+  - label: '`r fontawesome::fa("twitter", height = 25)`'
+    url: "https://twitter.com/aosmith16"
+  - label: '`r fontawesome::fa("github", height = 25)`'
+    url: "https://github.com/aosmith16"
+  - label: '`r fontawesome::fa("envelope", height = 25)`'
+    url: "mailto:ariel.muldoon@gmail.com"
+output:
+  postcards::trestles
+---
+```
+
+---
+
+## Using icons in your postcard
+
+Here's the new look. Note that the picture I'm using is cropped to a circle (`trestles` expects a square). I also had to widen my screen a bit to see the new template correctly.
+
+.center[
+&lt;img src="figs/week02_files/postcard_icons.png" width="60%" /&gt;
+]
+
+---
+
+## Make postcard your home page
+
+My new postcard is not yet a part of my website! Rather than adding it as a new menu I want it as my home page. 
+
+I'm going to copy and paste the `postcard.Rmd` header into `index.Rmd`.
+
+**Reminder**: Do not delete the `site: distill::distill_website` line from `index.Rmd`. You can replace everything except that.
+
+.footnote[*YAML header example on next slide*]
+
+---
+
+## Make postcard your home page
+
+
+```r
+---
+title: "Ariel Muldoon"
+image: "images/ao_small.png"
+links:
+  - label: '`r fontawesome::fa("linkedin", height = 25)`'
+    url: "https://www.linkedin.com/in/arielmuldoon/"
+  - label: '`r fontawesome::fa("twitter", height = 25)`'
+    url: "https://twitter.com/aosmith16"
+  - label: '`r fontawesome::fa("github", height = 25)`'
+    url: "https://github.com/aosmith16"
+  - label: '`r fontawesome::fa("envelope", height = 25)`'
+    url: "mailto:ariel.muldoon@gmail.com"
+output:
+  postcards::trestles
+site: distill::distill_website
+---
+```
+
+Build your website to see your new home page! 🎉 You can now delete `postcard.Rmd` entirely.
+
+---
+
+## Change theme
+
+While **distill** doesn't allow for major changes to the overall website structure, we can change colors and fonts to personalize the website.
+
+Themes in **distill** are based on the CSS language. Rather than learning to write in CSS from scratch, though, we can create a file that contains all the CSS for our current website. From there we can either make small changes or, conveniently, find some other theme we like and paste it over the current theme.
+
+Run the following code in R to create a file called `theme.css`.  It will open up by default.
+
+
+```r
+distill::create_theme()
+```
+
+---
+
+## Change theme
+
+In order to re-theme your whole website you'll need to point to the `theme.css` file within `_site.yml`.
+
+This is done via `theme: theme.css`. Here I added it to the end of my current file.
+
+
+```r
+...
+ navbar:
+   right:
+     - text: "Hello"
+       href: index.html
+     - text: "Publications"
+       href: about.html
+     - text: "Teaching"
+       href: teaching.html
+     - icon: fab fa-github
+       href: https://github.com/aosmith16/personal-website
+ output: distill::distill_article
+*theme: theme.css
+```
+
+---
+
+## Choose theme
+
+The **distill** website has a few [example themes](https://rstudio.github.io/distill/website.html#example-themes) that are a nice place to start. 
+
+When I made the [class website](https://aosmith16.github.io/spring-r-topics/) I copied the `theme.css` example from Piping Hot Data, pasted it over mine, and then manually changed the navigation bar color to [Beaver Orange](https://communications.oregonstate.edu/brand-guide/visual-identity/colors) (`rgb(215, 63, 9)`).
+
+Take a moment to choose from one of the following examples and then copy and paste the code into your `theme.css`.  
+
+[Piping Hot Data](https://rstudio.github.io/distill/website.html?panelset1=screenshot#piping-hot-data)  
+[Before I Sleep](https://rstudio.github.io/distill/website.html?panelset1=screenshot&amp;panelset2=screenshot2#before-i-sleep)  
+[Tidymodels](https://rstudio.github.io/distill/website.html?panelset3=screenshot3#tidymodels)
+
+Save the result and build the website to see the changes. Take time over the next week to find a theme you really like from the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
+
+---
+
+## Set theme
+
+I used the `Tidymodels` example. After copying and pasting the `theme.css` code and building the site this is what my website home page looks like.
+
+.center[
+&lt;img src="figs/week02_files/new_theme.png" width="60%" /&gt;
+]
+
+---
+
+class: hide-logo
+
+## Push to GitHub &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="rfa" style="height:0.75em;fill:currentColor;position:relative;"&gt;&lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/&gt;&lt;/svg&gt;
+
+We've been going along, adding files to the website and have started changing things but haven't pushed anything to GitHub.  
+
+Take a moment to `Stage`, `Commit`, and `Push`. That way if you ever really make a mess of things you can revert back to a previous version of your website.
+
+---
+
+## For next week
+
+- We'll be deploying the website, so you may want to flesh out your postcard information.
+- If you work with .bib files from bibTex, have one available. I will provide an example, as well.
+
+.footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
+Slides created via the R packages:  
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "slideNumberFormat": "%current%",
 "highlightStyle": "github",

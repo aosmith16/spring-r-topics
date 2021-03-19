@@ -38,8 +38,8 @@ The plan so far:
 ## Software
 
 We will be working in R via RStudio. Make sure you have up-to-date versions of both of these. Current versions:  
-R 4.0.4  
-RStudio 1.4  
+**R 4.0.4**  
+**RStudio 1.4**  
 
 ## Packages
 
@@ -47,6 +47,7 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 
 **distill v. 1.2**  
 **postcards v. 0.2.0**  
+**fontawesome v. 0.1.0**
 **gt v. 0.2.2**  
 **gganimate v. 1.0.7**  
 **plotly v. 4.9.3**   

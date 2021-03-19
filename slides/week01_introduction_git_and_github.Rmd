@@ -151,10 +151,11 @@ class: center, middle, inverse
 
 Sign up at https://github.com/ 
 
-```{r githubstart, echo = FALSE, out.width = "70%", out.extra='style="display: block;margin-left: auto;margin-right: auto;vertical-align: middle;"'}
+.center[
+```{r githubstart, echo = FALSE, out.width = "70%"}
 knitr::include_graphics("figs/week01_files/github_start_window.PNG")
 ```
-
+]
 ---
 
 ## Create GitHub account `r icons::fontawesome("github")`
@@ -181,9 +182,11 @@ Install from https://gitforwindows.org/
 
 Keep default options during installation. Make sure “Git from the command line and also from 3rd-party software” is selected in "Adjusting your PATH environment". 
 
-```{r gitcommand, echo = FALSE, out.width = "40%", out.extra='style="display: block;margin-left: auto;margin-right: auto;vertical-align: middle;"'}
+.center[
+```{r gitcommand, echo = FALSE, out.width = "40%"}
 knitr::include_graphics("figs/week01_files/git_command_prompt.PNG")
 ```
+]
 
 ---
 
@@ -226,9 +229,11 @@ If you are comfortable, you can use the command line for working with Git.
 
 I also use a program called [GitKraken](https://www.gitkraken.com/). It has been great when I've need a more advanced Git client, such as when dealing with dreaded merge conflicts. `r emo::ji("scream")`
 
-```{r gitkraken, echo = FALSE, out.width = "20%", out.extra='style="display: block;margin-left: auto;margin-right: auto;vertical-align: middle;"'}
+.center[
+```{r gitkraken, echo = FALSE, out.width = "20%"}
 knitr::include_graphics("figs/week01_files/gitkraken.png")
 ```
+]
 
 ---
 
@@ -238,9 +243,11 @@ Open up a shell terminal.
 
 In Windows the most straightforward thing to do is to use Git Bash.
 
-```{r gitbash, echo = FALSE, out.width = "40%", out.extra='style="display: block;margin-left: auto;margin-right: auto;vertical-align: middle;"'}
+.center[
+```{r gitbash, echo = FALSE, out.width = "40%"}
 knitr::include_graphics("figs/week01_files/git_bash.png")
 ```
+]
 
 You will type commands next to the dollar sign symbol.
 
@@ -622,7 +629,7 @@ You should now be able to push and pull from GitHub without having to authentica
 ---
 ## For next week
 
-- Install packages **distill** and **postcards**
+- Install packages **distill**, **postcards**, and **fontawesome**
 - Find an image you want to represent you on your website
 
 .footnote[
