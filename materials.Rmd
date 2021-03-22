@@ -8,6 +8,7 @@ editor_options:
 output: 
     distill::distill_article:
        toc: TRUE
+creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
@@ -33,7 +34,7 @@ We will rely heavily on [Happy Git and GitHub with
 R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
 12
 
-### Slides
+### Materials for class
 
 [Week 01 slides](slides/week01_introduction_git_and_github.html)
 
@@ -44,9 +45,9 @@ R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
 **Create a personal website to showcase your work**
 
 - Create distill website in version-controlled directory  
-- Edit index.Rmd to add personal details with **postcard**  
 - Edit `_site.yml` to control website design  
-- Do a basic theme change  
+- Edit index.Rmd to add personal details with **postcard**  
+- Change website appearance with a basic theme change  
 
 ### Resources
 
@@ -57,8 +58,28 @@ Alison Hill's post on **postcards**
 [here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)  
 The [distillery showcase](https://jhelvy.github.io/distillery/showcase.html) is great for inspiration and ideas on website design
 
-### Slides
+### Materials for class
 
-[Week 02 slides in progress](slides/week02_distill_websites.html)
+[Week 02 slides](slides/week02_distill_websites.html)
 
-## Week 3: Deploy website
+## Week 3: More **distill** articles and deploy website
+
+### Goals
+
+Ultimately we will deploy our websites via GitHub Pages
+
+But first:  
+
+- Add more **distill** articles to the website  
+- Create citation entry  
+- Add `.bib` file for references  
+- Practice with footnotes, asides, and appendices  
+
+### Resources
+
+The **distill** website has articles on [**distill** basics](https://rstudio.github.io/distill/basics.html#appendices) as well as [citations](https://rstudio.github.io/distill/citations.html)  
+
+### Materials for class
+
+Slides  
+.bib example file  

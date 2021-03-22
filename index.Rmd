@@ -25,15 +25,16 @@ Welcome to FES/FOR 505, Advanced R Topics. This is an informal class for student
 The class will meet once per week for 2 hours over 10 weeks. Each class will be a mix of instruction on the topic, discussion, and active work in R.  Materials (slides, links, R scripts) will be listed on the [Materials](materials.html) page throughout the quarter, so check back each week.
 
 The plan so far:   
--    Introduction to Git/GitHub  
--    Build a personal website with **distill** and **postcards**  
--    Deploy website using GitHub Pages  
--    Learn to write functions  
--    Explore **gt** for making tables  
--    Animated graphics (with **gganimate**)  
--    Interactive graphics (?)   
--    More Git: pull requests   
--    Other topics of interest  
+Week 01: Introduction to Git/GitHub  
+Week 02: Build a personal website with **distill** and **postcards**  
+Week 03: Deploy website using GitHub Pages  
+Week 04: Explore **gt** for making tables  
+Week 05: More advanced **gt** examples  
+Week 06: Learn to write functions in R  
+Week 07: Animated graphics (with **gganimate**)  
+Week 08: Interactive graphics (?)   
+Week 09: More Git: forking and pull requests   
+Week 10: Other topics of interest  
 
 ## Software
 
@@ -47,7 +48,7 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 
 **distill v. 1.2**  
 **postcards v. 0.2.0**  
-**fontawesome v. 0.1.0**
+**fontawesome v. 0.1.0**  
 **gt v. 0.2.2**  
 **gganimate v. 1.0.7**  
 **plotly v. 4.9.3**   
