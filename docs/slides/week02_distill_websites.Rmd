@@ -92,7 +92,7 @@ knitr::include_graphics("figs/distill.png")
 
 ### Ariel Muldoon
 
-### April 5, 2021
+### April 6, 2021
 
 ---
 

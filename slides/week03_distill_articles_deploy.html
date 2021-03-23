@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>More distill: adding articles and deploying</title>
+    <meta charset="utf-8" />
+    <script src="week03_distill_articles_deploy_files/header-attrs/header-attrs.js"></script>
+    <meta name="github-repo" content="aosmith16/spring-r-topics"/>
+    <meta name="twitter:title" content="More distill: adding articles and deploying"/>
+    <meta name="twitter:description" content="Adding to and deploying a distill website"/>
+    <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html"/>
+    <meta name="twitter:image:src" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week02-share-card.png"/>
+    <meta name="twitter:image:alt" content="Adding articles and deploying a distill websites Working sessions class spring 2021"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@aosmith16"/>
+    <meta name="twitter:site" content="@aosmith16"/>
+    <meta property="og:title" content="More distill: adding articles and deploying"/>
+    <meta property="og:description" content="Adding to and deploying a distill website"/>
+    <meta property="og:url" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html"/>
+    <meta property="og:image" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week02-share-card.png"/>
+    <meta property="og:image:alt" content="Adding articles and deploying a distill websites Working sessions class spring 2021"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Ariel Muldoon"/>
+    <script src="week03_distill_articles_deploy_files/fabric/fabric.min.js"></script>
+    <link href="week03_distill_articles_deploy_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="week03_distill_articles_deploy_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script src="week03_distill_articles_deploy_files/clipboard/clipboard.min.js"></script>
+    <link href="week03_distill_articles_deploy_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="week03_distill_articles_deploy_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="week03_distill_articles_deploy_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week03_distill_articles_deploy_files/tile-view/tile-view.js"></script>
+    <script src="week03_distill_articles_deploy_files/js-cookie/js.cookie.js"></script>
+    <script src="week03_distill_articles_deploy_files/peerjs/peerjs.min.js"></script>
+    <script src="week03_distill_articles_deploy_files/tiny.toast/toast.min.js"></script>
+    <link href="week03_distill_articles_deploy_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="week03_distill_articles_deploy_files/xaringanExtra-broadcast/broadcast.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: center, middle, title-slide
+
+# Build a personal website with distill
+## Part 2: Adding articles and deploying your website
+
+&lt;img src="figs/distill.png" width="15%" /&gt;
+
+### Ariel Muldoon
+
+### April 13, 2021
+
+---
+
+## Today's Goal
+
+Overall
+
+- **Deploy your personal website**
+
+--
+
+But first 
+-     Add more pages with **distill** articles  
+-     Overview of article features, such as citations, references, and appendices  
+-     Add drop down menus to website navigation bar
+-     Add links to other articles to website menu pages
+
+--
+
+*Before we begin:*
+
+Make sure you either have your own `.bib` file or saved `article1.bib` from the class website onto your computer. On Windows + Chrome I right-clicked the file and used `Save as` to save.
+
+---
+
+## Resources
+
+- The **distill** website has articles on [**distill** article basics](https://rstudio.github.io/distill/basics.html) as well as [citations](https://rstudio.github.io/distill/citations.html)  
+- GitHub docs has an overview of publishing via GitHub Pages [here](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)  
+
+.center[
+&lt;img src="figs/distill.png" width="30%" /&gt;
+]
+
+---
+
+## Why work with distill articles?
+
+**distill** articles are R Markdown documents with HTML output [optimized for scientific and technical communication](https://blog.rstudio.com/2020/12/07/distill/#what-is-distill). 
+
+It is **distill** articles that we used to build a **distill** website last week and we'll continue to show options for adding more content to your website.  
+
+--
+
+We'll do a quick overview of a few of the 🔔🔔 and whistles today.  Including:  
+- Creating a citation entry  
+- Adding references using a `.bib` file
+- Using footnotes, asides, and appendices
+
+But you can do so much more! Refer to the [**distill** basics](https://rstudio.github.io/distill/basics.html) overview as you start to write your own articles.
+
+---
+
+class: center, middle, inverse, hide-logo
+
+# &lt;font style="font-family: cursive; font-style:italic"&gt;Let's get started!&lt;/font&gt;
+
+---
+
+## Create new distill article
+
+Make sure you have your website RStudio Project open and ready to go. 
+
+Create a new folder called `articles` in the root directory. We'll save the new articles here.
+
+--
+
+Go to `File &gt; New File &gt; R Markdown...`
+
+Click `From Template` and then choose `Distill Article`.
+
+.center[![](figs/week03_files/new_article.png)]
+
+---
+
+## Create new distill article
+
+Save the file as `article1.Rmd` into the `articles` folder.
+
+Give the article a `title` (I used `"My first article"`) and then knit it to see the output from the "filler" content.
+
+.center[![](figs/week03_files/first_article.png)]
+
+---
+
+## Author information
+
+You can see in the output that **distill** articles add author and author affiliation information at the top of the output.  If you have multiple authors, add a new `- name` entry.
+
+I'm going to add myself as the second author. I include my affiliation, as well, but don't include any URL's so no links are added. 
+
+
+```r
+title: "My first article"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Nora Jones 
+    url: https://example.com/norajones
+    affiliation: Spacely Sprockets
+    affiliation_url: https://example.com/spacelysprokets
+*  - name: Ariel Muldoon
+*    affiliation: College of Forestry
+date: "`r Sys.Date()`"
+output: distill::distill_article
+```
+
+.footnote[*Like always when working with the YAML header, be very careful with your spacing. Using correct indentations is important.*]
+
+---
+
+## Author information
+
+.pull-left[
+After knitting:
+.center[![](figs/week03_files/author_article.png)]
+]
+
+.pull-right[
+You can see this might be useful if you were authoring a new article on the web or if you were giving an overview of a published article.
+
+If you don't want any author information, delete the whole `author:` section from the header.
+]
+
+---
+
+## Citeable web article
+
+If you are creating a stand-alone web article or presentation, you can add a citation by adding the appropriate URL to `citation_url` in the header. 
+
+We don't currently have a URL for `article1` so I'll put in a filler to show what the output looks like. Note there are no spaces before `citation_url`.
+
+
+```r
+title: "My first article"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Nora Jones 
+    url: https://example.com/norajones
+    affiliation: Spacely Sprockets
+    affiliation_url: https://example.com/spacelysprokets
+  - name: Ariel Muldoon
+    affiliation: College of Forestry
+*citation_url: https://rstudio.github.io/distill
+date: "`r Sys.Date()`"
+output: distill::distill_article
+```
+
+---
+
+## Citeable web article
+
+After knitting, scroll down to the bottom of the output page. You now have a citation for the page and a BibTeX entry that readers can easily copy and paste.
+
+.center[![](figs/week03_files/citation_web.png)]
+
+---
+
+## Citeable journal article
+
+If you want a journal citation instead, add information from the published article to the header. This would make sense if you were, say, putting the abstract of a published journal article in the **distill** document or writing a journal article.
+
+I'll change the `title`, `date`, and basic `author` info and then add the `journal` title, `volume`, and `doi`. 
+
+
+```r
+title: "Consequences of reduced light for flower production in conifer-invaded meadows of the Pacific Northwest, U.S.A"
+author:
+  - name: Jessica Celis 
+    affiliation: Institute for Applied Ecology
+  - name: Charles B. Halpern
+    affiliation: School of Environmental and Forest Sciences
+  - name: Ariel Muldoon
+    affiliation: College of Forestry
+*journal: Plant Ecology
+*volume: 220
+*doi: "10.1007/s11258-019-00952-x"
+date: "August 05, 2019"
+output: distill::distill_article
+```
+
+---
+
+## Citeable journal article
+
+Now the citation at the bottom of the output is for the journal article.
+
+.center[![](figs/week03_files/citation_journal.png)]
+
+The BibTeX output is named using a *slug*, which it create automatically based on the given information (in this example it is `celis2019consequences`).  You can set this manually using the `slug` option in the header, as well.
+
+---
+
+## Citing other works
+
+We can include citations in text and a list of references in the **distill** article if we provide a bibliography file. This can be, e.g., BibTeX or CSL. document.  
+
+Save the `article1.bib` file I provided you into the `articles` folder.
+
+Then refer to `article1.bib` via `bibliography` in the YAML header.
+
+
+```r
+title: "Consequences of reduced light for flower production in conifer-invaded meadows of the Pacific Northwest, U.S.A"
+author:
+  - name: Jessica Celis 
+    affiliation: Institute for Applied Ecology
+  - name: Charles B. Halpern
+    affiliation: School of Environmental and Forest Sciences
+  - name: Ariel Muldoon
+    affiliation: College of Forestry
+journal: Plant Ecology
+volume: 220
+doi: "10.1007/s11258-019-00952-x"
+date: "August 05, 2019"
+output: distill::distill_article
+*bibliography: article1.bib
+```
+
+---
+
+## Citing other works
+
+.pull-left[
+If you haven't seen a `.bib` file before, take a minute to open `article1.bib` and take a look at the elements.   
+
+These particular citations are for R and R packages. Each entry has been given a name, which is the first element.  
+]
+
+.pull-right[]
+For example, the entry for R is called `R-base`. This is how we'll refer to the citation in the text.
+
+
+```r
+*@Manual{R-base,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2021},
+  url = {https://www.R-project.org/},
+}
+```
+]
+
+---
+
+## Citing other works
+
+.pull-left[
+You cite using `@` with the entry name. To put citations in parentheses, use brackets.
+
+For example, I'll add the following to the text of `article1.Rmd` to cite R.
+
+
+```r
+All analyses were done using R 4.0.4 [@R-base].
+```
+
+If you want a specific style of references, see instructions on how to change citation style in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html#changing-citation-style).
+]
+
+--
+
+.pull-right[
+Here's the output text after knitting. Note `References` are added automatically.
+.center[![](figs/week03_files/reference.png)]
+]
+
+---
+
+## Citing other works
+
+.pull-left[
+By default, only references you refer to in the text are included in the output.  If you want all entries added to the references, add
+
+
+```r
+nocite: '@*'
+```
+
+to the YAML header.
+]
+
+--
+
+.pull-right[
+After adding this to `article1.Rmd` and knitting, all references in the `.bib` file are included.
+![](figs/week03_files/reference_all.png)
+]
+
+---
+
+## Create another distill article
+
+Make another new distill article and save it as `article2.Rmd` in the `articles` folder.
+
+We'll leave the YAML header info alone this time, and focus on the syntax for footnotes, asides, and appendices.  
+
+---
+
+### Footnotes
+
+.pull-left[
+The syntax for adding hoverable footnotes is `^[text]`. Footnotes are automatically numbered.
+
+Let's add some text to the body of `article2.Rmd` to try this out. 
+
+The text I used:
+
+`Sometimes all the information is not in the body ^[Because it is in the footer]. 
+When you do that you'll add footnotes ^[By adding footnote syntax]`.
+]
+
+--
+
+.pull-right[
+Which results in:
+.center[![](figs/week03_files/footnotes.png)]
+]
+
+---
+
+### Asides
+
+An *aside* is when you put information to the far right of the document in what is called the *gutter*. The gutter is a used, for example, in Edward Tufte's books.
+
+The syntax for an aside uses `&lt;aside&gt;&lt;/aside&gt;`. 
+
+Examples:
+
+```
+&lt;aside&gt;
+This comment is on the side.
+&lt;/aside&gt;
+```
+
+--
+
+You can put output from code chunks like plots in asides, as well.
+
+
+    &lt;aside&gt;
+    ```{r} 
+    plot(cars) 
+    ```
+    &lt;/aside&gt;
+
+---
+
+### Asides
+
+After adding the two aside examples to `article2.Rmd`, knit to see the output.
+
+
+.center[
+&lt;img src="figs/week03_files/asides.png" width="90%" /&gt;
+]
+
+---
+
+### Appendices
+
+Appendices are added at the end of the document by adding `{.appendix}` after any level 1 (`#`) or level 2 (`##`) header.
+
+This makes sense for, e.g., acknowledgements or author's notes.
+
+--
+
+&lt;br/&gt;&lt;br/&gt;
+Let's add the following to the text in `article2.Rmd` to see this in action.
+&lt;br/&gt;&lt;br/&gt;
+```
+## Acknowledgments {.appendix}
+
+You can recognize people and institutions in acknowledgments. 
+```
+
+---
+
+### Appendices
+
+An appendix is put at the bottom of the article, but before footnotes.
+
+.center[
+&lt;img src="figs/week03_files/appendix.png" width="60%" /&gt;
+]
+
+---
+
+## Adding articles as drop-down menus
+
+---
+
+## Adding articles to menu web pages
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(figs/distill.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

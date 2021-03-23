@@ -62,7 +62,7 @@ The [distillery showcase](https://jhelvy.github.io/distillery/showcase.html) is 
 
 [Week 02 slides](slides/week02_distill_websites.html)
 
-## Week 3: More **distill** articles and deploy website
+## Week 3: More on **distill** articles and deploy website
 
 ### Goals
 
@@ -74,12 +74,14 @@ But first:
 - Create citation entry  
 - Add `.bib` file for references  
 - Practice with footnotes, asides, and appendices  
+- Add drop down menus and links within website pages  
 
 ### Resources
 
-The **distill** website has articles on [**distill** basics](https://rstudio.github.io/distill/basics.html#appendices) as well as [citations](https://rstudio.github.io/distill/citations.html)  
+The **distill** website has articles on [**distill** basics](https://rstudio.github.io/distill/basics.html) as well as [citations](https://rstudio.github.io/distill/citations.html)  
+GitHub docs has an overview of publishing via GitHub Pages [here](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
 ### Materials for class
 
-Slides  
-.bib example file  
+[Week 03 slides in progress](slides/week03_distill_articles_deploy.html)  
+Save [.bib example file](files/article1.bib)  
