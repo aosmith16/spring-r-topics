@@ -8,7 +8,7 @@
     <meta name="twitter:title" content="More distill: adding articles and deploying"/>
     <meta name="twitter:description" content="Adding to and deploying a distill website"/>
     <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html"/>
-    <meta name="twitter:image:src" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week02-share-card.png"/>
+    <meta name="twitter:image:src" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week03-share-card.png"/>
     <meta name="twitter:image:alt" content="Adding articles and deploying a distill websites Working sessions class spring 2021"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:creator" content="@aosmith16"/>
@@ -16,7 +16,7 @@
     <meta property="og:title" content="More distill: adding articles and deploying"/>
     <meta property="og:description" content="Adding to and deploying a distill website"/>
     <meta property="og:url" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html"/>
-    <meta property="og:image" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week02-share-card.png"/>
+    <meta property="og:image" content="https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week03-share-card.png"/>
     <meta property="og:image:alt" content="Adding articles and deploying a distill websites Working sessions class spring 2021"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="en_US"/>
@@ -37,6 +37,7 @@
     <link href="week03_distill_articles_deploy_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
     <script src="week03_distill_articles_deploy_files/xaringanExtra-broadcast/broadcast.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="wrap.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -79,9 +80,9 @@ Overall
 
 But first 
 -     Add more pages with **distill** articles  
--     Overview of article features, such as citations, references, and appendices  
+-     Go over article features, such as citations, references, and appendices
+-     Add links to other articles to website menu pages  
 -     Add drop down menus to website navigation bar
--     Add links to other articles to website menu pages
 
 --
 
@@ -106,7 +107,7 @@ Make sure you either have your own `.bib` file or saved `article1.bib` from the 
 
 **distill** articles are R Markdown documents with HTML output [optimized for scientific and technical communication](https://blog.rstudio.com/2020/12/07/distill/#what-is-distill). 
 
-It is **distill** articles that we used to build a **distill** website last week and we'll continue to show options for adding more content to your website.  
+It is **distill** articles that we used to build a **distill** website last week and we'll continue with them today, adding more content to your website.  
 
 --
 
@@ -129,7 +130,7 @@ class: center, middle, inverse, hide-logo
 
 Make sure you have your website RStudio Project open and ready to go. 
 
-Create a new folder called `articles` in the root directory. We'll save the new articles here.
+Create a new folder called `articles` in the root directory. We'll save the new articles there.
 
 --
 
@@ -145,35 +146,43 @@ Click `From Template` and then choose `Distill Article`.
 
 Save the file as `article1.Rmd` into the `articles` folder.
 
-Give the article a `title` (I used `"My first article"`) and then knit it to see the output from the "filler" content.
+Give the article a `title` (I used `"My first article"`) and then knit it to see the output based on the "filler" content.
 
-.center[![](figs/week03_files/first_article.png)]
+.center[
+&lt;img src="figs/week03_files/first_article.png" width="70%" /&gt;
+]
 
 ---
 
 ## Author information
 
-You can see in the output that **distill** articles add author and author affiliation information at the top of the output.  If you have multiple authors, add a new `- name` entry.
 
-I'm going to add myself as the second author. I include my affiliation, as well, but don't include any URL's so no links are added. 
+You can see in the output that **distill** articles add author and author affiliation information at the top of the output.  
+
+If you have multiple authors, add a new `- name` entry.
+
+I'm going to add myself as the second author. I include my affiliation but don't include any URL's so no links are added. 
+
 
 
 ```r
-title: "My first article"
-description: |
-  A new article created using the Distill format.
+ title: "My first article"
+ description: |
+   A new article created using the Distill format.
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+   - name: Nora Jones 
+     url: https://example.com/norajones
+     affiliation: Spacely Sprockets
+     affiliation_url: https://example.com/spacelysprokets
 *  - name: Ariel Muldoon
 *    affiliation: College of Forestry
-date: "`r Sys.Date()`"
-output: distill::distill_article
+ date: "`r Sys.Date()`"
+ output: distill::distill_article
 ```
 
-.footnote[*Like always when working with the YAML header, be very careful with your spacing. Using correct indentations is important.*]
+???
+
+Like always when working with the YAML header, be very careful with your spacing. Using correct indentations is important.
 
 ---
 
@@ -227,7 +236,9 @@ After knitting, scroll down to the bottom of the output page. You now have a cit
 
 ## Citeable journal article
 
-If you want a journal citation instead, add information from the published article to the header. This would make sense if you were, say, putting the abstract of a published journal article in the **distill** document or writing a journal article.
+If you want a journal citation, add information from the published article to the header. This would make sense if you were, say, putting the abstract of a published journal article in the **distill** document or writing a journal article.
+
+--
 
 I'll change the `title`, `date`, and basic `author` info and then add the `journal` title, `volume`, and `doi`. 
 
@@ -252,33 +263,28 @@ output: distill::distill_article
 
 ## Citeable journal article
 
+.pull-left[
 Now the citation at the bottom of the output is for the journal article.
 
 .center[![](figs/week03_files/citation_journal.png)]
+]
 
-The BibTeX output is named using a *slug*, which it create automatically based on the given information (in this example it is `celis2019consequences`).  You can set this manually using the `slug` option in the header, as well.
+.pull-right[
+The BibTeX output is named using a *slug*, which it create automatically based on the given information. In this example it is `celis2019consequences`.  You can set this manually using the `slug` option in the header, as well.
+]
 
 ---
 
 ## Citing other works
 
-We can include citations in text and a list of references in the **distill** article if we provide a bibliography file. This can be, e.g., BibTeX or CSL. document.  
+We can include citations in text and a list of references in the **distill** article if we provide a bibliography file. This can be, e.g., a BibTeX or CSL. document.  
 
-Save the `article1.bib` file I provided you into the `articles` folder.
+Save the `article1.bib` file I provided you into the `articles` folder. Then refer to it via `bibliography` in the YAML header.
 
-Then refer to `article1.bib` via `bibliography` in the YAML header.
+Here is an excerpt of the current YAML header:
 
 
 ```r
-title: "Consequences of reduced light for flower production in conifer-invaded meadows of the Pacific Northwest, U.S.A"
-author:
-  - name: Jessica Celis 
-    affiliation: Institute for Applied Ecology
-  - name: Charles B. Halpern
-    affiliation: School of Environmental and Forest Sciences
-  - name: Ariel Muldoon
-    affiliation: College of Forestry
-journal: Plant Ecology
 volume: 220
 doi: "10.1007/s11258-019-00952-x"
 date: "August 05, 2019"
@@ -291,13 +297,13 @@ output: distill::distill_article
 ## Citing other works
 
 .pull-left[
-If you haven't seen a `.bib` file before, take a minute to open `article1.bib` and take a look at the elements.   
+If you haven't seen a `.bib` file before, take a minute to open `article1.bib` and look at the entries   
 
-These particular citations are for R and R packages. Each entry has been given a name, which is the first element.  
+These particular citations are for R and R packages. Each entry has been given a name, which is the very first thing in the entry.  
 ]
 
-.pull-right[]
-For example, the entry for R is called `R-base`. This is how we'll refer to the citation in the text.
+.pull-right[
+For example, the entry for R is called `R-base`. This name is how we'll refer to the citation in the text.
 
 
 ```r
@@ -317,7 +323,7 @@ For example, the entry for R is called `R-base`. This is how we'll refer to the 
 ## Citing other works
 
 .pull-left[
-You cite using `@` with the entry name. To put citations in parentheses, use brackets.
+You cite using `@` with the `.bib` file entry name. To put citations in parentheses, use brackets.
 
 For example, I'll add the following to the text of `article1.Rmd` to cite R.
 
@@ -326,22 +332,25 @@ For example, I'll add the following to the text of `article1.Rmd` to cite R.
 All analyses were done using R 4.0.4 [@R-base].
 ```
 
-If you want a specific style of references, see instructions on how to change citation style in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html#changing-citation-style).
+A `References` section is added to the output automatically.
+
 ]
 
 --
 
 .pull-right[
-Here's the output text after knitting. Note `References` are added automatically.
+After knitting:
 .center[![](figs/week03_files/reference.png)]
 ]
+
+.footnote[*If you want a specific style for references, see instructions on how to change citation style in the [R Markdown Cookbook*](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html#changing-citation-style).]
 
 ---
 
 ## Citing other works
 
 .pull-left[
-By default, only references you refer to in the text are included in the output.  If you want all entries added to the references, add
+By default, only references you refer to in the text are included in the output.  If you want all entries in the `.bib` filed added to the references, add
 
 
 ```r
@@ -377,8 +386,10 @@ Let's add some text to the body of `article2.Rmd` to try this out.
 
 The text I used:
 
-`Sometimes all the information is not in the body ^[Because it is in the footer]. 
-When you do that you'll add footnotes ^[By adding footnote syntax]`.
+```
+Sometimes all the information is not in the body ^[Because it is in the footer]. 
+When you do that you'll add footnotes ^[By adding footnote syntax].
+```
 ]
 
 --
@@ -394,9 +405,11 @@ Which results in:
 
 An *aside* is when you put information to the far right of the document in what is called the *gutter*. The gutter is a used, for example, in Edward Tufte's books.
 
-The syntax for an aside uses `&lt;aside&gt;&lt;/aside&gt;`. 
+The syntax for an aside is `&lt;aside&gt;&lt;/aside&gt;`. 
 
-Examples:
+--
+
+Asides can be text. 
 
 ```
 &lt;aside&gt;
@@ -406,8 +419,7 @@ This comment is on the side.
 
 --
 
-You can put output from code chunks like plots in asides, as well.
-
+They can also be output from code chunks such as plots.
 
     &lt;aside&gt;
     ```{r} 
@@ -419,7 +431,7 @@ You can put output from code chunks like plots in asides, as well.
 
 ### Asides
 
-After adding the two aside examples to `article2.Rmd`, knit to see the output.
+After adding the two examples to `article2.Rmd`, knit to see the output.
 
 
 .center[
@@ -449,7 +461,7 @@ You can recognize people and institutions in acknowledgments.
 
 ### Appendices
 
-An appendix is put at the bottom of the article, but before footnotes.
+An appendix is put at the bottom of the article, placed before any footnotes.
 
 .center[
 &lt;img src="figs/week03_files/appendix.png" width="60%" /&gt;
@@ -457,11 +469,269 @@ An appendix is put at the bottom of the article, but before footnotes.
 
 ---
 
-## Adding articles as drop-down menus
+## Adding articles as links
+
+Now that we have some "articles" of our work to share, let's add them to the website.
+
+For a website like the one we've made, one approach is to link to the article output within one of our menu pages.
+
+--
+
+Open `about.Rmd`. Remember that the output of this is associated with the `Publications` menu on the website.
+
+As a reminder, here's the `navbar` code from `_site.yml`:
+
+
+```r
+ navbar:
+   right:
+     - text: "Hello"
+       href: index.html
+*    - text: "Publications"
+*      href: about.html
+     - text: "Teaching"
+       href: teaching.html
+     - icon: fab fa-github
+       href: https://github.com/aosmith16/personal-website
+```
 
 ---
 
-## Adding articles to menu web pages
+## Adding articles as links
+
+We'll add the articles as if they contained information for each element in a list of publications, hence we are working in the `Publications` menu.
+
+--
+
+&lt;br/&gt;
+Here's the text I added to `about.Rmd` to do this.
+
+```
+## Current publications
+
+- [Consequences of reduced light for flower production in conifer-invaded meadows of the Pacific Northwest, U.S.A](articles/article1.html)
+
+- [Another article](articles/article2.html)
+```
+
+---
+
+### Relative links
+
+.pull-left[
+You can see in the code in the last slide that we refer to files in child folders using paths *relative* to the root directory.
+
+So `articles/article2.html` 
+- Points first to the `articles` folder in the root directory 
+- And then to the `article2.html` file within that folder.
+]
+
+.pull-right[
+Here's what my root directory looks like right now:
+![](figs/week03_files/root_directory.png)
+]
+
+--
+
+**Important**: Only files in the root directory are re-created when you build. You must knit other files manually if you make changes to them.
+
+---
+
+## Adding articles as links
+
+.pull-left[
+Once you build the website, the information in the `Publications` menu reflects what we added to `about.Rmd`.  
+
+![](figs/week03_files/publications_link.png)
+]
+
+--
+
+.pull-right[
+**Of note:** Links to articles in child folders do not have the navigation bar or the website theme. 
+
+Some options:
+- Add themes via css files to individual articles like we did to the website.  
+- To make a page part of the website (with the navigation bar) it must either be in the root directory or you can switch to using [**distill** blog posts](https://rstudio.github.io/distill/blog_workflow.html) (*not covered in this session*).  
+]
+
+---
+
+## Adding articles as drop-down menus
+
+.pull-left[
+Another option is to make drop-down menus to link to your articles. This might make most sense when you want to link to a relatively small number of pages.
+
+You make drop-down menus under `navbar` in `_site.yml`. 
+]
+
+--
+
+.pull-right[
+The key is to add `menu:` below the `text` and then adding text and `href` links. 
+
+Here I added the two articles as a drop-down menu under "Teaching".
+
+
+
+```r
+ navbar:
+   right:
+     - text: "Hello"
+       href: index.html
+     - text: "Publications"
+       href: about.html
+     - text: "Teaching"
+*      menu:
+*        - text: "First article"
+*          href: articles/article1.html
+*        - text: "Second article"
+*          href: articles/article2.html
+     - icon: fab fa-github
+       href: https://github.com/aosmith16/personal-website
+```
+]
+
+---
+
+## Adding articles as drop-down menus
+
+After building the site you'll see the new drop-down menus with links to the articles.
+
+.center[
+![](figs/week03_files/dropdown.png)
+]
+
+---
+
+class: hide-logo
+
+## Deploying website
+
+Once we have a working draft of our website, it's time to deploy. 😁
+
+We set things up to use [GitHub Pages](https://pages.github.com/) for this. (*But also see [Netlify](https://www.netlify.com/).*)
+
+--
+
+&lt;br/&gt;
+🤔 Did you forget to push local changes to GitHub? If so, do it now before proceeding.
+
+--
+
+&lt;br/&gt;
+Go to your website GitHub repository and then go to `Settings`.
+
+.center[
+![](figs/week03_files/github_settings.png)
+]
+
+---
+
+class: hide-logo
+
+## Deploying website
+
+Once you are in `Settings`, scroll down, down, down to the section called `GitHub Pages`. It is one section from the very end of the page.
+
+.center[
+![](figs/week03_files/github_pages.png)
+]
+
+---
+
+class: hide-logo
+
+## Deploying website
+
+.pull-left[
+From the drop-down menu under `Source`, select `main`.
+
+![](figs/week03_files/pages_main.png)
+]
+
+--
+
+.pull-right[
+Then from the next drop-down menu select `\docs`. 
+
+![](figs/week03_files/pages_docs.png)
+
+]
+
+---
+
+class: hide-logo
+
+## Deploying website
+
+.pull-left[
+Finally, hit the `Save` button to save these settings.
+
+![](figs/week03_files/pages_save.png)
+]
+
+--
+
+.pull-right[
+
+Refresh the `Settings` page and scroll back down to the `GitHub Pages` section. You are waiting (and waiting ⏱) to see the message:
+
+`Your site is published at https://username.github.io/repository-name/`
+
+Where `username` is your GitHub user name and `repository-name` is the name of the repository with the website.
+]
+
+--
+
+&lt;br/&gt;&lt;br/&gt;
+.center[Once you see that message, go to the link to view your *live* website. 🎉]
+
+???
+
+Don't click on things to early or you may get a 404 message. Clear cache or unpublish by selecting "None" and then do the process again but wait a little more patiently. (https://github.community/t/pages-user-site-not-published/10280/3)
+
+---
+
+class: hide-logo
+
+## Search engine optimization
+
+You are going to find that your website does not come up at first when you search your name. 😞 
+
+But this should change over time! 🙂 If not, you may want to research search engine optimization (SEO) to see what you can do to make your website associated with your name in search results.
+
+--
+
+A few ideas:
+
+- Having your name as your site title should be a good start.  
+- If you ever decide to get a custom domain, use your name as part of the website address.   
+- Make sure you link to your website far and wide. This means, e.g., adding it as your website in all your social media accounts.
+
+---
+
+class: hide-logo
+
+## Next week
+
+That's all we're going to do on websites in this class. Hopefully you have a good start! 🤗
+
+Next week we'll switch to making tables using package **gt**.
+
+.center[
+&lt;img src="figs/gtlogo.svg" width="15%" /&gt;
+]
+
+.footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
+Slides created via the R packages:  
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

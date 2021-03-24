@@ -83,5 +83,5 @@ GitHub docs has an overview of publishing via GitHub Pages [here](https://docs.g
 
 ### Materials for class
 
-[Week 03 slides in progress](slides/week03_distill_articles_deploy.html)  
+[Week 03 slides](slides/week03_distill_articles_deploy.html)  
 Save [.bib example file](files/article1.bib)  
