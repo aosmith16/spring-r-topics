@@ -676,7 +676,7 @@ From the drop-down menu under `Source`, select `main`.
 --
 
 .pull-right[
-Then from the next drop-down menu select `\docs`. 
+Then from the next drop-down menu select `/docs`. 
 
 ![](figs/week03_files/pages_docs.png)
 
@@ -713,6 +713,20 @@ Where `username` is your GitHub user name and `repository-name` is the name of t
 ???
 
 Don't click on things to early or you may get a 404 message. Clear cache or unpublish by selecting "None" and then do the process again but wait a little more patiently. (https://github.community/t/pages-user-site-not-published/10280/3)
+
+---
+
+class: hide-logo
+
+## Deploying website
+
+A couple other things:
+
+- Whenever you edit your website and push the changes to GitHub your website will automatically update. Be sure to wait several minutes before checking if the updates took. `r emo::ji("wink")`
+
+- If you want to take your website down, go back to `Settings > GitHub Pages`, choose `None` as the source, and `Save`. 
+
+.center[![](figs/week03_files/pages_main.png)]
 
 ---
 
