@@ -50,5 +50,7 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **postcards v. 0.2.0**  
 **fontawesome v. 0.1.0**  
 **gt v. 0.2.2**  
+**webshot v. 0.5.2**  
+**dplyr v. 1.0.5 **  
 **gganimate v. 1.0.7**  
 **plotly v. 4.9.3**   

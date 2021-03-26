@@ -85,3 +85,37 @@ GitHub docs has an overview of publishing via GitHub Pages [here](https://docs.g
 
 [Week 03 slides](slides/week03_distill_articles_deploy.html)  
 Save [.bib example file](files/article1.bib)  
+
+## Week 4: Intro to display tables with **gt**
+
+### Goals
+
+Make display tables for output documents (e.g., manuscripts, presentations) using the **gt** package. We're starting with the basics: controlling the table content, adding information to the table, changing the table look, and saving to different formats.
+
+### Resources
+
+Thomas Mock has made a [**gt** Cookbook](https://themockup.blog/static/gt-cookbook.html#Introduction) that goes through functions in great detail.  
+The **gt** package website has a nice [intro](https://gt.rstudio.com/articles/intro-creating-gt-tables.html).  
+
+### Materials
+
+Slides here  
+Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the session  
+
+## Week 5: Doing more with **gt** tables.
+
+### Goals
+
+We'll look at a few more advanced features of **gt**, including adding images, using colors in cells, and highlighting values. We may also look at some more complex examples based on [Jonathan Schwabish's "Ten Guidelines to Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12).
+
+### Resources
+
+The **gt** Cookbook has a section on [colors](https://themockup.blog/static/gt-cookbook.html#Conditional_formatting).  
+Thomas Mock wrote a [post](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/) based on the "Ten Guidelines to Better Tables" paper that recreates tables with **gt**.  
+Liam Bailey walks through a more complex **gt** [table-making example](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/).  
+[Advanced **gt** Cookbook](https://themockup.blog/static/gt-cookbook-advanced.html)
+
+### Materials
+
+Slides here  
+Make .Rmd for running code  
