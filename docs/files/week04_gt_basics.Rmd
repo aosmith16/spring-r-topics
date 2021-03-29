@@ -444,11 +444,11 @@ You will be using `mtcars_small` for this exercise.
 
 Now that we've worked on the columns, let's switch to thinking about the rows.
 
-### Row names
-
 The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add in grouping here.
 
-The variable that represents the rows with is an argument within the `gt()` function.
+### Row names
+
+The variable that represents the rows is an argument within the `gt()` function.
 
 For example, let's start by using `"ctry_origin"` as row labels. Note we need quotes around the variable we pass to `rowname_col`.
 
@@ -486,13 +486,13 @@ gtcars_small %>%
     )
 ```
 
-If we don't have an appropriate row names column, you may want to put in blank row names. See an example from the **gt** Cookbook [here](https://themockup.blog/static/gt-cookbook.html#create-blank-rownames) for one approach.
+If you don't have an appropriate row names column, you may want to put in blank row names. See an example from the **gt** Cookbook [here](https://themockup.blog/static/gt-cookbook.html#create-blank-rownames) for one approach.
 
 ### Manual groups
 
 You can manually define groups using the function `tab_row_group()`. This involves using some sort of logical statement.
 
-Let's make two groups, one for "low" city `mpg_c` (\<21) and one for "high". This involves two calls to `tab_row_group()`. If you have many groups, you may consider making a grouping column prior to creating the **gt** table rather than doing it here.
+Let's make two groups, one for "low" city `mpg_c` (\<21) and one for "high". This involves two calls to `tab_row_group()`. If you have many groups, consider making a grouping column prior to creating the **gt** table rather than doing it this way.
 
 The name of the group is defined with `group` and the rows of interest are defined with logical operators in `rows`.
 
@@ -688,7 +688,7 @@ We can add footnotes to add information on important components of the table tha
 
 The `footnote` argument is where we put the text of the footnote. Again, use `md()` and/or `html()` to style the text.
 
-The `locations` argument is how we set the placement of the footnote. This involves a series of [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions) that we have not covered yet. We'll use a couple of these but will not go through them in detail.
+The `locations` argument is how we set the placement of the footnote. This involves a series of [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions) that we have not covered yet. We'll use one of these here but will not go through these functions in detail.
 
 We'll start by adding a footnote to the column label `msrp` to indicate these are given in USD.
 
@@ -791,9 +791,9 @@ gtcars_small %>%
     )
 ```
 
-To get rid of the line above and below the header set the top and bottom border colors to white and the line below the header to black.
+To get rid of the line above and below the header, set the top and bottom border colors to white and the line below the header to black.
 
-I thrown in `opt_align_table_header()` to left-align the header.
+I throw in `opt_align_table_header()` to left-align the header.
 
 ```{r}
 gtcars_small %>%
@@ -813,7 +813,7 @@ gtcars_small %>%
         table_body.border.bottom.color = "black",
         table_body.hlines.color = "white"
     ) %>%
-    opt_align_table_header(align = "left")
+    opt_align_table_header(align = "left") # left align header
 ```
 
 See the `tab_style()` function for controlling the style of individual parts of the table.
@@ -903,40 +903,5 @@ You may want to do these changes one or a few at a time to help troubleshoot any
 ```{r}
 # Write your code in this chunk and run to see the output
 
-results %>%
-    gt(
-        rowname_col = "litterspp",
-        groupname_col = "contrast"
-    ) %>%
-    cols_width(
-        vars(litterspp) ~ px(100)
-    ) %>%
-    fmt_number(
-        columns = 3:5,
-        decimals = 1
-    ) %>%
-    cols_label(
-        ratio = "Ratio"
-    ) %>%
-    cols_merge(
-        columns = 4:5,
-        pattern = "{1},{2}"
-    ) %>%
-    cols_label(
-        lower.CL = "95% CI"
-    ) %>%
-    tab_header(title = "Comparisons") %>%
-    tab_source_note(source_note =  md("*Data from Siuslaw study*")) %>%
-    tab_options(
-        table.border.top.color = "white",
-        heading.border.bottom.color = "black",
-        row_group.border.top.color = "black",
-        row_group.border.bottom.color = "white",
-        stub.border.color = "transparent",
-        table.border.bottom.color = "white",
-        column_labels.border.top.color = "black",
-        column_labels.border.bottom.color = "black",
-        table_body.border.bottom.color = "black",
-        table_body.hlines.color = "white"
-    )
+
 ```
