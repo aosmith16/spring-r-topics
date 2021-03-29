@@ -48,7 +48,7 @@ gtcars_small
 
 ### The `mtcars` dataset
 
-The `mtcars` dataset is data from 1974 Motor Trend road tests. It contains a fairly large number of numeric and integer variables that make useful for practicing. I'm taking just the first 6 rows and adding in a missing value.
+The `mtcars` dataset is data from 1974 Motor Trend road tests. It contains a fairly large number of numeric and integer variables that make useful for practicing. I'm taking just the first 6 rows and adding in some missing values.
 
 ```{r}
 mtcars_small = mtcars %>%
@@ -74,10 +74,9 @@ results = structure(list(contrast = structure(c(1L, 1L, 1L, 1L), .Label = "DF / 
     upper.CL = c(6.33017060479877, 8.62806903340073, 2.44592598782139, 
     3.66318079369337)), row.names = c(NA, 4L), class = "data.frame")
 results
-
 ```
 
-## Basic usage
+## Basic **gt** usage
 
 We start with the `gt()` function to create a basic **gt** table object. This is the first step in a typical workflow.
 
@@ -404,9 +403,9 @@ gtcars_small %>%
 
 ### Formatting specific cells
 
-All the `fmt_*()` functions work on entire columns by default. However, we can focus on specific rows using the `rows` argument. For example, in [Jonathan Schwabish's "Ten Guidelines for Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12), he recommends against unit repetition. By this he means adding symbols (e.g., currency, percentage symbols) to only the first row in each column.
+All the `fmt_*()` functions work on entire columns by default. In [Jonathan Schwabish's "Ten Guidelines for Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12), he recommends adding symbols (e.g., currency, percentage symbols) to only the first row in each column.
 
-To add a symbol to only the first row of a column, choose the `row` by its index. In this case, `1`.
+To add a symbol to only the first row of a column use the `rows` argument. Choose rows by index. In this case, `1`.
 
 Now I choose the two `mpg` columns by their position.
 

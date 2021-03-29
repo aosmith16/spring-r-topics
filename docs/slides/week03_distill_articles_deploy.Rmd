@@ -2,6 +2,7 @@
 title: "More distill: adding articles and deploying"
 output:
   xaringan::moon_reader:
+    fig_caption: FALSE
     seal: FALSE
     includes:
       after_body: insert-logo.html
@@ -752,12 +753,12 @@ class: hide-logo
 
 ## Next week
 
-That's all we're going to do on websites in this class. Hopefully you have a good start! `r emo::ji("hug")`
-
-Next week we'll switch to making tables using package **gt**.
+- That's all we're going to do on websites in this class. Hopefully you have a good start! `r emo::ji("hug")`
+- Next week we'll switch to making tables using package **gt**. 
+- Download/save `week04_gt_basics.Rmd` from website prior to class.  
 
 .center[
-```{r gt, echo = FALSE, out.width = "15%"}
+```{r gt, echo = FALSE, out.width = "15%", fig.cap = "Logo for package gt"}
 knitr::include_graphics("figs/gtlogo.svg")
 ```
 ]

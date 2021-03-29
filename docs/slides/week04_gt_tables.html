@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Display tables with package gt</title>
+    <meta charset="utf-8" />
+    <script src="week04_gt_tables_files/header-attrs/header-attrs.js"></script>
+    <meta name="github-repo" content="aosmith16/spring-r-topics"/>
+    <meta name="twitter:title" content="More distill: adding articles and deploying"/>
+    <meta name="twitter:description" content="Adding to and deploying a distill website"/>
+    <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html"/>
+    <meta name="twitter:image:src" content="https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html/week04-share-card.png"/>
+    <meta name="twitter:image:alt" content="Getting started with package gt Working sessions class spring 2021"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@aosmith16"/>
+    <meta name="twitter:site" content="@aosmith16"/>
+    <meta property="og:title" content="More distill: adding articles and deploying"/>
+    <meta property="og:description" content="Adding to and deploying a distill website"/>
+    <meta property="og:url" content="https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html"/>
+    <meta property="og:image" content="https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html/week04-share-card.png"/>
+    <meta property="og:image:alt" content="Getting started with package gt Working sessions class spring 2021"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Ariel Muldoon"/>
+    <script src="week04_gt_tables_files/fabric/fabric.min.js"></script>
+    <link href="week04_gt_tables_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="week04_gt_tables_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script src="week04_gt_tables_files/clipboard/clipboard.min.js"></script>
+    <link href="week04_gt_tables_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="week04_gt_tables_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="week04_gt_tables_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week04_gt_tables_files/tile-view/tile-view.js"></script>
+    <script src="week04_gt_tables_files/js-cookie/js.cookie.js"></script>
+    <script src="week04_gt_tables_files/peerjs/peerjs.min.js"></script>
+    <script src="week04_gt_tables_files/tiny.toast/toast.min.js"></script>
+    <link href="week04_gt_tables_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="week04_gt_tables_files/xaringanExtra-broadcast/broadcast.js"></script>
+    <link href="week04_gt_tables_files/countdown/countdown.css" rel="stylesheet" />
+    <script src="week04_gt_tables_files/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="wrap.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: center, middle, title-slide
+
+# Display tables with package gt
+## Part 1: Building basic tables
+
+&lt;img src="figs/gtlogo.svg" title="Logo for package gt" alt="Logo for package gt" width="15%" /&gt;
+
+### Ariel Muldoon
+
+### April 20, 2021
+
+---
+
+## Today's Goal
+
+Overall  
+-     Build *display* tables in R with package **gt**  
+
+--
+
+We will  
+
+-     Modify and format table columns    
+-     Add row information with names and groups  
+-     Add extra information with headers, spanners, and footers    
+-     Change overall table style    
+
+--
+
+*Before we begin:*
+
+Make sure you saved `week04_gt_basics.Rmd` from the class website onto your computer. We will be running code from this file.
+
+???
+
+Display tables are tables of output, not tables for entire datasets
+
+---
+
+class: hide-logo
+
+## Resources
+
+- Thomas Mock's [**gt** Cookbook](https://themockup.blog/static/gt-cookbook.html#Introduction)  
+- The **gt** package website has a nice [intro](https://gt.rstudio.com/articles/intro-creating-gt-tables.html)    
+
+.center[
+&lt;img src="figs/gtlogo.svg" title="Logo for package gt" alt="Logo for package gt" width="30%" /&gt;
+]
+
+---
+
+## Why focus on **gt**?
+
+.pull-left[
+**Pros:**
+- "Grammar of tables" like **ggplot2** grammar of graphics  
+- Supports HTML, LaTeX, RTF outputs  
+- Follows **tidyverse** conventions  
+
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;ggplot2 for tables&lt;/p&gt;&amp;mdash; Charles T. Gray (@cantabile) &lt;a href="https://twitter.com/cantabile/status/1372136281518477318"&gt;Tweet March 17, 2021&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+]
+
+.pull-right[
+**Cons:**  
+- Very new  
+- Code gets long/complex fast (*this shared by most table-making packages in R*)
+]
+
+???
+
+Reminder these are display tables of output
+
+---
+
+## Other packages for tables
+
+There are many great packages for making display tables in R.
+
+These include:
+- **kable** and **kableExtra**, which are relatively mature  
+- **flextable**, a great option for making Word tables
+- **reactable** for making *interactive* tables
+- And so many more!   
+
+--
+
+There is a nice overview of packages for tables in R at [R for the Rest of Us](https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/) and a list of them on the [**gt** website](https://gt.rstudio.com/#how-gt-fits-in-with-other-packages-that-generate-display-tables).
+
+Also see [package **gtsummary**](https://education.rstudio.com/blog/2020/07/gtsummary/) for making summary tables like ones commonly seen in medical journals.
+
+---
+
+class: center, middle, inverse, hide-logo
+
+# &lt;font style="font-family: cursive; font-style:italic"&gt;Let's get started!&lt;/font&gt;
+
+---
+
+## Running code
+
+- Open `week04_gt_basics.Rmd`  
+- I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
+
+--
+
+&lt;br/&gt;&lt;br/&gt;
+**Set up**  
+We'll practice different features of package **gt** together, running example code I've already written.   
+At the end of each section you'll have a chance to practice what we just covered.
+
+---
+
+## R packages 
+
+We are using **gt 0.2.2** and **dplyr 1.0.5** today. Load these before we start. 
+
+
+```r
+library(gt) # v. 0.2.2
+library(dplyr) # v. 1.0.5
+```
+
+Also make sure you have package **webshot** installed. 
+
+---
+
+## Datasets
+
+We need a couple small datasets to practice on. We will do all data manipulation steps now.
+
+--
+
+.pull-left[
+**The `gtcars` dataset**
+
+This dataset is data on deluxe automobiles from 2014-2017. See `?gtcars` for more information.
+
+We'll pull out 6 rows from two countries and keep 7 of the variables.
+
+
+```r
+gtcars_small = gtcars %&gt;%
+    filter(ctry_origin %in% c("United States", "Japan")) %&gt;%
+    select(mfr:year, mpg_c, mpg_h, ctry_origin, msrp)
+gtcars_small
+```
+]
+
+--
+
+.pull-right[
+
+|mfr       |model    | year| mpg_c| mpg_h|ctry_origin   |   msrp|
+|:---------|:--------|----:|-----:|-----:|:-------------|------:|
+|Ford      |GT       | 2017|    11|    18|United States | 447000|
+|Acura     |NSX      | 2017|    21|    22|Japan         | 156000|
+|Nissan    |GT-R     | 2016|    16|    22|Japan         | 101770|
+|Chevrolet |Corvette | 2016|    15|    22|United States |  88345|
+|Dodge     |Viper    | 2017|    12|    19|United States |  95895|
+|Tesla     |Model S  | 2017|    NA|    NA|United States |  74500|
+]
+
+???
+
+Data manipulation is key to making display tables and you'll often see data manipulation code along with the tables.
+
+---
+
+## Datasets
+
+We need a couple small datasets to practice on. We will do all data manipulation steps now.
+
+.pull-left[
+**The `mtcars` dataset**
+
+The `mtcars` dataset is data from 1974 Motor Trend road tests. We'll use the first 6 rows of 5 variables and add in some missing values.
+
+
+```r
+mtcars_small = mtcars %&gt;%
+    head() %&gt;%
+    mutate(
+        disp = c(NA, disp[2:6]),
+        qsec = c(qsec[1:5], NA)
+        ) %&gt;%
+    select(disp, hp, wt, qsec, carb)
+mtcars_small
+```
+]
+
+--
+
+.pull-right[
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+
+|                  | disp|  hp|    wt|  qsec| carb|
+|:-----------------|----:|---:|-----:|-----:|----:|
+|Mazda RX4         |   NA| 110| 2.620| 16.46|    4|
+|Mazda RX4 Wag     |  160| 110| 2.875| 17.02|    4|
+|Datsun 710        |  108|  93| 2.320| 18.61|    1|
+|Hornet 4 Drive    |  258| 110| 3.215| 19.44|    1|
+|Hornet Sportabout |  360| 175| 3.440| 17.02|    2|
+|Valiant           |  225| 105| 3.460|    NA|    1|
+
+]
+
+---
+
+## Datasets
+
+We need a couple small datasets to practice on. We will do all data manipulation steps now.
+
+.pull-left[
+**Table of results**
+
+Here is a small table of results from an analysis, which reports estimated ratios of medians between two groups for 4 `litterspp`.
+
+
+```r
+results = structure(list(contrast = structure(c(1L, 1L, 1L, 1L), .Label = "DF / RA", class = "factor"), 
+    litterspp = structure(1:4, .Label = c("ACMA", "ALRU", "PSME", 
+    "TSHE"), class = "factor"), ratio = c(2.92534041512422, 3.98726047426825, 
+    1.1303275363783, 1.69285339886012), lower.CL = c(1.35187771051096, 
+    1.84261924981326, 0.522354456290416, 0.782312637958251), 
+    upper.CL = c(6.33017060479877, 8.62806903340073, 2.44592598782139, 
+    3.66318079369337)), row.names = c(NA, 4L), class = "data.frame")
+results
+```
+]
+
+--
+
+.pull-left[
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+
+|contrast |litterspp |    ratio|  lower.CL| upper.CL|
+|:--------|:---------|--------:|---------:|--------:|
+|DF / RA  |ACMA      | 2.925340| 1.3518777| 6.330171|
+|DF / RA  |ALRU      | 3.987261| 1.8426192| 8.628069|
+|DF / RA  |PSME      | 1.130327| 0.5223545| 2.445926|
+|DF / RA  |TSHE      | 1.692853| 0.7823126| 3.663181|
+
+]
+---
+
+## Basic **gt** usage
+
+We start with the `gt()` function to create a basic **gt** table object. This is the first step in a typical workflow.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+*   gt()
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt1.png)
+]
+
+???
+
+The dataset is the first argument to `gt()`. You can put your dataset within `gt()` (i.e., `gt(data = gtcars_small)`), but it is standard to use a pipe syntax when building **gt** tables so we'll be using them throughout this session.
+
+---
+
+## Modify columns
+
+We're going to first focus on cleaning up the table body and columns. 
+
+The [`cols_*()` functions](https://gt.rstudio.com/reference/index.html#section-modify-columns) allow for modifications of entire columns.
+
+We can control the column labels, cell alignment, column width and placement as well as combine columns with `cols_*()` functions.
+
+---
+
+### Column labels
+
+Relabel one or more labels using `cols_label()`.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   cols_label(
+*       mfr = "Manufacturer",
+*       ctry_origin = "Country"
+*   )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt2.png)
+]
+
+---
+
+### Column labels
+
+You can control text formatting of labels with Markdown or HTML syntax. This can be used on any text in a **gt** table.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   cols_label(
+*       mfr = md("**Manufacturer**"),
+*       ctry_origin = html("&lt;em&gt;Country&lt;/em&gt;")
+*   )
+```
+
+***Code notes:***  
+Use `md()` for markdown syntax and `html()` for HTML syntax.
+
+]
+
+.pull-right[
+![](figs/week04_files/gt3.png)
+]
+
+---
+
+### Column alignment
+
+Align all text within different columns using `cols_align()`. Most often we left-align text with varying length and right-align numbers.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_label(
+        mfr = "Manufacturer",
+        ctry_origin = "Country"
+    ) %&gt;%
+*   cols_align(
+*       align = "center",
+*       columns = vars(mfr, model)
+*   )
+```
+
+***Code notes:***  
+Align specific columns using `vars()`  
+Changing labels doesn't change variable name
+]
+
+.pull-right[
+![](figs/week04_files/gt4.png)
+
+]
+
+---
+
+### Code alignment
+
+Align different columns different ways by adding multiple `cols_align()` layers.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_label(
+        mfr = "Manufacturer",
+        ctry_origin = "Country"
+    ) %&gt;%
+    cols_align(
+        align = "center",
+        columns = vars(mfr, model)
+    ) %&gt;%
+*   cols_align(
+*       align = "left",
+*       columns = vars(mpg_c, mpg_h, msrp)
+*   )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt5.png)
+
+]
+
+---
+
+### Column order
+
+Move columns to the start or end or wherever you'd like with the `cols_move_*()` functions.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_label(
+        mfr = "Manufacturer",
+        ctry_origin = "Country"
+    ) %&gt;%
+*   cols_move_to_start(
+*       columns = vars(ctry_origin)
+*   )
+```
+***Code notes:***
+`cols_move_to_start()` to move to start, `end` to end
+]
+
+.pull-right[
+![](figs/week04_files/gt6.png)
+
+]
+
+---
+
+### Column order
+
+Use `cols_move()` to move a column *after* another column.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_label(
+        mfr = "Manufacturer",
+        ctry_origin = "Country"
+    ) %&gt;%
+    cols_move_to_start(
+        columns = vars(ctry_origin)
+    ) %&gt;%
+*   cols_move(
+*       columns = vars(mpg_c, mpg_h),
+*       after = vars(msrp)
+*   )
+```
+***Code notes:***
+Move the two `mpg` columns *after* `msrp`
+]
+
+.pull-right[
+![](figs/week04_files/gt7.png)
+
+]
+
+---
+
+### Column widths
+
+Control with widths of columns in pixels (`px()`) or percentage of the current size (`pct()`) with `cols_width()`.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_label(
+        mfr = "Manufacturer",
+        ctry_origin = "Country"
+    ) %&gt;%
+    cols_move_to_start(
+        columns = vars(ctry_origin)
+    ) %&gt;%
+*   cols_width(
+*       vars(ctry_origin) ~ px(150)
+*   )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt8.png)
+
+]
+
+---
+
+### Column widths
+
+If you want many columns to be the same width, use `everything()` after defining the widths of other columns.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_label(
+        mfr = "Manufacturer",
+        ctry_origin = "Country"
+    ) %&gt;%
+    cols_move_to_start(
+        columns = vars(ctry_origin)
+    ) %&gt;%
+*   cols_width(
+*       vars(ctry_origin, mfr, model) ~ px(120),
+*       everything() ~ px(50)
+*   )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt9.png)
+]
+
+---
+
+### Merging columns
+
+You can combine multiple columns into one using `cols_merge()`.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   cols_merge(
+*       columns = vars(mpg_c, mpg_h)
+*   )
+```
+***Code notes:***  
+Combine two `mpg` columns to show range of mileage in one column
+]
+
+.pull-right[
+![](figs/week04_files/gt10.png)
+]
+
+---
+
+### Merging columns
+
+By default the new column is named with the first column and the values are put together with a space between them.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   cols_merge(
+*       columns = vars(mpg_c, mpg_h),
+*       pattern = "{1}-{2}"
+*   )
+```
+***Code notes:***  
+`pattern` argument controls how column values combined  
+Example puts hyphen between values  
+]
+
+.pull-right[
+![](figs/week04_files/gt11.png)
+]
+
+---
+
+### Your turn
+
+Write code in the empty code chunk that is provided. 
+
+Using the `gtcars_small` dataset:  
+-   We just made a new *merged* column called `mpg_c`. Change the name of this column to `Range`.
+-   Change the name of `ctry_origin` to `Origin`.
+-   Move `year` to be the first column, followed by `ctry_origin`.
+
+
+<div class="countdown" id="timer_60621f7a" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+### Your turn
+
+Here's what I did.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    cols_merge( 
+        columns = vars(mpg_c, mpg_h),
+        pattern = "{1}-{2}"
+    ) %&gt;%
+    cols_label(
+        mpg_c = "Range",
+        ctry_origin = "Origin"
+    ) %&gt;%
+    cols_move_to_start(
+        columns = vars(year)
+    ) %&gt;%
+    cols_move(
+        columns = vars(ctry_origin),
+        after = vars(year)
+    )
+```
+]
+
+.pull-right[
+![](figs/week04_files/yt1.png)
+]
+
+---
+
+## Format columns
+
+The **gt** package provides a series of [`fmt_*()` functions](https://gt.rstudio.com/reference/index.html#section-format-data) for formatting the values within columns. 
+
+This can be done on entire rows or on individual cells (i.e., rows within columns).
+
+---
+
+### Number formatting
+
+The function `fmt_number()` is for formatting numeric columns. We'll set the decimal place for `mpg_c` and add a suffix to `msrp`.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   fmt_number(
+*       columns = vars(mpg_c),
+*       decimals = 1
+*   ) %&gt;%
+*   fmt_number(
+*       columns = vars(msrp),
+*       decimals = 0,
+*       suffixing = TRUE
+    )
+```
+***Code notes:***  
+`decimals` defaults to 2   
+`suffixing` is for adding large number suffixes like `K` for thousands
+]
+
+.pull-right[
+![](figs/week04_files/gt12.png)
+]
+
+???
+
+Includes, e.g., choosing the number of decimal places, setting the decimal separator (defaults to "."), and large-number suffixes such as `K` for thousands.
+
+---
+
+### Currency formatting
+
+Add a currency symbol using `fmt_currency()`. We'll add a dollar sign to `msrp`. 
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   fmt_currency(
+*       columns = vars(msrp),
+*       currency = "USD",
+*       decimals = 0,
+*       suffixing = TRUE
+*   )
+```
+***Code notes:***  
+`USD` is the default currency symbol.  
+]
+
+.pull-right[
+![](figs/week04_files/gt13.png)
+]
+
+???
+
+This function has many options we won't see today, including options for how to display negative values.
+
+---
+
+### Currency formatting
+
+We can change the currency symbol, using either 3-letter currency codes or common currency names. 
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    fmt_currency(
+        columns = vars(msrp), 
+*       currency = "EUR",
+        decimals = 0,
+        suffixing = TRUE
+    )
+```
+***Code notes:***  
+`EUR` stands for euros  
+]
+
+.pull-right[
+![](figs/week04_files/gt14.png)
+]
+
+---
+
+### Currency formatting
+
+Change the currency symbol to pounds.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    fmt_currency(
+        columns = vars(msrp), 
+*       currency = "pound",
+        decimals = 0,
+        suffixing = TRUE
+    )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt15.png)
+]
+
+---
+
+### Percent formatting
+
+Use `fmt_percent()` for percent formatting. We'll pretend the `mpg` columns are percents.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;% 
+*   fmt_percent(
+*       columns = vars(mpg_c, mpg_h),
+*       decimals = 0
+*   )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt16.png)
+]
+
+---
+
+### Percent formatting
+
+By default, the values were multiplied by 100 prior to adding the `%` symbol. Use `scale_value = FALSE` to change.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;% 
+    fmt_percent(
+        columns = vars(mpg_c, mpg_h),
+        decimals = 0,
+*       scale_value = FALSE
+    )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt17.png)
+]
+
+---
+
+### Missing values formatting
+
+By default missing values are shown in tables as `NA`. This can be controlled using `fmt_missing()`.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+*   fmt_missing(
+*       columns = contains("mpg")
+*   )
+```
+***Code notes:***  
+Note use of `contains()` select helper function.  
+By default the new missing text is `---`
+]
+
+.pull-right[
+![](figs/week04_files/gt18.png)
+]
+
+---
+
+### Missing values formatting
+
+Change the missing text to `none` with `missing_text`.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    fmt_missing(
+        columns = contains("mpg"),
+*       missing_text = "none"
+    )
+```
+]
+
+.pull-right[
+![](figs/week04_files/gt19.png)
+]
+
+---
+
+### Formatting specific cells
+
+All the `fmt_*()` functions work on entire columns by default. We can focus on specific rows using the `rows` argument. In [Jonathan Schwabish's "Ten Guidelines for Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12), he recommends adding symbols only the first row in each column.
+
+.pull-left[
+
+```r
+gtcars_small %&gt;%
+    gt() %&gt;%
+    fmt_percent(
+*       columns = 4:5,
+*       rows = 1,
+        decimals = 0,
+        scale_values = FALSE
+    )
+```
+***Code notes:***  
+Choose the `rows` by index (row 1 is `1`)  
+I chose the columns by position  
+Note [alignment issue](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/#rule-7-remove-unit-repetition)
+]
+
+.pull-right[
+![](figs/week04_files/gt20.png)
+]
+
+???
+
+You'll note this changes the alignment of the column, which is not ideal. There is an open issue to fix this in **gt**. In the meantime, check out Thomas Mock's work-arounds in his [blog post](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/#rule-7-remove-unit-repetition).
+
+---
+
+### Date-time formatting
+
+While we aren't going to explore them today, if you are working with dates, times, or date-times you'll find the respective `fmt_*()` functions for those to be useful. 
+
+Here's a link to some examples in the **gt** Cookbook: &lt;https://themockup.blog/static/gt-cookbook.html#Date_formatting&gt;.
+
+---
+
+### Your turn
+
+Write code in the empty code chunk that is provided. 
+
+You will be using `mtcars_small` for this exercise.  
+-   Convert `carb` to a percent with 1 decimal place, where `4` = `4.0%`.
+-   Replace the missing value in `disp` with `---`.
+-   Replace the missing value in `qsec` with "missing".
+-   Add the `yen` currency symbol to `hp` with 0 decimal places.
+
+<div class="countdown" id="timer_60621d6c" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+### Your turn
+
+.pull-left[
+
+```r
+mtcars_small %&gt;%
+    gt() %&gt;%
+    fmt_percent(
+        columns = vars(carb),
+        decimals = 1,
+        scale_values = FALSE
+    ) %&gt;%
+    fmt_missing(
+        columns = vars(disp)
+    ) %&gt;%
+    fmt_missing(
+        columns = vars(qsec),
+        missing_text = "missing"
+    ) %&gt;%
+    fmt_currency(
+        columns = vars(hp),
+        currency = "yen",
+        decimals = 0
+    )
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week04_files/yt2.png" width="70%" /&gt;
+
+&lt;!-- ![](figs/week04_files/yt2.png) --&gt;
+]
+]
+
+
+---
+
+class: hide-logo
+
+## Next week
+
+- 
+
+.center[
+&lt;img src="figs/gtlogo.svg" title="Logo for package gt" alt="Logo for package gt" width="15%" /&gt;
+]
+
+.footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
+Slides created via the R packages:  
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(figs/gtlogo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
