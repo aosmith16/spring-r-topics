@@ -106,8 +106,6 @@ Read at https://happygitwithr.com/
 
 ## What is Git? `r icons::fontawesome("git-square")`
 
---
-
 - Program for version control
 
 --
@@ -210,7 +208,7 @@ On Windows, RStudio expects to find Git at `C:/Program Files/Git/bin/git.exe`. G
 Two options: 
 
 1. Install via Xcode.  
-This can be done using command line tools in the shell using 
+This can be done using command line tools in the shell with 
 ```
 xcode-select --install
 ```  
@@ -227,8 +225,9 @@ RStudio now has a basic Git client, which works well most of the time.
 
 If you are comfortable, you can use the command line for working with Git.  
 
-I also use a program called [GitKraken](https://www.gitkraken.com/). It has been great when I've need a more advanced Git client, such as when dealing with dreaded merge conflicts. `r emo::ji("scream")`
+I also use [GitKraken](https://www.gitkraken.com/). It has been great when I've need a more advanced Git client, such as when dealing with dreaded merge conflicts `r emo::ji("scream")` or when RStudio chokes on staging many files at once.
 
+<br/>
 .center[
 ```{r gitkraken, echo = FALSE, out.width = "20%"}
 knitr::include_graphics("figs/week01_files/gitkraken.png")
@@ -241,7 +240,7 @@ knitr::include_graphics("figs/week01_files/gitkraken.png")
 
 Open up a shell terminal.  
 
-In Windows the most straightforward thing to do is to use Git Bash.
+In Windows the most straightforward thing to do is to use Git Bash (this should already by open).
 
 .center[
 ```{r gitbash, echo = FALSE, out.width = "40%"}
@@ -305,7 +304,7 @@ Your user name and email address should be listed in the output.
 
 Go to your GitHub account.  
 
-Go to the `+` drop down menu in the upper righthand corner and choose `New Repository`.
+Go to the `+` drop down menu in the upper right-hand corner and choose `New Repository`.
 
 ![](figs/week01_files/github_newrepo.PNG)
 
@@ -339,7 +338,7 @@ Once the repository has been created, click the `Code` button and copy the URL t
 
 ## Connect to GitHub `r icons::fontawesome("github")` via RStudio
 
-Let's switch to using RStudio instead of the shell.  You can always go back to using the command line from the shell if that's what you are comfortable with.
+Let's switch to using RStudio instead of the shell.  You can always go back to using the command line if that's what you are comfortable with.
 
 **Important**: If RStudio was open throughout any of the Git installation process, close it and reopen. No, seriously. Do it.
 
@@ -384,12 +383,16 @@ Paste the cloned URL from the remote repository into the `Repository URL` box.
 ]
 
 .pull-right[
-RStudio will fill in the `Project directory name` box to match the repository name. Change the local Project name if you'd like (and will remember the two different names `r emo::ji("smile")`).
+RStudio will fill in the `Project directory name` box to match the repository name. Change the local Project name if you'd like (but then you have to remember the two different names `r emo::ji("smile")`).
 
-You can `Browse` to choose a specific directory to save your local repository to.
+You can `Browse` to choose a specific directory to save your local repository into.
 
 .footnote[If you run into trouble throughout this section, jump to the [troubleshooting slide](#trouble)]
 ]
+
+???
+
+Talk about directories? I have a "blog" directory for blogs and "R workshop" directory for workshop repos all within my own folder on my computer.
 
 ---
 
@@ -460,7 +463,7 @@ Save the file.
 
 ## Update GitHub `r icons::fontawesome("github")` with local changes
 
-In the `Git` tab in RStudio you will now see this file as well as the `.Rproj` file. 
+In the `Git` tab in RStudio you will now see the `README` file you just edited as well as the `.Rproj` file. 
 
 
 *Stage* these files by clicking on the boxes next to each file. 
@@ -478,8 +481,6 @@ Now select `Commit` in the `Git` tab.
 Write a message in the "Commit message" box in the pop-up window that opens. This message should be short but useful. Commit messages help you find previous versions of your work.
 
 .center[![](figs/week01_files/rstudio_commit.PNG)]
-
---
 
 Then hit the `Commit` button under the `Commit message` box. You are *committing* to make the edited files part of the repository.
 
@@ -502,7 +503,7 @@ If you've pushed successfully you will see a message like the one below.
 
 .center[![](figs/week01_files/rstudio_committed.PNG)]
 
-Go to your GitHub repository to see the changes. You may need to refresh.
+Go to your GitHub repository to see the changes after refreshing the page.
 ]
 
 ---
@@ -519,7 +520,7 @@ We can also work on it more together after we finish up the next section.
 
 ## Adding SSH key for authentication
 
-Once you start working with Git regularly, entering your GitHub credentials when you want to push becomes a pain.  I think one way to avoid this is to add a SSH key.
+Once you start working with Git regularly, entering your GitHub credentials can start to get annoying.  One way to avoid this is to add a SSH key.
 
 --
 
@@ -551,7 +552,7 @@ Then add the key via `ssh-add`.
 ssh-add ~/.ssh/id_rsa
 ```
 
-In the past I have had to write out the whole directory path in Windows. RStudio stores the key pair in your `Users` folder so the path I had to write out was `c:/Users/Owner/.ssh/id_rsa` (my Users folder is named `Owner` in this example). 
+In the past I have had to write out the whole directory path in Windows. RStudio stores the key pair in your `Users` folder so the path I wrote out was `c:/Users/Owner/.ssh/id_rsa` (my Users folder is named `Owner` in this example). 
 
 ---
 
@@ -604,7 +605,7 @@ Go to your GitHub repository.
 .pull-left[
 Go to your GitHub repository.  
 
-1. Choose `Settings` under the drop-down menu in the upper righthand corner.  
+1. Choose `Settings` under the drop-down menu in the upper right-hand corner.  
 2. Choose `SSH & GPG keys` from the menu on the left and then click `New SSH key`.
 ]
 
@@ -619,18 +620,23 @@ Go to your GitHub repository.
 .pull-left[
 Go to your GitHub repository.  
 
-1. Choose `Settings` under the drop-down menu in the upper righthand corner.  
+1. Choose `Settings` under the drop-down menu in the upper right-hand corner.  
 2. Choose `SSH & GPG keys` from the menu on the left and then click `New SSH key`.
 3. Give the key whatever name you want and paste the key you copied from RStudio. Click on `Add SSH key` to add the key. 
 
-You should now be able to push and pull from GitHub without having to authenticate each time.
+]
+
+--
+
+.pull-right[
+When this is done you should be able to push and pull from GitHub without needing to authenticate.
 ]
 
 ---
 ## For next week
 
 - Install packages **distill**, **postcards**, and **fontawesome**
-- Find an image you want to represent you on your website
+- Find an image you want to represent yourself on your personal website
 
 .footnote[
 [Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  

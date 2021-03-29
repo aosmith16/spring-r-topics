@@ -99,7 +99,7 @@ The **gt** package website has a nice [intro](https://gt.rstudio.com/articles/in
 
 ### Materials
 
-[Slides in progress](slides/week04_gt_tables.html)  
+[Week 04 slides in progress](slides/week04_gt_tables.html)  
 Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the session  
 
 ## Week 5: Doing more with **gt** tables
