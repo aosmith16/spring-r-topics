@@ -49,8 +49,8 @@ library(metathis)
 meta() %>%
     meta_name("github-repo" = "aosmith16/spring-r-topics") %>% 
     meta_social(
-        title = "More distill: adding articles and deploying",
-        description = "Adding to and deploying a distill website",
+        title = "Display tables with package gt",
+        description = "Building basic tables",
         url = "https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html",
         image = "https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html/week04-share-card.png",
         image_alt = paste(
@@ -213,7 +213,7 @@ Also make sure you have package **webshot** installed.
 
 ## Datasets
 
-We need a couple small datasets to practice on. We will do all data manipulation steps now.
+We need a few small datasets to practice on. We will do all data manipulation steps now.
 
 --
 
@@ -252,7 +252,7 @@ Data manipulation is key to making display tables and you'll often see data mani
 
 ## Datasets
 
-We need a couple small datasets to practice on. We will do all data manipulation steps now.
+We need a few small datasets to practice on. We will do all data manipulation steps now.
 
 .pull-left[
 **The `mtcars` dataset**
@@ -293,12 +293,12 @@ knitr::kable(mtcars_small)
 
 ## Datasets
 
-We need a couple small datasets to practice on. We will do all data manipulation steps now.
+We need a couple few datasets to practice on. We will do all data manipulation steps now.
 
 .pull-left[
 **Table of results**
 
-Here is a small table of results from an analysis, which reports estimated ratios of medians between two groups for 4 `litterspp`.
+Here is a small table of results from an analysis, which reports estimated ratios of medians between two groups for 4 species.
 
 .smaller[
 ```{r results, eval = FALSE}
@@ -342,6 +342,9 @@ We start with the `gt()` function to create a basic **gt** table object. This is
 gtcars_small %>%
     gt() #<<
 ```
+
+<br/><br/>
+The table on the right shows the default output style for **gt** tables.
 ]
 
 .pull-right[
@@ -429,7 +432,7 @@ gtcars_small %>%
 ```
 
 ***Code notes:***  
--Align specific columns using `vars()`  
+-Choose columns to align using `vars()`  
 -Changing labels doesn't change variable name
 ]
 
@@ -897,7 +900,7 @@ gtcars_small %>%
 
 ### Formatting specific cells
 
-All the `fmt_*()` functions work on entire columns by default. We can focus on specific rows using the `rows` argument. In [Jonathan Schwabish's "Ten Guidelines for Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12), he recommends adding symbols only the first row in each column.
+All the `fmt_*()` functions work on entire columns by default. We can focus on specific rows using the `rows` argument. [Jonathan Schwabish's "Ten Guidelines for Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12) recommends adding symbols only to the first row in each column.
 
 .pull-left[
 ```{r gt20, eval = FALSE}
@@ -913,7 +916,7 @@ gtcars_small %>%
 ***Code notes:***  
 -Choose the `rows` by index  
 -I chose the columns by position  
--Note [alignment issue](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/#rule-7-remove-unit-repetition)
+-Note alignment issue and [potential fix](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/#rule-7-remove-unit-repetition)
 ]
 
 .pull-right[
@@ -1008,7 +1011,7 @@ gtcars_small %>%
 ```
 ***Code notes:***  
 -Put quotes around the variable in `rowname_col`  
--Add a column name using `tab_stubhead()`
+-Use `tab_stubhead()` to add a column name if desired
 ]
 
 .pull-right[
@@ -1076,7 +1079,7 @@ knitr::include_graphics("figs/week04_files/gt23.png")
 
 ### Manual groups
 
-You can manually define groups using the function `tab_row_group()`. This involves using some sort of logical statement. 
+You can manually define groups using the function `tab_row_group()` along with some sort of logical statement. 
 
 .pull-left[
 ```{r gt24, eval = FALSE}
@@ -1127,7 +1130,7 @@ gtcars_small %>%
 ***Code notes:***  
 -Use `groups = TRUE` for group summaries   
 -Choose columns to work on in `columns`    
--Functions are in a list. Note naming and tilde coding (`~`)  
+-Functions are in a list. Note naming and tilde (`~`) coding   
 ]
 
 .pull-right[
@@ -1164,8 +1167,8 @@ gtcars_small %>%
 ]
 
 ***Code notes:***  
-Add more functions to the list to get more summaries  
-Add in `fmt_*()` arguments such as `decimals`      
+-Add more functions to the list to get more summaries  
+-Add in `fmt_*()` arguments such as `decimals`      
 ]
 
 .pull-right[
@@ -1180,7 +1183,7 @@ knitr::include_graphics("figs/week04_files/gt26.png")
 
 ### Summary rows
 
-Watch out for missing values when summarizing. You've likely noted non-summarized columns are given `---`. Change this with `missing_text`. 
+Watch out for missing values when summarizing. You likely noted non-summarized columns are given `---`. Change this with `missing_text`. 
 
 .pull-left[
 .smaller[
@@ -1200,8 +1203,8 @@ gtcars_small %>%
 ]
 
 ***Code notes:***  
-Add in `na.rm = TRUE` to the `mean()` function    
-`""` returns a blank for `missing_text` 
+-Add in `na.rm = TRUE` to the `mean()` function    
+-Using `""` returns a blank for `missing_text` 
 ]
 
 .pull-right[
@@ -1388,8 +1391,8 @@ gtcars_small %>%
     ) #<<
 ```
 ***Code notes:***  
-Use `label` to name the spanning column      
-Choose columns to group with `columns` 
+-Use `label` to name the spanning column      
+-Choose columns to group with `columns` 
 ]
 
 .pull-right[
@@ -1422,7 +1425,7 @@ Multiple spanners means multiple `tab_spanner()` layers
 .pull-right[
 ![](figs/week04_files/gt33.png)
 
-.foonote[*Columns do not have to be side-by-side to be spanned*]
+.foonote[*Columns do not have to be side-by-side to be grouped and then spanned*]
 ]
 
 ---
@@ -1443,8 +1446,8 @@ gtcars_small %>%
 ]
 
 ***Code notes:***  
-Notes default to bottom but can be moved (*not shown*)        
-You can use `md()` and `html()` with notes  
+-Notes default to bottom but can be moved (*not shown*)        
+-You can use `md()` and `html()` with notes  
 ]
 
 .pull-right[
@@ -1475,8 +1478,8 @@ gtcars_small %>%
 ]
 
 ***Code notes:***  
-Pass footnote text to `footnote`           
-Use `locations` for placement using [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions)  
+-Pass footnote text to `footnote`           
+-Use `locations` for placement using [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions)  
 ]
 
 .pull-right[
@@ -1516,7 +1519,7 @@ gtcars_small %>%
 ```
 ]
 
-*Note numbering in order of appearance in table, not from `tab_footnote()`*          
+*Note numbering is in order of appearance in table, not from `tab_footnote()`*          
 ]
 
 .pull-right[
@@ -1649,8 +1652,8 @@ gtcars_small %>%
 ]
 
 ***Code notes:***  
-Make black top and bottom lines  
-Remove other horizontal lines  
+-Make black top and bottom lines  
+-Remove other horizontal lines  
 ]
 
 .pull-right[
@@ -1659,7 +1662,9 @@ Remove other horizontal lines
 
 ---
 
-To get rid of the line above and below the header, set the top and bottom border colors to white and the line below the header to black.
+### Table output options
+
+Get rid of the line above and below the header as follows.
 
 .pull-left[
 .smaller[
@@ -1685,13 +1690,13 @@ gtcars_small %>%
 ```
 ]
 
-***Code notes:***  
-Note `opt_align_table_header()` to left align header    
+*Note use of `opt_align_table_header()` to left-align header*   
 ]
 
 .pull-right[
 ![](figs/week04_files/gt40.png)
-.footnote[*See the `tab_style()` function for controlling the style of individual parts of the table.*]
+
+*See the `tab_style()` function for controlling the style of individual parts of the table.*
 ]
 
 ---
@@ -1762,9 +1767,9 @@ gtsave(
 
 ## Saving tables
 
-If you want to use a table in Word you'll need the RTF format. 
+If you want to use a table in Word that you can modify (i.e., not an image) you'll need the RTF format. 
 
-You may still need to modify some formats (like column widths) manually after you open in Word.
+You may still need to fix some formatting manually (such as column widths) after you open in Word.
 
 ```{r, eval = FALSE}
 gtsave(
@@ -1772,6 +1777,8 @@ gtsave(
     filename = "test1.rtf"
 )
 ```
+
+Open the saved tables to get a sense of what they look like.
 
 ---
 
