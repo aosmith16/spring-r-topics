@@ -94,10 +94,11 @@ Make display tables for output documents (e.g., manuscripts, presentations) usin
 
 ### Resources
 
-Thomas Mock has made a [**gt** Cookbook](https://themockup.blog/static/gt-cookbook.html#Introduction) that goes through functions in great detail.  
+Thomas Mock has made a [**gt** Cookbook](https://themockup.blog/static/gt-cookbook.html#Introduction) that goes through functions in great detail  
 The **gt** package website has a nice [intro](https://gt.rstudio.com/articles/intro-creating-gt-tables.html).  
+Thomas Mock wrote a [post](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/) based on the "Ten Guidelines to Better Tables" paper that recreates tables with **gt**  
 
-### Materials
+### Materials for class
 
 [Week 04 slides](slides/week04_gt_tables.html)  
 Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the session  
@@ -106,16 +107,16 @@ Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the
 
 ### Goals
 
-We'll look at a few more advanced features of **gt**, including adding images, using colors in cells, and highlighting values. We may also look at some more complex examples based on [Jonathan Schwabish's "Ten Guidelines to Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12).
+We'll look at a few more advanced features of **gt**, including adding cell text and fill colors, adding images to tables, and highlighting values. We'll also take a look at how folks build themes for their tables.
 
 ### Resources
 
-The **gt** Cookbook has a section on [colors](https://themockup.blog/static/gt-cookbook.html#Conditional_formatting).  
-Thomas Mock wrote a [post](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/) based on the "Ten Guidelines to Better Tables" paper that recreates tables with **gt**.  
-Liam Bailey walks through a more complex **gt** [table-making example](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/).  
-[Advanced **gt** Cookbook](https://themockup.blog/static/gt-cookbook-advanced.html)
+The **gt** Cookbook has a section on [colors](https://themockup.blog/static/gt-cookbook.html#Conditional_formatting)  
+Liam Bailey walks through a more complex **gt** [table-making example](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/) with colors and images  
+Thomas Mock's [Advanced Cookbook](https://themockup.blog/static/gt-cookbook-advanced.html) has examples of creating themes and adding elements like bar charts    
+See Anthony Schmidt's post on a **gt** APA theme [here](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/)  
 
-### Materials
+### Materials for class
 
-Slides here  
-Make .Rmd for running code  
+[Week 05 slides in progress](slides/week05_gt_flair.html)  
+Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the session    

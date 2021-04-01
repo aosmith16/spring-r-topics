@@ -138,6 +138,8 @@ knitr::include_graphics("figs/gtlogo.svg")
 
 ## Why focus on **gt**?
 
+It is just one option that allows us to build tables programmatically in R.
+
 .pull-left[
 **Pros:**
 - "Grammar of tables" like **ggplot2** grammar of graphics  
@@ -193,7 +195,9 @@ class: center, middle, inverse, hide-logo
 
 <br/><br/>
 **Set up**  
+
 We'll practice different features of package **gt** together, running example code I've already written.   
+
 At the end of each section you'll have a chance to practice what we just covered.
 
 ---
@@ -331,6 +335,7 @@ knitr::kable(results)
 ```
 
 ]
+
 ---
 
 ## Basic **gt** usage
@@ -683,7 +688,6 @@ gtcars_small %>%
         columns = vars(ctry_origin),
         after = vars(year)
     )
-  
 ```
 ]
 
@@ -985,8 +989,6 @@ mtcars_small %>%
 ```{r, echo = FALSE, out.width = "70%"}
 knitr::include_graphics("figs/week04_files/yt2.png")
 ```
-
-<!-- ![](figs/week04_files/yt2.png) -->
 ]
 ]
 
@@ -1867,8 +1869,9 @@ class: hide-logo
 
 ## Next week
 
-- We'll explore using images and adding colors in **gt** tables  
+- We'll explore adding flair, using colors and images in **gt** tables  
 - Discuss creating overall themes for tables   
+- Make sure you have a current version of package **tidyr** installed
 
 .center[
 ```{r gt, echo = FALSE, out.width = "15%", fig.cap = "Logo for package gt"}

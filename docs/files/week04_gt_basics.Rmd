@@ -14,11 +14,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Use this document to follow along with the **gt** basics working session, running provided code to see how it works as well as writing your own practice code. I recommend turning on the visual editor via the ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png){width="3%"} button in the right-hand corner.
 
-You can find today's slides at:. The slides contain introductory material as well as a list of resources before starting in on coding that aren't included here.
+You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html#1). The slides contain introductory material as well as a list of resources that aren't included here before starting in on coding.
 
 ## R packages
 
-Be sure to run code chunks in order, starting by loading packages.
+Be sure to run code chunks in order, starting with loading packages.
 
 The main package we're using today is **gt**, but we'll also use package **dplyr** for data manipulation. Be sure your package versions are up to date.
 
@@ -29,7 +29,7 @@ library(dplyr) # v. 1.0.5
 
 ## The datasets
 
-We will mostly be working with built-in datasets, although I will also provide a small dataset to practice on. Creating display tables is generally going to involve data manipulation. This can be done in the same code pipeline as making the table, and many **gt** examples will include data manipulation code.
+We will primarily work with built-in datasets, although I will also provide a small dataset for you to practice on. Creating display tables is generally going to involve data manipulation. This can be done in the same code pipeline as making the table, and many **gt** examples will include data manipulation code as well as table-making code.
 
 I want to focus in on just table features today, though, so we'll begin by creating very small examples from the datasets that ship with the **gt** package.
 
