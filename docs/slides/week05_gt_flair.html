@@ -435,6 +435,7 @@ sza50 %&gt;%
     )
 ```
 ]
+
 ***Code notes:***  
 Note use of "magma" palette from viridis  
 ]
@@ -599,7 +600,7 @@ Using the `pops_wide` dataset:
 -   Color the text of `country_name`, using "#1c5253" for Egypt and "#F4790B" for Vietnam.  
 
 
-<div class="countdown" id="timer_60664aa6" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60664d6d" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -656,10 +657,10 @@ Our first step is to choose the `style` in `tabs_style()`. Here we'll use `cell_
 pops_small %&gt;%
     gt() %&gt;%
     tab_style(
-        style = cell_text(
-            color = "red",
-            weight = "bold"
-        ),
+*       style = cell_text(
+*           color = "red",
+*           weight = "bold"
+*       ),
         ...
     )
 ```
@@ -777,8 +778,6 @@ pops_small %&gt;%
     )
 ```
 ]
-
-***Code notes*** This takes two `tab_styles()` and two logical statements
 ]
 
 .pull-right[
@@ -786,6 +785,10 @@ pops_small %&gt;%
 &lt;img src="figs/week05_files/gt10.png" width="45%" /&gt;
 ]
 ]
+
+???
+
+This takes two `tab_styles()` and two logical statements
 
 ---
 
@@ -831,7 +834,7 @@ Working with `pops_wide`:
 
 **Note**: If you are using column names that are not syntactically valid, such as numeric column names, you must wrap the name in back-ticks: ` `2015` `
 
-<div class="countdown" id="timer_6066487e" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60664dfb" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -932,6 +935,7 @@ pack_down %&gt;%
     )
 ```
 ]
+
 ***Code notes:***  
 -Set `height` of image in pixels     
 -Note also removed `hex` column label     
@@ -941,6 +945,7 @@ pack_down %&gt;%
 .center[
 &lt;img src="figs/week05_files/gt12.png" width="50%" /&gt;
 
+&lt;br/&gt;&lt;br/&gt;
 See example of adding *icons* from **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
 ]
 ]
@@ -951,7 +956,7 @@ See example of adding *icons* from **fontawesome** [here](https://themockup.blog
 
 A *local image* is an image that you have stored on your computer and you have a path and file name for the image.
 
-You will need to provide a path to the image. This could be as simple as providing the name of the image (e.g., `"myimage.png"`) or writing out a longer directory path (e.g., `"path/to/my/image/myimage.png"`).
+You will need to provide a path to the image. This could be as simple as providing the name of the image (e.g., `"myimage.png"`) or writing out a longer directory path (e.g., `"path/to/image/myimage.png"`).
 
 --
 
@@ -1020,9 +1025,9 @@ mytheme = function(table, ...) {
 }
 ```
 ]
-]
 
-***Code notes*** Adding `…` to both the table arguments and inside `tab_options()` allows the user to add in additional elements, as needed.
+***Code notes*** Adding `…` to both the table arguments and in `tab_options()` allows the user to add in additional elements, as needed.
+]
 
 ---
 
@@ -1087,7 +1092,6 @@ Let's look at a few examples of themes people have built.
 
 First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). Additional options to `tab_options()` is not included here. But note how this uses additional layers beyond `tab_options()`.
 
-.pull-left[
 .tiny[
 
 ```r
@@ -1127,7 +1131,6 @@ theme_apa = function(table) {
 }
 ```
 ]
-]
 
 ---
 
@@ -1146,7 +1149,7 @@ sza50 %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week05_files/gt15.png" width="70%" /&gt;
+&lt;img src="figs/week05_files/gt15.png" width="100%" /&gt;
 ]
 ]
 
@@ -1158,7 +1161,6 @@ The [Advanced cookbook](https://themockup.blog/static/gt-cookbook-advanced.html#
 
 Here's the theme that is based on the tables at FiveThirtyEight.
 
-.pull-left[
 .tiny[
 
 ```r
@@ -1199,7 +1201,6 @@ gt_theme_538 = function(data,...) {
 }
 ```
 ]
-]
 
 ---
 
@@ -1219,7 +1220,7 @@ sza50 %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week05_files/gt16.png" width="70%" /&gt;
+&lt;img src="figs/week05_files/gt16.png" width="90%" /&gt;
 ]
 ]
 
@@ -1231,7 +1232,7 @@ Write code in the empty code chunk that is provided or make more chunks as neede
 
 Take a few minutes and explore the themes above on different tables we made today or last week. If you're feeling ambitious, try writing a theme of your own!
 
-<div class="countdown" id="timer_60664a88" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60664e86" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 

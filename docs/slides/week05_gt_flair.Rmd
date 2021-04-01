@@ -463,6 +463,7 @@ sza50 %>%
     )
 ```
 ]
+
 ***Code notes:***  
 Note use of "magma" palette from viridis  
 ]
@@ -696,10 +697,10 @@ Our first step is to choose the `style` in `tabs_style()`. Here we'll use `cell_
 pops_small %>%
     gt() %>%
     tab_style(
-        style = cell_text(
-            color = "red",
-            weight = "bold"
-        ),
+        style = cell_text( #<<
+            color = "red", #<<
+            weight = "bold" #<<
+        ), #<<
         ...
     )
 ```
@@ -818,8 +819,6 @@ pops_small %>%
     )
 ```
 ]
-
-***Code notes*** This takes two `tab_styles()` and two logical statements
 ]
 
 .pull-right[
@@ -829,6 +828,10 @@ knitr::include_graphics("figs/week05_files/gt10.png")
 ```
 ]
 ]
+
+???
+
+This takes two `tab_styles()` and two logical statements
 
 ---
 
@@ -965,8 +968,8 @@ pack_down %>%
             columns = vars(hex)
         ),
         fn = function(url) { #<<
-            web_image(url = url, #<<
-                      height = 25) #<<
+            web_image(url = url,  #<<
+                      height = 25)  #<<
         } #<<
     ) %>%
     cols_label(
@@ -974,6 +977,7 @@ pack_down %>%
     )
 ```
 ]
+
 ***Code notes:***  
 -Set `height` of image in pixels     
 -Note also removed `hex` column label     
@@ -985,6 +989,7 @@ pack_down %>%
 knitr::include_graphics("figs/week05_files/gt12.png")
 ```
 
+<br/><br/>
 See example of adding *icons* from **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
 ]
 ]
@@ -995,7 +1000,7 @@ See example of adding *icons* from **fontawesome** [here](https://themockup.blog
 
 A *local image* is an image that you have stored on your computer and you have a path and file name for the image.
 
-You will need to provide a path to the image. This could be as simple as providing the name of the image (e.g., `"myimage.png"`) or writing out a longer directory path (e.g., `"path/to/my/image/myimage.png"`).
+You will need to provide a path to the image. This could be as simple as providing the name of the image (e.g., `"myimage.png"`) or writing out a longer directory path (e.g., `"path/to/image/myimage.png"`).
 
 --
 
@@ -1062,9 +1067,9 @@ mytheme = function(table, ...) {
 }
 ```
 ]
-]
 
-***Code notes*** Adding `…` to both the table arguments and inside `tab_options()` allows the user to add in additional elements, as needed.
+***Code notes*** Adding `…` to both the table arguments and in `tab_options()` allows the user to add in additional elements, as needed.
+]
 
 ---
 
@@ -1131,7 +1136,6 @@ Let's look at a few examples of themes people have built.
 
 First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). Additional options to `tab_options()` is not included here. But note how this uses additional layers beyond `tab_options()`.
 
-.pull-left[
 .tiny[
 ```{r}
 theme_apa = function(table) {
@@ -1170,7 +1174,6 @@ theme_apa = function(table) {
 }
 ```
 ]
-]
 
 ---
 
@@ -1188,7 +1191,7 @@ sza50 %>%
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE}
 knitr::include_graphics("figs/week05_files/gt15.png")
 ```
 ]
@@ -1202,7 +1205,6 @@ The [Advanced cookbook](https://themockup.blog/static/gt-cookbook-advanced.html#
 
 Here's the theme that is based on the tables at FiveThirtyEight.
 
-.pull-left[
 .tiny[
 ```{r}
 gt_theme_538 = function(data,...) {
@@ -1242,7 +1244,6 @@ gt_theme_538 = function(data,...) {
 }
 ```
 ]
-]
 
 ---
 
@@ -1261,7 +1262,7 @@ sza50 %>%
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "90%"}
 knitr::include_graphics("figs/week05_files/gt16.png")
 ```
 ]
