@@ -103,7 +103,7 @@ Thomas Mock wrote a [post](https://themockup.blog/posts/2020-09-04-10-table-rule
 [Week 04 slides](slides/week04_gt_tables.html)  
 Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the session  
 
-## Week 5: Doing more with **gt** tables
+## Week 5: **gt** flair: colors, images, and themes
 
 ### Goals
 
@@ -118,5 +118,16 @@ See Anthony Schmidt's post on a **gt** APA theme [here](https://www.anthonyschmi
 
 ### Materials for class
 
-[Week 05 slides in progress](slides/week05_gt_flair.html)  
+[Week 05 slides](slides/week05_gt_flair.html)  
 Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the session    
+
+## Week 6: Learn to write functions in R
+
+### Goals
+
+### Resources
+
+Intro functions: https://skirmer.github.io/presentations/functions_with_r.html#1  
+Repo with other links to functions: https://github.com/skirmer/functions_r  
+
+### Materials for class

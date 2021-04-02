@@ -29,11 +29,11 @@ Week 01: Introduction to Git/GitHub
 Week 02: Build a personal website with **distill** and **postcards**  
 Week 03: Deploy website using GitHub Pages  
 Week 04: Explore **gt** for making tables  
-Week 05: More advanced **gt** examples  
+Week 05: **gt** flair: colors, images, and themes    
 Week 06: Learn to write functions in R  
-Week 07: Animated graphics (with **gganimate**)  
-Week 08: Interactive graphics and tables     
-Week 09: More Git: forking and pull requests   
+Week 07: More Git: forking and pull requests  
+Week 08: Animated graphics (with **gganimate**)  
+Week 09: Interactive graphics and tables     
 Week 10: Other topics of interest  
 
 ## Software

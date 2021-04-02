@@ -173,6 +173,7 @@ sza50 %>%
             )
     )
 ```
+Note we can reverse the order of a palette (so light to dark instead of dark to light) using `reverse` in `scales::col_numeric()`.
 
 ### Fill color, categorical column
 
@@ -370,7 +371,7 @@ sza50 %>%
     tab_style(
         style = cell_text(
             color = "blue",
-            size = 20
+            size = px(20)
         ),
         locations = cells_body(
             rows = month == "jan"
@@ -418,9 +419,9 @@ pack_down %>%
     )
 ```
 
-Once we've outlined where in the table we want to work we need to provide a function to the `fn` argument in `text_transform()`. We make an anonymous function to pass the image URL from each cell in the `hex` column to the `web_image()` function.
+Once we've outlined where in the table we want to work we need to provide a function to the `fn` argument to indicate how we want to transform the text. 
 
-In `web_image()` we can set the height (in pixels) of the image, which ultimately controls the image size in the table.
+Here we want to use `web_image()` to turn the URLs into into an HTML image tag.
 
 Let's go ahead and remove the `hex` column label, as well.
 
@@ -431,15 +432,31 @@ pack_down %>%
         locations = cells_body(
             columns = vars(hex)
         ),
-        fn = function(url) {
-            web_image(url = url,
-                      height = 25)
-        }
+        fn = web_image
     ) %>%
     cols_label(
         hex = ""
     )
 ```
+
+In `web_image()` we can set the height (in pixels) of the image, which controls the image size in the table. 
+
+To do this we need a function that passes the URL into `web_image()` and sets the `height`.
+
+```{r}
+pack_down %>%
+    gt() %>%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+        fn = function(url) {
+            web_image(url = url,
+                      height = 50)
+        }
+    )
+```
+
 
 See example of adding *icons* from **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
 
@@ -473,7 +490,9 @@ data_with_local_image %>%
 
 ## Creating table themes
 
-We explored just a few of the table output options last week. Now we'll talk about taking those options and turning them into a *theme*. In this case, a table theme is a function that sets the table options and overall table styling that you can apply to any table.
+We explored just a few of the table output options last week. Now we'll talk about taking those options and turning them into a *theme*. 
+
+A table theme is a function that sets the table options and overall table styling that you can apply to any table.  
 
 ### A basic theme
 

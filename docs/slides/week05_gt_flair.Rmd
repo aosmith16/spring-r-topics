@@ -83,7 +83,7 @@ xaringanExtra::use_broadcast()
 class: center, middle, title-slide
 
 # Display tables with package gt
-## Part 2: Adding flair `r emo::ji("boom")`: colors, images, & themes
+## Part 2: Adding flair `r emo::ji("boom")`
 
 ```{r distill, echo = FALSE, out.width = "15%", fig.cap = "Logo for package gt"}
 knitr::include_graphics("figs/gtlogo.svg")
@@ -102,8 +102,8 @@ Overall
 We will  
 
 -     Color cells and cell text based on data     
--     Highlight specific values in columns    
--     Add a column of images      
+-     Highlight specific values in columns based on location    
+-     Add a column of images to HTML tables      
 -     Explore custom themes to apply to tables        
 
 --
@@ -331,7 +331,7 @@ rmarkdown::paged_table(pack_down)
 
 ## Add color to table cells
 
-We can use colors to add information to a table or help tell the story of the table visually.
+We can use colors to add information to a table or help tell the story of what is in the table.
 
 This is done using the [`data_color()` function](https://gt.rstudio.com/reference/data_color.html) along with the `col_*()` functions from package **scales**. The `col_*()` functions will map data values to colors based on a palette.
 
@@ -353,7 +353,7 @@ We can set or choose the `palette` in the `scales::col_()` functions. The palett
 
 Start be setting the fill color of the `population` column of `pops_small`. 
 
-Choose the `columns` of interest and map colors using `scales::col_numeric()`. 
+Choose the `columns` of interest and map `colors` using `scales::col_numeric()`. 
 
 .pull-left[
 ```{r gt01, eval = FALSE, message = FALSE}
@@ -447,10 +447,9 @@ sza50 %>%
 
 ### Fill color, many columns
 
-To use the color scheme across all columns we set the `domain` using the range of values from the entire dataset. I use some helper functions from **dplyr** to get only the numeric columns when calculating the range.
+To use the color scheme using values from all columns set the `domain` using range of all value. I use some helper functions from **dplyr** to get only the numeric columns when calculating the range.
 
 .pull-left[
-.smaller[
 ```{r gt03, eval = FALSE}
 sza50 %>%
     gt() %>%
@@ -462,15 +461,15 @@ sza50 %>%
             )
     )
 ```
-]
 
 ***Code notes:***  
-Note use of "magma" palette from viridis  
+-Here the palette is "magma" from viridis  
+-If needed, change palette order with `reverse` in `scales::col_numeric()`
 ]
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "75%"}
 knitr::include_graphics("figs/week05_files/gt03.png")
 ```
 ]
@@ -494,6 +493,8 @@ pops_small %>%
         alpha = .5
     )
 ```
+
+***Code notes:***  We can use a vector of values for `colors`
 ]
 
 .pull-right[
@@ -508,9 +509,9 @@ knitr::include_graphics("figs/week05_files/gt04.png")
 
 ### Fill color, categorical column
 
-At the moment you cannot provide a named vector of colors in **gt** to map each category to each color like you can in **ggplot2**. 
+At the moment you cannot provide a named vector of colors in **gt** to map each category to each color like you can when making **ggplot2** plots. 
 
-Using `scales::col_factor()` and manually setting the `domain` plus using `ordered = TRUE` will allow us to assign colors to the correct factor levels.
+Using `scales::col_factor()` and manually setting the `domain` in the desired order plus using `ordered = TRUE` allows us to assign colors to the correct factor levels.
 
 ---
 
@@ -535,6 +536,8 @@ pops_small %>%
         alpha = .5
     )
 ```
+
+
 ]
 
 .pull-right[
@@ -544,6 +547,9 @@ knitr::include_graphics("figs/week05_files/gt05.png")
 ```
 ]
 ]
+
+???
+We might have a vector like this for our graphs, and we can still use it in **gt** tables with these extra steps.
 
 ---
 
@@ -564,8 +570,7 @@ pops_small %>%
         apply_to = "text" #<<
     )
 ```
-***Code notes:***  
-Note use of "viridis" palette from viridis  
+***Code notes:*** Here the palette is "viridis" from viridis  
 ]
 
 .pull-right[
@@ -612,7 +617,7 @@ sza50 %>%
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "75%"}
 knitr::include_graphics("figs/week05_files/gt07.png")
 ```
 ]
@@ -733,7 +738,7 @@ pops_small %>%
 ```
 ***Code notes:***  
 -Choose columns of focus in `cells_body()`  
--Chose rows of interest with an index   
+-I chose rows of interest with an index   
 ]
 
 .pull-right[
@@ -751,7 +756,7 @@ In `cells_body()` we'll define the columns we want to focus on in the standard w
 
 ### Highlighting a single value
 
-Focus on the cell fill instead using `cell_fill()` for the `style` function. 
+Focus on the cell fill using `cell_fill()` for the `style` function. 
 
 .pull-left[
 .smaller[
@@ -772,7 +777,7 @@ pops_small %>%
 ]
 
 ***Code notes:***  
--Used logical statement to get max value   
+-Used logical statement to choose `rows` based on max value   
 -Also see `cell_borders()` to control borders     
 ]
 
@@ -837,7 +842,7 @@ This takes two `tab_styles()` and two logical statements
 
 ### Highlighting rows across many columns
 
-The process works the same way if we want to highlight across many columns. But every column chosen gets the same treatment. Here we work across all columns.
+The process works the same way if we want to highlight across many columns. However, note that every column chosen is affected the same way. Here we work across all columns.
 
 .pull-left[
 ```{r gt11, eval = FALSE}
@@ -846,21 +851,22 @@ sza50 %>%
     tab_style(
         style = cell_text(
             color = "blue",
-            size = 20 #<<
+            size = px(20) #<<
         ),
         locations = cells_body(
             rows = month == "jan" #<<
         )
     )
 ```
+
 ***Code notes:***  
+-`size` in pixels, can also use keywords like `"large"`      
 -Highlight the January row for all columns   
--`size` is in pixels     
 ]
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "75%"}
 knitr::include_graphics("figs/week05_files/gt11.png")
 ```
 ]
@@ -934,12 +940,13 @@ This process is specifically for making HTML tables. You can also save the table
 
 ## Include images
 
-The work-horse for this is `text_transform()` in combination with `web_image()`.
+The work-horse for this is `text_transform()` in combination with `web_image()` if you have URLs or `local_image()` if you have local copies of the images.
 
 The first thing to do in `text_transform()` is to define the `locations` we want to work on. We're working in the cells of the table so will use `cells_body()`. 
 
 Here's what just that part of the code looks like, choosing the `hex` column.
 
+.pull-left[
 ```{r, eval = FALSE}
 # Don't run this code
 pack_down %>%
@@ -951,16 +958,48 @@ pack_down %>%
         ...
     )
 ```
+]
 
 ---
 
 ## Include images
 
-We need to provide a function to the `fn` argument in `text_transform()`. We make an anonymous function to pass the image URL from each cell in the `hex` column to the `web_image()` function.
+We need to provide a function to do the text transformation in the `fn` argument. We make an anonymous function to pass the image URL from each cell in the `hex` column to the `web_image()` function to create the an HTML image tag.
 
 .pull-left[
-.smaller[
 ```{r gt12, eval = FALSE}
+pack_down %>%
+    gt() %>%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+        fn = web_image, #<<
+    ) %>%
+    cols_label(
+        hex = ""
+    )
+```
+
+***Code notes:***  We also removed the `hex` column label in `cols_label()`.    
+]
+
+.pull-right[
+.center[
+```{r, echo = FALSE, out.width = "50%"}
+knitr::include_graphics("figs/week05_files/gt12.png")
+```
+]
+]
+
+---
+
+## Include images
+
+The default height of the image in `web_image()` is 30 pixels. If we want to change the height we create a function to pass the URLs to the `url` argument in `web_image()`.
+
+.pull-left[
+```{r gt12.5, eval = FALSE}
 pack_down %>%
     gt() %>%
     text_transform(
@@ -969,42 +1008,38 @@ pack_down %>%
         ),
         fn = function(url) { #<<
             web_image(url = url,  #<<
-                      height = 25)  #<<
+                      height = 50)  #<<
         } #<<
-    ) %>%
-    cols_label(
-        hex = ""
-    )
+    ) 
 ```
-]
 
-***Code notes:***  
--Set `height` of image in pixels     
--Note also removed `hex` column label     
+***Code notes:***  Set `height` of image in pixels 
 ]
 
 .pull-right[
 .center[
 ```{r, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figs/week05_files/gt12.png")
+knitr::include_graphics("figs/week05_files/gt12.5.png")
 ```
-
 <br/><br/>
-See example of adding *icons* from **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
+See example of adding *icons* from package **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
 ]
 ]
+
+???
+30 pixels works well with most tables
 
 ---
 
 ### Note on local images
 
-A *local image* is an image that you have stored on your computer and you have a path and file name for the image.
+A *local image* is an image that you have stored on your computer and have a path and file name for.
 
-You will need to provide a path to the image. This could be as simple as providing the name of the image (e.g., `"myimage.png"`) or writing out a longer directory path (e.g., `"path/to/image/myimage.png"`).
+You will need to provide a path to the image. This could be as simple as providing the name of the image (`"myimage.png"`) or writing out a longer directory path (`"path/to/image/myimage.png"`).
 
 --
 
-Unlike with `web_image()`, this takes using a loop in `fn`. Here's some example pseudo-code:
+With `local_image()` we must use a loop in `fn`. Here's some pseudo-code using `lapply()` for looping through the column of image paths:
 
 .pull-left[
 .smaller[
@@ -1014,7 +1049,7 @@ data_with_local_image %>%
     gt() %>%
     text_transform(
         locations = cells_body(
-            columns = vars(image) # Column with local path to images
+            columns = vars(image) # Column w/paths
         ),
         fn = function(path) {
             lapply(path, #<< 
@@ -1036,15 +1071,15 @@ What does this mean for the coding? You'll need to add a loop in the `fn` to loo
 
 ## Creating table themes
 
-We explored just a few of the table output options last week. Now we'll talk about taking those options and turning them into a *theme*. 
+We explored just a few of the table output options last week to change the overall look of the table. Now we'll talk about taking those options and turning them into a *theme*. 
 
-A table theme is a function that sets the table options and overall table styling that you can apply to any table.  The function takes a **gt** table, applies styling elements to that table, and then returns the new table. 
+A table theme is a function that sets the table options and overall table styling that you can apply to any table.  The function takes a **gt** table, applies styling elements to that table, and returns the new table. 
 
 ---
 
 ### A basic theme
 
-Let's start by making a theme called `mytheme` that uses the table options from the final exercise.
+Let's start by making a theme called `mytheme` that uses the table options from last week.
 
 .pull-left[
 .smaller[
@@ -1068,7 +1103,7 @@ mytheme = function(table, ...) {
 ```
 ]
 
-***Code notes*** Adding `…` to both the table arguments and in `tab_options()` allows the user to add in additional elements, as needed.
+***Code notes:*** Adding `…` to both the table arguments and in `tab_options()` allows the user to add in additional elements, as needed.
 ]
 
 ---
@@ -1087,7 +1122,7 @@ sza50 %>%
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "75%"}
 knitr::include_graphics("figs/week05_files/gt13.png")
 ```
 ]
@@ -1097,9 +1132,7 @@ knitr::include_graphics("figs/week05_files/gt13.png")
 
 ### A basic theme
 
-Because we used  `…` in the function we can pass additional elements to `tab_options()`.
-
-Let's change the font color to blue. Remember that there are many, many elements we can control in `tab_options()`.
+Using  `…` allows us to pass additional elements to `tab_options()`.  Let's change the font color to blue. 
 
 .pull-left[
 ```{r gt14, eval = FALSE}
@@ -1107,11 +1140,14 @@ sza50 %>%
     gt() %>%
     mytheme(table.font.color = "blue") #<<
 ```
+
+<br/><br/>
+Remember that there are many, many elements we can control in `tab_options()`.
 ]
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "70%"}
+```{r, echo = FALSE, out.width = "75%"}
 knitr::include_graphics("figs/week05_files/gt14.png")
 ```
 ]
@@ -1123,18 +1159,18 @@ knitr::include_graphics("figs/week05_files/gt14.png")
 
 If you are styling your table to match specific manuscript criteria or want to mimic a style online your theme will get more complex. 
 
-Luckily other people have made themes for **gt** tables already. `r emo::ji("smile")` I'm guessing there will be more as the package ages.
+Luckily other people have made themes for **gt** tables already. `r emo::ji("four_leaf_clover")` I'm guessing there will be more and more as the package matures and more people start to use it.
 
 --
 
 <br/><br/>
-Let's look at a few examples of themes people have built.
+Let's look at a couple examples of themes other people have built.
 
 ---
 
-### More complex themes
+### APA theme
 
-First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). Additional options to `tab_options()` is not included here. But note how this uses additional layers beyond `tab_options()`.
+First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). The `...` is not included so no user additions to `tab_options()` are possible. But note the use of additional layers that affect the table style.
 
 .tiny[
 ```{r}
@@ -1175,9 +1211,13 @@ theme_apa = function(table) {
 ```
 ]
 
+???
+
+Aligning the header to the left, centering all columns, changing cell borders, etc.
+
 ---
 
-### More complex themes 
+### APA theme 
 
 And here's what that looks like in use.
 
@@ -1197,13 +1237,15 @@ knitr::include_graphics("figs/week05_files/gt15.png")
 ]
 ]
 
+???
+
+This is biggest will print. Fonts appear to be fairly small in this theme.
+
 ---
 
-### More complex themes
+### FiveThirtyEight theme
 
-The [Advanced cookbook](https://themockup.blog/static/gt-cookbook-advanced.html#Create_a_theme) for **gt** on the Mockup blog demonstrates some additional theme examples.
-
-Here's the theme that is based on the tables at FiveThirtyEight.
+The [Advanced cookbook](https://themockup.blog/static/gt-cookbook-advanced.html#Create_a_theme) for **gt** on the Mockup blog demonstrates some additional theme examples, like this one based on the tables at FiveThirtyEight.
 
 .tiny[
 ```{r}
@@ -1247,7 +1289,7 @@ gt_theme_538 = function(data,...) {
 
 ---
 
-### More complex themes
+### FiveThirtyEight theme
 
 And here's using the FiveThirtyEight theme.
 
