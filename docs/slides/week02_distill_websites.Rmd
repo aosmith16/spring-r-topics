@@ -107,7 +107,7 @@ Overall
 We will 
 -     Start a **distill** website in a version-controlled directory  
 -     Build an intro page with package **postcards**  
--     Edit `_site.yml` to control website design
+-     Edit `_site.yml` to control website structure
 -     Change website *theme* (colors and fonts)
 
 --
@@ -270,6 +270,10 @@ distill::create_website(dir = ".",
 - You'll need to name the website with `title`. For a personal website this is usually your name.
 - Finally, since we will be deploying the website via GitHub Pages, we set `gh_pages` to `TRUE`.
 
+???
+
+Instruct on opening RStudio Project as necessary. Can use drop-down menu to select Project have already opened in upper right. Otherwise can open the .RProj file after navigating to the directory.
+
 ---
 
 ## Basic website files
@@ -306,7 +310,7 @@ Once you reopen you should see a `Build` tab near your `Environment` pane.
 Go to the `Build` tab and click `Build website`. The basic website will build and then open in a new window.
 
 .center[![](figs/week02_files/basic_website.png)]
-Click around on the navigation bar to see what is on each page. This will set us up to talk about how the files relate to the website.
+Click around on the navigation bar to explore the website. This will set us up to talk about how the files relate to the website content and structure.
 ]
 
 ---
@@ -314,7 +318,7 @@ Click around on the navigation bar to see what is on each page. This will set us
 ## File overview
 
 - `index.Rmd`: Your home page. Every **distill** website *must* have an `index.Rmd` file and it needs to be in the root directory. Don't move it.  
-In addition, you must have a `title` and `site: distill::distill_website` in the YAML header at the top of the file.
+In addition, you must have a `title` and `site: distill::distill_website` in the *YAML header*. The YAML header is the information at the top of the file sandwiched between two `---`.
 
 --
 
@@ -322,16 +326,18 @@ In addition, you must have a `title` and `site: distill::distill_website` in the
 
 --
 
-- `_site.yml`: This file controls many aspects of your website, including what is on the navigation bar.
+- `_site.yml`: This file controls aspects of your website structure, including what is on the navigation bar.
 
 --
 
-- `about.Rmd`: The content of this file is currently associated with the `About` navigation bar button. Change content of this file to change that webpage. (*Editing `about.Rmd` not covered today.*)
+- `about.Rmd`: The content of this file is currently associated with the `About` navigation bar button. Change the content of this file to change that page. (*Editing `about.Rmd` not covered today.*)
 
 
 ???
 
 This is a very basic overview. You may want to know more about each of these, in which case I recommend the distill "Creating a website" page.
+
+This brief discussion of the YAML header assumes some knowledge of R markdown.
 
 ---
 
@@ -359,7 +365,7 @@ site: distill::distill_website
 .pull-right[
 Add text, code, and images to the body of `index.Rmd` using standard R markdown syntax. 
 
-For practice, add a line or two of text after the set-up chunk.
+For practice, add a line or two of text after the set-up chunk and then save.
 
 I added
 
@@ -376,7 +382,7 @@ See my CV for more info:
 ## Knitting and Building
 
 .pull-left[
-If you change a single document you can use the `Knit` button at the top of your Source pane `Rmd` file to preview the changes you made. 
+If you change a single document like we just did you can use the `Knit` button at the top of your Source pane `Rmd` file to preview the changes you made. 
 
 Knit `index.Rmd` to see how the output file has changed.
 ]
@@ -391,7 +397,7 @@ Here's my new home page:
 --
 
 <br/><br/>
-After making changes to multiple files you'll want to build the entire website again like we did with the initial skeleton website.
+After making changes to multiple files you'll want to *build* the entire website again like we did for the initial skeleton website.
 
 ---
 
@@ -429,7 +435,7 @@ Distill is a static site generator, so is based on HTML documents we create. Sin
 ## Edit the navigation bar
 
 .pull-left[
-The `_site.yml` file is key in controlling many aspects of your website. 
+The `_site.yml` file is key in controlling aspects of your website structure. 
 
 Today we will keep most of the defaults and focus on changes to the website navigation bar.
 
@@ -501,11 +507,11 @@ navbar:
 
 ## Edit the navigation bar
 
-You can use *icons* instead of text by defining Font Awesome identifiers. I'll add a link to my website GitHub repo using the `r fontawesome::fa("github")` icon as an example. 
+You can use *icons* instead of text by defining Font Awesome identifiers. I decided to add a link to my website GitHub repo using the `r fontawesome::fa("github")` icon as an example. 
 
 --
 
-`href` must refer to a link, and can link either to an HTML file in the `docs` folder as in the first two menus or to some other URL.
+`href` must refer either to an HTML file in the `docs` folder or to a URL.
 
 ```{r, eval = FALSE}
 navbar:
@@ -517,9 +523,13 @@ navbar:
 *   - icon: fab fa-github
 *     href: https://github.com/aosmith16/personal-website
 ```
+After building:
 .center[![](figs/week02_files/index_github.png)]
 
 ???
+
+Build website to see changes
+
 I don't have a great explanation for the "fab fa-github" code, other than that is CSS and is how to refer to font awesome icons. Put the name of the icon after "fa-". An envelope would be "fa-envelope".
 
 ---
@@ -528,7 +538,7 @@ I don't have a great explanation for the "fab fa-github" code, other than that i
 
 If we want a local HTML file associated with a new menu we'll need a new `Rmd` file to create it.
 
-We can create a new **distill** article, which has HTML as the output, using RStudio's drop-down menus.
+We can create an R markdown **distill** article, which has HTML output, using RStudio's drop-down menus.
 
 --
 
@@ -541,6 +551,8 @@ Click `From Template` and then choose `Distill Article`.
 ???
 
 Remember that a website is all about HTML, so we want documents that create HTML outputs. That's a reason distill articles are so useful here.
+
+We'll explore distill articles a little more next week but won't get into it today.
 
 ---
 
@@ -571,6 +583,8 @@ navbar:
 
 Students might be interested in looking at this new file since it has some distill article defaults built into it that we will talk about next week.
 
+Can make many new navbar menus following this same approach, depending on how you want your website to look and what info you want to give.
+
 ---
 
 ## Add a postcard to your website
@@ -590,7 +604,7 @@ distill::create_article(file = "postcard",
 ```
 
 ***Code explainer:***
-- Create the name of the new `Rmd` file with `file`. 
+- Create the name of the new `Rmd` file with `file`. This creates `postcard.Rmd`.
 - Chose a [template](https://github.com/seankross/postcards/blob/main/README.md#the-templates) from package **postcards** with `template`. Other options are `trestles`, `jolla_blue`, and `onofre`.
 - In `package` we list the name of the package that has the template. In this case, **postcards**.
 
@@ -604,7 +618,7 @@ May need to give direction on creating a new "images" folder and putting picture
 
 ## Add a postcard to your website
 
-Let's change the YAML header filler info to our own before we knit. Delete `label`/`url` for links you don't have and add any others you want.
+Let's change the YAML header filler info to our own before we knit. Delete `label`/`url` for social links you don't have and add others you want. Note my image is in the `images` folder.
 
 .pull-left[
 Here's what we start with:
@@ -666,8 +680,9 @@ knitr::include_graphics("figs/week02_files/postcard_start.png")
 
 ## Using icons in your postcard
 
-I like using icons instead of words for my social links. I'll do this using R code and package **fontawesome**.
+You may decide you want icons instead of words for social links. You can do this using R code and package **fontawesome**.
 
+Here's what my YAML header looks like if I use icons.
 
 ```{r, eval = FALSE}
 ---
@@ -687,6 +702,10 @@ output:
 ---
 ```
 
+???
+
+Height is height of icons, which you can make larger or smaller
+
 ---
 
 ## Using icons in your postcard
@@ -703,7 +722,9 @@ knitr::include_graphics("figs/week02_files/postcard_icons.png")
 
 ## Make postcard your home page
 
-My new postcard isn't part of my website yet! Rather than adding it in as a separate `navbar` menu we'll make it the home page. 
+But my new postcard isn't part of my website yet! 
+
+Rather than adding it in as a separate `navbar` menu we'll make it the home page. 
 
 To achieve this, copy and paste the `postcard.Rmd` header info into `index.Rmd`.
 
@@ -751,12 +772,12 @@ Themes in **distill** are based on the CSS language.
 Process:  
 
 - Create a file that contains all the CSS code for the current website using `distill::create_theme()`.   
-- Edit this file to change individual elements of your website.
+- Edit this file to change individual style elements of your website.
 - Alternatively, find a theme you like that someone else developed and use that code to replace your entire current theme. We'll proceed with this last approach.
 
 --
 
-Run the following code in R to create a file called `theme.css`.  It will open up in your `Source` pane once it has been created.
+Run the following code in R to create a file called `theme.css` in your root directory.  It will open up in your `Source` pane once it has been created.
 
 ```{r, eval = FALSE}
 distill::create_theme()
@@ -795,25 +816,25 @@ Take care with your spacing. `theme` should have no spaces in front of it.
 
 ## Change website theme
 
-The **distill** website has three [example themes](https://rstudio.github.io/distill/website.html#example-themes) to choose from when getting started. 
+The **distill** website has three nice [example themes](https://rstudio.github.io/distill/website.html#example-themes) that can be a place to start. 
 
 When I made the [class website](https://aosmith16.github.io/spring-r-topics/) I copied the `theme.css` example from Piping Hot Data, pasted it over everything in my current theme, and then manually changed the navigation bar color to [Beaver Orange](https://communications.oregonstate.edu/brand-guide/visual-identity/colors) (`rgb(215, 63, 9)`).
 
 --
 
-Take a few minutes to choose from one of the example themes and then copy and paste the code over what is currently in `theme.css`.  
+Take a few minutes to choose from one of the example themes and then copy and paste the CSS code over what you currently have in `theme.css`.  
 
 [Piping Hot Data](https://rstudio.github.io/distill/website.html?panelset1=screenshot#piping-hot-data)  
 [Before I Sleep](https://rstudio.github.io/distill/website.html?panelset1=screenshot&panelset2=screenshot2#before-i-sleep)  
 [Tidymodels](https://rstudio.github.io/distill/website.html?panelset3=screenshot3#tidymodels)
 
-Save the result and build the website to see the changes. If you'd prefer something else, take time over the next week to find a theme you really like from the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
+Save the result and build the website to see the changes. If you'd prefer something other look for your website, take time over the next week to find a theme you really like from the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
 
 ---
 
 ## New website theme
 
-I used the [Tidymodels](https://rstudio.github.io/distill/website.html?panelset3=screenshot3#tidymodels) theme. After copying the `theme.css` code, pasting it over the code in my original `theme.css` file, and building the site this is what my website home page looks like now.
+I used the [Tidymodels](https://rstudio.github.io/distill/website.html?panelset3=screenshot3#tidymodels) theme. After copying the `theme.css` code, pasting it over the code in my original `theme.css` file, and building the site this is what my website home page looks like.
 
 .center[
 ```{r theme, echo = FALSE, out.width = "60%"}

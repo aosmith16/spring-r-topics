@@ -45,7 +45,7 @@ R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
 **Create a personal website to showcase your work**
 
 - Create distill website in version-controlled directory  
-- Edit `_site.yml` to control website design  
+- Edit `_site.yml` to control website structure  
 - Edit index.Rmd to add personal details with **postcard**  
 - Change website appearance with a basic theme change  
 
