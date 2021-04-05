@@ -139,7 +139,7 @@ class: center, middle, inverse, hide-logo
 
 ## Running code
 
-- Open `week05_gt_flair.Rmd`  
+- Open the copy of  [`week05_gt_flair.Rmd`](files/week05_more_gt.Rmd) that you saved   
 - I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
 
 <br/><br/>

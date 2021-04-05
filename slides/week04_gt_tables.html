@@ -113,6 +113,8 @@ class: hide-logo
 
 ## Why focus on **gt**?
 
+It is just one option that allows us to build tables programmatically in R.
+
 .pull-left[
 **Pros:**
 - "Grammar of tables" like **ggplot2** grammar of graphics  
@@ -161,14 +163,16 @@ class: center, middle, inverse, hide-logo
 
 ## Running code
 
-- Open `week04_gt_basics.Rmd`  
+- Open the copy of [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) that you saved  
 - I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
 
 --
 
 &lt;br/&gt;&lt;br/&gt;
 **Set up**  
+
 We'll practice different features of package **gt** together, running example code I've already written.   
+
 At the end of each section you'll have a chance to practice what we just covered.
 
 ---
@@ -306,6 +310,7 @@ results
 |DF / RA  |TSHE      | 1.692853| 0.7823126| 3.663181|
 
 ]
+
 ---
 
 ## Basic **gt** usage
@@ -634,7 +639,7 @@ Using the `gtcars_small` dataset:
 -   Move `year` to be the first column, followed by `ctry_origin`.
 
 
-<div class="countdown" id="timer_6062972b" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_606b5518" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -934,7 +939,7 @@ You will be using `mtcars_small` for this exercise.
 -   Replace the missing value in `qsec` with "missing".
 -   Add the `yen` currency symbol to `hp` with 0 decimal places.
 
-<div class="countdown" id="timer_606295e5" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_606b555d" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -970,8 +975,6 @@ mtcars_small %&gt;%
 .pull-right[
 .center[
 &lt;img src="figs/week04_files/yt2.png" width="70%" /&gt;
-
-&lt;!-- ![](figs/week04_files/yt2.png) --&gt;
 ]
 ]
 
@@ -1264,7 +1267,7 @@ Take `gtcars_small` and do the following:
 -   Add the total `msrp` per group with the row name "Total"
 -   Finally, add the overall total `msrp` across groups with the row name "Overall"
 
-<div class="countdown" id="timer_6062971c" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_606b54ea" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1527,7 +1530,7 @@ Using the `mtcars_small` dataset
 -   Add a source note to indicate the data are from a 1974 issue of Motor Trend magazine
 -   Add a footnote to describe `disp` (which is engine displacement in cubic inches)
 
-<div class="countdown" id="timer_60629834" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_606b5519" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1857,8 +1860,9 @@ class: hide-logo
 
 ## Next week
 
-- We'll explore using images and adding colors in **gt** tables  
+- We'll explore adding flair, using colors and images in **gt** tables  
 - Discuss creating overall themes for tables   
+- Make sure you have a current version of package **tidyr** installed
 
 .center[
 &lt;img src="figs/gtlogo.svg" title="Logo for package gt" alt="Logo for package gt" width="15%" /&gt;

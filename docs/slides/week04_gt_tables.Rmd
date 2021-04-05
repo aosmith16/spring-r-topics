@@ -188,7 +188,7 @@ class: center, middle, inverse, hide-logo
 
 ## Running code
 
-- Open `week04_gt_basics.Rmd`  
+- Open the copy of [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) that you saved  
 - I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
 
 --
