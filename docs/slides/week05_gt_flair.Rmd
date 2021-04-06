@@ -237,12 +237,12 @@ pops_wide = pivot_wider(
     values_from = population
 )
 ```
+]
 
 ```{r wide-out, echo = FALSE}
 rmarkdown::paged_table(pops_wide)
 ```
 
-]
 
 ---
 
@@ -292,9 +292,10 @@ rmarkdown::paged_table(sza50)
 
 We need a few small datasets to practice on. We will do all data manipulation steps now.
 
-.pull-left[
-Here is a very small dataset so we can practice adding images into tables. It contains made-up CRAN download information for March 30 for 3 packages, **dplyr**, **ggplot2**, and **tidyr**, along with links to their hex sticker images.
 
+Here is a small dataset so we can practice adding images into tables. It contains made-up CRAN download info for March 30 for **dplyr**, **ggplot2**, and **tidyr**, along with links to their hex sticker images.
+
+.pull-left[
 .tiny[
 ```{r pack_down, eval = FALSE}
 pack_down = data.frame(
@@ -310,7 +311,6 @@ pack_down
 ]
 
 .pull-right[
-<br/><br/><br/>
 ```{r, echo = FALSE}
 pack_down = data.frame(
     hex = c("https://github.com/tidyverse/dplyr/raw/master/man/figures/logo.png",
@@ -320,12 +320,11 @@ pack_down = data.frame(
     downloads = c(60400, 60255, 29990)
 )
 ```
+]
 
 ```{r pack_down-out, echo = FALSE}
 rmarkdown::paged_table(pack_down)
 ```
-
-]
 
 ---
 

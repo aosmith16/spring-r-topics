@@ -106,8 +106,8 @@ Overall
 
 We will 
 -     Start a **distill** website in a version-controlled directory  
--     Build an intro page with package **postcards**  
 -     Edit `_site.yml` to control website structure
+-     Build an intro page with package **postcards**  
 -     Change website *theme* (colors and fonts)
 
 --
@@ -115,6 +115,10 @@ We will
 *Before we begin:*
 
 Make sure you have packages **distill**, **postcards**, and **fontawesome** installed.
+
+???
+
+These are basic websites that I think applied scientists (not data scientists) might be interested in, on average.  They'll have an intro page with pic and then other pages to show publications, etc. I am not showing the distill blog format, although some may ultimately be interested in that.
 
 ---
 
@@ -318,7 +322,8 @@ Click around on the navigation bar to explore the website. This will set us up t
 ## File overview
 
 - `index.Rmd`: Your home page. Every **distill** website *must* have an `index.Rmd` file and it needs to be in the root directory. Don't move it.  
-In addition, you must have a `title` and `site: distill::distill_website` in the *YAML header*. The YAML header is the information at the top of the file sandwiched between two `---`.
+
+    In addition, you must have a `title` and `site: distill::distill_website` in the *YAML header*. The YAML header is the information at the top of the file sandwiched between two `---`.
 
 --
 
@@ -511,7 +516,7 @@ You can use *icons* instead of text by defining Font Awesome identifiers. I deci
 
 --
 
-`href` must refer either to an HTML file in the `docs` folder or to a URL.
+`href` must refer either to a local HTML file or to a URL.
 
 ```{r, eval = FALSE}
 navbar:
@@ -668,7 +673,7 @@ Note my picture is in my "images" folder, so I had to write out the path. Delete
 
 ## Add a postcard to your website
 
-Knit `postcard.Rmd` to see the first draft.
+Knit `postcard.Rmd` to see the first draft of the postcard.
 
 .center[
 ```{r postcard1, echo = FALSE, out.width = "60%"}
