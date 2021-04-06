@@ -487,7 +487,7 @@ navbar:
       href: about.html
 ```
 
-Build the website or knit `index.Rmd` to see the new menu names.
+Build the website to see the new menu names.
 
 .center[![](figs/week02_files/change_index.png)]
 
@@ -685,7 +685,21 @@ knitr::include_graphics("figs/week02_files/postcard_start.png")
 
 ## Using icons in your postcard
 
-You may decide you want icons instead of words for social links. You can do this using R code and package **fontawesome**.
+You may decide you want icons instead of words for social links. You can do this using R code and package **fontawesome**. 
+
+Make sure you are using version 0.1.0 of **fontawesome**, as on date of this presentation version 0.2.0 appears to offset the icons.
+
+Install specific version with package **devtools**:
+
+```{r, eval = FALSE}
+devtools::install_version("fontawesome", 
+                          version = "0.1.0", 
+                          repos = "http://cran.us.r-project.org")
+```
+
+---
+
+## Using icons in your postcard
 
 Here's what my YAML header looks like if I use icons.
 
@@ -694,13 +708,13 @@ Here's what my YAML header looks like if I use icons.
 title: "Ariel Muldoon"
 image: "images/ao_small.png"
 links:
-  - label: '`r fontawesome::fa("linkedin", height = 25)`'
+  - label: '`r fontawesome::fa("linkedin", height = "25px")`'
     url: "https://www.linkedin.com/in/arielmuldoon/"
-  - label: '`r fontawesome::fa("twitter", height = 25)`'
+  - label: '`r fontawesome::fa("twitter", height = "25px")`'
     url: "https://twitter.com/aosmith16"
-  - label: '`r fontawesome::fa("github", height = 25)`'
+  - label: '`r fontawesome::fa("github", height = "25px")`'
     url: "https://github.com/aosmith16"
-  - label: '`r fontawesome::fa("envelope", height = 25)`'
+  - label: '`r fontawesome::fa("envelope", height = "25px")`'
     url: "mailto:ariel.muldoon@gmail.com"
 output:
   postcards::jolla
@@ -709,7 +723,7 @@ output:
 
 ???
 
-Height is height of icons, which you can make larger or smaller
+Height is height of icons, must give units like px and be in quotes, which you can make larger or smaller
 
 ---
 
@@ -747,13 +761,13 @@ To achieve this, copy and paste the `postcard.Rmd` header info into `index.Rmd`.
 title: "Ariel Muldoon"
 image: "images/ao_small.png"
 links:
-  - label: '`r fontawesome::fa("linkedin", height = 25)`'
+  - label: '`r fontawesome::fa("linkedin", height = "25px")`'
     url: "https://www.linkedin.com/in/arielmuldoon/"
-  - label: '`r fontawesome::fa("twitter", height = 25)`'
+  - label: '`r fontawesome::fa("twitter", height = "25px")`'
     url: "https://twitter.com/aosmith16"
-  - label: '`r fontawesome::fa("github", height = 25)`'
+  - label: '`r fontawesome::fa("github", height = "25px")`'
     url: "https://github.com/aosmith16"
-  - label: '`r fontawesome::fa("envelope", height = 25)`'
+  - label: '`r fontawesome::fa("envelope", height = "25px")`'
     url: "mailto:ariel.muldoon@gmail.com"
 output:
   postcards::jolla
