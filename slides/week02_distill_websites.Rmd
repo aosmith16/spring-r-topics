@@ -261,7 +261,7 @@ We'll make a website within this directory using `distill::create_website()`.
 --
 
 <br/>
-Copy and paste the following code example into R. Change the `title` to your name before running:
+Copy and paste the following code example into your R Console. Change the `title` to your name before running:
 
 ```{r, eval = FALSE}
 distill::create_website(dir = ".", 
@@ -323,7 +323,14 @@ Click around on the navigation bar to explore the website. This will set us up t
 
 - `index.Rmd`: Your home page. Every **distill** website *must* have an `index.Rmd` file and it needs to be in the root directory. Don't move it.  
 
-    In addition, you must have a `title` and `site: distill::distill_website` in the *YAML header*. The YAML header is the information at the top of the file sandwiched between two `---`.
+    In addition, you must have at least `title:` and `site: distill::distill_website` in the *YAML header*. The YAML header is the information at the top of the file sandwiched between two `---`. Like:
+    
+```{r, eval = FALSE}
+    ---
+    title: "Ariel Muldoon"
+    site: distill::distill_website
+    ---
+```
 
 --
 
@@ -331,11 +338,11 @@ Click around on the navigation bar to explore the website. This will set us up t
 
 --
 
-- `_site.yml`: This file controls aspects of your website structure, including what is on the navigation bar.
+- `_site.yml`: This file controls aspects of your website structure, including the navigation bar.
 
 --
 
-- `about.Rmd`: The content of this file is currently associated with the `About` navigation bar button. Change the content of this file to change that page. (*Editing `about.Rmd` not covered today.*)
+- `about.Rmd`: The content of this file is associated with the `About` navigation menu. Change the content, change that page. (*Editing `about.Rmd` not covered today.*)
 
 
 ???
@@ -424,8 +431,6 @@ Take a look at the contents of this folder.
 In particular note the two HTML output files created by `index.Rmd` and `about.Rmd` (same names but end in `html`). These are literally the files that make the pages of the website. 
 .center[![](figs/week02_files/distill_docs.png)]
 ]
-
---
 
 .center[
 **Important**: Generally speaking you will not be doing any work in `docs` directly.
@@ -600,7 +605,7 @@ Before we proceed, save whatever image you'd like to represent you on your home 
 
 --
 
-We'll create a postcard using `distill::create_article()`. 
+We'll create a postcard using `distill::create_article()`. Copy and paste the code below and run it in your R Console.
 
 ```{r, eval = FALSE}
 distill::create_article(file = "postcard",  
@@ -623,7 +628,7 @@ May need to give direction on creating a new "images" folder and putting picture
 
 ## Add a postcard to your website
 
-Let's change the YAML header filler info to our own before we knit. Delete `label`/`url` for social links you don't have and add others you want. Note my image is in the `images` folder.
+Let's change the YAML header filler info to our own before we knit. Delete `label`/`url` for social links you don't have and add others you want. **Note:** My image is in the `images` folder so I start at `images/`.
 
 .pull-left[
 Here's what we start with:
@@ -643,9 +648,7 @@ output:
   postcards::jolla
 ```
 ]
-
---
-
+ 
 .pull-right[
 And here are my edits:
 ```{r, eval = FALSE}
@@ -745,9 +748,20 @@ But my new postcard isn't part of my website yet!
 
 Rather than adding it in as a separate `navbar` menu we'll make it the home page. 
 
-To achieve this, copy and paste the `postcard.Rmd` header info into `index.Rmd`.
+To achieve this, copy and paste the `postcard.Rmd` YAML header info into `index.Rmd`.
 
-<br/><br/>
+--
+
+<br/>
+Here's the current YAML header from `index.Rmd`:
+
+```{r, eval = FALSE}
+---
+title: "Ariel Muldoon"
+site: distill::distill_website
+---
+```
+
 **Reminder**: Do not delete the `site: distill::distill_website` line from `index.Rmd`. 
 
 .footnote[*New YAML header from `index.Rmd` is on next slide*]
@@ -781,26 +795,32 @@ Build your website to see your new home page! `r emo::ji("tada")` Delete `postca
 
 ## Change website theme
 
-While **distill** doesn't allow for major changes to the overall website structure, we can change the *theme* by choosing colors and fonts to personalize the website.
+While **distill** doesn't allow for major changes to the overall website structure, we can change the *theme* by choosing colors and fonts to personalize the website.  
 
 Themes in **distill** are based on the CSS language.  
 
---
+---
 
+## Change website theme
   
-Process:  
+First, create a file that contains all the CSS code for the current website theme.
 
-- Create a file that contains all the CSS code for the current website using `distill::create_theme()`.   
-- Edit this file to change individual style elements of your website.
-- Alternatively, find a theme you like that someone else developed and use that code to replace your entire current theme. We'll proceed with this last approach.
-
---
-
-Run the following code in R to create a file called `theme.css` in your root directory.  It will open up in your `Source` pane once it has been created.
+Run the following code in the R Console to create a file called `theme.css` in your root directory.  It will open up in your `Source` pane once it has been created.
 
 ```{r, eval = FALSE}
 distill::create_theme()
 ```
+
+--
+
+Then either:
+1. Edit this file to change individual style elements of your website.  
+ 
+ OR  
+2. Find a theme you like that someone else developed and use that code to replace your entire current theme. You can still change individual style elements later.
+
+We'll proceed with the second approach.
+
 
 ???
 
@@ -835,7 +855,7 @@ Take care with your spacing. `theme` should have no spaces in front of it.
 
 ## Change website theme
 
-The **distill** website has three nice [example themes](https://rstudio.github.io/distill/website.html#example-themes) that can be a place to start. 
+The **distill** website has three nice [example themes](https://rstudio.github.io/distill/website.html#example-themes) that can be a place to start for setting a new theme. 
 
 When I made the [class website](https://aosmith16.github.io/spring-r-topics/) I copied the `theme.css` example from Piping Hot Data, pasted it over everything in my current theme, and then manually changed the navigation bar color to [Beaver Orange](https://communications.oregonstate.edu/brand-guide/visual-identity/colors) (`rgb(215, 63, 9)`).
 
@@ -847,7 +867,7 @@ Take a few minutes to choose from one of the example themes and then copy and pa
 [Before I Sleep](https://rstudio.github.io/distill/website.html?panelset1=screenshot&panelset2=screenshot2#before-i-sleep)  
 [Tidymodels](https://rstudio.github.io/distill/website.html?panelset3=screenshot3#tidymodels)
 
-Save the result and build the website to see the changes. If you'd prefer something other look for your website, take time over the next week to find a theme you really like from the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
+Save the result and build the website to see the changes. If you'd prefer a different look for your website, find a theme you really like from, e.g., the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
 
 ---
 
