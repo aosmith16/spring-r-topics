@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Use this document to follow along with the **gt** basics working session, running provided code to see how it works as well as writing your own practice code. I recommend turning on the visual editor via the ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png){width="3%"} button in the right-hand corner.
 
-You can find today's slides [here](). The slides contain introductory material as well as a list of resources that aren't included here.
+You can find today's slides [here](). The slides contain introductory material as well as a list of resources that aren't included here before starting in on coding.
 
 ## R packages
 
