@@ -125,9 +125,18 @@ Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the ses
 
 ### Goals
 
+**Gain understanding of and learn how to write basic functions in R**
+
+We'll discuss the basic structure of functions and then practice giving inputs and making outputs. We spend some time looking through the code of existing R functions.
+
 ### Resources
 
-Intro functions: https://skirmer.github.io/presentations/functions_with_r.html#1  
-Repo with other links to functions: https://github.com/skirmer/functions_r  
+For more on all aspects of functions, see the [Functions chapter](https://r4ds.had.co.nz/functions.html) in Wickham and Grolemund's *R for Data Science*  
+[Rice and Lumley's presentation](http://faculty.washington.edu/kenrice/rintro/intro17sess09v2.pdf) on writing functions is a nice overview  
+If you are ready to go further with functions see [Stephanie Kirmer's presentation](https://skirmer.github.io/presentations/functions_with_r.html#1)  
 
 ### Materials for class
+
+[Week 06 slides in progress](slides/week06_writing_functions.html)  
+Save [`week06_functions.Rmd`](files/week06_functions.Rmd) to run code during the session    
+
