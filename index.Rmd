@@ -55,6 +55,7 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **dplyr v. 1.0.5 **  
 **tidyr v. 1.1.3**  
 **usethis v. 2.0.1**  
+**gh v 1.2.1**  
 **gganimate v. 1.0.7**  
 **plotly v. 4.9.3**   
 **leaflet v. 2.0.4.1**  
