@@ -6,7 +6,6 @@ author:
 date: 'May 4, 2021'
 output:
   xaringan::moon_reader:
-    lib_dir: libs
     css: [xaringan-themer.css, wrap.css]
     nature:
       slideNumberFormat: "%current%"
@@ -1173,9 +1172,9 @@ If that's ever the case for you, [Stephanie Kirmer's talk](https://skirmer.githu
 
 ## Next week
 
-- We'll return to Git `r icons::fontawesome("git-square")` and GitHub `r icons::fontawesome("github")`, learning to write issues and make pull requests    
+- We'll return to Git `r icons::fontawesome("git-square")` and GitHub `r icons::fontawesome("github")`, learning to make pull requests and deal with merge conflicts    
 - Make sure you have a current version of package **usethis** installed
-
+- Download [GitKraken](https://www.gitkraken.com/)  
 
 
 .footnote[
