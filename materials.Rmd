@@ -121,9 +121,7 @@ See Anthony Schmidt's post on a **gt** APA theme [here](https://www.anthonyschmi
 [Week 05 slides](slides/week05_gt_flair.html)  
 Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the session    
 
-## Week 6: Learn to write functions in R
 
-### Goals
 
 ### Resources
 

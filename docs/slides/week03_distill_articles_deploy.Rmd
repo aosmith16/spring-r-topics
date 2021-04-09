@@ -380,6 +380,9 @@ nocite: '@*'
 ```
 
 to the YAML header.
+
+<br/>
+There should be no spaces before `nocite:`. I add this to the bottom of my current header.
 ]
 
 --
@@ -505,7 +508,7 @@ For a website like the one we've made, one approach is to link to the article ou
 
 Open `about.Rmd`. Remember that the output of this is associated with the `Publications` menu on the website.
 
-As a reminder, here's the `navbar` code from `_site.yml`:
+As a reminder, here's the relevant `navbar` code from `_site.yml`:
 
 ```{r, eval = FALSE}
  navbar:
@@ -576,7 +579,16 @@ Once you build the website, the information in the `Publications` menu reflects 
 **Of note:** Links to articles in child folders do not have the navigation bar or the website theme. 
 
 Some options:
-- Add themes via css files to individual articles like we did to the website.  
+- Add themes via css files to individual articles. Here's example code on how to refer to your current theme:
+    
+.smaller[
+    ```{r, eval = FALSE}
+    output: 
+      distill::distill_article:
+        theme: !expr here::here("theme.css")
+    ```
+]
+    
 - To make a page part of the website (with the navigation bar) it must either be in the root directory or you can switch to using [**distill** blog posts](https://rstudio.github.io/distill/blog_workflow.html) (*not covered in this session*).  
 ]
 
@@ -593,7 +605,7 @@ You make drop-down menus under `navbar` in `_site.yml`.
 --
 
 .pull-right[
-The key is to add `menu:` below the `text` and then adding text and `href` links. 
+The key is to add `menu:` below the menu `text` and then adding `text` and `href` links. 
 
 Here I added the two articles as a drop-down menu under "Teaching".
 
@@ -615,6 +627,10 @@ Here I added the two articles as a drop-down menu under "Teaching".
        href: https://github.com/aosmith16/personal-website
 ```
 ]
+
+???
+
+The text is the name of the drop down menu and the href links to the page. Note use of relative links.
 
 ---
 
