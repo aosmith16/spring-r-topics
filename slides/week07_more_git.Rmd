@@ -1,0 +1,291 @@
+---
+title: 'More Git `r icons::fontawesome("git-square")` and GitHub `r icons::fontawesome("github")`'
+author: 
+  - "<br/><br/><br/>Ariel Muldoon"
+date: 'May 11, 2021'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, wrap.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+      beforeInit: "https://platform.twitter.com/widgets.js"
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+library(formatR)
+```
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1c5253",
+  secondary_color = "#F4790B",
+  inverse_header_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  base_font_size = "22px",
+  link_color = "#F4790B",
+  code_highlight_color = "rgba(244, 121, 11, 0.5)"
+)
+```
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+    meta_name("github-repo" = "aosmith16/spring-r-topics") %>% 
+    meta_social(
+        title = "Doing more with Git and GitHub",
+        description = "Collaborators, merge conflicts and pull requests",
+        url = "https://aosmith16.github.io/spring-r-topics/slides/week07_more_git.html",
+        image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week07-share-card.png",
+        image_alt = paste(
+            "Slides on going beyond very basics of Git/Github", 
+            "Working sessions class spring 2021"
+        ),
+        og_type = "website",
+        og_author = "Ariel Muldoon",
+        twitter_card_type = "summary_large_image",
+        twitter_creator = "@aosmith16"
+    )
+```
+
+```{r xaringan-scribble, echo = FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
+## Today's Goal
+
+**Practice working with version-controlled projects with Git, specifically focusing on tools for collaboration.**
+
+We will  
+
+-     Review the `README.md` file    
+-     Add collaborators to a repository on GitHub      
+-     Solve a merge conflict with GitKraken  
+-     Learn to do a basic pull request using helper functions from package **usethis**  
+
+--
+
+<br/>
+
+Today we extend the very basic work done in the week 1 slides. If you've never worked with Git/GitHub before, review [those slides](https://aosmith16.github.io/spring-r-topics/slides/week01_introduction_git_and_github.html) before proceeding.
+
+
+???
+
+Today won't make anybody an expert, but will get started doing more with the resources on next slide for when they decide to start doing more
+
+---
+
+## Resources
+
+- GitHub articles on [adding collaborators](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository) and [README files](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes) 
+- Brief [article](https://blog.axosoft.com/merge-conflict-tool/) from GitKraken on their merge conflict tool  
+- Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-functions.html) on pull request helpers  
+- [This blog post](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines the basic approach to pull requests *without* **usethis**  
+
+.center[
+```{r, echo = FALSE, out.width = "30%"}
+knitr::include_graphics("figs/week07_files/usethis_logo.png")
+```
+]
+
+---
+
+## The README file
+
+It is standard to have `README.md` file in your GitHub repository.  You should take time to expand this file, describing what project you are working on and why it is important. 
+
+--
+
+<br/><br/>
+The README file is a Markdown document.  Markdown projects render to HTML on GitHub, so the information in the file will automatically be included on the main page of your repository.
+
+Markdown syntax is what you use to write R Markdown, so you already know the basic syntax for adding information to your README. `r emo::ji("tada")`
+
+
+???
+
+Information to include may be what is in the project, why you are doing the project, metadata on the project like where data comes from, etc.
+
+---
+
+## The README file
+
+Here's an example of the README file from the GitHub repository for the class website.
+
+.center[
+```{r, echo = FALSE, out.width = "40%"}
+knitr::include_graphics("figs/week07_files/readme_example.png")
+```
+]
+
+??? 
+
+Main point here is that the README renders and is on the repo home page
+
+---
+
+## Examples of wild-caught README's
+
+Let's spend a few minutes looking some README examples.
+
+Some of the easiest examples to find of a good README in the wild is for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository.
+
+--
+<br/>
+But plenty of people use repositories for other types of work. Here are examples for what people include in their README when working on a paper or talk/workshop instead of an R package.
+
+- [Hill and Grolemund's repository for a workshop](https://github.com/rstudio-conf-2020/intro-to-ml-tidy)  
+- [Christopherson et al.'s project repo](https://github.com/UW-MSDS-DATA-598-Reproducibility-WI20/Christopherson-Garcia-Todd-Winegarden-replication-project) demonstrates information you might want for an analysis repository    
+
+.footnote[
+For research projects you can use GitHub to make a *research compendium*. See the [Marwick et al. paper](https://peerj.com/preprints/3192v1/) and an [example compendium](https://github.com/benmarwick/1989-excavation-report-Madjedbebe).
+]
+
+???
+
+Purposefully focusing on more "applied" README examples, since that is audience here. Not all need to go into this much detail.
+
+---
+
+class: center, middle, inverse
+
+# <font style="font-family: cursive; font-style:italic">Let's get started!</font>
+
+---
+
+## Make a new GitHub `r icons::fontawesome("github")` repository
+
+Make a new GitHub repository called `merge-conflict`.
+
+Remember in Week 1 you learned to first create the repository on GitHub, clone it via the "Code" button, and use the copied URL to make a version-controlled RStudio Project on your computer.
+
+```{r, echo = FALSE}
+library(countdown)
+countdown(minutes = 5, 
+          bottom = 0,
+          color_border = "#F4790B",
+          color_text = "#1c5253",
+          color_running_background = "#1c5253",
+          color_running_text = "#F4790B",
+          color_finished_background = "red",
+          color_finished_text = "#1c5253")
+```
+
+???
+
+They may have forgotten how to do this, so be prepared to answer questions.
+
+---
+
+## Add a collaborator
+
+Right now you are the only person who can make changes to your GitHub repository.
+
+Add *collaborators* if you'd like others to also be able to work directly on the repository.
+
+--
+
+1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+
+.center[
+![](figs/week03_files/github_settings.png)
+]
+
+---
+
+## Add a collaborator
+
+Right now you are the only person who can make changes to your GitHub repository.
+
+Add *collaborators* if you'd like others to also be able to work directly on the repository.
+
+1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+2. From the left-hand menu choose `Manage Access` (second menu item from the top).
+
+.center[
+```{r, echo = FALSE, out.width = "40%"}
+knitr::include_graphics("figs/week07_files/manage_access.png")
+```
+]
+
+---
+
+## Add a collaborator
+
+Right now you are the only person who can make changes to your GitHub repository.
+
+Add *collaborators* if you'd like others to also be able to work directly on the repository.
+
+1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+2. From the left-hand menu choose `Manage Access` (second menu item from the top).
+3. Click on the "Invite a collaborator" button.
+
+---
+
+## Add a collaborator
+
+Right now you are the only person who can make changes to your GitHub repository.
+
+Add *collaborators* if you'd like others to also be able to work directly on the repository.
+
+1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+2. From the left-hand menu choose `Manage Access` (second menu item from the top).
+3. Click on the "Invite a collaborator" button.
+4. Find the collaborator you want to add using their GitHub user name, email, or their full name.  Once you've selected someone, click the green button to send them an invite. My user name is `aosmith16` if you'd like to invite me for practice. `r emo::ji("grin")`
+
+.center[
+```{r, echo = FALSE, out.width = "30%"}
+knitr::include_graphics("figs/week07_files/add_collaborator.png")
+```
+]
+
+???
+
+They can invite me if that's easiest. 
+
+---
+
+## Add a collaborator
+
+Right now you are the only person who can make changes to your GitHub repository.
+
+Add *collaborators* if you'd like others to also be able to work directly on the repository.
+
+1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+2. From the left-hand menu choose `Manage Access` (second menu item from the top).
+3. Click on the "Invite a collaborator" button.
+4. Find the collaborator you want to add using their GitHub user name, email, or their full name.  Once you've selected someone, click the green button to send them an invite. My user name is `aosmith16` if you'd like to invite me for practice. `r emo::ji("grin")`
+5. The person will get an invite and then has 7 days to accept. Once they do they can clone the repository and work on it the same way you can.
+
+
+---
+
+## Merge conflicts

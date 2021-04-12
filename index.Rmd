@@ -31,10 +31,10 @@ Week 03: Deploy website using GitHub Pages
 Week 04: Explore **gt** for making tables  
 Week 05: **gt** flair: colors, images, and themes    
 Week 06: Learn to write functions in R  
-Week 07: More Git: forking and pull requests  
-Week 08: Animated graphics (with **gganimate**)  
-Week 09: Interactive graphics and tables     
-Week 10: Other topics of interest  
+Week 07: More Git: merge conflicts and pull requests  
+Week 08: Interactive graphics and tables     
+Week 09: Animated graphics (with **gganimate**)  
+Week 10: Catch up day or other topics of interest  
 
 ## Software
 
