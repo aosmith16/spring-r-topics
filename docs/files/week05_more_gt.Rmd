@@ -1,0 +1,650 @@
+---
+title: "Doing more with gt tables"
+output: 
+  html_document:
+      toc: TRUE
+      toc_float: TRUE
+      df_print: "paged"
+data: "April 27, 2021"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Use this document to follow along with the **gt** basics working session, running provided code to see how it works as well as writing your own practice code. I recommend turning on the visual editor via the ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png){width="3%"} button in the right-hand corner.
+
+You can find today's slides [here](). The slides contain introductory material as well as a list of resources that aren't included here.
+
+## R packages
+
+Be sure to run code chunks in order, starting with loading packages.
+
+The main package we're using today is **gt**, but we'll also use packages **dplyr** and **tidyr** for data manipulation. Be sure your package versions are up to date.
+
+```{r, message = FALSE, warning = FALSE}
+library(gt) # v. 0.2.2
+library(dplyr) # v. 1.0.5
+library(tidyr) # v 1.1.3
+```
+
+## The datasets
+
+We will primarily work with built-in datasets today. Creating display tables is generally going to involve data manipulation. This can be done in the same code pipeline as making the table, and many **gt** examples will include data manipulation code along with the table-making code.
+
+I want to focus in on just table features today, though, so we'll begin by creating very small examples from the datasets that ship with the **gt** package.
+
+### The `countrypops` dataset
+
+This dataset contains yearly populations of countries, with data from 1960 to 2017. See `?countrypops` for more info.
+
+We'll pare things down to two countries and 5 years.
+
+```{r}
+pops_small = countrypops %>%
+    filter(country_name %in% c("Vietnam", "Egypt") &
+               year > 2012) %>% 
+    select(country_name, year, population)
+pops_small
+```
+
+### Wide `countrypops` dataset
+
+Let's reshape the last dataset so years are the columns.
+
+```{r}
+pops_wide = pivot_wider(
+    data = pops_small,
+    names_from = year,
+    values_from = population
+)
+pops_wide
+```
+
+### The `sza` dataset
+
+This dataset contains the solar zenith angles every half hour for different latitudes of the northern hemisphere. See `?sza` for more info.
+
+We'll get the values for the 50th latitude only for all months and then widen so we have a column for each time and a rows for each month. Only keep times with a solar zenith for all months (i.e., 0830 to 1200).
+
+```{r}
+sza50 = sza %>%
+    filter(latitude == 50 & !is.na(sza)) %>%
+    select(-latitude) %>%
+    pivot_wider(names_from = tst,
+                values_from = sza) %>%
+    select(1:9)
+sza50
+```
+
+### Dataset with images
+
+Here is a very small dataset so we can practice adding images into tables. It contains made-up CRAN download information for March 30 for 3 packages, **dplyr**, **ggplot2**, and **tidyr**, along with links to their hex sticker images.
+
+```{r}
+pack_down = data.frame(
+    hex = c("https://github.com/tidyverse/dplyr/raw/master/man/figures/logo.png",
+            "https://github.com/tidyverse/ggplot2/raw/master/man/figures/logo.png",
+            "https://github.com/tidyverse/tidyr/raw/master/man/figures/logo.png"),
+    package = c("dplyr", "ggplot2", "tidyr"),
+    downloads = c(60400, 60255, 29990)
+)
+pack_down
+```
+
+## Add color to table cells
+
+We can use colors to add information to a table or help tell the story of the table visually.
+
+This is done using the [`data_color()` function](https://gt.rstudio.com/reference/data_color.html) along with the `col_*()` functions from package **scales** that will map data values to colors based on a palette.
+
+We can set or choose the `palette` in the `scales::col_()` functions. The palette can be:
+
+> 1.  A character vector of RGB or named colours. Examples: palette(), c("#000000", "#0000FF", "#FFFFFF"), topo.colors(10)
+>
+> 2.  The name of an RColorBrewer palette, e.g. "BuPu" or "Greens".
+>
+> 3.  The full name of a viridis palette: "viridis", "magma", "inferno", or "plasma".
+>
+> 4.  A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("#000000", "#FFFFFF"), interpolate="spline").
+
+### Fill color, numeric column
+
+We'll start be setting the fill color of the `population` column of `pops_small`. 
+
+We choose the `columns` of interest and then set the colors using `scales::col_numeric()`. I chose the "Greens" palette from **RColorBrewer**.
+
+Use `domain = NULL` so the range of the values is taken from the table.
+
+```{r, message = FALSE}
+pops_small %>%
+    gt() %>%
+    data_color(
+        columns = vars(population),
+        colors = scales::col_numeric(
+            palette = "Greens",
+            domain = NULL
+        )
+    )
+```
+
+You can use different fill colors on different columns by using multiple `data_color()` layers.
+
+This time I provide a character vector of named colors to use but we can also use hexadecimal codes. Change the transparency of the colors used with `alpha` in `data_color()`.
+
+```{r}
+pops_small %>%
+    gt() %>%
+    data_color(
+        columns = vars(population),
+        colors = scales::col_numeric(
+            palette = "Greens",
+            domain = NULL
+        )
+    ) %>%
+    data_color(
+        columns = vars(year),
+        colors = scales::col_numeric(
+            palette = c("white", "orange", "red"),
+            domain = NULL
+        ),
+        alpha = .5
+    )
+```
+
+### Fill color, many columns
+
+You can create a *heat map* vibe in a table with many columns of similar values, applying the same color scale across all columns together. This is done by choosing more `columns`.
+
+We'll choose all columns in `sza50` except the first one using `contains()`. We cannot currently use code like `vars(col1:col3)`, although that should be [fixed in the future](https://github.com/rstudio/gt/issues/611).
+
+To use the color scheme across all columns we need to set the `domain` using the range of values from the entire dataset. I use some helper functions from **dplyr** to get only the numeric columns when calculating the range.
+
+I use the "magma" palette, one of 4 viridis palettes provided in `scales::col_*().`
+
+```{r}
+sza50 %>%
+    gt() %>%
+    data_color(
+        columns = contains("0"),
+        colors = scales::col_numeric(
+            palette = "magma",
+            domain = range(select(sza50, where(is.numeric)))
+            )
+    )
+```
+Note we can reverse the order of a palette (so light to dark instead of dark to light) using `reverse` in `scales::col_numeric()`.
+
+### Fill color, categorical column
+
+We can use colors in categorical columns, as well. We need to provide one color for every category in the column, and the colors are used in the order they appear.
+
+```{r}
+pops_small %>%
+    gt() %>%
+    data_color(
+        columns = vars(country_name),
+        colors = c("red","blue"),
+        alpha = .5
+    )
+```
+
+At the moment you cannot provide a named vector of colors in **gt** to map each category to each color like you can in **ggplot2**. However, using `scales::col_factor()` and manually putting in the `domain` and `ordered = TRUE` will allow us to assign colors to the correct factor levels.
+
+In this example we have a named vector of colors. Maybe we created it when we were making a plot. We can pass this vector to `palette`, the *names* of the vector to `domain`, and then use `ordered = TRUE`.
+
+```{r}
+my_colors = c(Vietnam = "red", Egypt = "blue")
+pops_small %>%
+    gt() %>%
+    data_color(
+        columns = vars(country_name),
+        colors = scales::col_factor(
+            palette = my_colors,
+            domain = names(my_colors),
+            ordered = TRUE
+        ),
+        alpha = .5
+    )
+```
+
+### Text color, categorical column
+
+By default `data_color()` is applied to the cell fill. If you want do change the text color instead use `apply_to = "text"`. Note this is an argument to `data_color()`, not `scales::col_factor()`.
+
+This would be a way to consistently apply colors to factor levels every time you used them without filling the entire cell, which can look a little heavy to my eye.
+
+I'll use the "viridis" palette, one of 4 viridis palettes provided in `scales::col_*().`
+
+```{r}
+pops_small %>%
+    gt() %>%
+    data_color(
+        columns = vars(country_name),
+        colors = scales::col_factor(
+            palette = "viridis",
+            domain = NULL
+        ),
+        apply_to = "text"
+    )
+```
+
+### Text color, binning numeric column
+
+Binning numeric variables into groups and then coloring the groups is another option available using the `scales::col_bin()` function.
+
+Working with `sza50`, we'll color text of cells below 45 as orange and 45 or higher as medium gray.
+
+The `bins` argument is key here, where we cut the values up into values between 0 and 45 and then between 45 and 90. If we had a value that was exactly equal to 45 it would be placed in the second group. 
+
+```{r}
+sza50 %>%
+    gt() %>%
+    data_color(
+        columns = contains("0"),
+        colors = scales::col_bin(
+            palette = c("orange", "grey54"),
+            bins = c(0, 45, 90)
+        ),
+        apply_to = "text"
+    )
+```
+
+If you want equally sized bins, set `bins` to the number of groups you want.
+
+### Your turn
+
+Write code in the empty code chunk below.
+
+Working with `pops_wide`:
+
+-   Fill all the numeric columns with color, using the `"YlOrRd"` palette from **RColorBrewer**. Make sure to base the domain on the range of the values from the entire dataset.
+-   Color the text of `country_name`, using "#1c5253" for Egypt and "#F4790B" for Vietnam.
+
+```{r}
+# Write your code in this chunk and run to see the output
+
+```
+
+## Highlight cell text
+
+You can bring attention to certain table cells by changing their text style like color or size or making the whole cell a different color. This is a type of *table styling*, and this (and many other things!) can be done using the `tab_style()` function.
+
+Helper functions such as `cell_text()` for changing the cell text and `cell_fill()` for controlling the cell fill are used to define the cell style.
+
+### Highlighting a single value
+
+Let's say we wanted to highlight a single value in a table. This could be, e.g., something we'd like to bring attention to discuss. 
+
+In this case we'll highlight the 2017 Egypt population value in `pops_small`.
+
+Our first step is to choose the `style` in `tabs_style()`. Here we'll use `cell_text()` to make the text red and bold.
+
+```{r, eval = FALSE}
+# Don't run this code
+pops_small %>%
+    gt() %>%
+    tab_style(
+        style = cell_text(
+            color = "red",
+            weight = "bold"
+        ),
+        ...
+    )
+```
+
+Then we have to define where exactly we want to change the style using the `locations` argument. In the `location` argument we choose what part of the table we're working in. For highlighting cells this will be the `cells_body()`.
+
+In `cells_body()` we'll define the columns we want to focus on in the standard way. We also need to choose the rows of interest. This can be done using the row index.
+
+```{r}
+pops_small %>%
+    gt() %>%
+    tab_style(
+        style = cell_text(
+            color = "red",
+            weight = "bold"
+        ),
+        locations = cells_body(
+            columns = vars(population),
+            rows = 5
+        )
+    )
+```
+
+We could focus on the cell fill instead using `cell_fill()` for the style function. Here we'll choose the `rows` of interest using a logical statement. The cell we want is the maximum value in the `population` column, which we use to pick that cell.
+
+```{r}
+pops_small %>%
+    gt() %>%
+    tab_style(
+        style = cell_fill(
+            color = "red",
+            alpha = .5
+        ),
+        locations = cells_body(
+            columns = vars(population),
+            rows = population == max(population)
+        )
+    )
+```
+
+Another `style` function you might want to explore is `cell_borders()`, to change the borders of certain cells.
+
+### Highlighting sets of values
+
+We can highlight a set of values in much the same way. For example, maybe we want to highlight the population values before 2015 as red and italic and after 2015 as blue.
+
+Since we want to highlight to sets of values we'll need to use two layers of `tab_styles()`.
+
+```{r}
+pops_small %>%
+    gt() %>%
+    tab_style(
+        style = cell_text(
+            color = "red",
+            style = "italic"
+        ),
+        locations = cells_body(
+            columns = vars(population),
+            rows = year < 2015
+        )
+    ) %>%
+        tab_style(
+        style = cell_text(color = "blue"),
+        locations = cells_body(
+            columns = vars(population),
+            rows = year >= 2015
+        )
+    )
+```
+
+### Highlighting rows across many columns
+
+We've been highlighting values within one column, but the process works the same way if we want to highlight across many columns. However, this only allows us to highlight whole rows a certain way.
+
+Switching to the `sza50` dataset, say we wanted to highlight the row for January. We'll increase the size to 20 pixels and make it blue.
+
+```{r}
+sza50 %>%
+    gt() %>%
+    tab_style(
+        style = cell_text(
+            color = "blue",
+            size = px(20)
+        ),
+        locations = cells_body(
+            rows = month == "jan"
+        )
+    )
+```
+
+### Your turn
+
+Write code in the empty code chunk below.
+
+Working with `pops_wide`:
+
+-   Make the text of all population values for Vietnam purple and bold.
+-   Make the cell fill for the 2017 population value for Egypt black with an alpha of 0.5.
+
+**Note**: If you are using column names that are not syntactically valid, such as numeric column names, you must wrap the name in back-ticks: `` `2015` ``
+
+```{r}
+# Write your code in this chunk and run to see the output
+
+```
+
+## Include images
+
+You can include images in a table, most often to represent the categories on rows. For example, you'll see tables of country-level information that add in a column with each country's flag (example from Liam D. Bailey [here](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/)) or sports teams with a column of their logos (example from the Mockup blog [here](https://themockup.blog/posts/2020-09-26-functions-and-themes-for-gt-tables/#pff)).
+
+This process is specifically for making HTML tables. You can also save the table as an image file if you want to insert it into other types of documents.
+
+The work-horse for this is `text_transform()` in combination with `web_image()` if you provide URL 's to images online or `local_image()` if you are providing paths to local copies of images. See other available **gt** image functions [here](https://gt.rstudio.com/reference/index.html#section-image-addition-functions).
+
+The first thing to do in `text_transform()` is to define the `locations` we want to work on, much like we did in the highlighting section above. We're working in the cells of the table so will use `cells_body()`. There we choose the column with cells we want to transform, `hex`.
+
+Here's what just that part of the code looks like.
+
+```{r, eval = FALSE}
+# Don't run this code
+pack_down %>%
+    gt() %>%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+        ...
+    )
+```
+
+Once we've outlined where in the table we want to work we need to provide a function to the `fn` argument to indicate how we want to transform the text. 
+
+Here we want to use `web_image()` to turn the URLs into into an HTML image tag.
+
+Let's go ahead and remove the `hex` column label, as well.
+
+```{r}
+pack_down %>%
+    gt() %>%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+        fn = web_image
+    ) %>%
+    cols_label(
+        hex = ""
+    )
+```
+
+In `web_image()` we can set the height (in pixels) of the image, which controls the image size in the table. 
+
+To do this we need a function that passes the URL into `web_image()` and sets the `height`.
+
+```{r}
+pack_down %>%
+    gt() %>%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+        fn = function(url) {
+            web_image(url = url,
+                      height = 50)
+        }
+    )
+```
+
+
+See example of adding *icons* from **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
+
+### Note on local images
+
+A local image is an image that you have stored on your computer and you have a path and file name for the image.
+
+Instead of providing a URL you will provide the path to the image. If the image is in your working directory this could be as simple as providing the name of the image (e.g., `"myimage.png"`). It could also involve a longer directory path (e.g., `"path/to/my/image/myimage.png"`).
+
+If you want to include a local image in a **gt** table you have to use slightly more complex code compared to the example above. The `local_image()` function works on one image path at a time rather than a vector of images like `web_image()` does.
+
+What does this mean for the coding? You'll need to add a loop in the `fn` to loop through each image.
+
+Here is some pseudo-code to show what this would look like using `lapply()`.
+
+```{r, eval = FALSE}
+# Don't run this code
+data_with_local_image %>%
+    gt() %>%
+    text_transform(
+        locations = cells_body(
+            columns = vars(image) # Column with local path to images
+        ),
+        fn = function(path) {
+            lapply(path, # Loop through each path in col "image"
+                   local_image, # local_image() embeds the image into the table
+                   height = 50) # Control the height
+        }
+    )
+```
+
+## Creating table themes
+
+We explored just a few of the table output options last week. Now we'll talk about taking those options and turning them into a *theme*. 
+
+A table theme is a function that sets the table options and overall table styling that you can apply to any table.  
+
+### A basic theme
+
+A theme is created by making a function that takes a **gt** table, applies styling elements to that table, and then returns the new table. Adding `…` to both the table arguments and inside `tab_options()` allows the user to add in additional elements, as needed.
+
+Let's start by making a theme called `mytheme` that uses the table options from the final exercise.
+
+```{r}
+mytheme = function(table, ...) {
+    table %>%
+        tab_options(
+            table.border.top.color = "white",
+            heading.border.bottom.color = "black",
+            row_group.border.top.color = "black",
+            row_group.border.bottom.color = "white",
+            stub.border.color = "transparent",
+            table.border.bottom.color = "white",
+            column_labels.border.top.color = "black",
+            column_labels.border.bottom.color = "black",
+            table_body.border.bottom.color = "black",
+            table_body.hlines.color = "white",
+            ...
+    )
+}
+```
+
+This function can be added as a layer onto any **gt** table.
+
+```{r}
+sza50 %>%
+    gt() %>%
+    mytheme()
+```
+
+Because we used the `…` in the function we can pass additional elements to `tab_options()`.
+
+Let's change the font color to blue. Remember that there are many, many elements we can control in `tab_options()`.
+
+```{r}
+sza50 %>%
+    gt() %>%
+    mytheme(table.font.color = "blue")
+```
+
+### More complex themes
+
+If you are styling your table to match specific manuscript criteria or want to mimic a style online your theme will get more complex. Luckily other people have made themes for **gt** tables already. I'm guessing there will be more as the package ages.
+
+Let's look at a few examples of themes people have built.
+
+First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). Additional options to `tab_options()` is not included here. But note how this uses additional layers beyond `tab_options()`.
+
+```{r}
+theme_apa = function(table) {
+    table %>%
+        tab_options(
+            table.border.top.color = "white",
+            heading.title.font.size = px(16),
+            column_labels.border.top.width = 3,
+            column_labels.border.top.color = "black",
+            column_labels.border.bottom.width = 3,
+            column_labels.border.bottom.color = "black",
+            table_body.border.bottom.color = "black",
+            table.border.bottom.color = "white",
+            table.width = pct(100),
+            table.background.color = "white"
+        ) %>%
+        cols_align(align="center") %>%
+        tab_style(
+            style = list(
+                cell_borders(
+                    sides = c("top", "bottom"),
+                    color = "white",
+                    weight = px(1)
+                ),
+                cell_text(
+                    align="center"
+                ),
+                cell_fill(color = "white", alpha = NULL)
+            ),
+            locations = cells_body(
+                columns = everything(),
+                rows = everything()
+            )
+        ) %>%
+        opt_align_table_header(align = "left")
+}
+```
+
+And here's what that looks like in use.
+
+```{r}
+sza50 %>%
+    gt() %>%
+    theme_apa()
+```
+
+The [Advanced cookbook](https://themockup.blog/static/gt-cookbook-advanced.html#Create_a_theme) for **gt** on the Mockup blog demonstrates some additional theme examples.
+
+Here's the theme from there that is based on the tables at FiveThirtyEight.
+
+```{r}
+gt_theme_538 = function(data,...) {
+    data %>%
+        opt_all_caps()  %>%
+        opt_table_font(
+            font = list(
+                google_font("Chivo"),
+                default_fonts()
+            )
+        ) %>%
+        tab_style(
+            style = cell_borders(
+                sides = "bottom", color = "transparent", weight = px(2)
+            ),
+            locations = cells_body(
+                columns = TRUE,
+                # This is a relatively sneaky way of changing the bottom border
+                # Regardless of data size
+                rows = nrow(data$`_data`)
+            )
+        )  %>% 
+        tab_options(
+            column_labels.background.color = "white",
+            table.border.top.width = px(3),
+            table.border.top.color = "transparent",
+            table.border.bottom.color = "transparent",
+            table.border.bottom.width = px(3),
+            column_labels.border.top.width = px(3),
+            column_labels.border.top.color = "transparent",
+            column_labels.border.bottom.width = px(3),
+            column_labels.border.bottom.color = "black",
+            data_row.padding = px(3),
+            source_notes.font.size = 12,
+            table.font.size = 16,
+            heading.align = "left",
+            ...
+        ) 
+}
+```
+
+```{r}
+sza50 %>%
+    gt() %>%
+    gt_theme_538()
+```
+
+### Your turn
+
+Take a few minutes and explore the themes above on different tables we made today or last week. If you're feeling ambitious, try writing a theme of your own!
+
+```{r}
+# Write your code in this chunk and run to see the output
+
+```

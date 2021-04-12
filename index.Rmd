@@ -25,21 +25,22 @@ Welcome to FES/FOR 505, Advanced R Topics. This is an informal class for student
 The class will meet once per week for 2 hours over 10 weeks. Each class will be a mix of instruction on the topic, discussion, and active work in R.  Materials (slides, links, R scripts) will be listed on the [Materials](materials.html) page throughout the quarter, so check back each week.
 
 The plan so far:   
--    Introduction to Git/GitHub  
--    Build a personal website with **distill** and **postcards**  
--    Deploy website using GitHub Pages  
--    Learn to write functions  
--    Explore **gt** for making tables  
--    Animated graphics (with **gganimate**)  
--    Interactive graphics (?)   
--    More Git: pull requests   
--    Other topics of interest  
+Week 01: Introduction to Git/GitHub  
+Week 02: Build a personal website with **distill** and **postcards**  
+Week 03: Deploy website using GitHub Pages  
+Week 04: Explore **gt** for making tables  
+Week 05: **gt** flair: colors, images, and themes    
+Week 06: Learn to write functions in R  
+Week 07: More Git: forking and pull requests  
+Week 08: Animated graphics (with **gganimate**)  
+Week 09: Interactive graphics and tables     
+Week 10: Other topics of interest  
 
 ## Software
 
 We will be working in R via RStudio. Make sure you have up-to-date versions of both of these. Current versions:  
-R 4.0.4  
-RStudio 1.4  
+**R 4.0.4**  
+**RStudio 1.4**  
 
 ## Packages
 
@@ -47,6 +48,16 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 
 **distill v. 1.2**  
 **postcards v. 0.2.0**  
+**devtools v. 2.3.2**  
+**fontawesome v. 0.1.0** (not 0.2.0)  
 **gt v. 0.2.2**  
+**webshot v. 0.5.2**  
+**dplyr v. 1.0.5 **  
+**tidyr v. 1.1.3**  
+**usethis v. 2.0.1**  
+**gh v 1.2.1**  
 **gganimate v. 1.0.7**  
 **plotly v. 4.9.3**   
+**leaflet v. 2.0.4.1**  
+**dygraphs v. 1.1.1.6**  
+**reactable v 0.2.3**  

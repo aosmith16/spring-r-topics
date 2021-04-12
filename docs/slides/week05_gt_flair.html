@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Display tables with package gt</title>
+    <meta charset="utf-8" />
+    <script src="week05_gt_flair_files/header-attrs/header-attrs.js"></script>
+    <meta name="github-repo" content="aosmith16/spring-r-topics"/>
+    <meta name="twitter:title" content="Display tables with package gt"/>
+    <meta name="twitter:description" content="Colors, images, and custom themes"/>
+    <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week05_more_gt.html"/>
+    <meta name="twitter:image:src" content="https://aosmith16.github.io/spring-r-topics/slides/week05_more_gt.html/week05-share-card.png"/>
+    <meta name="twitter:image:alt" content="More options in package gt Working sessions class spring 2021"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@aosmith16"/>
+    <meta name="twitter:site" content="@aosmith16"/>
+    <meta property="og:title" content="Display tables with package gt"/>
+    <meta property="og:description" content="Colors, images, and custom themes"/>
+    <meta property="og:url" content="https://aosmith16.github.io/spring-r-topics/slides/week05_more_gt.html"/>
+    <meta property="og:image" content="https://aosmith16.github.io/spring-r-topics/slides/week05_more_gt.html/week05-share-card.png"/>
+    <meta property="og:image:alt" content="More options in package gt Working sessions class spring 2021"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Ariel Muldoon"/>
+    <script src="week05_gt_flair_files/fabric/fabric.min.js"></script>
+    <link href="week05_gt_flair_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="week05_gt_flair_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script src="week05_gt_flair_files/clipboard/clipboard.min.js"></script>
+    <link href="week05_gt_flair_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="week05_gt_flair_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="week05_gt_flair_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week05_gt_flair_files/tile-view/tile-view.js"></script>
+    <script src="week05_gt_flair_files/js-cookie/js.cookie.js"></script>
+    <script src="week05_gt_flair_files/peerjs/peerjs.min.js"></script>
+    <script src="week05_gt_flair_files/tiny.toast/toast.min.js"></script>
+    <link href="week05_gt_flair_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="week05_gt_flair_files/xaringanExtra-broadcast/broadcast.js"></script>
+    <link href="week05_gt_flair_files/pagedtable/css/pagedtable.css" rel="stylesheet" />
+    <script src="week05_gt_flair_files/pagedtable/js/pagedtable.js"></script>
+    <link href="week05_gt_flair_files/countdown/countdown.css" rel="stylesheet" />
+    <script src="week05_gt_flair_files/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="wrap.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: center, middle, title-slide
+
+# Display tables with package gt
+## Part 2: Adding flair 💥
+
+&lt;img src="figs/gtlogo.svg" title="Logo for package gt" alt="Logo for package gt" width="15%" /&gt;
+
+### Ariel Muldoon
+### April 27, 2021
+
+---
+
+## Today's Goal
+
+Overall  
+-     Add some flair 💥 to **gt** tables   
+
+We will  
+
+-     Color cells and cell text based on data     
+-     Highlight specific values in columns based on location    
+-     Add a column of images to HTML tables      
+-     Explore custom themes to apply to tables        
+
+--
+
+*Before we begin:*
+
+Make sure you saved `week05_more_gt.Rmd` from the class website onto your computer. We will be running code from this file.
+
+---
+
+class: hide-logo
+
+## Resources
+
+- The **gt** Cookbook has a section on [colors](https://themockup.blog/static/gt-cookbook.html#Conditional_formatting)  
+- Liam Bailey walks through a more complex **gt** [table-making example](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/) with colors and images    
+- Thomas Mock's [Advanced Cookbook](https://themockup.blog/static/gt-cookbook-advanced.html) has examples of creating themes and adding elements like bar charts    
+- See Anthony Schmidt's post on a **gt** APA theme [here](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/)    
+
+.center[
+&lt;img src="figs/gtlogo.svg" title="Logo for package gt" alt="Logo for package gt" width="25%" /&gt;
+]
+
+---
+
+class: center, middle, inverse, hide-logo
+
+# &lt;font style="font-family: cursive; font-style:italic"&gt;Let's get started!&lt;/font&gt;
+
+---
+
+## Running code
+
+- Open the copy of  [`week05_gt_flair.Rmd`](files/week05_more_gt.Rmd) that you saved   
+- I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
+
+&lt;br/&gt;&lt;br/&gt;
+**Set up**  
+
+We'll practice a additional features of package **gt** together, running example code I've already written.   
+
+At the end of each section you'll have a chance to practice what we just covered.
+
+???
+
+This class should be a little shorter than the last one
+
+---
+
+## R packages 
+
+We are using **gt 0.2.2**, **dplyr 1.0.5**, and **tidyr 1.1.3** today. Load these before we start. 
+
+
+```r
+library(gt) # v. 0.2.2
+library(dplyr) # v. 1.0.5
+library(tidyr) # v 1.1.3
+```
+
+---
+
+## Datasets
+
+We need a few small datasets to practice on. We will do all data manipulation steps now.
+
+--
+
+.pull-left[
+**The `countrypops` dataset**
+
+This dataset contains yearly populations of countries, with data from 1960 thru 2017.  See the documentation at `?countrypops` for more info.
+
+We'll pare things down to two countries and 5 years.
+
+.smaller[
+
+```r
+pops_small = countrypops %&gt;%
+    filter(country_name %in% c("Vietnam", "Egypt") &amp;
+               year &gt; 2012) %&gt;% 
+    select(country_name, year, population)
+pops_small
+```
+]
+]
+
+
+.pull-right[
+
+
+
+|country_name | year| population|
+|:------------|----:|----------:|
+|Egypt        | 2013|   89807433|
+|Egypt        | 2014|   91812566|
+|Egypt        | 2015|   93778172|
+|Egypt        | 2016|   95688681|
+|Egypt        | 2017|   97553151|
+|Vietnam      | 2013|   91497725|
+|Vietnam      | 2014|   92544915|
+|Vietnam      | 2015|   93571567|
+|Vietnam      | 2016|   94569072|
+|Vietnam      | 2017|   95540800|
+]
+
+???
+
+Data manipulation is key to making display tables and you'll often see data manipulation code along with the tables.
+
+---
+
+## Datasets
+
+We need a few small datasets to practice on. We will do all data manipulation steps now.
+
+.pull-left[
+We'll take `pops_small` and widen it so the years are the columns.
+
+
+```r
+pops_wide = pivot_wider(
+    data = pops_small,
+    names_from = year,
+    values_from = population
+)
+pops_wide
+```
+]
+
+.pull-right[
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;
+
+]
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":["country_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2013"],"name":[2],"type":["int"],"align":["right"]},{"label":["2014"],"name":[3],"type":["int"],"align":["right"]},{"label":["2015"],"name":[4],"type":["int"],"align":["right"]},{"label":["2016"],"name":[5],"type":["int"],"align":["right"]},{"label":["2017"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"Egypt","2":"89807433","3":"91812566","4":"93778172","5":"95688681","6":"97553151"},{"1":"Vietnam","2":"91497725","3":"92544915","4":"93571567","5":"94569072","6":"95540800"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+
+---
+
+## Datasets
+
+We need a few small datasets to practice on. We will do all data manipulation steps now.
+
+.pull-left[
+**The `sza` dataset**
+
+This dataset contains the solar zenith angles every half hour for different latitudes of the northern hemisphere. See `?sza` for more info.
+
+We take values for the 50th latitude in wide format for 0830-1200.
+
+.smaller[
+
+```r
+sza50 = sza %&gt;%
+    filter(latitude == 50 &amp; !is.na(sza)) %&gt;%
+    select(-latitude) %&gt;%
+    pivot_wider(names_from = tst,
+                values_from = sza) %&gt;%
+    select(1:9)
+sza50
+```
+]
+]
+
+.pull-right[
+
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":["month"],"name":[1],"type":["fct"],"align":["left"]},{"label":["0830"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["0900"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["0930"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["1000"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["1030"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["1100"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["1130"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["1200"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"jan","2":"86.5","3":"83.2","4":"80.2","5":"77.7","6":"75.7","7":"74.2","8":"73.3","9":"73.0"},{"1":"feb","2":"81.5","3":"78.0","4":"74.9","5":"72.2","6":"70.0","7":"68.5","8":"67.5","9":"67.2"},{"1":"mar","2":"73.3","3":"69.6","4":"66.2","5":"63.2","6":"60.9","7":"59.1","8":"58.0","9":"57.7"},{"1":"apr","2":"63.2","3":"59.1","4":"55.4","5":"52.0","6":"49.3","7":"47.2","8":"45.9","9":"45.5"},{"1":"may","2":"54.7","3":"50.3","4":"46.2","5":"42.5","6":"39.4","7":"37.0","8":"35.5","9":"35.0"},{"1":"jun","2":"49.5","3":"44.9","4":"40.6","5":"36.6","6":"33.1","7":"30.4","8":"28.6","9":"28.0"},{"1":"jul","2":"48.7","3":"44.1","4":"39.7","5":"35.6","6":"32.1","7":"29.3","8":"27.5","9":"26.9"},{"1":"aug","2":"52.4","3":"47.9","4":"43.7","5":"39.9","6":"36.6","7":"34.1","8":"32.5","9":"31.9"},{"1":"sep","2":"60.1","3":"55.9","4":"52.0","5":"48.5","6":"45.7","7":"43.5","8":"42.1","9":"41.6"},{"1":"oct","2":"69.6","3":"65.7","4":"62.1","5":"59.1","6":"56.5","7":"54.7","8":"53.5","9":"53.1"},{"1":"nov","2":"79.0","3":"75.5","4":"72.3","5":"69.5","6":"67.3","7":"65.7","8":"64.7","9":"64.4"},{"1":"dec","2":"85.5","3":"82.1","4":"79.1","5":"76.5","6":"74.5","7":"73.0","8":"72.1","9":"71.8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+]
+
+---
+
+## Datasets
+
+We need a few small datasets to practice on. We will do all data manipulation steps now.
+
+
+Here is a small dataset so we can practice adding images into tables. It contains made-up CRAN download info for March 30 for **dplyr**, **ggplot2**, and **tidyr**, along with links to their hex sticker images.
+
+.pull-left[
+.tiny[
+
+```r
+pack_down = data.frame(
+    hex = c("https://github.com/tidyverse/dplyr/raw/master/man/figures/logo.png",
+            "https://github.com/tidyverse/ggplot2/raw/master/man/figures/logo.png",
+            "https://github.com/tidyverse/tidyr/raw/master/man/figures/logo.png"),
+    package = c("dplyr", "ggplot2", "tidyr"),
+    downloads = c(60400, 60255, 29990)
+)
+pack_down
+```
+]
+]
+
+.pull-right[
+
+]
+
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":["hex"],"name":[1],"type":["chr"],"align":["left"]},{"label":["package"],"name":[2],"type":["chr"],"align":["left"]},{"label":["downloads"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"https://github.com/tidyverse/dplyr/raw/master/man/figures/logo.png","2":"dplyr","3":"60400"},{"1":"https://github.com/tidyverse/ggplot2/raw/master/man/figures/logo.png","2":"ggplot2","3":"60255"},{"1":"https://github.com/tidyverse/tidyr/raw/master/man/figures/logo.png","2":"tidyr","3":"29990"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+---
+
+## Add color to table cells
+
+We can use colors to add information to a table or help tell the story of what is in the table.
+
+This is done using the [`data_color()` function](https://gt.rstudio.com/reference/data_color.html) along with the `col_*()` functions from package **scales**. The `col_*()` functions will map data values to colors based on a palette.
+
+--
+
+We can set or choose the `palette` in the `scales::col_()` functions. The palette can be:
+
+&gt; 1.  A character vector of RGB or named colours. Examples: palette(), c("#000000", "#0000FF", "#FFFFFF"), topo.colors(10)
+&gt;
+&gt; 2.  The name of an RColorBrewer palette, e.g. "BuPu" or "Greens".
+&gt;
+&gt; 3.  The full name of a viridis palette: "viridis", "magma", "inferno", or "plasma".
+&gt;
+&gt; 4.  A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("#000000", "#FFFFFF"), interpolate="spline").
+
+---
+
+### Fill color, numeric column
+
+Start be setting the fill color of the `population` column of `pops_small`. 
+
+Choose the `columns` of interest and map `colors` using `scales::col_numeric()`. 
+
+.pull-left[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+*   data_color(
+*       columns = vars(population),
+*       colors = scales::col_numeric(
+*           palette = "Greens",
+*           domain = NULL
+*       )
+*   )
+```
+***Code notes:***  
+-"Greens" palette from **RColorBrewer**  
+-Use `domain = NULL` so range of values is taken from the table  
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt01.png" width="45%" /&gt;
+]
+]
+
+---
+
+### Fill color, numeric column
+
+You can use different fill colors on different columns by using multiple `data_color()` layers.
+
+.pull-left[
+.smaller[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = vars(population),
+        colors = scales::col_numeric(
+            palette = "Greens",
+            domain = NULL
+        )
+    ) %&gt;%
+    data_color(
+        columns = vars(year),
+        colors = scales::col_numeric(
+*           palette = c("white", "orange", "red"),
+            domain = NULL
+        ),
+*       alpha = .5
+    )
+```
+***Code notes:***  
+-Note character vector of colors    
+-`alpha` changes transparency 
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt02.png" width="45%" /&gt;
+]
+]
+
+---
+
+### Fill color, many columns
+
+You can create a *heat map* vibe in a table with many columns of similar values, applying the same color scale across all columns together. This is done by choosing more `columns`.
+
+Here we'll choose all columns in `sza50` except the first one using `contains()`. We cannot currently use code like `vars(col1:col3)`, although that should be [fixed in the future](https://github.com/rstudio/gt/issues/611).
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+    data_color(
+*       columns = contains("0"),
+        colors = scales::col_numeric(
+            palette = "magma",
+            domain = range(select(sza50, where(is.numeric)))
+            )
+    )
+```
+]
+
+---
+
+### Fill color, many columns
+
+To use the color scheme using values from all columns set the `domain` using range of all value. I use some helper functions from **dplyr** to get only the numeric columns when calculating the range.
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = contains("0"),
+        colors = scales::col_numeric(
+*           palette = "magma",
+*           domain = range(select(sza50, where(is.numeric)))
+            )
+    )
+```
+
+***Code notes:***  
+-Here the palette is "magma" from viridis  
+-If needed, change palette order with `reverse` in `scales::col_numeric()`
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt03.png" width="75%" /&gt;
+]
+]
+
+---
+
+### Fill color, categorical column
+
+We can use colors in categorical columns, as well. 
+
+We need to provide one color for every category, and the colors are used in the order they appear.
+
+.pull-left[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = vars(country_name),
+*       colors = c("red","blue"),
+        alpha = .5
+    )
+```
+
+***Code notes:***  We can use a vector of values for `colors`
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt04.png" width="45%" /&gt;
+]
+]
+
+---
+
+### Fill color, categorical column
+
+At the moment you cannot provide a named vector of colors in **gt** to map each category to each color like you can when making **ggplot2** plots. 
+
+Using `scales::col_factor()` and manually setting the `domain` in the desired order plus using `ordered = TRUE` allows us to assign colors to the correct factor levels.
+
+---
+
+### Fill color, categorical column
+
+In this example we have a named vector of colors, `my_colors`. 
+
+We can pass this vector to `palette`, the *names* of the vector to `domain`, and then use `ordered = TRUE`.
+
+.pull-left[
+
+```r
+*my_colors = c(Vietnam = "red", Egypt = "blue")
+pops_small %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = vars(country_name),
+        colors = scales::col_factor(
+*           palette = my_colors,
+*           domain = names(my_colors),
+*           ordered = TRUE
+        ),
+        alpha = .5
+    )
+```
+
+
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt05.png" width="45%" /&gt;
+]
+]
+
+???
+We might have a vector like this for our graphs, and we can still use it in **gt** tables with these extra steps.
+
+---
+
+### Text color, categorical column
+
+By default `data_color()` is applied to the cell fill. If you want do change the text color instead use `apply_to = "text"`. 
+
+.pull-left[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = vars(country_name),
+        colors = scales::col_factor(
+            palette = "viridis", 
+            domain = NULL
+        ),
+*       apply_to = "text"
+    )
+```
+***Code notes:*** Here the palette is "viridis" from viridis  
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt06.png" width="45%" /&gt;
+]
+]
+
+???
+Note this is an argument to `data_color()`, not `scales::col_factor()`.
+
+This would be a way to consistently apply colors to factor levels every time you used them without filling the entire cell, which can look a little heavy to my eye.
+
+---
+
+### Text color, binning numeric column
+
+Binning numeric variables into groups is an option via the `scales::col_bin()` function.
+
+Working with `sza50`, we'll color text of cells below 45 as orange and 45 or higher as medium gray.
+
+.pull-left[
+.smaller[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = contains("0"),
+        colors = scales::col_bin(
+*           palette = c("orange", "grey54"),
+*           bins = c(0, 45, 90)
+        ),
+        apply_to = "text"
+    )
+```
+]
+
+***Code notes:***  
+-Two groups so two colors  
+-`bins` argument defines *cut points* for groups   
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt07.png" width="75%" /&gt;
+]
+]
+
+???
+The `bins` argument is key here, where we cut the values up into values between 0 and 45 and then between 45 and 90. If we had a value that was exactly equal to 45 it would be placed in the second group.
+
+If you want equally sized bins, set `bins` to the number of groups you want.
+
+---
+
+### Your turn
+
+Write code in the empty code chunk that is provided. 
+
+Using the `pops_wide` dataset:  
+-   Fill all the numeric columns with color, using the `"YlOrRd"` palette from **RColorBrewer**. Make sure to base the domain on the range of the values from the entire dataset.  
+-   Color the text of `country_name`, using "#1c5253" for Egypt and "#F4790B" for Vietnam.  
+
+
+<div class="countdown" id="timer_606c87f7" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+### Your turn solution
+
+.pull-left[
+
+```r
+pops_wide %&gt;%
+    gt() %&gt;%
+    data_color(
+        columns = contains("2"),
+        colors = scales::col_numeric(
+            palette = "YlOrRd",
+            domain = range(select(pops_wide, where(is.numeric)))        
+        )
+    ) %&gt;%
+    data_color(
+        columns = vars(country_name),
+        colors = c("#1c5253", "#F4790B"),
+        apply_to = "text"
+    )
+```
+]
+
+.pull-right[
+![](figs/week05_files/yt1.png)
+]
+
+---
+
+## Highlight cell text
+
+You can bring attention to certain table cells by changing their *text style* (color, size, etc.) or making the whole cell a different color. 
+
+This is a type of *table styling*, and this (and many other things!) can be done using the `tab_style()` function.
+
+Helper functions like `cell_text()` for changing the cell text and `cell_fill()` for controlling the cell fill are used to define the cell style.
+
+---
+
+### Highlighting a single value
+
+Let's highlight the 2017 Egypt population value in `pops_small`.
+
+Our first step is to choose the `style` in `tabs_style()`. Here we'll use `cell_text()` to make the text red and bold.
+
+.pull-left[
+
+```r
+# Don't run this code
+pops_small %&gt;%
+    gt() %&gt;%
+    tab_style(
+*       style = cell_text(
+*           color = "red",
+*           weight = "bold"
+*       ),
+        ...
+    )
+```
+]
+
+???
+
+Let's say we wanted to highlight a single value in a table. This could be something we wanted to point out in a discussion section. 
+
+---
+
+### Highlighting a single value
+
+Define where to change the style using `locations`.  For highlighting cells this will be the `cells_body()`.
+
+.pull-left[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+    tab_style(
+        style = cell_text(
+            color = "red",
+            weight = "bold"
+        ),
+*       locations = cells_body(
+*           columns = vars(population),
+*           rows = 5
+*       )
+    )
+```
+***Code notes:***  
+-Choose columns of focus in `cells_body()`  
+-I chose rows of interest with an index   
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt08.png" width="45%" /&gt;
+]
+]
+
+???
+In `cells_body()` we'll define the columns we want to focus on in the standard way. We also need to choose the rows of interest. This can be done using the row index.
+
+---
+
+### Highlighting a single value
+
+Focus on the cell fill using `cell_fill()` for the `style` function. 
+
+.pull-left[
+.smaller[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+    tab_style(
+*       style = cell_fill(
+*           color = "red",
+*           alpha = .5
+*       ),
+        locations = cells_body(
+            columns = vars(population),
+*           rows = population == max(population)
+        )
+    )
+```
+]
+
+***Code notes:***  
+-Used logical statement to choose `rows` based on max value   
+-Also see `cell_borders()` to control borders     
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt09.png" width="45%" /&gt;
+]
+]
+
+???
+Here we'll choose the `rows` of interest using a logical statement. The cell we want is the maximum value in the `population` column, which we use to pick that cell.
+
+---
+
+### Highlighting sets of values
+
+Highlighting sets of values in a column is done much the same way.
+
+Let's highlight the population values before 2015 as red and italic and after 2015 as blue.
+
+.pull-left[
+.smaller[
+
+```r
+pops_small %&gt;%
+    gt() %&gt;%
+    tab_style(
+        style = cell_text(
+            color = "red",
+            style = "italic"
+        ),
+        locations = cells_body(
+            columns = vars(population),
+*           rows = year &lt; 2015
+        )
+    ) %&gt;%
+        tab_style(
+        style = cell_text(color = "blue"),
+        locations = cells_body(
+            columns = vars(population),
+*           rows = year &gt;= 2015
+        )
+    )
+```
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt10.png" width="45%" /&gt;
+]
+]
+
+???
+
+This takes two `tab_styles()` and two logical statements
+
+---
+
+### Highlighting rows across many columns
+
+The process works the same way if we want to highlight across many columns. However, note that every column chosen is affected the same way. Here we work across all columns.
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+    tab_style(
+        style = cell_text(
+            color = "blue",
+*           size = px(20)
+        ),
+        locations = cells_body(
+*           rows = month == "jan"
+        )
+    )
+```
+
+***Code notes:***  
+-`size` in pixels, can also use keywords like `"large"`      
+-Highlight the January row for all columns   
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt11.png" width="75%" /&gt;
+]
+]
+
+---
+
+### Your turn
+
+Write code in the empty code chunk that is provided. 
+
+Working with `pops_wide`:
+-   Make the text of all population values for Vietnam purple and bold.
+-   Make the cell fill for the 2017 population value for Egypt black with an alpha of 0.5.
+
+**Note**: If you are using column names that are not syntactically valid, such as numeric column names, you must wrap the name in back-ticks: ` `2015` `
+
+<div class="countdown" id="timer_606c8703" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+### Your turn solution
+
+.pull-left[
+.smaller[
+
+```r
+pops_wide %&gt;%
+    gt() %&gt;%
+    tab_style(
+        style = cell_text(
+            color = "purple",
+            weight = "bold"
+        ),
+        locations = cells_body(
+            columns = contains("2"),
+            rows = country_name == "Vietnam"
+        )
+    ) %&gt;%
+    tab_style(
+        style = cell_fill(
+            color = "black",
+            alpha = 0.5
+        ),
+        locations = cells_body(
+            columns = vars(`2017`),
+            rows = 1
+        )
+    )
+```
+]
+]
+
+.pull-right[
+![](figs/week05_files/yt2.png)
+]
+
+---
+
+## Include images
+
+You can include images in a table, most often to represent the categories on rows. 
+
+For example, you'll see tables of country-level information that add in a column with each country's flag (example from Liam D. Bailey [here](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/)) or sports teams with a column of their logos (example from the Mockup blog [here](https://themockup.blog/posts/2020-09-26-functions-and-themes-for-gt-tables/#pff)).
+
+This process is specifically for making HTML tables. You can also save the table as an image file if you want to insert it into other types of documents.
+
+---
+
+## Include images
+
+The work-horse for this is `text_transform()` in combination with `web_image()` if you have URLs or `local_image()` if you have local copies of the images.
+
+The first thing to do in `text_transform()` is to define the `locations` we want to work on. We're working in the cells of the table so will use `cells_body()`. 
+
+Here's what just that part of the code looks like, choosing the `hex` column.
+
+.pull-left[
+
+```r
+# Don't run this code
+pack_down %&gt;%
+    gt() %&gt;%
+    text_transform(
+*       locations = cells_body(
+*           columns = vars(hex)
+*       ),
+        ...
+    )
+```
+]
+
+---
+
+## Include images
+
+We need to provide a function to do the text transformation in the `fn` argument. We make an anonymous function to pass the image URL from each cell in the `hex` column to the `web_image()` function to create the an HTML image tag.
+
+.pull-left[
+
+```r
+pack_down %&gt;%
+    gt() %&gt;%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+*       fn = web_image,
+    ) %&gt;%
+    cols_label(
+        hex = ""
+    )
+```
+
+***Code notes:***  We also removed the `hex` column label in `cols_label()`.    
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt12.png" width="50%" /&gt;
+]
+]
+
+---
+
+## Include images
+
+The default height of the image in `web_image()` is 30 pixels. If we want to change the height we create a function to pass the URLs to the `url` argument in `web_image()`.
+
+.pull-left[
+
+```r
+pack_down %&gt;%
+    gt() %&gt;%
+    text_transform(
+        locations = cells_body(
+            columns = vars(hex)
+        ),
+*       fn = function(url) {
+*           web_image(url = url,
+*                     height = 50)
+*       }
+    ) 
+```
+
+***Code notes:***  Set `height` of image in pixels 
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt12.5.png" width="50%" /&gt;
+&lt;br/&gt;&lt;br/&gt;
+See example of adding *icons* from package **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
+]
+]
+
+???
+30 pixels works well with most tables
+
+---
+
+### Note on local images
+
+A *local image* is an image that you have stored on your computer and have a path and file name for.
+
+You will need to provide a path to the image. This could be as simple as providing the name of the image (`"myimage.png"`) or writing out a longer directory path (`"path/to/image/myimage.png"`).
+
+--
+
+With `local_image()` we must use a loop in `fn`. Here's some pseudo-code using `lapply()` for looping through the column of image paths:
+
+.pull-left[
+.smaller[
+
+```r
+# Don't run this code
+data_with_local_image %&gt;%
+    gt() %&gt;%
+    text_transform(
+        locations = cells_body(
+            columns = vars(image) # Column w/paths
+        ),
+        fn = function(path) {
+*           lapply(path,
+*                  local_image,
+*                  height = 50)
+        }
+    )
+```
+]
+]
+
+???
+
+If you want to include a local image in a **gt** table you have to use slightly more complex code compared to the example above. The `local_image()` function works on one image path at a time rather than a vector of images like `web_image()` does.
+
+What does this mean for the coding? You'll need to add a loop in the `fn` to loop through each image.
+
+---
+
+## Creating table themes
+
+We explored just a few of the table output options last week to change the overall look of the table. Now we'll talk about taking those options and turning them into a *theme*. 
+
+A table theme is a function that sets the table options and overall table styling that you can apply to any table.  The function takes a **gt** table, applies styling elements to that table, and returns the new table. 
+
+---
+
+### A basic theme
+
+Let's start by making a theme called `mytheme` that uses the table options from last week.
+
+.pull-left[
+.smaller[
+
+```r
+mytheme = function(table, ...) {
+    table %&gt;%
+        tab_options(
+            table.border.top.color = "white",
+            heading.border.bottom.color = "black",
+            row_group.border.top.color = "black",
+            row_group.border.bottom.color = "white",
+            stub.border.color = "transparent",
+            table.border.bottom.color = "white",
+            column_labels.border.top.color = "black",
+            column_labels.border.bottom.color = "black",
+            table_body.border.bottom.color = "black",
+            table_body.hlines.color = "white",
+            ...
+    )
+}
+```
+]
+
+***Code notes:*** Adding `…` to both the table arguments and in `tab_options()` allows the user to add in additional elements, as needed.
+]
+
+---
+
+### A basic theme
+
+This function can be added as a layer onto any **gt** table.
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+*   mytheme()
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt13.png" width="75%" /&gt;
+]
+]
+
+---
+
+### A basic theme
+
+Using  `…` allows us to pass additional elements to `tab_options()`.  Let's change the font color to blue. 
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+*   mytheme(table.font.color = "blue")
+```
+
+&lt;br/&gt;&lt;br/&gt;
+Remember that there are many, many elements we can control in `tab_options()`.
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt14.png" width="75%" /&gt;
+]
+]
+
+---
+
+### More complex themes
+
+If you are styling your table to match specific manuscript criteria or want to mimic a style online your theme will get more complex. 
+
+Luckily other people have made themes for **gt** tables already. 🍀 I'm guessing there will be more and more as the package matures and more people start to use it.
+
+--
+
+&lt;br/&gt;&lt;br/&gt;
+Let's look at a couple examples of themes other people have built.
+
+---
+
+### APA theme
+
+First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). The `...` is not included so no user additions to `tab_options()` are possible. But note the use of additional layers that affect the table style.
+
+.tiny[
+
+```r
+theme_apa = function(table) {
+    table %&gt;%
+        tab_options(
+            table.border.top.color = "white",
+            heading.title.font.size = px(16),
+            column_labels.border.top.width = 3,
+            column_labels.border.top.color = "black",
+            column_labels.border.bottom.width = 3,
+            column_labels.border.bottom.color = "black",
+            table_body.border.bottom.color = "black",
+            table.border.bottom.color = "white",
+            table.width = pct(100),
+            table.background.color = "white"
+        ) %&gt;%
+        cols_align(align="center") %&gt;%
+        tab_style(
+            style = list(
+                cell_borders(
+                    sides = c("top", "bottom"),
+                    color = "white",
+                    weight = px(1)
+                ),
+                cell_text(
+                    align="center"
+                ),
+                cell_fill(color = "white", alpha = NULL)
+            ),
+            locations = cells_body(
+                columns = everything(),
+                rows = everything()
+            )
+        ) %&gt;%
+        opt_align_table_header(align = "left")
+}
+```
+]
+
+???
+
+Aligning the header to the left, centering all columns, changing cell borders, etc.
+
+---
+
+### APA theme 
+
+And here's what that looks like in use.
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+*   theme_apa()
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt15.png" width="100%" /&gt;
+]
+]
+
+???
+
+This is biggest will print. Fonts appear to be fairly small in this theme.
+
+---
+
+### FiveThirtyEight theme
+
+The [Advanced cookbook](https://themockup.blog/static/gt-cookbook-advanced.html#Create_a_theme) for **gt** on the Mockup blog demonstrates some additional theme examples, like this one based on the tables at FiveThirtyEight.
+
+.tiny[
+
+```r
+gt_theme_538 = function(data,...) {
+    data %&gt;%
+        opt_all_caps()  %&gt;%
+        opt_table_font(
+            font = list(
+                google_font("Chivo"),
+                default_fonts()
+            )
+        ) %&gt;%
+        tab_style(
+            style = cell_borders(
+                sides = "bottom", color = "transparent", weight = px(2)
+            ),
+            locations = cells_body(
+                columns = TRUE,
+                rows = nrow(data$`_data`)
+            )
+        )  %&gt;% 
+        tab_options(
+            column_labels.background.color = "white",
+            table.border.top.width = px(3),
+            table.border.top.color = "transparent",
+            table.border.bottom.color = "transparent",
+            table.border.bottom.width = px(3),
+            column_labels.border.top.width = px(3),
+            column_labels.border.top.color = "transparent",
+            column_labels.border.bottom.width = px(3),
+            column_labels.border.bottom.color = "black",
+            data_row.padding = px(3),
+            source_notes.font.size = 12,
+            table.font.size = 16,
+            heading.align = "left",
+            ...
+        ) 
+}
+```
+]
+
+---
+
+### FiveThirtyEight theme
+
+And here's using the FiveThirtyEight theme.
+
+.pull-left[
+
+```r
+sza50 %&gt;%
+    gt() %&gt;%
+*   gt_theme_538()
+```
+
+]
+
+.pull-right[
+.center[
+&lt;img src="figs/week05_files/gt16.png" width="90%" /&gt;
+]
+]
+
+---
+
+### Your turn
+
+Write code in the empty code chunk that is provided or make more chunks as needed. 
+
+Take a few minutes and explore the themes above on different tables we made today or last week. If you're feeling ambitious, try writing a theme of your own!
+
+<div class="countdown" id="timer_606c8694" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: hide-logo
+
+## Next week
+
+- Come ready to learn about writing functions in R 🎉 
+
+
+.footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
+Slides created via the R packages:  
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(figs/gtlogo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

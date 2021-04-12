@@ -5,8 +5,6 @@ output_dir: "docs"
 theme: theme.css
 navbar:
   right:
-    - text: "Syllabus"
-      href: syllabus.html
     - text: "Materials"
       href: materials.html
     - icon: fab fa-github

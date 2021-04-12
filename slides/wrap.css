@@ -1,0 +1,11 @@
+pre {
+  white-space: pre-wrap;
+}
+
+.tiny .remark-code { /*Change made here*/
+  font-size: 49% !important;
+}
+
+.smaller .remark-code { /*Change made here*/
+  font-size: 70% !important;
+}

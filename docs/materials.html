@@ -89,6 +89,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <meta property="description" itemprop="description" content="Materials for class will be added here throughout the term."/>
 
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -107,7 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","editor_options","output"]}},"value":[{"type":"character","attributes":{},"value":["Class Materials"]},{"type":"character","attributes":{},"value":["Materials for class will be added here throughout the term.\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["markdown"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["wrap"]}},"value":[{"type":"integer","attributes":{},"value":[72]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","editor_options","output","creative_commons"]}},"value":[{"type":"character","attributes":{},"value":["Class Materials"]},{"type":"character","attributes":{},"value":["Materials for class will be added here throughout the term.\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["markdown"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["wrap"]}},"value":[{"type":"integer","attributes":{},"value":[72]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["CC BY"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2396,7 +2397,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" class="title">Advanced R Topics</a>
 </div>
 <div class="nav-right">
-<a href="syllabus.html">Syllabus</a>
 <a href="materials.html">Materials</a>
 <a href="https://github.com/aosmith16/spring-r-topics">
 <i class="fab fa-github" aria-hidden="true"></i>
@@ -2426,15 +2426,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#goals">Goals</a></li>
 <li><a href="#resources">Resources</a></li>
-<li><a href="#slides">Slides</a></li>
+<li><a href="#materials-for-class">Materials for class</a></li>
 </ul></li>
 <li><a href="#week-2-create-a-distill-website">Week 2: Create a distill website</a>
 <ul>
 <li><a href="#goals-1">Goals</a></li>
 <li><a href="#resources-1">Resources</a></li>
-<li><a href="#slides-1">Slides</a></li>
+<li><a href="#materials-for-class-1">Materials for class</a></li>
 </ul></li>
-<li><a href="#week-3-deploy-website">Week 3: Deploy website</a></li>
+<li><a href="#week-3-more-on-distill-articles-and-deploy-website">Week 3: More on <strong>distill</strong> articles and deploy website</a>
+<ul>
+<li><a href="#goals-2">Goals</a></li>
+<li><a href="#resources-2">Resources</a></li>
+<li><a href="#materials-for-class-2">Materials for class</a></li>
+</ul></li>
+<li><a href="#week-4-intro-to-display-tables-with-gt">Week 4: Intro to display tables with <strong>gt</strong></a>
+<ul>
+<li><a href="#goals-3">Goals</a></li>
+<li><a href="#resources-3">Resources</a></li>
+<li><a href="#materials-for-class-3">Materials for class</a></li>
+</ul></li>
+<li><a href="#week-5-gt-flair-colors-images-and-themes">Week 5: <strong>gt</strong> flair: colors, images, and themes</a>
+<ul>
+<li><a href="#goals-4">Goals</a></li>
+<li><a href="#resources-4">Resources</a></li>
+<li><a href="#materials-for-class-4">Materials for class</a></li>
+<li><a href="#resources-5">Resources</a></li>
+<li><a href="#materials-for-class-5">Materials for class</a></li>
+</ul></li>
+<li><a href="#week-7-revisiting-git-and-github">Week 7: Revisiting Git and GitHub</a>
+<ul>
+<li><a href="#goals-5">Goals</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2453,7 +2476,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 <h3 id="resources">Resources</h3>
 <p>We will rely heavily on <a href="https://happygitwithr.com/">Happy Git and GitHub with R</a>, in particular chapters 4, 6, 7, 11, and 12</p>
-<h3 id="slides">Slides</h3>
+<h3 id="materials-for-class">Materials for class</h3>
 <p><a href="slides/week01_introduction_git_and_github.html">Week 01 slides</a></p>
 <h2 id="week-2-create-a-distill-website">Week 2: Create a distill website</h2>
 <h3 id="goals-1">Goals</h3>
@@ -2461,20 +2484,75 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li>Create distill website in version-controlled directory<br />
 </li>
+<li>Edit <code>_site.yml</code> to control website structure<br />
+</li>
 <li>Edit index.Rmd to add personal details with <strong>postcard</strong><br />
 </li>
-<li>Edit <code>_site.yml</code> to control website design<br />
-</li>
-<li>Do a basic theme change</li>
+<li>Change website appearance with a basic theme change</li>
 </ul>
 <h3 id="resources-1">Resources</h3>
 <p>The <strong>distill</strong> website has great material for getting started: <a href="https://rstudio.github.io/distill/" class="uri">https://rstudio.github.io/distill/</a><br />
 Tom Mock has a nice intro to <strong>distill</strong> <a href="https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/">here</a><br />
 Alison Hill’s post on <strong>postcards</strong> <a href="https://alison.rbind.io/post/2020-12-22-postcards-distill/">here</a><br />
 The <a href="https://jhelvy.github.io/distillery/showcase.html">distillery showcase</a> is great for inspiration and ideas on website design</p>
-<h3 id="slides-1">Slides</h3>
-<p><a href="slides/week02_distill_websites.html">Week 02 slides in progress</a></p>
-<h2 id="week-3-deploy-website">Week 3: Deploy website</h2>
+<h3 id="materials-for-class-1">Materials for class</h3>
+<p><a href="slides/week02_distill_websites.html">Week 02 slides</a></p>
+<h2 id="week-3-more-on-distill-articles-and-deploy-website">Week 3: More on <strong>distill</strong> articles and deploy website</h2>
+<h3 id="goals-2">Goals</h3>
+<p>Ultimately we will deploy our websites via GitHub Pages</p>
+<p>But first:</p>
+<ul>
+<li>Add more <strong>distill</strong> articles to the website<br />
+</li>
+<li>Create citation entry<br />
+</li>
+<li>Add <code>.bib</code> file for references<br />
+</li>
+<li>Practice with footnotes, asides, and appendices<br />
+</li>
+<li>Add drop down menus and links within website pages</li>
+</ul>
+<h3 id="resources-2">Resources</h3>
+<p>The <strong>distill</strong> website has articles on <a href="https://rstudio.github.io/distill/basics.html"><strong>distill</strong> basics</a> as well as <a href="https://rstudio.github.io/distill/citations.html">citations</a><br />
+GitHub docs has an overview of publishing via GitHub Pages <a href="https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">here</a></p>
+<h3 id="materials-for-class-2">Materials for class</h3>
+<p><a href="slides/week03_distill_articles_deploy.html">Week 03 slides</a><br />
+Save <a href="files/article1.bib">.bib example file</a></p>
+<h2 id="week-4-intro-to-display-tables-with-gt">Week 4: Intro to display tables with <strong>gt</strong></h2>
+<h3 id="goals-3">Goals</h3>
+<p>Make display tables for output documents (e.g., manuscripts, presentations) using the <strong>gt</strong> package. We’re starting with the basics: controlling the table content, adding information to the table, changing the table look, and saving to different formats.</p>
+<h3 id="resources-3">Resources</h3>
+<p>Thomas Mock has made a <a href="https://themockup.blog/static/gt-cookbook.html#Introduction"><strong>gt</strong> Cookbook</a> that goes through functions in great detail<br />
+The <strong>gt</strong> package website has a nice <a href="https://gt.rstudio.com/articles/intro-creating-gt-tables.html">intro</a>.<br />
+Thomas Mock wrote a <a href="https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/">post</a> based on the “Ten Guidelines to Better Tables” paper that recreates tables with <strong>gt</strong></p>
+<h3 id="materials-for-class-3">Materials for class</h3>
+<p><a href="slides/week04_gt_tables.html">Week 04 slides</a><br />
+Save <a href="files/week04_gt_basics.Rmd"><code>week04_gt_basics.Rmd</code></a> to run code during the session</p>
+<h2 id="week-5-gt-flair-colors-images-and-themes">Week 5: <strong>gt</strong> flair: colors, images, and themes</h2>
+<h3 id="goals-4">Goals</h3>
+<p>We’ll look at a few more advanced features of <strong>gt</strong>, including adding cell text and fill colors, adding images to tables, and highlighting values. We’ll also take a look at how folks build themes for their tables.</p>
+<h3 id="resources-4">Resources</h3>
+<p>The <strong>gt</strong> Cookbook has a section on <a href="https://themockup.blog/static/gt-cookbook.html#Conditional_formatting">colors</a><br />
+Liam Bailey walks through a more complex <strong>gt</strong> <a href="https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/">table-making example</a> with colors and images<br />
+Thomas Mock’s <a href="https://themockup.blog/static/gt-cookbook-advanced.html">Advanced Cookbook</a> has examples of creating themes and adding elements like bar charts<br />
+See Anthony Schmidt’s post on a <strong>gt</strong> APA theme <a href="https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/">here</a></p>
+<h3 id="materials-for-class-4">Materials for class</h3>
+<p><a href="slides/week05_gt_flair.html">Week 05 slides</a><br />
+Save <a href="files/week05_more_gt.Rmd"><code>week05_more_gt.Rmd</code></a> to run code during the session</p>
+<p><strong>Gain understanding of and learn how to write basic functions in R</strong></p>
+<p>We’ll discuss the basic structure of functions and then practice giving inputs and making outputs. We spend some time looking through the code of existing R functions.</p>
+<h3 id="resources-5">Resources</h3>
+<p>For more on all aspects of functions, see the <a href="https://r4ds.had.co.nz/functions.html">Functions chapter</a> in Wickham and Grolemund’s <em>R for Data Science</em><br />
+<a href="http://faculty.washington.edu/kenrice/rintro/intro17sess09v2.pdf">Rice and Lumley’s presentation</a> on writing functions is a nice overview<br />
+If you are ready to go further with functions see <a href="https://skirmer.github.io/presentations/functions_with_r.html#1">Stephanie Kirmer’s presentation</a></p>
+<h3 id="materials-for-class-5">Materials for class</h3>
+<p><a href="slides/week06_writing_functions.html">Week 06 slides in progress</a><br />
+Save <a href="files/week06_functions.Rmd"><code>week06_functions.Rmd</code></a> to run code during the session</p>
+<h2 id="week-7-revisiting-git-and-github">Week 7: Revisiting Git and GitHub</h2>
+<h3 id="goals-5">Goals</h3>
+<p>Pull requests with <strong>usethis</strong><br />
+Issues on GitHub<br />
+Merge conflicts with GitKraken</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2487,7 +2565,10 @@ The <a href="https://jhelvy.github.io/distillery/showcase.html">distillery showc
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

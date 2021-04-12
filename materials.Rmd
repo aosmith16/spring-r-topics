@@ -8,6 +8,7 @@ editor_options:
 output: 
     distill::distill_article:
        toc: TRUE
+creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
@@ -33,7 +34,7 @@ We will rely heavily on [Happy Git and GitHub with
 R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
 12
 
-### Slides
+### Materials for class
 
 [Week 01 slides](slides/week01_introduction_git_and_github.html)
 
@@ -44,9 +45,9 @@ R](https://happygitwithr.com/), in particular chapters 4, 6, 7, 11, and
 **Create a personal website to showcase your work**
 
 - Create distill website in version-controlled directory  
+- Edit `_site.yml` to control website structure  
 - Edit index.Rmd to add personal details with **postcard**  
-- Edit `_site.yml` to control website design  
-- Do a basic theme change  
+- Change website appearance with a basic theme change  
 
 ### Resources
 
@@ -57,8 +58,91 @@ Alison Hill's post on **postcards**
 [here](https://alison.rbind.io/post/2020-12-22-postcards-distill/)  
 The [distillery showcase](https://jhelvy.github.io/distillery/showcase.html) is great for inspiration and ideas on website design
 
-### Slides
+### Materials for class
 
-[Week 02 slides in progress](slides/week02_distill_websites.html)
+[Week 02 slides](slides/week02_distill_websites.html)
 
-## Week 3: Deploy website
+## Week 3: More on **distill** articles and deploy website
+
+### Goals
+
+Ultimately we will deploy our websites via GitHub Pages
+
+But first:  
+
+- Add more **distill** articles to the website  
+- Create citation entry  
+- Add `.bib` file for references  
+- Practice with footnotes, asides, and appendices  
+- Add drop down menus and links within website pages  
+
+### Resources
+
+The **distill** website has articles on [**distill** basics](https://rstudio.github.io/distill/basics.html) as well as [citations](https://rstudio.github.io/distill/citations.html)  
+GitHub docs has an overview of publishing via GitHub Pages [here](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+
+### Materials for class
+
+[Week 03 slides](slides/week03_distill_articles_deploy.html)  
+Save [.bib example file](files/article1.bib)  
+
+## Week 4: Intro to display tables with **gt**
+
+### Goals
+
+Make display tables for output documents (e.g., manuscripts, presentations) using the **gt** package. We're starting with the basics: controlling the table content, adding information to the table, changing the table look, and saving to different formats.
+
+### Resources
+
+Thomas Mock has made a [**gt** Cookbook](https://themockup.blog/static/gt-cookbook.html#Introduction) that goes through functions in great detail  
+The **gt** package website has a nice [intro](https://gt.rstudio.com/articles/intro-creating-gt-tables.html).  
+Thomas Mock wrote a [post](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/) based on the "Ten Guidelines to Better Tables" paper that recreates tables with **gt**  
+
+### Materials for class
+
+[Week 04 slides](slides/week04_gt_tables.html)  
+Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the session  
+
+## Week 5: **gt** flair: colors, images, and themes
+
+### Goals
+
+We'll look at a few more advanced features of **gt**, including adding cell text and fill colors, adding images to tables, and highlighting values. We'll also take a look at how folks build themes for their tables.
+
+### Resources
+
+The **gt** Cookbook has a section on [colors](https://themockup.blog/static/gt-cookbook.html#Conditional_formatting)  
+Liam Bailey walks through a more complex **gt** [table-making example](https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/) with colors and images  
+Thomas Mock's [Advanced Cookbook](https://themockup.blog/static/gt-cookbook-advanced.html) has examples of creating themes and adding elements like bar charts    
+See Anthony Schmidt's post on a **gt** APA theme [here](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/)  
+
+### Materials for class
+
+[Week 05 slides](slides/week05_gt_flair.html)  
+Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the session    
+
+
+
+**Gain understanding of and learn how to write basic functions in R**
+
+We'll discuss the basic structure of functions and then practice giving inputs and making outputs. We spend some time looking through the code of existing R functions.
+
+### Resources
+
+For more on all aspects of functions, see the [Functions chapter](https://r4ds.had.co.nz/functions.html) in Wickham and Grolemund's *R for Data Science*  
+[Rice and Lumley's presentation](http://faculty.washington.edu/kenrice/rintro/intro17sess09v2.pdf) on writing functions is a nice overview  
+If you are ready to go further with functions see [Stephanie Kirmer's presentation](https://skirmer.github.io/presentations/functions_with_r.html#1)  
+
+### Materials for class
+
+[Week 06 slides in progress](slides/week06_writing_functions.html)  
+Save [`week06_functions.Rmd`](files/week06_functions.Rmd) to run code during the session    
+
+## Week 7: Revisiting Git and GitHub
+
+### Goals
+
+Pull requests with **usethis**    
+Issues on GitHub   
+Merge conflicts with GitKraken   
+
