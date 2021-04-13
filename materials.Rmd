@@ -141,7 +141,7 @@ If you are ready to go further with functions see [Stephanie Kirmer's presentati
 [Week 06 slides in progress](slides/week06_writing_functions.html)  
 Save [`week06_functions.Rmd`](files/week06_functions.Rmd) to run code during the session    
 
-## Week 7: Revisiting Git and GitHub
+## Week 7: More Git and GitHub
 
 ### Goals
 

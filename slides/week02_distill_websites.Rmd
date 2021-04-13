@@ -799,6 +799,10 @@ While **distill** doesn't allow for major changes to the overall website structu
 
 Themes in **distill** are based on the CSS language.  
 
+???
+
+We can write our own HTML and our own CSS. What distill does for us is make it so we don't have to learn either of those languages in detail to make a website.
+
 ---
 
 ## Change website theme

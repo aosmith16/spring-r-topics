@@ -163,9 +163,9 @@ In the articles folder, not the root directory. Check twice.
 
 You can see in the output that **distill** articles add author and author affiliation information at the top of the output.  
 
-If you have multiple authors, add a new `- name` entry to the YAML header. 
+If you have multiple authors, add a new `- name` entry to the YAML header. Watch your spacing!
 
-I'm going to add myself as the second author. I include my affiliation but don't include any URL's so no links are added. Watch your spacing here!
+I'm going to add myself as the second author. I include my affiliation but don't include any URL's so no links are added. 
 
 
 
@@ -209,7 +209,7 @@ If you don't want any author information, delete the whole `author:` section fro
 
 If you are creating a stand-alone web article or presentation, you can add a citation by adding the appropriate URL to `citation_url` in the header. 
 
-We don't currently have a URL for `article1` so I'll put in a filler to show what the output looks like. Note there are no spaces before `citation_url`.
+We don't currently have a URL for `article1` so I'll put in a filler URL to show what the output looks like. Note there are no spaces before `citation_url`.
 
 
 ```r
@@ -287,32 +287,25 @@ In this example the slug is `celis2019consequences`.  You can set this manually 
 
 ## Citing other works
 
+.pull-left[
 We can include citations in text and a list of references in the **distill** article if we provide a bibliography file. This can be, e.g., a BibTeX or CSL document.  
 
-Save the `article1.bib` file I provided you into the `articles` folder. Then refer to it via `bibliography` in the YAML header.
+Save the `article1.bib` file I provided you into the `articles` folder. 
+]
 
-Here is an excerpt of the current YAML header:
+--
 
+.pull-right[
+If you haven't seen a `.bib` file before, take a minute to open `article1.bib` and look at the entries   
 
-```r
-volume: 220
-doi: "10.1007/s11258-019-00952-x"
-date: "August 05, 2019"
-output: distill::distill_article
-*bibliography: article1.bib
-```
+These particular citations are for R and R packages. Each entry has been given a name via a slug, which is the very first thing in the each entry.  
+]
 
 ---
 
 ## Citing other works
 
 .pull-left[
-If you haven't seen a `.bib` file before, take a minute to open `article1.bib` and look at the entries   
-
-These particular citations are for R and R packages. Each entry has been given a name via a slug, which is the very first thing in the each entry.  
-]
-
-.pull-right[
 For example, the entry for R is called `R-base`. This slug is how we'll refer to the citation in the text.
 
 
@@ -328,12 +321,35 @@ For example, the entry for R is called `R-base`. This slug is how we'll refer to
 ```
 ]
 
+--
+
+.pull-right[
+To use the references in `article1.bib`, refer to it via `bibliography` in the YAML header. 
+
+Here is an excerpt of the YAML header with this added:
+
+
+```r
+volume: 220
+doi: "10.1007/s11258-019-00952-x"
+date: "August 05, 2019"
+output: distill::distill_article
+*bibliography: article1.bib
+```
+
+Note I refer to `article1.bib` directly because it is in the same folder as `article1.Rmd`.
+]
+
+???
+
+If need to go into more detail, the RMD document will by default look in the same folder as it is in for any documents. That's why we can refer to it directly, since it is in "articles" and so is article1.Rmd.
+
 ---
 
 ## Citing other works
 
 .pull-left[
-You cite using `@` with the `.bib` slug. To put citations in parentheses, use brackets.
+Once you've defined your `.bib` file that contains the references, add citations using `@` with the `.bib` slug. To put citations in parentheses, use brackets.
 
 For example, I'll add the following to the text of `article1.Rmd` to cite R.
 
@@ -355,6 +371,10 @@ After knitting:
 
 .footnote[*If you want a specific style for references, see instructions on how to change citation style in the [R Markdown Cookbook*](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html#changing-citation-style).]
 
+???
+
+Point out the citation in parentheses in the body and the citation in the "References" section at the bottom.
+
 ---
 
 ## Citing other works
@@ -369,14 +389,16 @@ nocite: '@*'
 
 to the YAML header.
 
+There should be no spaces before `nocite:`. 
+
 &lt;br/&gt;
-There should be no spaces before `nocite:`. I add this to the bottom of my current header in `article1.Rmd`.
+I added this to the bottom of my current header in `article1.Rmd`.
 ]
 
 --
 
 .pull-right[
-After  knitting, all references in the `.bib` file are included.
+After  knitting, all references in the `.bib` file are included under `References`:
 ![](figs/week03_files/reference_all.png)
 ]
 
@@ -388,6 +410,10 @@ Make another new distill article and save it as `article2.Rmd` in the `articles`
 
 We'll leave the YAML header info alone this time, and focus on the syntax for footnotes, asides, and appendices.  
 
+???
+
+Process will be to add text to body of document and then knit to see the output.
+
 ---
 
 ### Footnotes
@@ -395,7 +421,7 @@ We'll leave the YAML header info alone this time, and focus on the syntax for fo
 .pull-left[
 The syntax for adding hoverable footnotes is `^[text]`. Footnotes are automatically numbered.
 
-Let's add some text to the body of `article2.Rmd` to try this out. 
+Let's add some text to the body of `article2.Rmd` to see this in action. 
 
 The text I used:
 
@@ -413,6 +439,8 @@ Which results in:
 ]
 
 ???
+
+Add the text to the Rmd and knit.
 
 Pic shows hovering and footnote as well as footnotes on bottom
 
@@ -444,6 +472,10 @@ They can also be output from code chunks such as plots.
     ```
     &lt;/aside&gt;
 
+???
+
+Copy and paste the two asides into article2.Rmd to knit and see the result.
+
 ---
 
 ### Asides
@@ -461,7 +493,7 @@ After adding the two examples to `article2.Rmd`, knit to see the output.
 
 Appendices are added at the end of the document by adding `{.appendix}` after any level 1 (`#`) or level 2 (`##`) header.
 
-This makes sense for, e.g., acknowledgements or author's notes.
+This makes sense for, e.g., acknowledgments or author's notes.
 
 --
 
@@ -484,13 +516,17 @@ An appendix is put at the bottom of the article, placed before any footnotes.
 &lt;img src="figs/week03_files/appendix.png" width="60%" /&gt;
 ]
 
+???
+
+Knit to see output
+
 ---
 
 ## Adding articles as links
 
 Now that we have some "articles" of our work to share, let's add them to the website.
 
-For a website like the one we've made, one approach is to link to the article output within one of our menu pages.
+For a relatively simple website like the one we've made so far, one approach is to link to the article output from within one of our menu pages.
 
 --
 
@@ -512,11 +548,15 @@ Here's the relevant `navbar` code from `_site.yml`:
        href: https://github.com/aosmith16/personal-website
 ```
 
+???
+
+Remind them that _site.yml defines all menus and the page associated with that menu so if they forget which menu goes with which document they can check.
+
 ---
 
 ## Adding articles as links
 
-We'll add the articles as if they contained information for elements in a list of publications, hence we are working in the `Publications` menu.
+We'll add the articles to `about.Rmd` as if they contained information for the elements in a list of publications. This is one way to use a `Publications` menu.
 
 --
 
@@ -530,6 +570,10 @@ Here's the text I added to `about.Rmd` to do this.
 
 - [Another article](articles/article2.html)
 ```
+
+???
+
+Copy and paste this code and then we'll talk about the relative links. Should have done this more explicitly in week 2 when did pic in "images" folder.
 
 ---
 
@@ -562,6 +606,10 @@ Once you build the website, the information in the `Publications` menu reflects 
 ![](figs/week03_files/publications_link.png)
 ]
 
+???
+
+We've been knitting individual files but now have made changes to the website so will build to see the whole thing.
+
 --
 
 .pull-right[
@@ -581,6 +629,13 @@ Some options:
     
 - To make a page part of the website (with the navigation bar) it must either be in the root directory or you can switch to using [**distill** blog posts](https://rstudio.github.io/distill/blog_workflow.html) (*not covered in this session*).  
 ]
+
+
+???
+
+This is an important aside. Some may not follow but should say anyway. 
+
+Note use of package **here**.
 
 ---
 
@@ -622,6 +677,8 @@ Here I added the two articles as a drop-down menu under "Teaching".
 ???
 
 The text is the name of the drop down menu and the href links to the page. Note use of relative links.
+
+Definitely watch the spacing when doing this.
 
 ---
 
@@ -669,6 +726,10 @@ Once you are in `Settings`, click on `Pages` near the bottom of the left sidebar
 &lt;img src="figs/week03_files/ghpages.png" title="Picture of GitHub Pages menu with sidebar" alt="Picture of GitHub Pages menu with sidebar" width="75%" /&gt;
 ]
 
+???
+
+One up from bottom on left sidebar.
+
 ---
 
 class: hide-logo
@@ -706,7 +767,7 @@ Finally, hit the `Save` button to save these settings.
 
 .pull-right[
 
-Refresh the `Settings` page and scroll back down to the `GitHub Pages` section. You are waiting (and waiting ⏱) to see the message:
+Refresh the page to check for changes. You are waiting (and waiting ⏱) to see the message:
 
 `Your site is published at https://username.github.io/repository-name/`
 
@@ -730,9 +791,9 @@ class: hide-logo
 
 A couple other things:
 
-- Whenever you edit your website and push the changes to GitHub your website will automatically update. Be sure to wait several minutes before checking if the updates took. 😉
+- Whenever you edit your website and push the changes to GitHub your website will automatically update. Be sure to wait a bit before checking if the updates took. 😉
 
-- If you want to take your website down, go back to `Settings &gt; GitHub Pages`, choose `None` as the source, and `Save`. 
+- If you want to take your website down, go back to `Settings &gt; Pages`, choose `None` as the source, and `Save`. 
 
 .center[![](figs/week03_files/pages_main.png)]
 
@@ -753,6 +814,10 @@ A few ideas:
 - Having your name as your site title should be a good start.  
 - If you ever decide to get a custom domain, use your name as part of the website address.   
 - Make sure you link to your website far and wide. This means, e.g., adding it as your website in all your social media accounts.
+
+???
+
+Seems like Netlify could make putting your name as part of the URL easier then GitHub pages, although will not cover that today.
 
 ---
 
