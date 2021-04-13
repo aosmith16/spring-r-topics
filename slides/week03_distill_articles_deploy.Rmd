@@ -686,10 +686,12 @@ class: hide-logo
 
 ## Deploying website
 
-Once you are in `Settings`, scroll down, down, down to the section called `GitHub Pages`. It is one section from the very end of the page.
+Once you are in `Settings`, click on `Pages` near the bottom of the left sidebar. 
 
 .center[
-![](figs/week03_files/github_pages.png)
+```{r, echo = FALSE, out.width = "75%", fig.alt = "Picture of GitHub Pages menu with sidebar"}
+knitr::include_graphics("figs/week03_files/ghpages.png")
+```
 ]
 
 ---
