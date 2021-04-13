@@ -748,12 +748,12 @@ But my new postcard isn't part of my website yet!
 
 Rather than adding it in as a separate `navbar` menu we'll make it the home page. 
 
-To achieve this, copy and paste the `postcard.Rmd` YAML header info into `index.Rmd`.
+To achieve this, copy/paste the `postcard.Rmd` YAML header info into the `index.Rmd` header.
 
 --
 
 <br/>
-Here's the current YAML header from `index.Rmd`:
+Here's my current YAML header from `index.Rmd`:
 
 ```{r, eval = FALSE}
 ---
@@ -803,7 +803,7 @@ Themes in **distill** are based on the CSS language.
 
 ## Change website theme
   
-First, create a file that contains all the CSS code for the current website theme.
+To change the website theme we'll first create a file that contains all the CSS code for the current website.
 
 Run the following code in the R Console to create a file called `theme.css` in your root directory.  It will open up in your `Source` pane once it has been created.
 
@@ -817,7 +817,7 @@ Then either:
 1. Edit this file to change individual style elements of your website.  
  
  OR  
-2. Find a theme you like that someone else developed and use that code to replace your entire current theme. You can still change individual style elements later.
+2. Find a theme you like that someone else developed and use that code to replace the code in `theme.css`. You can still change individual style elements later.
 
 We'll proceed with the second approach.
 
@@ -855,7 +855,7 @@ Take care with your spacing. `theme` should have no spaces in front of it.
 
 ## Change website theme
 
-The **distill** website has three nice [example themes](https://rstudio.github.io/distill/website.html#example-themes) that can be a place to start for setting a new theme. 
+The **distill** website has three nice [example themes](https://rstudio.github.io/distill/website.html#example-themes) that can be a place to start when setting a completely new theme. 
 
 When I made the [class website](https://aosmith16.github.io/spring-r-topics/) I copied the `theme.css` example from Piping Hot Data, pasted it over everything in my current theme, and then manually changed the navigation bar color to [Beaver Orange](https://communications.oregonstate.edu/brand-guide/visual-identity/colors) (`rgb(215, 63, 9)`).
 
@@ -867,7 +867,7 @@ Take a few minutes to choose from one of the example themes and then copy and pa
 [Before I Sleep](https://rstudio.github.io/distill/website.html?panelset1=screenshot&panelset2=screenshot2#before-i-sleep)  
 [Tidymodels](https://rstudio.github.io/distill/website.html?panelset3=screenshot3#tidymodels)
 
-Save the result and build the website to see the changes. If you'd prefer a different look for your website, find a theme you really like from, e.g., the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
+Save the result and build the website to see the changes. If you'd prefer a different look for your website, find a theme you like from, e.g., the [distillery examples](https://jhelvy.github.io/distillery/showcase.html).
 
 ---
 

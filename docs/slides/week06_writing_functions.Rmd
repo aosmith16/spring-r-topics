@@ -1172,10 +1172,15 @@ If that's ever the case for you, [Stephanie Kirmer's talk](https://skirmer.githu
 
 ## Next week
 
-- We'll return to Git `r icons::fontawesome("git-square")` and GitHub `r icons::fontawesome("github")`, learning to make pull requests and deal with merge conflicts    
-- Make sure you have a current version of package **usethis** installed
-- Download [GitKraken](https://www.gitkraken.com/)  
+- We'll return to Git `r icons::fontawesome("git-square")` and GitHub `r icons::fontawesome("github")`, learning deal with merge conflicts and make pull requests      
+- Make sure you have a current version of packages **usethis** and **gh** installed
+- Install [GitKraken](https://www.gitkraken.com/)  
 
+.center[
+```{r, echo = FALSE, out.width = "30%"}
+knitr::include_graphics("figs/week07_files/usethis_logo.png")
+```
+]
 
 .footnote[
 [Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  

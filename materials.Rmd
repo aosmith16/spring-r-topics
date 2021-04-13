@@ -124,6 +124,8 @@ Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the ses
 
 ## Week 6: Writing functions in R
 
+### Goals
+
 **Gain understanding of and learn how to write basic functions in R**
 
 We'll discuss the basic structure of functions and then practice giving inputs and making outputs. We spend some time looking through the code of existing R functions.
@@ -147,17 +149,17 @@ Save [`week06_functions.Rmd`](files/week06_functions.Rmd) to run code during the
 
 We will
 
--     Review the README file    
--     Add collaborators on GitHub      
--     Solve a merge conflict with GitKraken  
--     Learn to do a basic pull request using helper functions from package **usethis**  
+- Review the README file    
+- Add collaborators on GitHub      
+- Solve a merge conflict with GitKraken  
+- Learn to do a basic pull request using helper functions from package **usethis**  
 
 ### Resources
 
-- GitHub articles on [adding collaborators](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository) and [README files](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes)  
-- Brief [article](https://blog.axosoft.com/merge-conflict-tool/) from GitKraken on their merge conflict tool  
-- Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-functions.html) on pull request helpers  
-- [This blog post](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines the basic approach to pull requests *without* **usethis**  
+GitHub articles on [adding collaborators](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository) and [README files](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes)  
+Brief [article](https://blog.axosoft.com/merge-conflict-tool/) from GitKraken on their merge conflict tool  
+Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-functions.html) on pull request helpers  
+[This blog post](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines the basic approach to pull requests *without* **usethis**  
 
 ### Materials
 
