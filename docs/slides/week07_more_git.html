@@ -172,7 +172,7 @@ Make a new GitHub repository called `merge-conflict`.
 
 Remember in Week 1 you learned to first create the repository on GitHub, clone it via the "Code" button, and use the copied URL to make a version-controlled RStudio Project on your computer.
 
-<div class="countdown" id="timer_6074c3a8" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60761cff" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -190,7 +190,7 @@ Add *collaborators* if you'd like others to also be able to work directly on the
 
 --
 
-1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+1. Start by going to your `merge-conflict` repository and then go to `Settings`.
 
 .center[
 ![](figs/week03_files/github_settings.png)
@@ -204,7 +204,7 @@ Right now you are the only person who can make changes to your GitHub repository
 
 Add *collaborators* if you'd like others to also be able to work directly on the repository.
 
-1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+1. Start by going to your `merge-conflict` repository and then go to `Settings`.
 2. From the left-hand menu choose `Manage Access` (second menu item from the top).
 
 .center[
@@ -219,7 +219,7 @@ Right now you are the only person who can make changes to your GitHub repository
 
 Add *collaborators* if you'd like others to also be able to work directly on the repository.
 
-1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+1. Start by going to your `merge-conflict` repository and then go to `Settings`.
 2. From the left-hand menu choose `Manage Access` (second menu item from the top).
 3. Click on the "Invite a collaborator" button.
 
@@ -231,7 +231,7 @@ Right now you are the only person who can make changes to your GitHub repository
 
 Add *collaborators* if you'd like others to also be able to work directly on the repository.
 
-1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+1. Start by going to your `merge-conflict` repository and then go to `Settings`.
 2. From the left-hand menu choose `Manage Access` (second menu item from the top).
 3. Click on the "Invite a collaborator" button.
 4. Find the collaborator you want to add using their GitHub user name, email, or their full name.  Once you've selected someone, click the green button to send them an invite. My user name is `aosmith16` if you'd like to invite me for practice. 😁
@@ -252,7 +252,7 @@ Right now you are the only person who can make changes to your GitHub repository
 
 Add *collaborators* if you'd like others to also be able to work directly on the repository.
 
-1. Start by going to you `merge-conflict` repository and then go to `Settings`.
+1. Start by going to your `merge-conflict` repository and then go to `Settings`.
 2. From the left-hand menu choose `Manage Access` (second menu item from the top).
 3. Click on the "Invite a collaborator" button.
 4. Find the collaborator you want to add using their GitHub user name, email, or their full name.  Once you've selected someone, click the green button to send them an invite. My user name is `aosmith16` if you'd like to invite me for practice. 😁
@@ -262,6 +262,258 @@ Add *collaborators* if you'd like others to also be able to work directly on the
 ---
 
 ## Merge conflicts
+
+A *merge conflict* is when the same lines of a file has been changed by two separate people. These are more common once you have multiple people collaborating on the files in the same repository.
+
+I am going to have you create a merge conflict by working on GitHub directly and on the local version of files simultaneously.  
+
+--
+
+We'll use GitKraken's merge tool to address the conflict.
+
+Make sure you have GitKraken installed on your computer.
+
+.center[
+&lt;img src="figs/week01_files/gitkraken.png" width="20%" /&gt;
+]
+
+---
+
+### Change README on GitHub
+
+Go to your `merge-conflict` repository and GitHub and open the `README.md` file. 
+
+Click on the edit button in the right-hand corner.
+
+.center[
+&lt;img src="figs/week07_files/github_readme2.png" width="75%" /&gt;
+]
+
+???
+
+The edit button has a picture of a pencil on it.
+
+---
+
+### Change README on GitHub
+
+Replace the current title and description in the README with:
+
+```
+# Merge conflict
+Practice dealing with a merge conflict
+```
+
+---
+
+### Change README on GitHub
+
+After making the change, scroll down to `Commit` the changes. Write a commit message in the first box and then hit the `Commit changes` box. I used `Update README` as my commit message.
+
+.center[
+&lt;img src="figs/week07_files/commit_github2.png" width="70%" /&gt;
+]
+
+---
+
+### Change README locally
+
+Now go into your project in RStudio and edit the README there.
+
+Open the file and replace the current title and description with:
+
+```
+# Practice a merge conflict
+We will practice a merge conflict
+```
+
+---
+
+### Change README locally
+
+Save your changes and then `Stage` - `Commit` - `Push`.
+
+The `Push` will fail, but note the useful message.
+
+.center[
+&lt;img src="figs/week07_files/push_fail.png" width="80%" /&gt;
+]
+
+???
+
+This tells us that we are missing work done elsewhere that is on GitHub so we need to `Pull`.
+
+---
+
+## Pull changes from GitHub
+
+When working with multiple people or working alone but from multiple devices you need to `Pull` changes from GitHub before you can `Push` changes you made locally.
+
+The message in the last slide indicated we hadn't done this. `Pull` using the pull button in the `Git` Pane.
+
+--
+
+Now we get a message about a merge conflict.
+
+.center[
+&lt;img src="figs/week07_files/merge_conflict.png" width="80%" /&gt;
+]
+
+???
+
+It attempted to auto-merge, which can work, but fails since the same lines are changed.
+
+---
+
+## Open GitKraken
+
+We will switch to GitKraken to make use their merge conflict tool.
+
+You will be asked to sign in to GitKraken. Choose the first option to sign in with your GitHub account.
+
+.center[
+&lt;img src="figs/week07_files/open_gitkraken.png" width="50%" /&gt;
+]
+
+---
+
+## Open GitKraken
+
+A new window will pop up in your web browser that will ask you to authorize GitKraken to access GitHub. Continue with the authorization.
+
+.center[
+&lt;img src="figs/week07_files/authorize_gitkraken.png" width="100%" /&gt;
+]
+
+---
+
+## Open GitKraken
+
+You should then get a `Success` message, and you are ready to open the local `merge-conflict` repository in GitKraken.
+
+.center[
+&lt;img src="figs/week07_files/success_gitkraken.png" width="50%" /&gt;
+]
+
+---
+
+## Open repository in GitKraken
+
+.pull-left[
+In GitKraken click the `Open a repo` button.
+
+.center[
+&lt;img src="figs/week07_files/open_repo1.png" width="70%" /&gt;
+]
+]
+
+--
+
+.pull-right[
+Then choose `Open a Repository`. 
+
+&lt;img src="figs/week07_files/open_repo2.jpg" width="100%" /&gt;
+
+Navigate to the folder that contains the local version of your `merge-conflict` repository and `Select Folder`. The repository will open in GitKraken.
+]
+
+---
+
+### Merge conflict message
+
+.pull-left[
+Since we currently have a merge conflict, you will see the message `Merge conflict detected` on the right-hand side of GitKraken. 
+
+&lt;br/&gt;
+Any files with a merge conflict are listed in the window under the message.  Currently this shows `README.md`, the file that has a conflict.
+]
+
+.pull-right[
+&lt;img src="figs/week07_files/gitkraken_merge_message.png" width="100%" /&gt;
+]
+
+---
+
+### GitKraken merge conflict tool
+
+Double-click on `README.md` in the merge conflict window to open GitKraken's merge conflict tool.
+
+.center[
+&lt;img src="figs/week07_files/merge_tool2.png" width="80%" /&gt;
+]
+
+???
+
+The top two panes show the two versions of the document.  The bottom pane, "Output", shows the original file and will update to show changes as we choose which lines we want to keep.
+
+---
+
+### GitKraken merge conflict tool
+
+We can choose all lines from one of the two versions by clicking the box. Here I show clicking on the "A" box to add the content to the `Output`. I then remove a line from `Output` by clicking next to that line. 
+
+.center[
+&lt;img src="figs/week07_files/choose_ab.png" width="80%" /&gt;
+]
+
+---
+
+### GitKraken merge conflict tool
+
+I ultimately add the top line from version "A" and the bottom line from version "B" to make a final, combined version of `README.md`.  Click on `Save` in the upper right when you're done.
+
+.center[
+&lt;img src="figs/week07_files/final_merge_output.png" width="80%" /&gt;
+]
+
+???
+
+Students should play around with adding all lines or just one line or some combination.
+
+---
+
+## GitKraken commit and push
+
+.pull-left[
+After saving, GitKraken will show that `README.md` has been staged on the right-hand side of the GitKraken window.
+
+&lt;br/&gt;&lt;br/&gt;
+Write a commit message and then click `Commit and Merge`.
+]
+
+.pull-right[
+&lt;img src="figs/week07_files/commit_merge.png" width="100%" /&gt;
+
+]
+
+---
+
+## GitKraken commit and push
+
+`Push` these changes to GitHub with the push button found at the top of the GitKraken window.
+
+.center[
+&lt;img src="figs/week07_files/push_gitkraken.png" width="50%" /&gt;
+]
+
+&lt;br/&gt;&lt;br/&gt;
+Once you `Push` these changes you're done. If you go back to the project in RStudio you'll find the merge conflict message is gone and everything is up-to-date.
+
+---
+
+## Pull requests
+
+Finally, we will talk about how to make a *pull request* to propose changes to a repository.
+
+We will be working on someone else's repository, but using pull requests is a reasonable way to work with collaborators on a shared repository to avoid merge conflicts. One difference from the process shown here will be that you won't need to *fork* a repository you already own.
+
+--
+
+We'll be using helper functions from package **usethis** for pull requests today.
+
+.center[
+&lt;img src="figs/week07_files/usethis_logo.png" width="25%" /&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

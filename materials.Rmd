@@ -138,7 +138,7 @@ If you are ready to go further with functions see [Stephanie Kirmer's presentati
 
 ### Materials for class
 
-[Week 06 slides in progress](slides/week06_writing_functions.html)  
+[Week 06 slides](slides/week06_writing_functions.html)  
 Save [`week06_functions.Rmd`](files/week06_functions.Rmd) to run code during the session    
 
 ## Week 7: More Git and GitHub
@@ -163,4 +163,4 @@ Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-fun
 
 ### Materials
 
-Week 07 slides
+[Week 07 slides in progress](slides/week07_more_git.html)
