@@ -53,7 +53,7 @@ meta() %>%
             "Spring 2021"
         ),
         url = "https://aosmith16.github.io/spring-r-topics/slides/week02_distill_websites.html",
-        image = "https://aosmith16.github.io/spring-r-topics/slides/week02_distill_websites.html/week02-share-card.png",
+        image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week02-share-card.png",
         image_alt = paste(
             "Using distill for personal websites", 
             "Working sessions class spring 2021"

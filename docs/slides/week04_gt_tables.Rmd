@@ -52,7 +52,7 @@ meta() %>%
         title = "Display tables with package gt",
         description = "Building basic tables",
         url = "https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html",
-        image = "https://aosmith16.github.io/spring-r-topics/slides/week04_gt_tables.html/week04-share-card.png",
+        image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week04-share-card.png",
         image_alt = paste(
             "Getting started with package gt", 
             "Working sessions class spring 2021"

@@ -52,7 +52,7 @@ meta() %>%
         title = "More distill: adding articles and deploying",
         description = "Adding to and deploying a distill website",
         url = "https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html",
-        image = "https://aosmith16.github.io/spring-r-topics/slides/week03_distill_articles_deploy.html/week03-share-card.png",
+        image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week03-share-card.png",
         image_alt = paste(
             "Adding articles and deploying a distill websites", 
             "Working sessions class spring 2021"
