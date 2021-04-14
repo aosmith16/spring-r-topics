@@ -20,7 +20,7 @@ You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/s
 
 Be sure to run code chunks in order, starting with loading packages.
 
-The main package we're using today is **gt**, but we'll also use package **dplyr** for data manipulation. Be sure your package versions are up to date.
+The main package we're using today is **gt**, but we'll also use package **dplyr** for data manipulation. Check that your package versions are up to date.
 
 ```{r, message = FALSE, warning = FALSE}
 library(gt) # v. 0.2.2
@@ -31,7 +31,7 @@ library(dplyr) # v. 1.0.5
 
 We will primarily work with built-in datasets, although I will also provide a small dataset for you to practice on. Creating display tables is generally going to involve data manipulation. This can be done in the same code pipeline as making the table, and many **gt** examples will include data manipulation code as well as table-making code.
 
-I want to focus in on just table features today, though, so we'll begin by creating very small examples from the datasets that ship with the **gt** package.
+I want to focus in on just table features today, so we'll begin by creating very small examples from the datasets that ship with the **gt** package.
 
 ### The `gtcars` dataset
 
@@ -48,7 +48,7 @@ gtcars_small
 
 ### The `mtcars` dataset
 
-The `mtcars` dataset is data from 1974 Motor Trend road tests. It contains a fairly large number of numeric and integer variables that make useful for practicing. I'm taking just the first 6 rows and adding in some missing values.
+The `mtcars` dataset is data from 1974 Motor Trend road tests. It contains a fairly large number of numeric and integer variables that make it useful for practicing with. I'm taking just the first 6 rows and adding in some missing values.
 
 ```{r}
 mtcars_small = mtcars %>%
@@ -63,7 +63,7 @@ mtcars_small
 
 ### Table of results
 
-Here is a small table of results from an analysis, which reports estimated ratios of medians between two groups for 4 `litterspp`.
+Here is a small table of results I created after an analysis, which reports estimated ratios of medians between two groups for 4 `litterspp`.
 
 ```{r}
 results = structure(list(contrast = structure(c(1L, 1L, 1L, 1L), .Label = "DF / RA", class = "factor"), 
@@ -80,7 +80,9 @@ results
 
 We start with the `gt()` function to create a basic **gt** table object. This is the first step in a typical workflow.
 
-The dataset is the first argument to `gt()`. You can put your dataset within `gt()` (i.e., `gt(data = gtcars_small)`), but it is standard to use a pipe syntax when building **gt** tables so we'll be using them throughout this session.
+The dataset is the first argument to `gt()`. You can put your dataset within `gt()` (i.e., `gt(data = gtcars_small)`), but it is standard to use pipe syntax when building **gt** tables. We'll be using that syntax throughout this session.
+
+This shows all the default settings when using `gt()`.
 
 ```{r}
 gtcars_small %>%
@@ -95,7 +97,7 @@ We can control the column labels, cell alignment, column width and placement as 
 
 ### Column labels
 
-Relabel one or more labels using `cols_label()`.
+Relabel one or more labels using `cols_label()`. The original names are on the left and new names in quotes on the right within `cols_label()`.
 
 ```{r}
 gtcars_small %>%
@@ -106,7 +108,7 @@ gtcars_small %>%
     )
 ```
 
-You can control text formatting of labels with Markdown or HTML syntax. This can be used on any text in a **gt** table.
+You can control text formatting of labels with Markdown or HTML syntax. Such syntax can be used on any text in a **gt** table.
 
 ```{r}
 gtcars_small %>%
@@ -125,7 +127,7 @@ By default all columns will be aligned when using `cols_align()`. Choose which v
 
 Most columns above are already aligned how we might want them to be due to the `gt()` defaults, so this is for practice.
 
-**Of note**: While we changed the label of `mfr` to `Manufacturer`, the underlying column name is unchanged and so we must refer to the original name.
+**Of note**: While we changed the *label* of `mfr` to `Manufacturer`, the underlying column name is unchanged and so we must refer to the original name.
 
 ```{r}
 gtcars_small %>%
@@ -165,7 +167,7 @@ gtcars_small %>%
 
 Move columns to the start or end or wherever you'd like with the `cols_move_*()` functions.
 
-Functions `cols_move_to_start()` and `cols_move_to_end()` can move variables to the beginning or end of the table, respectively. Choose `columns` as in `cols_align()`.
+Functions `cols_move_to_start()` and `cols_move_to_end()` can move variables to the beginning or end of the table, respectively. Choose `columns` with `vars()` as in `cols_align()`.
 
 ```{r}
 gtcars_small %>%
@@ -252,9 +254,9 @@ gtcars_small %>%
     )
 ```
 
-However, by default the new column is named with the first column and the values are put together with a space between them.
+However, by default the new column is named based on only the first column and the values are put together with a space between them.
 
-The `pattern` argument particularly controls how column values are combined. Use indices to refer to the combined columns; i.e., use `{1}` to refer to the first column listed and `{2}` for the second.
+The `pattern` argument controls how column values are combined. Use indices to refer to the combined columns; i.e., use `{1}` to refer to the first column listed and `{2}` for the second.
 
 I want a hyphen between the two values.
 
@@ -286,7 +288,7 @@ The **gt** package provides a series of [`fmt_*()` functions](https://gt.rstudio
 
 ### Number formatting
 
-The function `fmt_number()` is for formatting numeric columns, which includes, e.g., choosing the number of decimal places, setting the decimal separator (defaults to "."), and large-number suffixes such as `K` for thousands.
+The function `fmt_number()` is for formatting numeric columns, which includes, e.g., choosing the number of decimal places, setting the decimal separator (defaults to "."), and using large-number suffixes such as `K` for thousands.
 
 We'll start by setting the decimal place for `mpg_c` and adding a suffix to `msrp`. Note `decimals` defaults to 2.
 
@@ -308,7 +310,7 @@ gtcars_small %>%
 
 Add a currency symbol using `fmt_currency()`. This function has many options we won't see today, including options for how to display negative values.
 
-First we'll add a dollar sign to `msrp`. Note `USD` is the default currency symbol.
+First we'll add a dollar sign to `msrp`. Note `USD` is the default currency symbol, set with the `currency` argument.
 
 ```{r}
 gtcars_small %>%
@@ -323,7 +325,7 @@ gtcars_small %>%
 
 We can change the currency symbol, using either 3-letter currency codes or common currency names. See the documentation for details as well as available currencies.
 
-Change the currency symbol to euros.
+We'll change the currency symbol to euros.
 
 ```{r}
 gtcars_small %>%
@@ -336,7 +338,7 @@ gtcars_small %>%
     )
 ```
 
-Change the currency symbol to pounds.
+Then to pounds.
 
 ```{r}
 gtcars_small %>%
@@ -378,9 +380,11 @@ gtcars_small %>%
 
 ### Missing values formatting
 
-By default missing values are shown as `NA`. This can be controlled using `fmt_missing()`.
+By default missing values in R are shown as `NA`. This can be controlled using `fmt_missing()`.
 
-The two `mpg` columns contain a missing value. Note my use of the select helper function `contains()` to choose all columns that have "mpg" in them. This uses the default missing text, `---`.
+The two `mpg` columns contain a missing value. Note my use of the select helper function `contains()` to choose all columns that have "mpg" in them.
+
+This uses the new default missing text, `---`.
 
 ```{r}
 gtcars_small %>%
@@ -390,7 +394,7 @@ gtcars_small %>%
     )
 ```
 
-Change the missing text to `none`.
+Change the missing text to `none` using `missing_text`.
 
 ```{r}
 gtcars_small %>%
@@ -405,9 +409,9 @@ gtcars_small %>%
 
 All the `fmt_*()` functions work on entire columns by default. In [Jonathan Schwabish's "Ten Guidelines for Better Tables"](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/abs/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12), he recommends adding symbols (e.g., currency, percentage symbols) to only the first row in each column.
 
-To add a symbol to only the first row of a column use the `rows` argument. Choose rows by index. In this case, `1`.
+To add a symbol to only the first row of a column use the `rows` argument. Choose rows by index. In this case, we use `1` to choose the first row.
 
-Now I choose the two `mpg` columns by their position.
+Notice I am now choosing the two `mpg` columns by their position in the table.
 
 ```{r}
 gtcars_small %>%
@@ -442,9 +446,9 @@ You will be using `mtcars_small` for this exercise.
 
 ## Row names, row groups, and summary rows
 
-Now that we've worked on the columns, let's switch to thinking about the rows.
+Now that we've spent time working on the columns, let's switch to thinking about the table rows.
 
-The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add in grouping here.
+The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add in row grouping here.
 
 ### Row names
 
@@ -457,7 +461,7 @@ gtcars_small %>%
     gt(rowname_col = "ctry_origin") 
 ```
 
-You can see the column is moved to the beginning of the table and, by default, does not have a column name. Add a column name using `tab_stubhead()`.
+You can see the column is moved to the beginning of the table and, by default, does not have a column name. If you want a column name, add one using `tab_stubhead()`.
 
 ### Row groups
 
@@ -474,7 +478,7 @@ gtcars_small %>%
 
 ### Row names and groups
 
-In many cases we'll want to have a row names column when we have groups. This helps our table organization.
+In many cases we'll want to have a row names column when we have groups. This helps the table organization.
 
 Let's group by `ctry_origin` and put `year` as the row names.
 
@@ -492,7 +496,7 @@ If you don't have an appropriate row names column, you may want to put in blank 
 
 You can manually define groups using the function `tab_row_group()`. This involves using some sort of logical statement.
 
-Let's make two groups, one for "low" city `mpg_c` (\<21) and one for "high". This involves two calls to `tab_row_group()`. If you have many groups, consider making a grouping column prior to creating the **gt** table rather than doing it this way.
+Let's make two groups, one for "low" city `mpg_c` (\<21) and one for "high" city mpg. This involves two calls to `tab_row_group()`. If you have many groups, consider making a grouping column prior to creating the **gt** table rather than doing it this way.
 
 The name of the group is defined with `group` and the rows of interest are defined with logical operators in `rows`.
 
@@ -513,7 +517,7 @@ gtcars_small %>%
 
 Once we have groups, we may want to add summaries for each group.
 
-To get summary rows by group use `summary_rows()` with `groups = TRUE`.
+To get summary rows by group use `summary_rows()` with `groups = TRUE`. You must also have a `rowname_col` as well as defined groups, which I believe is a [bug](https://github.com/rstudio/gt/issues/602) that has been reported.
 
 As in previous functions, you can choose which columns to work on in `columns`.
 
@@ -532,7 +536,9 @@ gtcars_small %>%
         )
 ```
 
-Use the `formatter` argument to pass `fmt_*()` functions to control what the output looks like. Use arguments from the `fmt_*()` function you are using as further arguments.
+Use the `formatter` argument to pass `fmt_*()` functions to control what the output looks like. Use any arguments you want to use in the `fmt_*()` function as further arguments.
+
+Here we add an additional group summary (SD) and round all results to 0 decimal places.
 
 ```{r}
 gtcars_small %>%
@@ -552,7 +558,7 @@ gtcars_small %>%
 
 As always in R, watch out for missing values when summarizing. Using the tilde coding in the list of functions allows you to add additional arguments.
 
-You've likely noted non-summarized columns are given `---`. Change this with `missing_text`. I'll put in a blank.
+You've likely noted non-summarized columns are given `---`. Change this with `missing_text`. I'll put in a blank as I average the `mpg` columns, removing the `NA` values prior to taking the mean.
 
 ```{r}
 gtcars_small %>%
@@ -568,21 +574,25 @@ gtcars_small %>%
         )
 ```
 
-If we have all numeric columns we can summarize them all at once. Leave the `columns` argument out of the function. We'll switch to `mtcars_small` to see this.
+If we have all numeric columns we can summarize them all at once. Leave the `columns` argument out of the function to do this.
+
+We'll switch to `mtcars_small` to see this in action. Note this only works right now if we have a `rowname_col`, which may be [fixed in the future](https://github.com/rstudio/gt/issues/602).
 
 ```{r}
 mtcars_small %>%
     gt(
+        rowname_col = "hp",
         groupname_col = "carb"
     ) %>%
     summary_rows(
+        groups = TRUE,
         fns = list(Average = ~mean(., na.rm = TRUE))
     )
 ```
 
 ### Grand summary
 
-Add an overall summary along with group summaries with `grand_summary_rows()`.
+Add an overall summary with `grand_summary_rows()`. You could also leave `groups = TRUE` out of `summary_rows()`.
 
 ```{r}
 gtcars_small %>%
@@ -616,7 +626,7 @@ We can add information to our table using a series of [`tab_*()` functions](http
 
 ### Headers
 
-Add a title and/or subtitle as a header using `tab_header()`.
+Add a title and/or subtitle as a table header using `tab_header()`.
 
 ```{r}
 gtcars_small %>%
@@ -670,7 +680,7 @@ gtcars_small %>%
 
 ### Source notes
 
-Source notes are generally notes about where the data in the table came from. Most often these will be at the bottom of the table, but you can move them other places (\*not shown today).
+Source notes are generally notes about where the data in the table came from. Most often these will be at the bottom of the table, but you can move them other places (*not shown today*).
 
 Use `tab_source_note()` to add a source note. You can use `md()` and `html()` with source notes.
 
@@ -686,7 +696,7 @@ gtcars_small %>%
 
 We can add footnotes to add information on important components of the table that may not be clear. This is done with `tab_footnote()`.
 
-The `footnote` argument is where we put the text of the footnote. Again, use `md()` and/or `html()` to style the text.
+The `footnote` argument is where we define the text of the footnote. Again, use `md()` and/or `html()` to style the text.
 
 The `locations` argument is how we set the placement of the footnote. This involves a series of [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions) that we have not covered yet. We'll use one of these here but will not go through these functions in detail.
 
@@ -708,7 +718,7 @@ gtcars_small %>%
     )
 ```
 
-**gt** keeps track of our footnote numbering for us. The one that is first in the table is given an earlier number even if we list them out of order in our code.
+**gt** keeps track of our footnote numbering for us. The footnote that is first in the table is given an smaller number even if we list them out of order in our code.
 
 ```{r}
 gtcars_small %>%
@@ -750,7 +760,7 @@ Using the `mtcars_small` dataset
 
 The **gt** package allows for an enormous amount of customization, allowing you to build a *theme* for what your tables should look like.
 
-What you'll want really depends on your audience, and a table for a manuscript will likely look a lot different than one you build for an HTML document you are sharing.
+What you'll want your table to look like will depend on your audience, and a table for a manuscript will likely look different than one you build for an HTML document you are sharing.
 
 We'll take a cursory look at some options today and then look at some overall themes next week.
 
@@ -758,7 +768,7 @@ We'll take a cursory look at some options today and then look at some overall th
 
 The family of `opt_*_*()` functions are for setting some commonly used table options. This includes adding row striping or setting the font of the whole table.
 
-Row stripes with `opt_row_striping()` can help distinguish rows when you don't have lines.
+Row stripes with `opt_row_striping()` can help distinguish rows.
 
 ```{r}
 gtcars_small %>%
@@ -766,7 +776,7 @@ gtcars_small %>%
     opt_row_striping()
 ```
 
-Set overall fonts using fonts you have locally or use Google fonts via `google_font()` in `opt_table_font()`. (*This works fine in the table but won't show in the output HTML file.*)
+Set overall fonts using fonts you have locally or use Google fonts via `google_font()` in `opt_table_font()`. (*This works fine below but won't show in the output HTML file unless you add Fira Mono onto your computer.*)
 
 ```{r}
 gtcars_small %>%
@@ -828,7 +838,7 @@ From the documentation
 
 You pass in a **gt** object to the `data()` argument and then set the file name in `filename`. If you want to save them somewhere outside your working directory set the path with `path`.
 
-We can practice by naming one of our tables. So far we've only been printing them.
+We can practice this by naming one of our tables. So far we've only been printing them.
 
 ```{r}
 gt_output = gtcars_small %>%
@@ -851,7 +861,7 @@ gt_output = gtcars_small %>%
     opt_align_table_header(align = "left")
 ```
 
-*You may need to install PhantomJS prior to being able to saving image files.*
+*You may need to install PhantomJS prior to being able to saving image files, particularly if you have a Windows machine.*
 
 ```{r}
 webshot::install_phantomjs(version = "2.1.1",
@@ -898,7 +908,7 @@ Optional if you have time:
 
 -   Use the same `tab_options()` as above but add `row_group.border.top.color = "black"`, `row_group.border.bottom.color = "white"`, and `stub.border.color = "transparent"`
 
-You may want to do these changes one or a few at a time to help troubleshoot any problems that arise.
+You may want to do these steps one or a few at a time to help troubleshoot any problems that arise. Sometimes if we add too much at once it is hard to tell where any mistakes are coming from.
 
 ```{r}
 # Write your code in this chunk and run to see the output

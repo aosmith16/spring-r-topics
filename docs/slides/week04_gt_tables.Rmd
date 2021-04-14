@@ -1130,7 +1130,8 @@ gtcars_small %>%
         )#<<
 ```
 ***Code notes:***  
--Use `groups = TRUE` for group summaries   
+-Use `groups = TRUE` for group summaries  
+-Must have a [rowname column](https://github.com/rstudio/gt/issues/602)  
 -Choose columns to work on in `columns`    
 -Functions are in a list. Note naming and tilde (`~`) coding   
 ]
@@ -1142,6 +1143,10 @@ knitr::include_graphics("figs/week04_files/gt25.png")
 ```
 ]
 ]
+
+???
+
+The issue of the rowname column is a bug, reported here: https://github.com/rstudio/gt/issues/602
 
 ---
 
@@ -1228,18 +1233,22 @@ If you have all numeric columns, leave the `columns` argument out of the functio
 ```{r gt28, eval = FALSE}
 mtcars_small %>%
     gt(
+        rowname_col = "hp",
         groupname_col = "carb"
     ) %>%
     summary_rows( #<<
+        groups = TRUE, #<<
         fns = list(Average = ~mean(., na.rm = TRUE)) #<<
     ) #<<
 ```
 ]
+
+***Code notes:***  This doesn't average per group without a rowname column, which is a [bug](https://github.com/rstudio/gt/issues/602)    
 ]
 
 .pull-right[
 .center[
-```{r, echo = FALSE, out.width = "50%"}
+```{r, echo = FALSE, out.width = "35%"}
 knitr::include_graphics("figs/week04_files/gt28.png")
 ```
 ]
@@ -1249,7 +1258,7 @@ knitr::include_graphics("figs/week04_files/gt28.png")
 
 ### Grand summary
 
-Add an overall summary along with group summaries with `grand_summary_rows()`.
+Add an overall summary along with group summaries with `grand_summary_rows()` or leave out `groups = TRUE` from `summary_rows()`.
 
 .pull-left[
 ```{r gt29, eval = FALSE}

@@ -639,7 +639,7 @@ Using the `gtcars_small` dataset:
 -   Move `year` to be the first column, followed by `ctry_origin`.
 
 
-<div class="countdown" id="timer_60774e37" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607763b4" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -939,7 +939,7 @@ You will be using `mtcars_small` for this exercise.
 -   Replace the missing value in `qsec` with "missing".
 -   Add the `yen` currency symbol to `hp` with 0 decimal places.
 
-<div class="countdown" id="timer_60774d3e" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60776317" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1117,7 +1117,8 @@ gtcars_small %&gt;%
 *       )
 ```
 ***Code notes:***  
--Use `groups = TRUE` for group summaries   
+-Use `groups = TRUE` for group summaries  
+-Must have a rowname column  
 -Choose columns to work on in `columns`    
 -Functions are in a list. Note naming and tilde (`~`) coding   
 ]
@@ -1212,18 +1213,22 @@ If you have all numeric columns, leave the `columns` argument out of the functio
 ```r
 mtcars_small %&gt;%
     gt(
+        rowname_col = "hp",
         groupname_col = "carb"
     ) %&gt;%
 *   summary_rows(
+*       groups = TRUE,
 *       fns = list(Average = ~mean(., na.rm = TRUE))
 *   )
 ```
 ]
+
+***Code notes:***  This doesn't average per group without a rowname column    
 ]
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt28.png" width="50%" /&gt;
+&lt;img src="figs/week04_files/gt28.png" width="35%" /&gt;
 ]
 ]
 
@@ -1231,7 +1236,7 @@ mtcars_small %&gt;%
 
 ### Grand summary
 
-Add an overall summary along with group summaries with `grand_summary_rows()`.
+Add an overall summary along with group summaries with `grand_summary_rows()` or leave out `groups = TRUE` from `summary_rows()`.
 
 .pull-left[
 
@@ -1267,7 +1272,7 @@ Take `gtcars_small` and do the following:
 -   Add the total `msrp` per group with the row name "Total"
 -   Finally, add the overall total `msrp` across groups with the row name "Overall"
 
-<div class="countdown" id="timer_60774b8a" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60776330" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1530,7 +1535,7 @@ Using the `mtcars_small` dataset
 -   Add a source note to indicate the data are from a 1974 issue of Motor Trend magazine
 -   Add a footnote to describe `disp` (which is engine displacement in cubic inches)
 
-<div class="countdown" id="timer_60774ea2" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6077638d" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
