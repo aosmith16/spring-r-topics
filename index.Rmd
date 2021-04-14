@@ -31,7 +31,7 @@ Week 03: Deploy website using GitHub Pages
 Week 04: Explore **gt** for making tables  
 Week 05: **gt** flair: colors, images, and themes    
 Week 06: Learn to write functions in R  
-Week 07: More Git: merge conflicts and pull requests  
+Week 07: More Git: collaborators, merge conflicts, and pull requests  
 Week 08: Interactive graphics and tables     
 Week 09: Animated graphics (with **gganimate**)  
 Week 10: Catch up day or other topics of interest  
@@ -55,9 +55,10 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **dplyr v. 1.0.5 **  
 **tidyr v. 1.1.3**  
 **usethis v. 2.0.1**  
-**gh v 1.2.1**  
-**gganimate v. 1.0.7**  
+**gh v. 1.2.1**  
 **plotly v. 4.9.3**   
 **leaflet v. 2.0.4.1**  
 **dygraphs v. 1.1.1.6**  
 **reactable v 0.2.3**  
+**gganimate v. 1.0.7**  
+
