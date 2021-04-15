@@ -476,6 +476,8 @@ gtcars_small %>%
     gt(groupname_col = "ctry_origin") 
 ```
 
+By default the groups are organized based on the order groups appear in the table. You can change this using function `row_group_order()`.
+
 ### Row names and groups
 
 In many cases we'll want to have a row names column when we have groups. This helps the table organization.
@@ -901,7 +903,6 @@ Here's what you should do:
 -   Merge the two CL columns with a comma between the numbers and name the result "95% CI"
 -   Add a header that says "Comparisons"
 -   Add a source note in italics that says "Data from Siuslaw study"
--   Add row striping
 -   Save this as a PNG file called "final_exercise.png"
 
 Optional if you have time:

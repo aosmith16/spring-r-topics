@@ -1083,8 +1083,9 @@ class: hide-logo
 
 ## Next week
 
-- We'll explore a few packages for making interactive plots and tables that can be used with HTML outputs  
-- Make sure you have current versions of **plotly**, **leaflet**, **dygraphs**, and **reactable** installed  
+- We'll briefly explore a few packages for making interactive plots and tables that can be used with HTML outputs  
+- We'll end by making a simple dashboard with package **flexdashboard**  
+- Make sure you have current versions of **htmlwidgets**, **plotly**, **leaflet**, **dygraphs**, **DT**, and **flexdashboard** installed  
 
 .footnote[
 [Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  

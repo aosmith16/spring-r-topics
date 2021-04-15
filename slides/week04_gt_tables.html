@@ -75,7 +75,7 @@ class: center, middle, title-slide
 ## Today's Goal
 
 Overall  
--     Build *display* tables in R with package **gt**  
+-     **Build *display* tables in R with package gt**  
 
 --
 
@@ -113,7 +113,7 @@ class: hide-logo
 
 ## Why focus on **gt**?
 
-It is just one option that allows us to build tables programmatically in R.
+It is just one package that allows us to build tables programmatically in R.
 
 .pull-left[
 **Pros:**
@@ -127,7 +127,7 @@ It is just one option that allows us to build tables programmatically in R.
 
 .pull-right[
 **Cons:**  
-- Very new so things could still change  
+- Very new so syntax could still change  
 - Code gets long/complex fast (*this shared by most table-making packages in R*)
 ]
 
@@ -164,22 +164,25 @@ class: center, middle, inverse, hide-logo
 ## Running code
 
 - Open the copy of [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) that you saved  
-- I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
+
+- I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button in the upper right of the `Source` pane  
 
 --
 
 &lt;br/&gt;&lt;br/&gt;
 **Set up**  
 
-We'll practice different features of package **gt** together, running example code I've already written.   
+- We'll practice different features of package **gt** together, running example code I've already written.   
 
-At the end of each section you'll have a chance to practice what we just covered.
+- The code shown in the slides are in code chunks in `week04_gt_basics.Rmd`, which you will run through starting with loading packages.
+
+- At the end of each topic we go over you'll have a chance to practice writing your own code in a **Your turn** section.
 
 ---
 
 ## R packages 
 
-We are using **gt 0.2.2** and **dplyr 1.0.5** today. Load these before we start. 
+We are using **gt 0.2.2** and **dplyr 1.0.5** today. Load these now. 
 
 
 ```r
@@ -193,7 +196,7 @@ Also make sure you have package **webshot** installed.
 
 ## Datasets
 
-We need a few small datasets to practice on. We will do all data manipulation steps now.
+We need a few small datasets to practice making tables. We will do all data manipulation steps now.
 
 --
 
@@ -231,11 +234,13 @@ gtcars_small
 
 Data manipulation is key to making display tables and you'll often see data manipulation code along with the tables.
 
+gtcars is included as part of the **gt** package
+
 ---
 
 ## Datasets
 
-We need a few small datasets to practice on. We will do all data manipulation steps now.
+We need a few small datasets to practice making tables. We will do all data manipulation steps now.
 
 .pull-left[
 **The `mtcars` dataset**
@@ -271,11 +276,15 @@ mtcars_small
 
 ]
 
+???
+
+mtcars comes with base R so you have access without loading any packages
+
 ---
 
 ## Datasets
 
-We need a couple few datasets to practice on. We will do all data manipulation steps now.
+We need a few small datasets to practice making tables. We will do all data manipulation steps now.
 
 .pull-left[
 **Table of results**
@@ -311,6 +320,10 @@ results
 
 ]
 
+???
+
+I created this dataset; it is not part of R
+
 ---
 
 ## Basic **gt** usage
@@ -329,7 +342,7 @@ The table on the right shows the default output style for **gt** tables.
 ]
 
 .pull-right[
-![](figs/week04_files/gt01.png)
+&lt;img src="figs/week04_files/gt01.png" title="Table of gtcars_small showing default gt table" alt="Table of gtcars_small showing default gt table" width="100%" /&gt;
 ]
 
 ???
@@ -340,17 +353,17 @@ The dataset is the first argument to `gt()`. You can put your dataset within `gt
 
 ## Modify columns
 
-We're going to first focus on cleaning up the table body and columns. 
+Our first topic will be cleaning up the table body and columns. 
 
 The [`cols_*()` functions](https://gt.rstudio.com/reference/index.html#section-modify-columns) allow for modifications of entire columns.
 
-We can control the column labels, cell alignment, column width and placement as well as combine columns with `cols_*()` functions.
+We can control the column labels, cell alignment, column width and placement plus combine multiple columns with `cols_*()` functions.
 
 ---
 
 ### Column labels
 
-Relabel one or more labels using `cols_label()`.
+Relabel one or more column *labels* using `cols_label()`.
 
 .pull-left[
 
@@ -362,10 +375,13 @@ gtcars_small %&gt;%
 *       ctry_origin = "Country"
 *   )
 ```
+
+&lt;br/&gt;
+This change the *labels* of the columns in the table output but not the underlying column names. This will become clearer with more examples. 😉
 ]
 
 .pull-right[
-![](figs/week04_files/gt02.png)
+&lt;img src="figs/week04_files/gt02.png" title="Table showing output after changing columns labels for mfr and ctry_origin" alt="Table showing output after changing columns labels for mfr and ctry_origin" width="100%" /&gt;
 ]
 
 ---
@@ -385,14 +401,18 @@ gtcars_small %&gt;%
 *   )
 ```
 
-***Code notes:***  
-Use `md()` for markdown syntax and `html()` for HTML syntax.
+&lt;br/&gt;
+***Code notes:***  Use `md()` for markdown syntax and `html()` for HTML syntax.
 
 ]
 
 .pull-right[
-![](figs/week04_files/gt03.png)
+&lt;img src="figs/week04_files/gt03.png" title="Table using markdown and html syntax to make column labels bold and italic" alt="Table using markdown and html syntax to make column labels bold and italic" width="100%" /&gt;
 ]
+
+???
+
+Of course this means you need to know markdown or HTML syntax. If you don't you can often find simple syntax with web searches
 
 ---
 
@@ -416,14 +436,19 @@ gtcars_small %&gt;%
 ```
 
 ***Code notes:***  
--Choose columns to align using `vars()`  
--Changing labels doesn't change variable name
+-Choose multiple `columns` to align with `vars()`  
+-Changing *labels* doesn't change variable name
 ]
 
 .pull-right[
-![](figs/week04_files/gt04.png)
-
+&lt;img src="figs/week04_files/gt04.png" title="Table center aligning mfr and model" alt="Table center aligning mfr and model" width="100%" /&gt;
 ]
+
+???
+
+The defaults in gt already have things aligned to the standard so we will change alignment away from standard to show how this works
+
+Call attention to use of vars() and bare variable names
 
 ---
 
@@ -454,8 +479,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt05.png)
-
+&lt;img src="figs/week04_files/gt05.png" title="Table aligning values in sets of columns in different ways" alt="Table aligning values in sets of columns in different ways" width="100%" /&gt;
 ]
 
 ---
@@ -482,7 +506,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt06.png)
+&lt;img src="figs/week04_files/gt06.png" title="Table moving ctry_origin to first column" alt="Table moving ctry_origin to first column" width="100%" /&gt;
 
 ]
 
@@ -514,9 +538,12 @@ Move the two `mpg` columns *after* `msrp`
 ]
 
 .pull-right[
-![](figs/week04_files/gt07.png)
-
+&lt;img src="figs/week04_files/gt07.png" title="Table after moving multiple columns after another" alt="Table after moving multiple columns after another" width="100%" /&gt;
 ]
+
+???
+
+Point out the "after" argument plus more use of vars()
 
 ---
 
@@ -543,9 +570,12 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt08.png)
-
+&lt;img src="figs/week04_files/gt08.png" title="Table after making ctry_origin column wider, up to 150 px" alt="Table after making ctry_origin column wider, up to 150 px" width="100%" /&gt;
 ]
+
+???
+
+This widens the ctry_origin column from the defaults
 
 ---
 
@@ -575,7 +605,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt09.png)
+&lt;img src="figs/week04_files/gt09.png" title="Table with 3 columns at 120 px and everything else set to 50 px" alt="Table with 3 columns at 120 px and everything else set to 50 px" width="100%" /&gt;
 ]
 
 ---
@@ -593,20 +623,27 @@ gtcars_small %&gt;%
 *       columns = vars(mpg_c, mpg_h)
 *   )
 ```
+
+&lt;br/&gt;
 ***Code notes:***  
--Combine two `mpg` columns to show range of mileage in one column  
--By default name of new column comes from first column listed
+-Combine the two `mpg` columns to show range of mileage in one column  
+-Combined values have space between them  
+-By default the name of new column comes from first column listed  
 ]
 
 .pull-right[
-![](figs/week04_files/gt10.png)
+&lt;img src="figs/week04_files/gt10.png" title="Table combining mpg_c and mpg_h. The combined column is labeled mpg_c by default and the combined numbers have a space between them" alt="Table combining mpg_c and mpg_h. The combined column is labeled mpg_c by default and the combined numbers have a space between them" width="100%" /&gt;
 ]
+
+???
+
+Columns to merge chosen again with vars()
 
 ---
 
 ### Merging columns
 
-By default the new column is named with the first column and the values are put together with a space between them.
+You can change the way values are combined with `pattern`. 
 
 .pull-left[
 
@@ -619,12 +656,12 @@ gtcars_small %&gt;%
 *   )
 ```
 ***Code notes:***  
--`pattern` argument controls how column values combined  
--Here I put hyphen between values  
+-`pattern` argument controls how columns combined, where `1` is first column and `2` is second  
+-This code puts a hyphen between values  
 ]
 
 .pull-right[
-![](figs/week04_files/gt11.png)
+&lt;img src="figs/week04_files/gt11.png" title="Table combining mpg_c and mpg_h, using pattern to combine the values with a hyphen between them." alt="Table combining mpg_c and mpg_h, using pattern to combine the values with a hyphen between them." width="100%" /&gt;
 ]
 
 ---
@@ -639,7 +676,7 @@ Using the `gtcars_small` dataset:
 -   Move `year` to be the first column, followed by `ctry_origin`.
 
 
-<div class="countdown" id="timer_607763b4" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607887be" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -671,7 +708,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/yt1.png)
+&lt;img src="figs/week04_files/yt1.png" title="Table from the your turn solution" alt="Table from the your turn solution" width="100%" /&gt;
 ]
 
 ---
@@ -709,12 +746,15 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt12.png)
+&lt;img src="figs/week04_files/gt12.png" title="Table output showing mpg_c with a single decimal place and msrp as thousands so ends with K suffix like 447000 is 447K" alt="Table output showing mpg_c with a single decimal place and msrp as thousands so ends with K suffix like 447000 is 447K" width="100%" /&gt;
 ]
 
 ???
 
 Includes, e.g., choosing the number of decimal places, setting the decimal separator (defaults to "."), and large-number suffixes such as `K` for thousands.
+
+Note still choose columns with `vars()`
+
 
 ---
 
@@ -734,12 +774,13 @@ gtcars_small %&gt;%
 *       suffixing = TRUE
 *   )
 ```
-***Code notes:***  
-`USD` is the default currency symbol.  
+
+&lt;br/&gt;
+***Code notes:***  `USD` is the default currency symbol, although I wrote it out here  
 ]
 
 .pull-right[
-![](figs/week04_files/gt13.png)
+&lt;img src="figs/week04_files/gt13.png" title="Table output adds a dollar sign to msrp plus K for thousands, so $447000 is $447K" alt="Table output adds a dollar sign to msrp plus K for thousands, so $447000 is $447K" width="100%" /&gt;
 ]
 
 ???
@@ -764,12 +805,13 @@ gtcars_small %&gt;%
         suffixing = TRUE
     )
 ```
-***Code notes:***  
-`EUR` stands for euros  
+
+&lt;br/&gt;
+***Code notes:***  `EUR` stands for euros  
 ]
 
 .pull-right[
-![](figs/week04_files/gt14.png)
+&lt;img src="figs/week04_files/gt14.png" title="Table output now uses euro symbol instead of USD on msrp" alt="Table output now uses euro symbol instead of USD on msrp" width="100%" /&gt;
 ]
 
 ---
@@ -793,7 +835,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt15.png)
+&lt;img src="figs/week04_files/gt15.png" title="Table output uses UK pound symbol instead of USD on msrp" alt="Table output uses UK pound symbol instead of USD on msrp" width="100%" /&gt;
 ]
 
 ---
@@ -815,14 +857,18 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt16.png)
+&lt;img src="figs/week04_files/gt16.png" title="Table output converted mpg_c and mpg_h to percents using value*100%" alt="Table output converted mpg_c and mpg_h to percents using value*100%" width="100%" /&gt;
 ]
+
+???
+
+Point out that values are multiplied by 100 before being turned to %
 
 ---
 
 ### Percent formatting
 
-By default, the values were multiplied by 100 prior to adding the `%` symbol. Use `scale_value = FALSE` to change.
+By default, the values were multiplied by 100 prior to adding the `%` symbol. Use `scale_value = FALSE` to change this if you are not working with proportions.
 
 .pull-left[
 
@@ -838,14 +884,14 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt17.png)
+&lt;img src="figs/week04_files/gt17.png" title="Table converting mpg_c and mpg_h to percents using value%" alt="Table converting mpg_c and mpg_h to percents using value%" width="100%" /&gt;
 ]
 
 ---
 
 ### Missing values formatting
 
-By default missing values are shown in tables as `NA`. This can be controlled using `fmt_missing()`.
+By default missing values in R are `NA`. We can change that using `fmt_missing()`.
 
 .pull-left[
 
@@ -856,20 +902,26 @@ gtcars_small %&gt;%
 *       columns = contains("mpg")
 *   )
 ```
+
+&lt;br/&gt;
 ***Code notes:***  
--Note use of `contains()` select helper function  
+-Note use of `contains()` select helper function for picking columns instead of `vars()`  
 -By default the new missing text is `---`
 ]
 
 .pull-right[
-![](figs/week04_files/gt18.png)
+&lt;img src="figs/week04_files/gt18.png" title="Table with missing values in mpg_c and mpg_h as 3 dashes, ---, which looks like a long solid dash in the output table" alt="Table with missing values in mpg_c and mpg_h as 3 dashes, ---, which looks like a long solid dash in the output table" width="100%" /&gt;
 ]
+
+???
+
+We can use select helper functions like contains() to more efficiently choose columns instead of writing each one out
 
 ---
 
 ### Missing values formatting
 
-Change the missing text to `none` with `missing_text`.
+We can control what we set missing values to with the `missing_text`. Let's change missing values to `none`.
 
 .pull-left[
 
@@ -884,7 +936,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt19.png)
+&lt;img src="figs/week04_files/gt19.png" title="Table output has 'none' as missing text in mpg_c and mpg_h" alt="Table output has 'none' as missing text in mpg_c and mpg_h" width="100%" /&gt;
 ]
 
 ---
@@ -906,18 +958,20 @@ gtcars_small %&gt;%
     )
 ```
 ***Code notes:***  
+-Here I chose the columns by *position*  
 -Choose the `rows` by index  
--I chose the columns by position  
 -Note alignment issue and [potential fix](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/#rule-7-remove-unit-repetition)
 ]
 
 .pull-right[
-![](figs/week04_files/gt20.png)
+&lt;img src="figs/week04_files/gt20.png" title="Table output has added a percent symbol only to values in the first row of mpg_c and mpg_h. These are no longer aligned perfectly with the rest of the column" alt="Table output has added a percent symbol only to values in the first row of mpg_c and mpg_h. These are no longer aligned perfectly with the rest of the column" width="100%" /&gt;
 ]
 
 ???
 
 You'll note this changes the alignment of the column, which is not ideal. There is an open issue to fix this in **gt**. In the meantime, check out Thomas Mock's work-arounds in his [blog post](https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/#rule-7-remove-unit-repetition).
+
+You can choose the columns by index (position) in addition to using vars() and select helper functions
 
 ---
 
@@ -925,7 +979,7 @@ You'll note this changes the alignment of the column, which is not ideal. There 
 
 While we aren't going to explore them today, if you are working with dates, times, or date-times you'll find the respective `fmt_*()` functions for those to be useful. 
 
-Here's a link to some examples in the **gt** Cookbook: &lt;https://themockup.blog/static/gt-cookbook.html#Date_formatting&gt;.
+Here's a link to some examples of formatting dates and times in the **gt** Cookbook: &lt;https://themockup.blog/static/gt-cookbook.html#Date_formatting&gt;.
 
 ---
 
@@ -939,7 +993,7 @@ You will be using `mtcars_small` for this exercise.
 -   Replace the missing value in `qsec` with "missing".
 -   Add the `yen` currency symbol to `hp` with 0 decimal places.
 
-<div class="countdown" id="timer_60776317" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60788738" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -974,7 +1028,7 @@ mtcars_small %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/yt2.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/yt2.png" title="Your turn solution table" alt="Your turn solution table" width="70%" /&gt;
 ]
 ]
 
@@ -982,9 +1036,9 @@ mtcars_small %&gt;%
 
 ## Row names, row groups, and summary rows
 
-Let's switch to thinking about the rows.
+Let's switch to thinking about the table rows.
 
-The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add in grouping here.
+The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add grouping to put rows in different groups.
 
 ---
 
@@ -998,13 +1052,15 @@ The variable that represents the rows  is an argument within the `gt()` function
 gtcars_small %&gt;%
 *   gt(rowname_col = "ctry_origin")
 ```
+
+&lt;br/&gt;
 ***Code notes:***  
 -Put quotes around the variable in `rowname_col`  
--Use `tab_stubhead()` to add a column name if desired
+-Use `tab_stubhead()` to add a column name if desired  
 ]
 
 .pull-right[
-![](figs/week04_files/gt21.png)
+&lt;img src="figs/week04_files/gt21.png" title="Table output has ctry_origin has row variable, which is moved to first column and the column label removed" alt="Table output has ctry_origin has row variable, which is moved to first column and the column label removed" width="100%" /&gt;
 ]
 
 ???
@@ -1017,7 +1073,7 @@ You can see the column is moved to the beginning of the table and, by default, d
 
 Adding row groups helps organize a table. This can be done by assigning a grouping variable with `groupname_col` in `gt()`. You can also pass a grouped dataset from **dplyr** to set the groups.
 
-Let's group by `ctry_origin` to organize by country.
+Let's group by `ctry_origin` to organize the output table rows in groups by country.
 
 .pull-left[
 
@@ -1025,21 +1081,29 @@ Let's group by `ctry_origin` to organize by country.
 gtcars_small %&gt;%
 *   gt(groupname_col = "ctry_origin")
 ```
+
+&lt;br/&gt;
 ***Code notes:***  
-Put quotes around the variable in `groupname_col`  
+-Put quotes around the variable in `groupname_col`  
+-Default group order from order in table  
+-Change order of groups using `row_group_order()`  
 ]
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt22.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/gt22.png" title="Table output has ctry_origin has row grouping so USA rows are all grouped together and then Japan rows are all grouped together. ctry_origin no longer has a separate column" alt="Table output has ctry_origin has row grouping so USA rows are all grouped together and then Japan rows are all grouped together. ctry_origin no longer has a separate column" width="70%" /&gt;
 ]
 ]
+
+???
+
+Default order of groups is from order of variable in table. Change with row_group_order()
 
 ---
 
 ### Row names and groups
 
-In many cases we'll want to have a row names column when we have groups. This helps our table organization.
+In many cases we'll want to have a row names column when we have groups to help organize the table even more.
 
 Let's group by `ctry_origin` and put `year` as the row names.
 
@@ -1052,13 +1116,14 @@ gtcars_small %&gt;%
 *       groupname_col = "ctry_origin"
 *   )
 ```
-***Code notes:***  
-In some cases you may want blank row names. See an example from the **gt** Cookbook [here](https://themockup.blog/static/gt-cookbook.html#create-blank-rownames) for one approach.  
+
+&lt;br/&gt;
+***Code notes:***  In some cases you may want blank row names. See an example from the **gt** Cookbook [here](https://themockup.blog/static/gt-cookbook.html#create-blank-rownames) for one approach.  
 ]
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt23.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/gt23.png" title="Table output has row column years in order within each ctry_origin group at the beginning of the table (in the 'stub')" alt="Table output has row column years in order within each ctry_origin group at the beginning of the table (in the 'stub')" width="70%" /&gt;
 ]
 ]
 
@@ -1066,7 +1131,7 @@ In some cases you may want blank row names. See an example from the **gt** Cookb
 
 ### Manual groups
 
-You can manually define groups using the function `tab_row_group()` along with some sort of logical statement. 
+You can manually define groups using the function `tab_row_group()` along with a logical statement. 
 
 .pull-left[
 
@@ -1089,12 +1154,14 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt24.png)
+&lt;img src="figs/week04_files/gt24.png" title="Table output has two groups based on low vs high city mpg. Tesla falls in own group because mpg_c is NA" alt="Table output has two groups based on low vs high city mpg. Tesla falls in own group because mpg_c is NA" width="70%" /&gt;
 ]
 
 ???
 
 Let's make two groups, one for "low" city `mpg_c` (\&lt;21) and one for "high". This involves two calls to `tab_row_group()`. If you have many groups, you may consider making a grouping column prior to creating the **gt** table rather than doing it here.
+
+Note how Tesla doesn't fall in a group because it has NA for mpg_c. By default this is put by itself at the bottom of the table.
 
 ---
 
@@ -1118,16 +1185,20 @@ gtcars_small %&gt;%
 ```
 ***Code notes:***  
 -Use `groups = TRUE` for group summaries  
--Must have a rowname column  
+-Must have a [rowname column](https://github.com/rstudio/gt/issues/602)  
 -Choose columns to work on in `columns`    
--Functions are in a list. Note naming and tilde (`~`) coding   
+-`fns` are in a list. Note naming and tilde (`~`) coding   
 ]
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt25.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/gt25.png" title="Table output has a row showing the average msrp per group named 'Average'" alt="Table output has a row showing the average msrp per group named 'Average'" width="70%" /&gt;
 ]
 ]
+
+???
+
+The issue of the rowname column is a bug, reported here: https://github.com/rstudio/gt/issues/602
 
 ---
 
@@ -1162,7 +1233,7 @@ gtcars_small %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt26.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/gt26.png" title="Table output now has both average and SD summary rows for msrp in each group, rounding to 0 decimal places" alt="Table output now has both average and SD summary rows for msrp in each group, rounding to 0 decimal places" width="70%" /&gt;
 ]
 ]
 
@@ -1170,7 +1241,7 @@ gtcars_small %&gt;%
 
 ### Summary rows
 
-Watch out for missing values when summarizing. You likely noted non-summarized columns are given `---`. Change this with `missing_text`. 
+Watch out for missing values when summarizing. Also you likely noted non-summarized columns are given `---`. Change this with `missing_text` argument. 
 
 .pull-left[
 .smaller[
@@ -1197,7 +1268,7 @@ gtcars_small %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt27.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/gt27.png" title="Table adds an 'Average' summary row for mpg_c and mpg_h, ignoring the missing value when taking the mean. Other columns that didn't average are left blank in the summary row" alt="Table adds an 'Average' summary row for mpg_c and mpg_h, ignoring the missing value when taking the mean. Other columns that didn't average are left blank in the summary row" width="70%" /&gt;
 ]
 ]
 
@@ -1205,7 +1276,7 @@ gtcars_small %&gt;%
 
 ### Summary rows
 
-If you have all numeric columns, leave the `columns` argument out of the function to summarize all at once. Switch to `mtcars_small` to see this.
+If you have all numeric columns, leave the `columns` argument out of the function to summarize all columns at once. Switch to `mtcars_small` to see this.
 
 .pull-left[
 .smaller[
@@ -1223,12 +1294,13 @@ mtcars_small %&gt;%
 ```
 ]
 
-***Code notes:***  This doesn't average per group without a rowname column    
+&lt;br/&gt;
+***Code notes:***  This doesn't average per group without a rowname column, which is a [bug](https://github.com/rstudio/gt/issues/602)    
 ]
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt28.png" width="35%" /&gt;
+&lt;img src="figs/week04_files/gt28.png" title="Table output has summary row for  average of all non-row variables for each carb group based on mtcars_small" alt="Table output has summary row for  average of all non-row variables for each carb group based on mtcars_small" width="35%" /&gt;
 ]
 ]
 
@@ -1255,8 +1327,7 @@ gtcars_small %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/gt29.png" width="90%" /&gt;
-&lt;!-- ![](figs/week04_files/gt29.png) --&gt;
+&lt;img src="figs/week04_files/gt29.png" title="Table output now has an overall summary row across all groups for the average of msrp instead of for each group." alt="Table output now has an overall summary row across all groups for the average of msrp instead of for each group." width="90%" /&gt;
 ]
 ]
 
@@ -1272,7 +1343,7 @@ Take `gtcars_small` and do the following:
 -   Add the total `msrp` per group with the row name "Total"
 -   Finally, add the overall total `msrp` across groups with the row name "Overall"
 
-<div class="countdown" id="timer_60776330" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607887af" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1302,8 +1373,7 @@ gtcars_small %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/yt3.png" width="80%" /&gt;
-&lt;!-- ![](figs/week04_files/yt3.png) --&gt;
+&lt;img src="figs/week04_files/yt3.png" title="Your turn solution table" alt="Your turn solution table" width="80%" /&gt;
 ]
 ]
 
@@ -1336,8 +1406,12 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt30.png)
+&lt;img src="figs/week04_files/gt30.png" title="Table output with title and subtitle added to the top. These are centered by default." alt="Table output with title and subtitle added to the top. These are centered by default." width="100%" /&gt;
 ]
+
+???
+
+Centered by default
 
 ---
 
@@ -1360,7 +1434,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt31.png)
+&lt;img src="figs/week04_files/gt31.png" title="Table output subtitle has bold country names" alt="Table output subtitle has bold country names" width="100%" /&gt;
 ]
 
 ---
@@ -1379,13 +1453,15 @@ gtcars_small %&gt;%
 *       columns = vars(mpg_c, mpg_h)
 *   )
 ```
+
+&lt;br/&gt;
 ***Code notes:***  
 -Use `label` to name the spanning column      
--Choose columns to group with `columns` 
+-Choose columns to group together with `columns` 
 ]
 
 .pull-right[
-![](figs/week04_files/gt32.png)
+&lt;img src="figs/week04_files/gt32.png" title="Table output has a spanner column over mpg_c and mpg_h titled 'Miles per gallon'" alt="Table output has a spanner column over mpg_c and mpg_h titled 'Miles per gallon'" width="100%" /&gt;
 ]
 
 ---
@@ -1409,14 +1485,17 @@ gtcars_small %&gt;%
 *   )
 ```
 ***Code notes:***  
-Multiple spanners means multiple `tab_spanner()` layers        
+-Multiple spanners means multiple `tab_spanner()` layers  
+-Columns do not need to by side-by-side in original table
 ]
 
 .pull-right[
-![](figs/week04_files/gt33.png)
-
-.foonote[*Columns do not have to be side-by-side to be grouped and then spanned*]
+&lt;img src="figs/week04_files/gt33.png" title="Table output has two spanner columns, one for mfr and model called 'Car type' and one for mpg_c and mpg_h called 'Miles per gallon'" alt="Table output has two spanner columns, one for mfr and model called 'Car type' and one for mpg_c and mpg_h called 'Miles per gallon'" width="100%" /&gt;
 ]
+
+???
+
+Columns do not have to be side-by-side to be grouped and then spanned, although they will be lumped together in the output table
 
 ---
 
@@ -1436,13 +1515,14 @@ gtcars_small %&gt;%
 ```
 ]
 
+&lt;br/&gt;
 ***Code notes:***  
 -Notes default to bottom but can be moved (*not shown*)        
 -You can use `md()` and `html()` with notes  
 ]
 
 .pull-right[
-![](figs/week04_files/gt34.png)
+&lt;img src="figs/week04_files/gt34.png" title="Table output has a source note at the bottom to indicate the dtaa is from package gt" alt="Table output has a source note at the bottom to indicate the dtaa is from package gt" width="100%" /&gt;
 ]
 
 ---
@@ -1471,11 +1551,11 @@ gtcars_small %&gt;%
 
 ***Code notes:***  
 -Pass footnote text to `footnote`           
--Use `locations` for placement using [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions)  
+-Use `locations` for footnote placement using [`cells_*()` helper functions](https://gt.rstudio.com/reference/index.html#section-helper-functions)  
 ]
 
 .pull-right[
-![](figs/week04_files/gt35.png)
+&lt;img src="figs/week04_files/gt35.png" title="Table output has a footnote added to msrp column label and shows footnote saying this is in USD" alt="Table output has a footnote added to msrp column label and shows footnote saying this is in USD" width="100%" /&gt;
 ]
 
 ???
@@ -1511,12 +1591,10 @@ gtcars_small %&gt;%
 *   )
 ```
 ]
-
-*Note numbering is in order of appearance in table, not from `tab_footnote()`*          
 ]
 
 .pull-right[
-![](figs/week04_files/gt36.png)
+&lt;img src="figs/week04_files/gt36.png" title="Table output has two footnotes, one on column label for mpg_c, described as city miles per gallon, and one on column lable msrp, described as in USD" alt="Table output has two footnotes, one on column label for mpg_c, described as city miles per gallon, and one on column lable msrp, described as in USD" width="100%" /&gt;
 ]
 
 ???
@@ -1533,9 +1611,9 @@ Using the `mtcars_small` dataset
 -   Add a header title and subtitle to describe the table however you'd like
 -   Group columns `disp`, `hp`, `qsec`, and `carb` with spanner label "Engine"
 -   Add a source note to indicate the data are from a 1974 issue of Motor Trend magazine
--   Add a footnote to describe `disp` (which is engine displacement in cubic inches)
+-   Add a footnote to describe `disp` (engine displacement in cubic inches)
 
-<div class="countdown" id="timer_6077638d" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607886ee" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1572,7 +1650,7 @@ mtcars_small %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/yt4.png" width="70%" /&gt;
+&lt;img src="figs/week04_files/yt4.png" title="Your turn solution table" alt="Your turn solution table" width="70%" /&gt;
 ]
 ]
 
@@ -1582,7 +1660,7 @@ mtcars_small %&gt;%
 
 The **gt** package allows for an enormous amount of customization, allowing you to build a *theme* for what your tables should look like.
 
-What you'll want really depends on your audience, and a table for a manuscript will likely look a lot different than one you build for an HTML document you are sharing.
+Your table appearance will depend on your audience, and a table for a manuscript will likely look a lot different than one you build for an HTML document you are sharing.
 
 We'll take a cursory look at some options today and then look at some overall themes next week.
 
@@ -1590,7 +1668,7 @@ We'll take a cursory look at some options today and then look at some overall th
 
 ### Table option functions
 
-The family of `opt_*_*()` functions are for setting some commonly used table options.  add row stripes with `opt_row_striping()`.
+The family of `opt_*_*()` functions are for setting some commonly used table options.  Add row stripes with `opt_row_striping()`.
 
 .pull-left[
 
@@ -1602,7 +1680,7 @@ gtcars_small %&gt;%
 ]
 
 .pull-right[
-![](figs/week04_files/gt37.png)
+&lt;img src="figs/week04_files/gt37.png" title="Table output with row striping added." alt="Table output with row striping added." width="100%" /&gt;
 ]
 
 ---
@@ -1618,11 +1696,18 @@ gtcars_small %&gt;%
     gt() %&gt;% 
 *   opt_table_font(font = google_font("Fira Mono"))
 ```
+
+&lt;br/&gt;
+**Code notes:** You likely need to install the font on your computer if you are saving the table
 ]
 
 .pull-right[
-![](figs/week04_files/gt38.png)
+&lt;img src="figs/week04_files/gt38.png" title="Entire output table uses Fira Mono font" alt="Entire output table uses Fira Mono font" width="100%" /&gt;
 ]
+
+???
+
+I found that the font displayed in-line in my R Markdown document but the font didn't show when saving the table since I didn't have the font installed
 
 ---
 
@@ -1645,13 +1730,14 @@ gtcars_small %&gt;%
 ```
 ]
 
+&lt;br/&gt;
 ***Code notes:***  
 -Make black top and bottom lines  
 -Remove other horizontal lines  
 ]
 
 .pull-right[
-![](figs/week04_files/gt39.png)
+&lt;img src="figs/week04_files/gt39.png" title="Table output has black lines around the column labels and at the bottom of the table but no other lines" alt="Table output has black lines around the column labels and at the bottom of the table but no other lines" width="100%" /&gt;
 ]
 
 ---
@@ -1685,11 +1771,11 @@ gtcars_small %&gt;%
 ```
 ]
 
-*Note use of `opt_align_table_header()` to left-align header*   
+**Code notes:** Use `opt_align_table_header()` to left-align header   
 ]
 
 .pull-right[
-![](figs/week04_files/gt40.png)
+&lt;img src="figs/week04_files/gt40.png" title="Table output has black lines around the column labels and at the bottom of the table but no other lines. This table has header and source note outside of black lines." alt="Table output has black lines around the column labels and at the bottom of the table but no other lines. This table has header and source note outside of black lines." width="100%" /&gt;
 
 *See the `tab_style()` function for controlling the style of individual parts of the table.*
 ]
@@ -1736,11 +1822,17 @@ gt_output = gtcars_small %&gt;%
     opt_align_table_header(align = "left")
 ```
 
+???
+
+Remade last table and named it "gt_output"
+
 ---
 
 ## Saving tables
 
-*You may need to install PhantomJS prior to being able to saving image files.*
+**You may need to install PhantomJS prior to being able to saving image files.**
+
+This is most likely true for Windows machines. Run this code in R to install PhantomJS.
 
 
 ```r
@@ -1751,7 +1843,7 @@ webshot::install_phantomjs(version = "2.1.1",
 
 --
 
-Save the `gt_output` table as a PNG image file into the same directory as this document.
+Save the `gt_output` table as a PNG image file into the same directory as the Rmd document you are working on.
 
 
 ```r
@@ -1794,7 +1886,6 @@ Here's what you should do:
 -   Merge the two CL columns with a comma between the numbers and name the result "95% CI"
 -   Add a header that says "Comparisons"
 -   Add a source note in italics that says "Data from Siuslaw study"
--   Add row striping
 -   Save this as a PNG file called "final_exercise.png"
 
 ***If you have time:***
@@ -1855,7 +1946,7 @@ results %&gt;%
 
 .pull-right[
 .center[
-&lt;img src="figs/week04_files/yt5.png" width="50%" /&gt;
+&lt;img src="figs/week04_files/yt5.png" title="Output table from final exercise solution" alt="Output table from final exercise solution" width="50%" /&gt;
 ]
 ]
 
@@ -1865,8 +1956,8 @@ class: hide-logo
 
 ## Next week
 
-- We'll explore adding flair, using colors and images in **gt** tables  
-- Discuss creating overall themes for tables   
+- We'll explore adding flair 💥, using colors and images in **gt** tables  
+- We'll briefly discuss creating overall themes for tables   
 - Make sure you have a current version of package **tidyr** installed
 
 .center[
