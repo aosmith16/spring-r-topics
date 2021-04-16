@@ -100,6 +100,8 @@ Thomas Mock wrote a [post](https://themockup.blog/posts/2020-09-04-10-table-rule
 
 ### Materials for class
 
+Make sure you have installed current versions of packages **gt** and **dplyr**
+
 [Week 04 slides](slides/week04_gt_tables.html)  
 Save [`week04_gt_basics.Rmd`](files/week04_gt_basics.Rmd) to run code during the session  
 
@@ -118,9 +120,10 @@ See Anthony Schmidt's post on a **gt** APA theme [here](https://www.anthonyschmi
 
 ### Materials for class
 
+Make sure you have installed current versions of packages **gt**, **dplyr**, and **tidyr**
+
 [Week 05 slides](slides/week05_gt_flair.html)  
 Save [`week05_more_gt.Rmd`](files/week05_more_gt.Rmd) to run code during the session    
-
 
 ## Week 6: Writing functions in R
 
@@ -161,6 +164,38 @@ Brief [article](https://blog.axosoft.com/merge-conflict-tool/) from GitKraken on
 Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-functions.html) on pull request helpers  
 A lecture in the [R programming for biologists class](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines the basic approach to pull requests *without* **usethis**  
 
-### Materials
+### Materials for class
+
+Install [GitKraken](https://www.gitkraken.com/) on your computer. Also make sure you have a current version of packages **usethis** and **gh** installed.
 
 [Week 07 slides](slides/week07_more_git.html)
+
+## Week 8: Adding interactive elements to static HTML documents
+
+### Goals
+
+This week we will explore a handful of packages based on **htmlwidgets** for adding interactive elements to static HTML documents. We will finish by looking at a basic **flexdashboard**. 
+
+We will
+
+- Use **plotly** to add interactivity to plots made with **ggplot2**  
+- Use **DT** to allow for users to interact with a dataset  
+- Look at **leaflet** for interactive maps  
+- Use **dygraph** to make interactive plots of time series data  
+- Add interactive elements from packages above to a dashboard made with **flexdashboard**  
+
+### Resources
+
+[Intro to **htmlwidgets**](https://www.htmlwidgets.org/)  
+[Using **plotly** from R](https://plotly.com/r/)  
+[Interactive R data objects with **DT**](https://rstudio.github.io/DT/)  
+[Interactive maps with **leaflet**](https://rstudio.github.io/leaflet/)  
+[Charting time series data in R with **dygraphs**](https://rstudio.github.io/dygraphs/)  
+[Interactive dashboards in R with **flexdashboard**](https://rmarkdown.rstudio.com/flexdashboard/)
+
+### Materials for class
+
+We are exploring a variety of packages this week. Make sure you have current versions of: **htmlwidgets**, **palmerpenguins**, **ggplot2**, **plotly**, **DT**, **leaflet**, **dygraph**, **flexdashboard**
+
+Week 08 slides in progress  
+Save `week08_interactivity.Rmd` to run code and knit to HTML output during the session  

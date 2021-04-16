@@ -1085,7 +1085,7 @@ class: hide-logo
 
 - We'll briefly explore a few packages for making interactive plots and tables that can be used with HTML outputs  
 - We'll end by making a simple dashboard with package **flexdashboard**  
-- Make sure you have current versions of **htmlwidgets**, **plotly**, **leaflet**, **dygraphs**, **DT**, and **flexdashboard** installed  
+- Make sure you have current versions of **htmlwidgets**, **palmerpenguins**, **ggplot2**, **plotly**, **DT**, **leaflet**, **dygraphs**, and **flexdashboard** installed  
 
 .footnote[
 [Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
