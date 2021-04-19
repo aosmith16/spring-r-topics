@@ -170,11 +170,11 @@ Install [GitKraken](https://www.gitkraken.com/) on your computer. Also make sure
 
 [Week 07 slides](slides/week07_more_git.html)
 
-## Week 8: Adding interactive elements to static HTML documents
+## Week 8: Using interactive elements in static HTML documents
 
 ### Goals
 
-This week we will explore a handful of packages based on **htmlwidgets** for adding interactive elements to static HTML documents. We will finish by looking at a basic **flexdashboard**. 
+This week we will explore a handful of packages based on **htmlwidgets** for adding interactive elements to static HTML documents. We will finish by looking at how to combine interactive elements into basic dashboard with **flexdashboard**. 
 
 We will
 
@@ -191,7 +191,7 @@ We will
 [Interactive R data objects with **DT**](https://rstudio.github.io/DT/)  
 [Interactive maps with **leaflet**](https://rstudio.github.io/leaflet/)  
 [Charting time series data in R with **dygraphs**](https://rstudio.github.io/dygraphs/)  
-[Interactive dashboards in R with **flexdashboard**](https://rmarkdown.rstudio.com/flexdashboard/)
+[Interactive dashboards in R with **flexdashboard**](https://rmarkdown.rstudio.com/flexdashboard/)  
 
 ### Materials for class
 

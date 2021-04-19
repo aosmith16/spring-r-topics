@@ -36,6 +36,8 @@
     <script src="week04_gt_tables_files/tiny.toast/toast.min.js"></script>
     <link href="week04_gt_tables_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
     <script src="week04_gt_tables_files/xaringanExtra-broadcast/broadcast.js"></script>
+    <link href="week04_gt_tables_files/pagedtable/css/pagedtable.css" rel="stylesheet" />
+    <script src="week04_gt_tables_files/pagedtable/js/pagedtable.js"></script>
     <link href="week04_gt_tables_files/countdown/countdown.css" rel="stylesheet" />
     <script src="week04_gt_tables_files/countdown/countdown.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -217,17 +219,14 @@ gtcars_small
 ]
 
 .pull-right[
+&lt;br/&gt;&lt;br/&gt;
 
 
-
-|mfr       |model    | year| mpg_c| mpg_h|ctry_origin   |   msrp|
-|:---------|:--------|----:|-----:|-----:|:-------------|------:|
-|Ford      |GT       | 2017|    11|    18|United States | 447000|
-|Acura     |NSX      | 2017|    21|    22|Japan         | 156000|
-|Nissan    |GT-R     | 2016|    16|    22|Japan         | 101770|
-|Chevrolet |Corvette | 2016|    15|    22|United States |  88345|
-|Dodge     |Viper    | 2017|    12|    19|United States |  95895|
-|Tesla     |Model S  | 2017|    NA|    NA|United States |  74500|
+&lt;div data-pagedtable="false"&gt;
+  &lt;script data-pagedtable-source type="application/json"&gt;
+{"columns":[{"label":["mfr"],"name":[1],"type":["chr"],"align":["left"]},{"label":["model"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mpg_c"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mpg_h"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["ctry_origin"],"name":[6],"type":["chr"],"align":["left"]},{"label":["msrp"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Ford","2":"GT","3":"2017","4":"11","5":"18","6":"United States","7":"447000"},{"1":"Acura","2":"NSX","3":"2017","4":"21","5":"22","6":"Japan","7":"156000"},{"1":"Nissan","2":"GT-R","3":"2016","4":"16","5":"22","6":"Japan","7":"101770"},{"1":"Chevrolet","2":"Corvette","3":"2016","4":"15","5":"22","6":"United States","7":"88345"},{"1":"Dodge","2":"Viper","3":"2017","4":"12","5":"19","6":"United States","7":"95895"},{"1":"Tesla","2":"Model S","3":"2017","4":"NA","5":"NA","6":"United States","7":"74500"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
 ]
 
 ???
@@ -339,6 +338,8 @@ gtcars_small %&gt;%
 
 &lt;br/&gt;&lt;br/&gt;
 The table on the right shows the default output style for **gt** tables.
+
+I'll use pipe syntax throughout but you can use nested syntax like, e.g., `gt(gtcars_small)`.
 ]
 
 .pull-right[
@@ -357,7 +358,7 @@ Our first topic will be cleaning up the table body and columns.
 
 The [`cols_*()` functions](https://gt.rstudio.com/reference/index.html#section-modify-columns) allow for modifications of entire columns.
 
-We can control the column labels, cell alignment, column width and placement plus combine multiple columns with `cols_*()` functions.
+We can control the column labels, cell alignment, column width and placement plus can combine multiple columns with `cols_*()` functions.
 
 ---
 
@@ -418,7 +419,7 @@ Of course this means you need to know markdown or HTML syntax. If you don't you 
 
 ### Column alignment
 
-Align all text within different columns using `cols_align()`. Most often we left-align text with varying length and right-align numbers.
+Align all text within a column using `cols_align()`. Most commonly we left-align text with varying length and right-align numbers.
 
 .pull-left[
 
@@ -627,8 +628,8 @@ gtcars_small %&gt;%
 &lt;br/&gt;
 ***Code notes:***  
 -Combine the two `mpg` columns to show range of mileage in one column  
--Combined values have space between them  
--By default the name of new column comes from first column listed  
+-Combined values have space between them by default   
+-By default the name of new column based on first column listed  
 ]
 
 .pull-right[
@@ -676,7 +677,7 @@ Using the `gtcars_small` dataset:
 -   Move `year` to be the first column, followed by `ctry_origin`.
 
 
-<div class="countdown" id="timer_607887be" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607dfbba" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -738,7 +739,7 @@ gtcars_small %&gt;%
 *       columns = vars(msrp),
 *       decimals = 0,
 *       suffixing = TRUE
-    )
+*   )
 ```
 ***Code notes:***  
 -`decimals` defaults to 2   
@@ -776,7 +777,7 @@ gtcars_small %&gt;%
 ```
 
 &lt;br/&gt;
-***Code notes:***  `USD` is the default currency symbol, although I wrote it out here  
+***Code notes:***  `USD` is the default currency symbol, although it is written out explicitly here  
 ]
 
 .pull-right[
@@ -993,7 +994,7 @@ You will be using `mtcars_small` for this exercise.
 -   Replace the missing value in `qsec` with "missing".
 -   Add the `yen` currency symbol to `hp` with 0 decimal places.
 
-<div class="countdown" id="timer_60788738" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607dfd55" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1038,7 +1039,7 @@ mtcars_small %&gt;%
 
 Let's switch to thinking about the table rows.
 
-The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add grouping to put rows in different groups.
+The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add grouping to separate rows in distinct groups.
 
 ---
 
@@ -1073,7 +1074,7 @@ You can see the column is moved to the beginning of the table and, by default, d
 
 Adding row groups helps organize a table. This can be done by assigning a grouping variable with `groupname_col` in `gt()`. You can also pass a grouped dataset from **dplyr** to set the groups.
 
-Let's group by `ctry_origin` to organize the output table rows in groups by country.
+Let's group by `"ctry_origin"` to organize the output table rows in groups by country.
 
 .pull-left[
 
@@ -1105,7 +1106,7 @@ Default order of groups is from order of variable in table. Change with row_grou
 
 In many cases we'll want to have a row names column when we have groups to help organize the table even more.
 
-Let's group by `ctry_origin` and put `year` as the row names.
+Let's group by `"ctry_origin"` and put `"year"` as the row names.
 
 .pull-left[
 
@@ -1167,7 +1168,7 @@ Note how Tesla doesn't fall in a group because it has NA for mpg_c. By default t
 
 ### Summary rows
 
-Once we have groups, we may want to add summaries for each group.
+Once we have groups, we may want to add summaries for each group with `summary_rows()`.
 
 .pull-left[
 
@@ -1241,7 +1242,9 @@ gtcars_small %&gt;%
 
 ### Summary rows
 
-Watch out for missing values when summarizing. Also you likely noted non-summarized columns are given `---`. Change this with `missing_text` argument. 
+Watch out for missing values when summarizing. 
+
+You likely noted non-summarized columns are given `---`. Change this with `missing_text` argument. 
 
 .pull-left[
 .smaller[
@@ -1343,7 +1346,7 @@ Take `gtcars_small` and do the following:
 -   Add the total `msrp` per group with the row name "Total"
 -   Finally, add the overall total `msrp` across groups with the row name "Overall"
 
-<div class="countdown" id="timer_607887af" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607dfd90" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1613,7 +1616,7 @@ Using the `mtcars_small` dataset
 -   Add a source note to indicate the data are from a 1974 issue of Motor Trend magazine
 -   Add a footnote to describe `disp` (engine displacement in cubic inches)
 
-<div class="countdown" id="timer_607886ee" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_607dfdb6" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1713,7 +1716,7 @@ I found that the font displayed in-line in my R Markdown document but the font d
 
 ### Table output options
 
-Much of the work styling the table overall is done in the `tab_options()` function. Much like `themes()` from **ggplot2**, there are an enormous number of options.
+Much of the work styling the table overall is done in the `tab_options()` function. Much like `theme()` from **ggplot2**, there are an enormous number of options.
 
 .pull-left[
 .smaller[
@@ -1784,7 +1787,7 @@ gtcars_small %&gt;%
 
 ## Saving tables
 
-The workhorse of saving tables is `gtsave()`.
+The workhorse 🐴 for saving tables is `gtsave()`.
 
 From the documentation
 
@@ -1792,13 +1795,13 @@ From the documentation
 
 --
 
-You pass in a **gt** object to the `data()` argument and then set the file name in `filename`. If you want to save them somewhere outside your working directory set the path with `path`.
+You pass in a **gt** object to the `data` argument and then set the file name in `filename`. If you want to save a table somewhere outside your working directory set the path with `path`.
 
 ---
 
 ## Saving tables
 
-We can practice by naming one of our tables. So far we've only been printing them.
+We can practice saving after naming one of our tables. So far we've only been printing the output.
 
 
 ```r

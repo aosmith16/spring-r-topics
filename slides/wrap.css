@@ -1,5 +1,6 @@
 pre {
   white-space: pre-wrap;
+  max-width: 100%;
 }
 
 .tiny .remark-code { /*Change made here*/
@@ -8,4 +9,27 @@ pre {
 
 .smaller .remark-code { /*Change made here*/
   font-size: 70% !important;
+}
+
+.with-logo::before {
+	content: '';
+	width: 110px;
+	height: 126px;
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.logo-penguins::before {
+	background-image: url(figs/week08_files/palmer_penguins.png);
+}
+.logo-plotly::before {
+	background-image: url(figs/week08_files/plotly.png);
+}
+.logo-leaflet::before {
+	background-image: url(figs/week08_files/leaflet.png);
+}
+.logo-flex::before {
+	background-image: url(figs/week08_files/flexdashboard.png);
 }

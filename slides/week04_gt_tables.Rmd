@@ -240,6 +240,7 @@ gtcars_small
 ]
 
 .pull-right[
+<br/><br/>
 ```{r, echo = FALSE}
 gtcars_small = gtcars %>%
     filter(ctry_origin %in% c("United States", "Japan")) %>%
@@ -247,7 +248,7 @@ gtcars_small = gtcars %>%
 ```
 
 ```{r gtcars-out, echo = FALSE}
-knitr::kable(gtcars_small)
+rmarkdown::paged_table(gtcars_small)
 ```
 ]
 
@@ -363,6 +364,8 @@ gtcars_small %>%
 
 <br/><br/>
 The table on the right shows the default output style for **gt** tables.
+
+I'll use pipe syntax throughout but you can use nested syntax like, e.g., `gt(gtcars_small)`.
 ]
 
 .pull-right[
@@ -383,7 +386,7 @@ Our first topic will be cleaning up the table body and columns.
 
 The [`cols_*()` functions](https://gt.rstudio.com/reference/index.html#section-modify-columns) allow for modifications of entire columns.
 
-We can control the column labels, cell alignment, column width and placement plus combine multiple columns with `cols_*()` functions.
+We can control the column labels, cell alignment, column width and placement plus can combine multiple columns with `cols_*()` functions.
 
 ---
 
@@ -446,7 +449,7 @@ Of course this means you need to know markdown or HTML syntax. If you don't you 
 
 ### Column alignment
 
-Align all text within different columns using `cols_align()`. Most often we left-align text with varying length and right-align numbers.
+Align all text within a column using `cols_align()`. Most commonly we left-align text with varying length and right-align numbers.
 
 .pull-left[
 ```{r gt04, eval = FALSE}
@@ -660,8 +663,8 @@ gtcars_small %>%
 <br/>
 ***Code notes:***  
 -Combine the two `mpg` columns to show range of mileage in one column  
--Combined values have space between them  
--By default the name of new column comes from first column listed  
+-Combined values have space between them by default   
+-By default the name of new column based on first column listed  
 ]
 
 .pull-right[
@@ -782,7 +785,7 @@ gtcars_small %>%
         columns = vars(msrp),#<<
         decimals = 0,#<<
         suffixing = TRUE#<<
-    )
+    ) #<<
 ```
 ***Code notes:***  
 -`decimals` defaults to 2   
@@ -821,7 +824,7 @@ gtcars_small %>%
 ```
 
 <br/>
-***Code notes:***  `USD` is the default currency symbol, although I wrote it out here  
+***Code notes:***  `USD` is the default currency symbol, although it is written out explicitly here  
 ]
 
 .pull-right[
@@ -1094,7 +1097,7 @@ knitr::include_graphics("figs/week04_files/yt2.png")
 
 Let's switch to thinking about the table rows.
 
-The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add grouping to put rows in different groups.
+The rows are what **gt** refers to as the *stub*. The stub is often a column of row labels that doesn't have (or need) a column label. We can also add grouping to separate rows in distinct groups.
 
 ---
 
@@ -1130,7 +1133,7 @@ You can see the column is moved to the beginning of the table and, by default, d
 
 Adding row groups helps organize a table. This can be done by assigning a grouping variable with `groupname_col` in `gt()`. You can also pass a grouped dataset from **dplyr** to set the groups.
 
-Let's group by `ctry_origin` to organize the output table rows in groups by country.
+Let's group by `"ctry_origin"` to organize the output table rows in groups by country.
 
 .pull-left[
 ```{r gt22, eval = FALSE}
@@ -1163,7 +1166,7 @@ Default order of groups is from order of variable in table. Change with row_grou
 
 In many cases we'll want to have a row names column when we have groups to help organize the table even more.
 
-Let's group by `ctry_origin` and put `year` as the row names.
+Let's group by `"ctry_origin"` and put `"year"` as the row names.
 
 .pull-left[
 ```{r gt23, eval = FALSE}
@@ -1227,7 +1230,7 @@ Note how Tesla doesn't fall in a group because it has NA for mpg_c. By default t
 
 ### Summary rows
 
-Once we have groups, we may want to add summaries for each group.
+Once we have groups, we may want to add summaries for each group with `summary_rows()`.
 
 .pull-left[
 ```{r gt25, eval = FALSE}
@@ -1303,7 +1306,9 @@ knitr::include_graphics("figs/week04_files/gt26.png")
 
 ### Summary rows
 
-Watch out for missing values when summarizing. Also you likely noted non-summarized columns are given `---`. Change this with `missing_text` argument. 
+Watch out for missing values when summarizing. 
+
+You likely noted non-summarized columns are given `---`. Change this with `missing_text` argument. 
 
 .pull-left[
 .smaller[
@@ -1791,7 +1796,7 @@ I found that the font displayed in-line in my R Markdown document but the font d
 
 ### Table output options
 
-Much of the work styling the table overall is done in the `tab_options()` function. Much like `themes()` from **ggplot2**, there are an enormous number of options.
+Much of the work styling the table overall is done in the `tab_options()` function. Much like `theme()` from **ggplot2**, there are an enormous number of options.
 
 .pull-left[
 .smaller[
@@ -1864,7 +1869,7 @@ knitr::include_graphics("figs/week04_files/gt40.png")
 
 ## Saving tables
 
-The workhorse of saving tables is `gtsave()`.
+The workhorse `r emo::ji("horse")` for saving tables is `gtsave()`.
 
 From the documentation
 
@@ -1872,13 +1877,13 @@ From the documentation
 
 --
 
-You pass in a **gt** object to the `data()` argument and then set the file name in `filename`. If you want to save them somewhere outside your working directory set the path with `path`.
+You pass in a **gt** object to the `data` argument and then set the file name in `filename`. If you want to save a table somewhere outside your working directory set the path with `path`.
 
 ---
 
 ## Saving tables
 
-We can practice by naming one of our tables. So far we've only been printing them.
+We can practice saving after naming one of our tables. So far we've only been printing the output.
 
 ```{r, eval = FALSE}
 gt_output = gtcars_small %>%
