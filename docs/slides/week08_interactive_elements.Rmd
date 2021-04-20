@@ -110,7 +110,7 @@ There is so much more you can do with each of these tools that this session will
 ## Resources
 
 - [Intro to **htmlwidgets**](https://www.htmlwidgets.org/)   
-- [Using **plotly** from R](https://plotly.com/r/)  
+- [Using **plotly** for interactive plots](https://plotly.com/r/)  
 - [Interactive R data objects with **DT**](https://rstudio.github.io/DT/)    
 - [Interactive maps with **leaflet**](https://rstudio.github.io/leaflet/)    
 - [Charting time series data in R with **dygraphs**](https://rstudio.github.io/dygraphs/)  
@@ -277,8 +277,8 @@ class: with-logo logo-plotly
 
 .pull-left[
 ```{r, echo = FALSE}
-gp2 = ggplotly(g1)
-frameWidget(gp2, width = "95%")
+gp2 = ggplotly(g1, tooltip = c("y", "x"))
+frameWidget(gp2, width = "80%")
 ```
 ]
 
@@ -311,7 +311,7 @@ class: with-logo logo-plotly
 
 ### Linking two plots
 
-Then we'll make two **ggplot2** plots based on this highlighted dataset. The first is the same scatterplot we used before but with the species information and the second is `flipper_length_mm` vs `body_mass_g`.
+Then we'll make two **ggplot2** plots based on this highlighted dataset. The first is the same scatterplot we used before without the species info and the second is `flipper_length_mm` vs `body_mass_g`.
 
 ```{r}
 g2 = ggplot(data = peng2, aes(x = bill_depth_mm, 
@@ -331,7 +331,7 @@ class: with-logo logo-plotly
 
 ### Linking two plots
 
-Now we link the plots together using the `subplot()` function and use the `highlight()` function to allow selection across the two no-linked plots. 
+Now we link the plots together using the `subplot()` function and use the `highlight()` function to allow selection across the two now-linked plots. 
 
 ```{r, eval = FALSE}
 g2 %>%
@@ -347,7 +347,7 @@ class: with-logo logo-plotly
 ### Linking two plots
 
 .pull-left[
-```{r echo = FALSE}
+```{r, echo = FALSE}
 gp3 = g2 %>%
   subplot(g3) %>%
   highlight(on = "plotly_selected",
@@ -365,3 +365,179 @@ When we select in the first, the same points are selected in the second. This al
 
 ## Interactive data with **DT**
 
+The [**DT** package](https://rstudio.github.io/DT/) allows us to display R data objects such as data.frames as interactive tables of data in HTML outputs.
+
+For example, it provides the user the ability to filter and sort the data in the output table.  
+
+--
+
+Start by loading package **DT**.
+
+```{r, message = FALSE, warning = FALSE}
+library(DT) # v. 0.18
+```
+
+---
+
+## Interactive data with **DT**
+
+The `datatable()` function creates the interactive output.
+
+Much of the time I think using `datatable()` directly will be sufficient for what we want.
+
+Add the code below and knit to start exploring the default output from `datatable()`.
+
+```{r, eval = FALSE}
+datatable(penguins)
+```
+
+---
+## Interactive data with **DT**
+
+.pull-left[
+```{r, echo = FALSE}
+dt1 = datatable(penguins,
+                extensions = list('FixedColumns',
+                                  'Scroller'),
+                options = list(
+                  deferRender = TRUE,
+                  scrollY = 200,
+                  scroller = TRUE,
+                  fixedColumns = TRUE))
+frameWidget(dt1)
+```
+]
+
+
+.pull-right[
+Take a few minutes and explore the output after knitting.
+
+The results are *paginated*, defaulting to showing 10 rows per page. Click on a page to move through more rows. Change the number of rows showing with the drop-down menu.
+
+You can sort by columns and filter to values using the overall search box.
+]
+
+---
+
+### Change table options
+
+There are so many options you can change via the `options` argument that the have their own [own article on the **DT** website](https://rstudio.github.io/DT/options.html).
+
+Here we change the default page length to 5 and the numbers in the drop down menu of page lengths to 5, 7, or 10.
+
+```{r, eval = FALSE}
+datatable(penguins,
+          options = list(pageLength = 5,
+                         lengthMenu = c(5, 7, 10)))
+```
+
+---
+
+### Change table options
+
+.pull-left[
+```{r, echo = FALSE}
+dt3 = datatable(penguins,
+                extensions = list('FixedColumns',
+                                  'Scroller'),
+                options = list(
+                  deferRender = TRUE,
+                  scrollY = 200,
+                  scroller = TRUE,
+                  fixedColumns = TRUE,
+                  pageLength = 5,
+                  lengthMenu = c(5, 7, 10)))
+frameWidget(dt3)
+```
+]
+
+
+.pull-right[
+The table now shows fewer rows.
+
+We also now have only the three options for how many rows to show at one time.
+]
+
+---
+
+### Add column filters
+
+We can generate filters for each column in addition to the overall `Search` by adding the `filter` argument. We'll place these at the `top` of the table.
+
+```{r}
+datatable(penguins,
+          filter = "top",
+          options = list(autoWidth = TRUE,
+                         columnDefs = list(list(width = '80px', targets = "_all"))))
+```
+
+
+In some cases columns are too narrow for the categorical variable filter boxes. Here I widen them in `options` following [this Stack Overflow post](https://stackoverflow.com/a/31814197/2461552).
+
+???
+
+Other options are none (default) and bottom
+
+---
+
+### Add column filters
+
+.pull-left[
+```{r, echo = FALSE}
+dt2 = datatable(penguins,
+                filter = "top",
+                extensions = list('FixedColumns',
+                                  'Scroller'),
+                options = list(
+                  deferRender = TRUE,
+                  scrollY = 200,
+                  scroller = TRUE,
+                  fixedColumns = TRUE,
+                  autoWidth = TRUE,
+                  columnDefs = list(list(width = '80px', targets = "_all"))) )
+frameWidget(dt2)
+```
+]
+
+
+.pull-right[
+Now you can filter by specific columns. 
+
+Numeric columns get range sliders and character columns get select drop-down menus.
+]
+
+---
+
+class: with-logo logo-leaflet
+
+## Interactive maps with **leaflet**
+
+
+```{r}
+library(leaflet) # v. 2.0.4.1
+```
+
+```{r, eval = FALSE}
+# Oregon climate station data, https://pjbartlein.github.io/GeogDataAnalysis/datasets.html
+orstationc = read.csv("https://pjbartlein.github.io/GeogDataAnalysis/data/csv/orstationc.csv")
+head(orstationc)
+
+pal = colorQuantile(palette = "YlOrRd", domain = NULL, n = 8)
+leaflet(data = orstationc) %>% 
+    addTiles() %>%
+    addCircleMarkers(color = ~pal(tjul),
+                     label = ~tjul,
+                     popup = ~Name)
+
+
+
+# Corvallis
+leaflet() %>% 
+    setView(lng = -123.2620, lat = 44.5646, zoom = 12) %>%
+    addTiles() %>%
+    addAwesomeMarkers(lng = -123.2794, lat = 44.5638, 
+                      icon = awesomeIcons(), 
+                      popup = "Oregon State University")
+```
+
+---

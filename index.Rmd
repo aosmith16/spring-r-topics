@@ -60,7 +60,7 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **ggplot2 v. 3.3.3** (*Week 8*)  
 **palmerpenguins v. 0.1.0** (*Week 8*)  
 **plotly v. 4.9.3** (*Week 8*)   
-**DT v 0.18** (*Week 8*)  
+**DT v. 0.18** (*Week 8*)  
 **leaflet v. 2.0.4.1** (*Week 8*)  
 **dygraphs v. 1.1.1.6** (*Week 8*)  
 **flexdashboard v. 0.5.2** (*Week 8*)  
