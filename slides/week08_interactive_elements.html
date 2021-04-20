@@ -76,13 +76,13 @@ class: center, middle, inverse, title-slide
 
 **Practice adding interactive elements to static HTML documents**
 
-We will  
+Today is like a tasting menu of tools. We will briefly explore  
 
-- Use **plotly** to add interactivity to plots made with **ggplot2**  
-- Use **DT** to allow for users to interact with a dataset  
-- Look at **leaflet** for interactive maps  
-- Use **dygraph** to make interactive plots of time series data  
-- Add interactive elements from packages above to a dashboard made with **flexdashboard**  
+- **plotly** to add interactivity to plots made with **ggplot2**  
+- **DT** to allow for users to interact with a dataset  
+- **leaflet** for interactive maps  
+- **dygraph** to make interactive plots of time series data  
+- Adding interactive elements from packages above to a dashboard made with **flexdashboard**  
 
 --
 
@@ -90,6 +90,10 @@ We will
 *Before we begin:*
 
 Make sure you saved `week08_interaction.Rmd` from the class website onto your computer. We will be adding code and knitting to HTML within this file.
+
+???
+
+There is so much more you can do with each of these tools that this session will barely scratch the surface
 
 ---
 
@@ -129,7 +133,9 @@ class: center, middle, inverse, hide-logo
 
 ## R packages 
 
-We'll be loading additional packages as we go so we can see which package we are using in each section. We'll also be using **palmerpenguins 0.2.2** and **ggplot2 1.0.5** today, which we'll load now. 
+Load **palmerpenguins 0.2.2** and **ggplot2 1.0.5** now.
+
+We'll be loading additional packages as we go so we are clear on which package we are using in each section.  
 
 
 ```r
@@ -143,7 +149,7 @@ class: with-logo logo-penguins
 
 ## Penguin dataset
 
-We will work with the Palmer penguin data when practicing with the first two packages.
+We will work with the Palmer penguin data while exploring the first two packages.
 
 This dataset includes various size measurements for three penguin species on the Palmer Archipelago, as well as `sex` and measurement `year`. See `?penguins` for more information.
 
@@ -177,7 +183,7 @@ In R, the **plotly** package is for building stand-alone interactive graphics or
 
 We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
 
-We'll need to load the package first.
+First, load the **plotly** package.
 
 
 ```r
@@ -190,7 +196,7 @@ class: with-logo logo-plotly
 
 ## Using plotly with ggplot2 plots
 
-We'll start by making a **ggplot2** scatterplot of `bill_length_mm` vs `bill_depth_mm` for each `species` of penguin. We'll name the plot `g1`.
+The first step is to make a standard **ggplot2** plot. Here we make a scatterplot of `bill_length_mm` vs `bill_depth_mm` for each `species` of penguin. The plot is named `g1`.
 
 
 ```r
@@ -201,7 +207,7 @@ g1 = ggplot(data = penguins, aes(x = bill_depth_mm,
 ```
 
 &lt;br/&gt;&lt;br/&gt;
-No reason to print this plot unless you are interested in it. Instead let's jump to looking at the interactive version.
+You are welcome to add code to print this plot if you'd like but we won't do it here. Instead let's jump to adding interactivity.
 
 ---
 
@@ -209,7 +215,7 @@ class: with-logo logo-plotly
 
 ## Using plotly with ggplot2 plots
 
-We use `ggplotly()` to convert a plot made with **ggplot2** into an interactive **plotly** object.  
+We can use `ggplotly()` to convert a plot made with **ggplot2** into an interactive **plotly** object.  
 
 
 ```r
@@ -228,19 +234,132 @@ class: with-logo logo-plotly
 ## Using plotly with ggplot2 plots
 
 .pull-left[
-<div id="htmlwidget-386bcda8659c29e38a54" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-386bcda8659c29e38a54">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-922c9f25fd0b427ee8f1" style="width:95%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-922c9f25fd0b427ee8f1">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 .pull-right[
-Take a few minutes to explore the interactive features, such as zooming, panning, selecting, and hovering. 
+Take a few minutes to explore the interactive features, such as zooming, panning, and hovering. 
 
 Click on legend items to focus on one group. 
 
-Double click to reset the plot after you interact with one element.
+Double click the plot or click on the "Reset axes" button to reset.
+]
+
+???
+
+The selection tool seems to be most useful when you want to make interactive output (like in a shiny app) but you can link two plots together using `highlight_key()`.
+
+---
+
+class: with-logo logo-plotly
+
+### Changing the hover text
+
+A **tooltip** is generic term for the text that pops up when hovering over an interactive element. By default, `ggplotly()` includes all plotted data in the tooltip.
+
+We can change this with the `tooltip` argument in `ggplotly()`. 
+
+Let's get just the `y` and `x` values (in that order), leaving the `color` values out of the tooltip.
+
+
+```r
+ggplotly(g1, tooltip = c("y", "x"))
+```
+
+---
+
+class: with-logo logo-plotly
+
+### Changing the hover text
+
+.pull-left[
+<div id="htmlwidget-8eb9f32e85dd405efb83" style="width:95%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8eb9f32e85dd405efb83">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+.pull-right[
+After adding the code and knitting you will see the tooltip info has changed. 
 ]
 
 ---
+
+class: with-logo logo-plotly
+
+### Linking two plots
+
+You may have noted that you could select or *highlight* points in the scatterplot but then couldn't do anything with them.  
+
+The select tool becomes most useful if including the plot in a larger app, but there are also some built-in tools in **plotly** where selection is useful. This makes use of package **crosstalk** under the hood.
+
+--
+
+&lt;br/&gt;&lt;br/&gt;
+We start by using `highlight_key()` on the dataset we are plotting.
+
+
+```r
+peng2 = highlight_key(penguins)
+```
+
+---
+
+class: with-logo logo-plotly
+
+### Linking two plots
+
+Then we'll make two **ggplot2** plots based on this highlighted dataset. The first is the same scatterplot we used before but with the species information and the second is `flipper_length_mm` vs `body_mass_g`.
+
+
+```r
+g2 = ggplot(data = peng2, aes(x = bill_depth_mm, 
+                              y = bill_length_mm)) +
+    geom_point()
+```
+
+
+```r
+g3 = ggplot(data = peng2, aes(x = body_mass_g, 
+                              y = flipper_length_mm)) +
+    geom_point()
+```
+
+---
+
+class: with-logo logo-plotly
+
+### Linking two plots
+
+Now we link the plots together using the `subplot()` function and use the `highlight()` function to allow selection across the two no-linked plots. 
+
+
+```r
+g2 %&gt;%
+  subplot(g3) %&gt;%
+  highlight(on = "plotly_selected",
+            off = "plotly_deselect")
+```
+
+---
+
+class: with-logo logo-plotly
+
+### Linking two plots
+
+.pull-left[
+<div id="htmlwidget-b0eaa18318d2bd87eb61" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b0eaa18318d2bd87eb61">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-12.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+
+.pull-right[
+When we select in the first, the same points are selected in the second. This allows the user to explore more variables at one time.
+]
+
+---
+
+## Interactive data with **DT**
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

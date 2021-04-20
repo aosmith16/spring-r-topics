@@ -466,7 +466,7 @@ gtcars_small %>%
 ```
 
 ***Code notes:***  
--Choose multiple `columns` to align with `vars()`  
+-Choose `columns` to align with `vars()`  
 -Changing *labels* doesn't change variable name
 ]
 
