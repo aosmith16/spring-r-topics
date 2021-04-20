@@ -273,6 +273,8 @@ gtcars_small %>%
 
 Write code in the empty code chunk below.
 
+Starting with the `cols_merge()` code chunk we just used above, do the following:
+
 -   We just made a new *merged* column called `mpg_c`. Change the name of this column to `Range`.
 -   Change the name of `ctry_origin` to `Origin`.
 -   Move `year` to be the first column, followed by `ctry_origin`.
@@ -895,8 +897,8 @@ For the final practice exercise you will clean up the small table of results nam
 
 Here's what you should do:
 
--   Use `contrast` as the row group
 -   Use `litterspp` as the row names
+-   Use `contrast` as the row group
 -   Increase the column width of `litterspp` to 100 px
 -   Round the numeric columns to a single decimal place
 -   Change the label of `ratio` to "Ratio"

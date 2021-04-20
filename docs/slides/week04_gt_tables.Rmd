@@ -709,7 +709,7 @@ knitr::include_graphics("figs/week04_files/gt11.png")
 
 Write code in the empty code chunk that is provided. 
 
-Using the `gtcars_small` dataset:  
+Starting with the code above where we used `cols_merge()` on the `gtcars_small` dataset :  
 -   We just made a new *merged* column called `mpg_c`. Change the name of this column to `Range`.
 -   Change the name of `ctry_origin` to `Origin`.
 -   Move `year` to be the first column, followed by `ctry_origin`.
@@ -1051,7 +1051,7 @@ You will be using `mtcars_small` for this exercise.
 -   Add the `yen` currency symbol to `hp` with 0 decimal places.
 
 ```{r, echo = FALSE}
-countdown(minutes = 7, 
+countdown(minutes = 5, 
           bottom = 0)
 ```
 
@@ -1693,7 +1693,7 @@ Using the `mtcars_small` dataset
 -   Add a footnote to describe `disp` (engine displacement in cubic inches)
 
 ```{r, echo = FALSE}
-countdown(minutes = 7, 
+countdown(minutes = 5, 
           bottom = 0)
 ```
 
@@ -1959,8 +1959,8 @@ Open the saved tables to get a sense of what they look like.
 For the final practice exercise you will clean up the small table of results named `results` and save it.
 
 Here's what you should do:  
--   Use `contrast` as the row group
 -   Use `litterspp` as the row names
+-   Use `contrast` as the row group
 -   Increase the column width of `litterspp` to 100 px
 -   Round the numeric columns to a single decimal place
 -   Change the label of `ratio` to "Ratio"
