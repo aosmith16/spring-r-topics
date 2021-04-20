@@ -140,7 +140,9 @@ class: center, middle, inverse, hide-logo
 
 ## R packages 
 
-We'll be loading additional packages as we go so we can see which package we are using in each section. We'll also be using **palmerpenguins 0.2.2** and **ggplot2 1.0.5** today, which we'll load now. 
+Load **palmerpenguins 0.2.2** and **ggplot2 1.0.5** now.
+
+We'll be loading additional packages as we go so we are clear on which package we are using in each section.  
 
 ```{r, message = FALSE, warning = FALSE}
 library(palmerpenguins) # v. 0.1.0

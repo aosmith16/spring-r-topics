@@ -1,13 +1,35 @@
 ---
 title: "Interactive elements in HTML documents"
-output: html_document
+output: 
+  html_document:
+      toc: TRUE
+      toc_float: TRUE
+      df_print: "paged"
+date: "May 18, 2021"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Document for adding code and knitting in class 8
+Use this document to add code and knit to explore options for adding interactive elements to HTML documents.  
+
+Unlike in previous weeks, not all code is present in the document yet. You will be copy-pasting or typing in code to some of the code chunks from the slides. Then knit and explore HTML output document.
+
+You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/slides/week08_interactive_tables.html#1). The slides contain introductory material as well as a list of resources on the various **htmlwidgets** we are going to explore that aren't included here.
+
+## R packages
+
+Be sure to run code chunks in order, starting with loading packages.
+
+Load **palmerpenguins 0.2.2** and **ggplot2 1.0.5** now.
+
+We'll be loading additional packages as we go so we are clear on which package we are using in each section.  
+
+```{r, message = FALSE, warning = FALSE}
+library(palmerpenguins) # v. 0.1.0
+library(ggplot2) # v. 3.3.3
+```
 
 ```{r cars}
 library(plotly)
