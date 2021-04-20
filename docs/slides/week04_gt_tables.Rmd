@@ -167,7 +167,7 @@ Reminder these are display tables of output
 There are many great packages for making display tables in R.
 
 These include:
-- **kable** and **kableExtra**, which are relatively mature  
+- `knitr::kable()` and **kableExtra**, which are relatively mature  
 - **flextable**, a great option for making Word tables
 - **reactable** for making *interactive* tables
 - And so many more!   
@@ -282,7 +282,7 @@ mtcars_small
 ]
 
 .pull-right[
-<br/><br/><br/>
+<br/><br/>
 ```{r, echo = FALSE}
 mtcars_small = mtcars %>%
     head() %>%

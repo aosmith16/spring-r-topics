@@ -1,0 +1,246 @@
+---
+title: 'Interactive elements in HTML documents'
+subtitle: '`r anicon::faa("rocket", animate = "spin", anitype = "hover", color = "#F4790B", size = "lg", grow = 15)`'
+author: 
+  - "<br/><br/><br/>Ariel Muldoon"
+date: 'May 18, 2021'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, wrap.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+      beforeInit: "https://platform.twitter.com/widgets.js"
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+library(formatR)
+library(widgetframe)
+```
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1c5253",
+  secondary_color = "#F4790B",
+  inverse_header_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  base_font_size = "22px",
+  link_color = "#F4790B",
+  code_highlight_color = "rgba(244, 121, 11, 0.5)"
+)
+```
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+    meta_name("github-repo" = "aosmith16/spring-r-topics") %>% 
+    meta_social(
+        title = "Interactive elements in HTML documents",
+        description = "Adding interactive plots and R objects",
+        url = "https://aosmith16.github.io/spring-r-topics/slides/week08_interactive_elements.html",
+        image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week08-share-card.png",
+        image_alt = paste(
+            "Slides discussing a few packages for adding interactive elements to static HTML documents", 
+            "Working sessions class spring 2021"
+        ),
+        og_type = "website",
+        og_author = "Ariel Muldoon",
+        twitter_card_type = "summary",
+        twitter_creator = "@aosmith16"
+    )
+```
+
+```{r xaringan-scribble, echo = FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
+## Today's Goal
+
+**Practice adding interactive elements to static HTML documents**
+
+We will  
+
+- Use **plotly** to add interactivity to plots made with **ggplot2**  
+- Use **DT** to allow for users to interact with a dataset  
+- Look at **leaflet** for interactive maps  
+- Use **dygraph** to make interactive plots of time series data  
+- Add interactive elements from packages above to a dashboard made with **flexdashboard**  
+
+--
+
+<br/>
+*Before we begin:*
+
+Make sure you saved `week08_interaction.Rmd` from the class website onto your computer. We will be adding code and knitting to HTML within this file.
+
+---
+
+
+## Resources
+
+- [Intro to **htmlwidgets**](https://www.htmlwidgets.org/)   
+- [Using **plotly** from R](https://plotly.com/r/)  
+- [Interactive R data objects with **DT**](https://rstudio.github.io/DT/)    
+- [Interactive maps with **leaflet**](https://rstudio.github.io/leaflet/)    
+- [Charting time series data in R with **dygraphs**](https://rstudio.github.io/dygraphs/)  
+- [Interactive dashboards in R with **flexdashboard**](https://rmarkdown.rstudio.com/flexdashboard/)  
+
+.center[
+```{r, echo = FALSE, out.width = "25%", fig.alt = "usethis hex logo"}
+knitr::include_graphics("figs/week08_files/flexdashboard.png")
+```
+]
+
+---
+
+class: center, middle, inverse, hide-logo
+
+# <font style="font-family: cursive; font-style:italic">Let's get started!</font>
+
+---
+
+## Running code
+
+- Open the copy of [`week08_interaction.Rmd`](files/week08_interaction.Rmd) that you saved  
+
+- We'll practice different packages based on **htmlwidgets** to add interactive elements.   
+
+- You will mostly be copying code I provide in the slides and then pasting it into code chunks within `week08_interaction.Rmd`. 
+
+- You will knit after each added code example to explore the new interactive element in the HTML output.
+
+---
+
+## R packages 
+
+We'll be loading additional packages as we go so we can see which package we are using in each section. We'll also be using **palmerpenguins 0.2.2** and **ggplot2 1.0.5** today, which we'll load now. 
+
+```{r, message = FALSE, warning = FALSE}
+library(palmerpenguins) # v. 0.1.0
+library(ggplot2) # v. 3.3.3
+```
+
+---
+
+class: with-logo logo-penguins
+
+## Penguin dataset
+
+We will work with the Palmer penguin data when practicing with the first two packages.
+
+This dataset includes various size measurements for three penguin species on the Palmer Archipelago, as well as `sex` and measurement `year`. See `?penguins` for more information.
+
+Here are the first 5 lines.
+
+```{r gtcars, eval = FALSE}
+head(penguins, n = 5)
+```
+
+```{r gtcars-out, echo = FALSE}
+knitr::kable(head(penguins, n = 5))
+```
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+[Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.  
+
+In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. `r emo::ji("open_mouth")`  
+
+--
+
+We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
+
+We'll need to load the package first.
+
+```{r, message = FALSE, warning = FALSE}
+library(plotly) # v. 4.9.3
+```
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+We'll start by making a **ggplot2** scatterplot of `bill_length_mm` vs `bill_depth_mm` for each `species` of penguin. We'll name the plot `g1`.
+
+```{r}
+g1 = ggplot(data = penguins, aes(x = bill_depth_mm, 
+                                 y = bill_length_mm,
+                                 color = species)) +
+    geom_point()
+```
+
+<br/><br/>
+No reason to print this plot unless you are interested in it. Instead let's jump to looking at the interactive version.
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+We use `ggplotly()` to convert a plot made with **ggplot2** into an interactive **plotly** object.  
+
+```{r plotly1, eval = FALSE}
+ggplotly(g1)
+```
+
+--
+
+<br/><br/>
+After adding the code, knit your version of `week08_interaction.Rmd` to see what this looks like in the output.
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+.pull-left[
+```{r, echo = FALSE}
+gp1 = ggplotly(g1)
+frameWidget(gp1)
+```
+]
+
+.pull-right[
+Take a few minutes to explore the interactive features, such as zooming, panning, selecting, and hovering. 
+
+Click on legend items to focus on one group. 
+
+Double click to reset the plot after you interact with one element.
+]
+
+---

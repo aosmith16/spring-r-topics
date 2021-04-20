@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Interactive elements in HTML documents</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="   Ariel Muldoon" />
+    <meta name="date" content="2021-05-18" />
+    <script src="week08_interactive_elements_files/header-attrs/header-attrs.js"></script>
+    <link href="week08_interactive_elements_files/font-awesome-animation/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="week08_interactive_elements_files/fontawesome/js/fontawesome-all.min.js"></script>
+    <meta name="github-repo" content="aosmith16/spring-r-topics"/>
+    <meta name="twitter:title" content="Interactive elements in HTML documents"/>
+    <meta name="twitter:description" content="Adding interactive plots and R objects"/>
+    <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week08_interactive_elements.html"/>
+    <meta name="twitter:image:src" content="https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week08-share-card.png"/>
+    <meta name="twitter:image:alt" content="Slides discussing a few packages for adding interactive elements to static HTML documents Working sessions class spring 2021"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@aosmith16"/>
+    <meta name="twitter:site" content="@aosmith16"/>
+    <meta property="og:title" content="Interactive elements in HTML documents"/>
+    <meta property="og:description" content="Adding interactive plots and R objects"/>
+    <meta property="og:url" content="https://aosmith16.github.io/spring-r-topics/slides/week08_interactive_elements.html"/>
+    <meta property="og:image" content="https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week08-share-card.png"/>
+    <meta property="og:image:alt" content="Slides discussing a few packages for adding interactive elements to static HTML documents Working sessions class spring 2021"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Ariel Muldoon"/>
+    <script src="week08_interactive_elements_files/fabric/fabric.min.js"></script>
+    <link href="week08_interactive_elements_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="week08_interactive_elements_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script src="week08_interactive_elements_files/clipboard/clipboard.min.js"></script>
+    <link href="week08_interactive_elements_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="week08_interactive_elements_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="week08_interactive_elements_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week08_interactive_elements_files/tile-view/tile-view.js"></script>
+    <script src="week08_interactive_elements_files/js-cookie/js.cookie.js"></script>
+    <script src="week08_interactive_elements_files/peerjs/peerjs.min.js"></script>
+    <script src="week08_interactive_elements_files/tiny.toast/toast.min.js"></script>
+    <link href="week08_interactive_elements_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="week08_interactive_elements_files/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="week08_interactive_elements_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="week08_interactive_elements_files/pymjs/pym.v1.js"></script>
+    <script src="week08_interactive_elements_files/widgetframe-binding/widgetframe.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="wrap.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Interactive elements in HTML documents
+## <span>&lt;i class="fas  fa-rocket fa-lg faa-spin animated-hover " data-fa-transform="grow-15 " style=" color:#F4790B;"&gt;&lt;/i&gt;</span>
+### <br/><br/><br/>Ariel Muldoon
+### May 18, 2021
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Today's Goal
+
+**Practice adding interactive elements to static HTML documents**
+
+We will  
+
+- Use **plotly** to add interactivity to plots made with **ggplot2**  
+- Use **DT** to allow for users to interact with a dataset  
+- Look at **leaflet** for interactive maps  
+- Use **dygraph** to make interactive plots of time series data  
+- Add interactive elements from packages above to a dashboard made with **flexdashboard**  
+
+--
+
+&lt;br/&gt;
+*Before we begin:*
+
+Make sure you saved `week08_interaction.Rmd` from the class website onto your computer. We will be adding code and knitting to HTML within this file.
+
+---
+
+
+## Resources
+
+- [Intro to **htmlwidgets**](https://www.htmlwidgets.org/)   
+- [Using **plotly** from R](https://plotly.com/r/)  
+- [Interactive R data objects with **DT**](https://rstudio.github.io/DT/)    
+- [Interactive maps with **leaflet**](https://rstudio.github.io/leaflet/)    
+- [Charting time series data in R with **dygraphs**](https://rstudio.github.io/dygraphs/)  
+- [Interactive dashboards in R with **flexdashboard**](https://rmarkdown.rstudio.com/flexdashboard/)  
+
+.center[
+&lt;img src="figs/week08_files/flexdashboard.png" title="usethis hex logo" alt="usethis hex logo" width="25%" /&gt;
+]
+
+---
+
+class: center, middle, inverse, hide-logo
+
+# &lt;font style="font-family: cursive; font-style:italic"&gt;Let's get started!&lt;/font&gt;
+
+---
+
+## Running code
+
+- Open the copy of [`week08_interaction.Rmd`](files/week08_interaction.Rmd) that you saved  
+
+- We'll practice different packages based on **htmlwidgets** to add interactive elements.   
+
+- You will mostly be copying code I provide in the slides and then pasting it into code chunks within `week08_interaction.Rmd`. 
+
+- You will knit after each added code example to explore the new interactive element in the HTML output.
+
+---
+
+## R packages 
+
+We'll be loading additional packages as we go so we can see which package we are using in each section. We'll also be using **palmerpenguins 0.2.2** and **ggplot2 1.0.5** today, which we'll load now. 
+
+
+```r
+library(palmerpenguins) # v. 0.1.0
+library(ggplot2) # v. 3.3.3
+```
+
+---
+
+class: with-logo logo-penguins
+
+## Penguin dataset
+
+We will work with the Palmer penguin data when practicing with the first two packages.
+
+This dataset includes various size measurements for three penguin species on the Palmer Archipelago, as well as `sex` and measurement `year`. See `?penguins` for more information.
+
+Here are the first 5 lines.
+
+
+```r
+head(penguins, n = 5)
+```
+
+
+|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|
+|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|
+|Adelie  |Torgersen |           39.1|          18.7|               181|        3750|male   | 2007|
+|Adelie  |Torgersen |           39.5|          17.4|               186|        3800|female | 2007|
+|Adelie  |Torgersen |           40.3|          18.0|               195|        3250|female | 2007|
+|Adelie  |Torgersen |             NA|            NA|                NA|          NA|NA     | 2007|
+|Adelie  |Torgersen |           36.7|          19.3|               193|        3450|female | 2007|
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+[Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.  
+
+In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. 😮  
+
+--
+
+We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
+
+We'll need to load the package first.
+
+
+```r
+library(plotly) # v. 4.9.3
+```
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+We'll start by making a **ggplot2** scatterplot of `bill_length_mm` vs `bill_depth_mm` for each `species` of penguin. We'll name the plot `g1`.
+
+
+```r
+g1 = ggplot(data = penguins, aes(x = bill_depth_mm, 
+                                 y = bill_length_mm,
+                                 color = species)) +
+    geom_point()
+```
+
+&lt;br/&gt;&lt;br/&gt;
+No reason to print this plot unless you are interested in it. Instead let's jump to looking at the interactive version.
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+We use `ggplotly()` to convert a plot made with **ggplot2** into an interactive **plotly** object.  
+
+
+```r
+ggplotly(g1)
+```
+
+--
+
+&lt;br/&gt;&lt;br/&gt;
+After adding the code, knit your version of `week08_interaction.Rmd` to see what this looks like in the output.
+
+---
+
+class: with-logo logo-plotly
+
+## Using plotly with ggplot2 plots
+
+.pull-left[
+<div id="htmlwidget-386bcda8659c29e38a54" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-386bcda8659c29e38a54">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+.pull-right[
+Take a few minutes to explore the interactive features, such as zooming, panning, selecting, and hovering. 
+
+Click on legend items to focus on one group. 
+
+Double click to reset the plot after you interact with one element.
+]
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

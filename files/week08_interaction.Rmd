@@ -1,0 +1,22 @@
+---
+title: "Interactive elements in HTML documents"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Document for adding code and knitting in class 8
+
+```{r cars}
+library(plotly)
+library(ggplot2)
+library(palmerpenguins)
+g1 = ggplot(data = penguins, aes(x = bill_depth_mm, 
+                                 y = bill_length_mm, 
+                                 color = species)) +
+    geom_point()
+ggplotly(g1)
+```
+
