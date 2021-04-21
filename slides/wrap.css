@@ -1,6 +1,5 @@
 pre {
   white-space: pre-wrap;
-  max-width: 100%;
 }
 
 .tiny .remark-code { /*Change made here*/
