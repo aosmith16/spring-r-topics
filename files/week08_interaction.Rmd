@@ -11,11 +11,11 @@ date: "May 18, 2021"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Use this document to add code and knit to explore options for adding interactive elements to HTML documents.  
+Use this document to add code and knit to explore options for adding interactive elements to HTML documents.
 
-Unlike in previous weeks, not all code is present in the document yet. You will be copy-pasting or typing in code to some of the code chunks from the slides. Then knit and explore HTML output document.
+This is a tasting menu style session so you can get a "taste" of several **htmlwidgets**-based packages that allow you to add interactivity. Knit the `Rmd` document to explore the interactive plots and data in the HTML output.
 
-You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/slides/week08_interactive_tables.html#1). The slides contain introductory material as well as a list of resources on the various **htmlwidgets** we are going to explore that aren't included here.
+You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/slides/week08_interactive_tables.html#1). The slides contain introductory material as well as a list of resources (not included here) on the various packages we are going to explore.
 
 ## R packages
 
@@ -23,7 +23,7 @@ Be sure to run code chunks in order, starting with loading packages.
 
 Load **palmerpenguins 0.2.2** and **ggplot2 1.0.5** now.
 
-We'll be loading additional packages as we go so we are clear on which package we are using in each section.  
+We'll be loading additional packages as we go so it is clearer which package we are using in each section.
 
 ```{r, message = FALSE, warning = FALSE}
 library(palmerpenguins) # v. 0.1.0
@@ -32,7 +32,7 @@ library(ggplot2) # v. 3.3.3
 
 ## Penguin dataset
 
-We will work with the Palmer penguin data in the first two sections.
+We will work with the Palmer penguin data for the first two packages we'll explore.
 
 This dataset includes various size measurements for three penguin species on the Palmer Archipelago, as well as `sex` and measurement `year`. See `?penguins` for more information.
 
@@ -42,11 +42,11 @@ Here are the first 5 lines so you have an idea of what this dataset looks like.
 head(penguins, n = 5)
 ```
 
-## Using plotly with ggplot2 plots
+## plotly for interactive ggplot2
 
-[Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.  
+[Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.
 
-In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. 
+In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. `r emo::ji("open_mouth")`
 
 We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
 
@@ -58,6 +58,8 @@ library(plotly) # v. 4.9.3
 
 The first step is to make a standard **ggplot2** plot. We'll make a scatterplot of `bill_length_mm` vs `bill_depth_mm` for each `species` of penguin. The plot is named `g1`.
 
+You are welcome to add code to print this plot if you'd like, but we won't discuss it. Instead let's jump to adding interactivity.
+
 ```{r}
 g1 = ggplot(data = penguins, aes(x = bill_depth_mm, 
                                  y = bill_length_mm,
@@ -65,41 +67,36 @@ g1 = ggplot(data = penguins, aes(x = bill_depth_mm,
     geom_point()
 ```
 
-You are welcome to add code to print this plot if you'd like, but we won't discuss it.
+Create an interactive version of the plot using `ggplotly()`. This function wraps around a plot made with **ggplot2**.
 
-Instead, we'll jump to making the interactive version using `ggplotly()`. The function is wrapped around a plot made with **ggplot2**.
+Take a few minutes to explore the interactive features, such as zooming, panning, selecting, and hovering.
 
-Copy and paste the `ggplotly(g1)` code in the chunk below and then knit to see the output.
-
-```{r plotly1}
-# Add ggplotly() code here
-
-```
-
-Take a few minutes to explore the interactive features, such as zooming, panning, selecting, and hovering. 
-
-Click on legend items to focus on one group. 
+Click on legend items to focus on one group.
 
 Double click or click on the "Reset axes" button to reset the plot after you interact with one element.
+
+```{r plotly1}
+ggplotly(g1)
+```
 
 ### Changing the hover text
 
 A **tooltip** is generic term for the text that pops up when hovering over an interactive element. By default, `ggplotly()` includes all plotted data in the tooltip.
 
-We can change this with the `tooltip` argument in `ggplotly()`. 
+We can change this with the `tooltip` argument in `ggplotly()`.
 
 Let's get just the `y` and `x` values (in that order), leaving the `color` values out of the tooltip.
 
-After adding the code and knitting you will see the tooltip info has changed. 
+After adding the code and knitting you will see the tooltip info has changed.
 
 ```{r plotly2}
-# Add ggplotly() code here
-
+ggplotly(g1, 
+         tooltip = c("y", "x"))
 ```
 
 ### Linking two plots
 
-You may have noted that you could select or *highlight* points in the scatterplot but then couldn't do anything with them.  
+You may have noted that you could select or *highlight* points in the scatterplot but then couldn't do much with them.
 
 The select tool becomes most useful if including the plot in a larger app, but there are also some built-in tools in **plotly** where selection is useful. This makes use of package **crosstalk** under the hood.
 
@@ -123,9 +120,274 @@ g3 = ggplot(data = peng2, aes(x = body_mass_g,
     geom_point()
 ```
 
-Now we link the plots together using the `subplot()` function and use the `highlight()` function to allow selection across the two no-linked plots. 
+Now we link the plots together using the `subplot()` function and use the `highlight()` function to allow selection across the two no-linked plots.
+
+When we select points in the first, the same points are selected in the second. This allows the user to explore more variables at one time.
+
+I found things were a little more awkward for plots with legends. It helps a bit if the legend is removed from one of the plots using `plotly::style()`.
 
 ```{r plotly3}
-# Add plotly() code here
-
+g2 %>%
+  subplot(g3) %>%
+  highlight(on = "plotly_selected",
+            off = "plotly_deselect")
 ```
+
+## DT for interactive data
+
+The [**DT** package](https://rstudio.github.io/DT/) allows us to display R data objects such as data.frames as interactive tables of data in HTML outputs.
+
+For example, it provides the user the ability to filter and sort the data in the output table.  
+
+Start by loading package **DT**.
+
+```{r, message = FALSE, warning = FALSE}
+library(DT) # v. 0.18
+```
+
+The `datatable()` function creates the interactive output.
+
+Much of the time using `datatable()` directly will be sufficient for the interactivity we want.
+
+The simple code below is a good start for exploring the default output from `datatable()`.
+
+Take a few minutes and explore the interactive output table in the HTML document.
+
+The results are *paginated*, defaulting to showing 10 rows per page. Click on a page to move through more rows. Change the number of rows showing with the drop-down menu.
+
+You can sort by columns and filter to values using the overall search box.
+
+```{r DT1}
+datatable(penguins)
+```
+
+### Change table options
+
+There are so many options you can change via the `options` argument that they have their own [own article on the **DT** website](https://rstudio.github.io/DT/options.html).
+
+Here we change the default page length to 5 and the numbers in the drop down menu of page lengths to 5, 7, or 10.
+
+The resulting table now shows fewer rows on each page by default.
+
+We also now have only the three options for how many rows to show at one time under `Show`.
+
+```{r DT2}
+datatable(penguins,
+          options = list(pageLength = 5, 
+                         lengthMenu = c(5, 7, 10))) 
+```
+
+### Add column filters
+
+We can generate filters for each column in addition to the overall `Search` by adding the `filter` argument. We'll place the filters at the `top` of the table.
+
+In some cases columns are too narrow for the categorical variable filter boxes. Here I widen them in `options` following [this Stack Overflow post](https://stackoverflow.com/a/31814197/2461552) and this [GitHub issue](https://github.com/rstudio/DT/issues/29).
+
+You can see you can filter by specific columns. 
+
+Numeric columns get range sliders and character columns get select drop-down menus.
+
+```{r DT3}
+datatable(penguins,
+          filter = "top", 
+          options = list(autoWidth = TRUE,
+                         scrollX = TRUE,
+                         columnDefs = list(list(width = '80px', targets = "_all"))))
+```
+
+## leaflet for interactive maps
+
+The [**leaflet** package](https://rstudio.github.io/leaflet/) is popular for making interactive maps.
+
+The package can render spatial objects created from **sf** or **sp** and also works with data.frames that contain latitude/longitude columns. Or center maps on a specific latitude/longitude.  
+
+Start by loading package **leaflet**.
+
+```{r, message = FALSE, warning = FALSE}
+library(leaflet) # v. 2.0.4.1
+```
+
+### Center map with `setView()` 
+
+We'll start with a map centered on Corvallis.  Note the pipes in the code; this is the common coding style for **leaflet**.
+
+We center the output  map by providing a latitude and longitude, setting the amount of space around the center with the `zoom` argument in `setView()`.
+
+The `addTiles()` layer is key here. This function is how we add maps. By default `OpenStreetMap` tiles are used but others can be used via `addProviderTiles()`.
+
+Take a a minute and explore the output map in the HTML document.
+
+You can pan and zoom around the resulting map.
+
+```{r leaf1}
+leaflet() %>% 
+    setView(lng = -123.2620, #<<
+            lat = 44.5646, #<<
+            zoom = 12) %>% #<<
+    addTiles() #<<
+```
+
+### Add a single marker
+
+**Markers** are added to maps to note places of interest. In interactive maps these markers are often associated with hover or click information.
+
+Let's add a marker to indicate where OSU is in Corvallis.  Here we use `addAwesomeMarkers()` to add an icon as the marker. We must provide the latitude/longitude for marker placement. 
+
+The `popup` argument allows information that will pop up when the marker is clicked on, in this case identifying what is at that location.
+
+Explore the new map output. Click on the icon to see the pop up information.
+
+```{r leaf2}
+leaflet() %>% 
+    setView(lng = -123.2620, 
+            lat = 44.5646, 
+            zoom = 12) %>%
+    addTiles() %>%
+    addAwesomeMarkers(lng = -123.2794, lat = 44.5638, 
+                      icon = awesomeIcons(), 
+                      popup = "Oregon State University") 
+```
+
+### Mapping spatial data
+
+Now let's switch to plotting some spatial data from a data.frame.
+
+We'll work with annual temperature and precipitation data from climate stations throughout the state of Oregon taken from the [UO GEOG 4/595 website](https://pjbartlein.github.io/GeogDataAnalysis/datasets.html).
+
+Note the `lat` and `lon` columns, which are key for mapping with **leaflet**.
+
+```{r}
+orstationc = read.csv("https://pjbartlein.github.io/GeogDataAnalysis/data/csv/orstationc.csv")
+head(orstationc)
+```
+
+Note the `data` argument added in `leaflet()` in the code. **leaflet** automatically finds lat/long columns if named something recognizable (e.g., `lng`, `long`, `lat`, `latitude`).
+
+We add the climate station locations as circles with `addCircleMarkers()`. The `label` argument adds tooltip info from variables in the dataset; here, average July temperature.
+
+**Important:** There are `lng` and `lat` arguments in `addCircleMarkers()`. There are needed if the column names of the lat/long columns aren't recognizable to `leaflet()` in the dataset.
+
+Although we `addTiles()` first, the map extent is not set until we add the markers, based on lat/long.
+
+Explore the map output.
+
+The map extent is based on the climate station locations, shown as circles.
+
+The average July temperature of each station pops up when you hover over each point.
+
+```{r leaf3}
+leaflet(data = orstationc) %>% 
+    addTiles() %>%
+    addCircleMarkers(label = ~tjul) 
+```
+
+### Adding color scale to markers
+
+We can color markers based on the dataset as long as we define a palette.
+
+We'll color the markers based on the July temperature. We use the Yellow-Orange-Red `RColorBrewer` palette in `colorQuantile()`.
+
+The `color` argument is mapped to `tjul` in `addCircleMarkers()`, wrapped in the `pal()` we made. 
+
+We also add a second tooltip to show the name of the climate station when a marker is clicked using `popup`.
+
+The `colorQuantile()` function is from **leaflet** and is convenient for mapping data values to colors.
+
+```{r pal}
+pal = colorQuantile(palette = "YlOrRd", 
+                    domain = NULL, 
+                    n = 8) 
+```
+
+Explore the new map output. Now the circles are colored based on the average July temperature.
+
+You can hover to get to see the temperature or click to see the climate station name.
+
+```{r leaf4}
+leaflet(data = orstationc) %>% 
+    addTiles() %>%
+    addCircleMarkers(color = ~pal(tjul), #<<
+                     label = ~tjul,
+                     popup = ~Name) #<<
+```
+
+## dygraphs for interactive time series
+
+The [**dygraphs** package](https://rstudio.github.io/dygraphs/index.html) is for plotting interactive time series data.
+
+It is specifically for **xts** time series objects or any object that is convertible to an **xts** object.
+
+Start by loading package **dygraphs**.
+
+```{r, message = FALSE, warning = FALSE}
+library(dygraphs) # v. 1.1.1.6
+```
+
+### Basic time series
+
+We'll use the time series that come with **dygraphs** to look at a few plots.
+
+The `dygraph()` function is the primary function for making the plots.
+
+First up is a plot of New Haven temperatures through time, using `nhtemp`.
+
+Add a title with `main`.
+
+Explore the output plot in the HTML document. Hovering over the plot shows the time as well as the data in the line.
+
+You can zoom into part of the time series by selecting a plot area. Double-click the plot to zoom back out.
+
+```{r dy1}
+dygraph(data = nhtemp, 
+         main = "Temperatures New Haven")
+```
+
+### Add range selector
+
+Add a range selector to the bottom of the plot for panning and zooming via `dyRangeSelector()`. While we won't explore it here, you can change, e.g., the size, color, and date window within `dyRangeSelector()`.
+
+Note the use of the pipe.
+
+Explore the range selector in the plot in the HTML document.
+
+```{r dy2}
+dygraph(data = nhtemp, 
+        main = "Temperatures New Haven") %>%
+    dyRangeSelector()
+```
+
+### Multiple time series
+
+You can plot multiple time series in a single plot if you have multiple column of time series data in a single time series object.
+
+We'll look at male and female deaths from lung disease in the UK from 1974-1979 from **dygraphs** for this example.
+
+The first step is to bind the two separate time series together into one with `cbind()`.
+
+```{r}
+lungDeaths = cbind(mdeaths, fdeaths)
+```
+
+Then the two time series can be plot together with `dygraphs()`.Change the names of the series to something more useful as well as colors using `dySeries()`.  
+
+**Note:** Colors can also be changed to an overall color palette by adding a `dyOptions()` layer (*not shown*)
+
+The tooltip shows data from both time series at once. The labels we created are shown in the tooltip.
+
+```{r dy3}
+dygraph(data = lungDeaths) %>%
+    dySeries(name = "mdeaths", 
+             label = "Male",
+             color = "purple") %>%
+    dySeries(name = "fdeaths", 
+             label = "Female",
+             color = "orange")
+```
+
+## Build an interactive dashboard
+
+We'll end the day by making a dashboard with interactive elements using [package **flexdashboard**](https://rmarkdown.rstudio.com/flexdashboard/).
+
+A **flexdashboard** is a specialized R Markdown template that allows for basic dashboard layouts. The output is an HTML document.
+
+You are done with this document and will switch to making a new **flexdashboard** document for the rest of the session.

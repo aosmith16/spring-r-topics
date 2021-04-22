@@ -32,3 +32,6 @@ pre {
 .logo-flex::before {
 	background-image: url(figs/week08_files/flexdashboard.png);
 }
+.logo-DT::before {
+	background-image: url(figs/week08_files/DataTables.png);
+}
