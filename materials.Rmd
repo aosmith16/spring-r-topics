@@ -214,7 +214,7 @@ Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please
 
 ### Materials for class
 
-We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of that package.
+We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** and **datapasta** installed.
 
 Week 09 slides go here
 

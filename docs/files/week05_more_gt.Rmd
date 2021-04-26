@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Use this document to follow along with the **gt** basics working session, running provided code to see how it works as well as writing your own practice code. I recommend turning on the visual editor via the ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png){width="3%"} button in the right-hand corner.
 
-You can find today's slides [here](). The slides contain introductory material as well as a list of resources that aren't included here.
+You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/slides/week05_gt_flair.html#1). The slides contain introductory material as well as a list of resources that aren't included here.
 
 ## R packages
 
@@ -100,17 +100,17 @@ This is done using the [`data_color()` function](https://gt.rstudio.com/referenc
 
 We can set or choose the `palette` in the `scales::col_()` functions. The palette can be:
 
-> 1.  A character vector of RGB or named colours. Examples: palette(), c("#000000", "#0000FF", "#FFFFFF"), topo.colors(10)
+> 1.  A character vector of RGB or named colours. Examples: palette(), c("\#000000", "\#0000FF", "\#FFFFFF"), topo.colors(10)
 >
 > 2.  The name of an RColorBrewer palette, e.g. "BuPu" or "Greens".
 >
 > 3.  The full name of a viridis palette: "viridis", "magma", "inferno", or "plasma".
 >
-> 4.  A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("#000000", "#FFFFFF"), interpolate="spline").
+> 4.  A function that receives a single value between 0 and 1 and returns a colour. Examples: colorRamp(c("\#000000", "\#FFFFFF"), interpolate="spline").
 
 ### Fill color, numeric column
 
-We'll start be setting the fill color of the `population` column of `pops_small`. 
+We'll start be setting the fill color of the `population` column of `pops_small`.
 
 We choose the `columns` of interest and then set the colors using `scales::col_numeric()`. I chose the "Greens" palette from **RColorBrewer**.
 
@@ -173,6 +173,7 @@ sza50 %>%
             )
     )
 ```
+
 Note we can reverse the order of a palette (so light to dark instead of dark to light) using `reverse` in `scales::col_numeric()`.
 
 ### Fill color, categorical column
@@ -194,7 +195,8 @@ At the moment you cannot provide a named vector of colors in **gt** to map each 
 In this example we have a named vector of colors. Maybe we created it when we were making a plot. We can pass this vector to `palette`, the *names* of the vector to `domain`, and then use `ordered = TRUE`.
 
 ```{r}
-my_colors = c(Vietnam = "red", Egypt = "blue")
+my_colors = c(Vietnam = "red", 
+              Egypt = "blue")
 pops_small %>%
     gt() %>%
     data_color(
@@ -212,7 +214,7 @@ pops_small %>%
 
 By default `data_color()` is applied to the cell fill. If you want do change the text color instead use `apply_to = "text"`. Note this is an argument to `data_color()`, not `scales::col_factor()`.
 
-This would be a way to consistently apply colors to factor levels every time you used them without filling the entire cell, which can look a little heavy to my eye.
+This would be a way to consistently apply colors to factor levels every time you used them without filling the entire cell.
 
 I'll use the "viridis" palette, one of 4 viridis palettes provided in `scales::col_*().`
 
@@ -235,7 +237,7 @@ Binning numeric variables into groups and then coloring the groups is another op
 
 Working with `sza50`, we'll color text of cells below 45 as orange and 45 or higher as medium gray.
 
-The `bins` argument is key here, where we cut the values up into values between 0 and 45 and then between 45 and 90. If we had a value that was exactly equal to 45 it would be placed in the second group. 
+The `bins` argument is key here, where we cut the values up into values between 0 and 45 and then between 45 and 90. If we had a value that was exactly equal to 45 it would be placed in the second group.
 
 ```{r}
 sza50 %>%
@@ -259,7 +261,7 @@ Write code in the empty code chunk below.
 Working with `pops_wide`:
 
 -   Fill all the numeric columns with color, using the `"YlOrRd"` palette from **RColorBrewer**. Make sure to base the domain on the range of the values from the entire dataset.
--   Color the text of `country_name`, using "#1c5253" for Egypt and "#F4790B" for Vietnam.
+-   Color the text of `country_name`, using "\#1c5253" for Egypt and "\#F4790B" for Vietnam.
 
 ```{r}
 # Write your code in this chunk and run to see the output
@@ -274,11 +276,11 @@ Helper functions such as `cell_text()` for changing the cell text and `cell_fill
 
 ### Highlighting a single value
 
-Let's say we wanted to highlight a single value in a table. This could be, e.g., something we'd like to bring attention to discuss. 
+Let's say we wanted to highlight a single value in a table. This could be, e.g., something we'd like to bring attention to discuss.
 
 In this case we'll highlight the 2017 Egypt population value in `pops_small`.
 
-Our first step is to choose the `style` in `tabs_style()`. Here we'll use `cell_text()` to make the text red and bold.
+Our first step is to choose the `style` in `tab_style()`. Here we'll use `cell_text()` to make the text red and bold.
 
 ```{r, eval = FALSE}
 # Don't run this code
@@ -312,7 +314,7 @@ pops_small %>%
     )
 ```
 
-We could focus on the cell fill instead using `cell_fill()` for the style function. Here we'll choose the `rows` of interest using a logical statement. The cell we want is the maximum value in the `population` column, which we use to pick that cell.
+We could focus on the cell fill instead of text using `cell_fill()` as the style function. Here we'll choose the `rows` of interest using a logical statement. The cell we want is the maximum value in the `population` column.
 
 ```{r}
 pops_small %>%
@@ -333,7 +335,7 @@ Another `style` function you might want to explore is `cell_borders()`, to chang
 
 ### Highlighting sets of values
 
-We can highlight a set of values in much the same way. For example, maybe we want to highlight the population values before 2015 as red and italic and after 2015 as blue.
+We can highlight a set of values in much the same way. For example, maybe we want to highlight the population values before 2015 as red and italic and 2015 and later as blue.
 
 Since we want to highlight to sets of values we'll need to use two layers of `tab_styles()`.
 
@@ -361,7 +363,7 @@ pops_small %>%
 
 ### Highlighting rows across many columns
 
-We've been highlighting values within one column, but the process works the same way if we want to highlight across many columns. However, this only allows us to highlight whole rows a certain way.
+We've been highlighting values within one column, but the process works the same way if we want to highlight across many columns. However, this only allows us to highlight rows for every column we choose the same way.
 
 Switching to the `sza50` dataset, say we wanted to highlight the row for January. We'll increase the size to 20 pixels and make it blue.
 
@@ -401,7 +403,7 @@ You can include images in a table, most often to represent the categories on row
 
 This process is specifically for making HTML tables. You can also save the table as an image file if you want to insert it into other types of documents.
 
-The work-horse for this is `text_transform()` in combination with `web_image()` if you provide URL 's to images online or `local_image()` if you are providing paths to local copies of images. See other available **gt** image functions [here](https://gt.rstudio.com/reference/index.html#section-image-addition-functions).
+The `text_transform()` function does the heavy lifting in combination with `web_image()` if you provide URL 's to images online or `local_image()` if you are providing paths to local copies of images. See other available **gt** image functions [here](https://gt.rstudio.com/reference/index.html#section-image-addition-functions).
 
 The first thing to do in `text_transform()` is to define the `locations` we want to work on, much like we did in the highlighting section above. We're working in the cells of the table so will use `cells_body()`. There we choose the column with cells we want to transform, `hex`.
 
@@ -419,7 +421,7 @@ pack_down %>%
     )
 ```
 
-Once we've outlined where in the table we want to work we need to provide a function to the `fn` argument to indicate how we want to transform the text. 
+Once we've outlined where in the table we want to work we need to provide a function to the `fn` argument to indicate how we want to transform the text.
 
 Here we want to use `web_image()` to turn the URLs into into an HTML image tag.
 
@@ -439,7 +441,7 @@ pack_down %>%
     )
 ```
 
-In `web_image()` we can set the height (in pixels) of the image, which controls the image size in the table. 
+In `web_image()` we can set the height (in pixels) of the image, which controls the image size in the table.
 
 To do this we need a function that passes the URL into `web_image()` and sets the `height`.
 
@@ -456,7 +458,6 @@ pack_down %>%
         }
     )
 ```
-
 
 See example of adding *icons* from **fontawesome** [here](https://themockup.blog/static/gt-cookbook-advanced.html#Add_icons).
 
@@ -490,9 +491,9 @@ data_with_local_image %>%
 
 ## Creating table themes
 
-We explored just a few of the table output options last week. Now we'll talk about taking those options and turning them into a *theme*. 
+We explored just a few of the table output options last week. Now we'll talk about taking those options and turning them into a *theme*.
 
-A table theme is a function that sets the table options and overall table styling that you can apply to any table.  
+A table theme is a function that sets the table options and overall table styling that you can apply to any table.
 
 ### A basic theme
 
@@ -543,7 +544,7 @@ If you are styling your table to match specific manuscript criteria or want to m
 
 Let's look at a few examples of themes people have built.
 
-First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). Additional options to `tab_options()` is not included here. But note how this uses additional layers beyond `tab_options()`.
+First up is a APA theme by [Anthony Schmidt](https://www.anthonyschmidt.co/post/2020-06-03-making-apa-tables-with-gt/). Additional options to `tab_options()` is not included here since it doesn't use `…`. But note how this uses additional layers beyond `tab_options()`.
 
 ```{r}
 theme_apa = function(table) {

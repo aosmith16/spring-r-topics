@@ -65,4 +65,5 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **dygraphs v. 1.1.1.6** (*Week 8*)  
 **flexdashboard v. 0.5.2** (*Week 8*)  
 **reprex v. 2.0.0** (*Week 9*)  
+**datapasta v. 3.1.0** (*Week 9*)  
 
