@@ -95,7 +95,10 @@ Today is a tasting menu of tools `r emo::ji("yum")`. We will briefly explore
 
 --
 
-<br/>
+Adding interactive elements to static HTML elements allows for *pre-computed* interactive elements without needing a server. For more complex interactivity see package **shiny**.
+
+--
+
 *Before we begin:*
 
 Make sure you saved `week08_interaction.Rmd` from the class website onto your computer. We will knitting this file and exploring the output.
@@ -103,6 +106,8 @@ Make sure you saved `week08_interaction.Rmd` from the class website onto your co
 ???
 
 There is so much more you can do with each of these tools that this session will barely scratch the surface
+
+**htmlwidgets** must pre-compute everything that is included in the interactive element. With **shiny** we can allow users to choose different computations but also would need to have a server to host the resulting app
 
 ---
 
@@ -185,18 +190,21 @@ class: with-logo logo-plotly
 
 [Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.  
 
-In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. `r emo::ji("open_mouth")`  
+In R, the **plotly** package can be used to build stand-alone interactive graphics or to make a static plot interactive. `r emo::ji("astonished")`  
 
 --
 
 <br/>
-We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
+We will use `ggplotly()` to add interactive elements to static plots made with **ggplot2**.
 
 Start by loading the **plotly** package.
 
 ```{r, message = FALSE, warning = FALSE}
 library(plotly) # v. 4.9.3
 ```
+
+<br/>
+**Of interest:** Another option for adding interactivity to **ggplot2** plots is package **ggiraph**. This package adds interactive layers within **ggplot2**.
 
 ---
 
@@ -1203,10 +1211,10 @@ class: with-logo logo-flex
 Since the dashboard is a simple HTML document, anyone will be able to view it and interact with the plots/objects in a browser. 
 
 <br/>
-While you can send it out to people individually, you could also host it as a page on your website.
+While you can send it out to people individually via email, you could also host it as a page on your website.
 
 <br/>
-Alternatively you can send people to a version on GitHub after making a small change to the default link to get a rendered document. Instruction shown in the tweet on the right.
+Alternatively you can send people to a version on GitHub after making a small change to the default link to get a rendered document. Instructions for this shown in the tweet on the right.
 ]
 
 .pull-right[
@@ -1218,11 +1226,13 @@ Alternatively you can send people to a version on GitHub after making a small ch
 
 ## Next week
 
-- We'll make animated graphics with package **gganimate**
+- We'll discuss how to report issues on GitHub repositories  
+- We will also practice making reproducible examples using package **reprex**  
+- Make sure you have e a current version of **reprex** installed
 
 .center[
 ```{r gt, echo = FALSE, out.width = "15%", fig.alt = "Logo for package gganimate"}
-knitr::include_graphics("figs/gganimate.png")
+knitr::include_graphics("figs/reprex.png")
 ```
 ]
 

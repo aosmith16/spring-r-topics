@@ -174,7 +174,7 @@ Install [GitKraken](https://www.gitkraken.com/) on your computer. Also make sure
 
 ### Goals
 
-This week we will explore a handful of packages based on **htmlwidgets** for adding interactive elements to static HTML documents. We will finish by looking at how to combine interactive elements into basic dashboard with **flexdashboard**. 
+This week we will explore a handful of packages based on **htmlwidgets** for adding interactive elements to static HTML documents. We will finish with an example of adding interactive elements to a basic dashboard with **flexdashboard**. 
 
 We will
 
@@ -200,10 +200,21 @@ We are exploring a variety of packages this week. Make sure you have current ver
 [Week 08 slides](slides/week08_interactive_elements.html)  
 Save [`week08_interactivity.Rmd`](files/week08_interaction.Rmd) to knit to HTML output during the session  
 
-## Week 9: Animating plots with **gganimate**
+## Week 9: GitHub issues and reproducible examples with **reprex**  
 
 ### Goals
 
+The ultimate goal this week is to understand how to make a reproducible example or *reprex* when asking a question or reporting an issue. We will first talk about some of the etiquette of reporting an issue for R packages on GitHub.
+
 ### Resources
 
+See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is specific to repositories he maintains but contains good general advice.  
+[Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website  
+Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please.netlify.app/#1) and [recording](https://t.co/860RTqMvjy)    
+
 ### Materials for class
+
+We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of that package.
+
+Week 09 slides go here
+

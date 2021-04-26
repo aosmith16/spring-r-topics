@@ -11,7 +11,7 @@ date: "May 18, 2021"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Use this document to add code and knit to explore options for adding interactive elements to HTML documents.
+Use this document to add code and knit to explore options for adding interactive elements to static HTML documents. For more advanced interactivity see **shiny** apps.
 
 This is a tasting menu style session so you can get a "taste" of several **htmlwidgets**-based packages that allow you to add interactivity. Knit the `Rmd` document to explore the interactive plots and data in the HTML output.
 
@@ -46,9 +46,9 @@ head(penguins, n = 5)
 
 [Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.
 
-In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. `r emo::ji("open_mouth")`
+In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. `r emo::ji("astonished")`
 
-We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
+We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.  **Of interest:** Another option for adding interactivity to **ggplot2** plots is package **ggiraph**. This package adds interactive layers within **ggplot2**.
 
 Start by loading the package.
 

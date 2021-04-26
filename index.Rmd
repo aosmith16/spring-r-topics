@@ -33,7 +33,7 @@ Week 05: **gt** flair: colors, images, and themes
 Week 06: Learn to write functions in R  
 Week 07: More Git: collaborators, merge conflicts, and pull requests  
 Week 08: Interactive graphics and tables     
-Week 09: Animated graphics (with **gganimate**)  
+Week 09: GitHub issues and reproducible examples with **reprex**    
 Week 10: Catch up day or other topics of interest  
 
 ## Software
@@ -64,5 +64,5 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **leaflet v. 2.0.4.1** (*Week 8*)  
 **dygraphs v. 1.1.1.6** (*Week 8*)  
 **flexdashboard v. 0.5.2** (*Week 8*)  
-**gganimate v. 1.0.7** (*Week 9*)  
+**reprex v. 2.0.0** (*Week 9*)  
 

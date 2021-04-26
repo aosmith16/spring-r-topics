@@ -86,7 +86,10 @@ Today is a tasting menu of tools 😋. We will briefly explore
 
 --
 
-&lt;br/&gt;
+Adding interactive elements to static HTML elements allows for *pre-computed* interactive elements without needing a server. For more complex interactivity see package **shiny**.
+
+--
+
 *Before we begin:*
 
 Make sure you saved `week08_interaction.Rmd` from the class website onto your computer. We will knitting this file and exploring the output.
@@ -94,6 +97,8 @@ Make sure you saved `week08_interaction.Rmd` from the class website onto your co
 ???
 
 There is so much more you can do with each of these tools that this session will barely scratch the surface
+
+**htmlwidgets** must pre-compute everything that is included in the interactive element. With **shiny** we can allow users to choose different computations but also would need to have a server to host the resulting app
 
 ---
 
@@ -181,12 +186,12 @@ class: with-logo logo-plotly
 
 [Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.  
 
-In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. 😮  
+In R, the **plotly** package can be used to build stand-alone interactive graphics or to make a static plot interactive. 😲  
 
 --
 
 &lt;br/&gt;
-We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.
+We will use `ggplotly()` to add interactive elements to static plots made with **ggplot2**.
 
 Start by loading the **plotly** package.
 
@@ -194,6 +199,9 @@ Start by loading the **plotly** package.
 ```r
 library(plotly) # v. 4.9.3
 ```
+
+&lt;br/&gt;
+**Of interest:** Another option for adding interactivity to **ggplot2** plots is package **ggiraph**. This package adds interactive layers within **ggplot2**.
 
 ---
 
@@ -258,8 +266,8 @@ Double click the plot or click on the "Reset axes" button to reset.
 ]
 
 .pull-right[
-<div id="htmlwidget-d3f24828cd922706d046" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d3f24828cd922706d046">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-923550606d75cd2084fd" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-923550606d75cd2084fd">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ???
@@ -302,8 +310,8 @@ The next plot in the HTML output doc shows the new tooltip info.
 ]
 
 .pull-right[
-<div id="htmlwidget-71bf7af6d4c5a0043386" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-71bf7af6d4c5a0043386">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9ed9b7a0ca3353e9625a" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ed9b7a0ca3353e9625a">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -391,8 +399,8 @@ I found things were a little awkward for plots with legends. It helps a bit if t
 ]
 
 .pull-right[
-<div id="htmlwidget-b6ffbffbc4b3b214d6e7" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b6ffbffbc4b3b214d6e7">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-12.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b9dee6fc4397e059fa92" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9dee6fc4397e059fa92">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-12.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -454,8 +462,8 @@ You can sort by individual columns and filter to values using the overall search
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-2a8daa037a7eb32c096d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2a8daa037a7eb32c096d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-15.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8bc0352705596bf0f90c" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8bc0352705596bf0f90c">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-15.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -496,8 +504,8 @@ We also now have only the three options we defined for how many rows to show on 
 ]
 
 .pull-right[
-<div id="htmlwidget-1b2224bba712005c5cda" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1b2224bba712005c5cda">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-17.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4b2e0bef78d9e5fe0b82" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4b2e0bef78d9e5fe0b82">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-17.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -539,8 +547,8 @@ Numeric columns get range sliders and character columns get select drop-down men
 ]
 
 .pull-right[
-<div id="htmlwidget-4f3ac5a51a20c72378d7" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4f3ac5a51a20c72378d7">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-19.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0104818d7c35ea6fb941" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0104818d7c35ea6fb941">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-19.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -605,8 +613,8 @@ You can pan and zoom around the resulting map.
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-e46f81aadf4b6bec498f" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e46f81aadf4b6bec498f">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-22.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4913833cdf3f7241f23d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4913833cdf3f7241f23d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-22.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -656,8 +664,8 @@ Click on the icon to see the pop up information.
 ]
 
 .pull-right[
-<div id="htmlwidget-53b7c73abb8c92eaf61f" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-53b7c73abb8c92eaf61f">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-24.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-09862892760de53ccdea" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-09862892760de53ccdea">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-24.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -743,8 +751,8 @@ The average July temperature of each station pops up when you hover over each po
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-89d4ef1f86f4aca45d4e" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-89d4ef1f86f4aca45d4e">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-28.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4ad190c355ed7fcec431" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4ad190c355ed7fcec431">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-28.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -803,8 +811,8 @@ You can hover to get to see the temperature or click to see the climate station 
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-56c91aa4b416efa550db" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-56c91aa4b416efa550db">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-31.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a217e297f90fd946bf5a" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a217e297f90fd946bf5a">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-31.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -862,8 +870,8 @@ Double-click the plot to zoom back out.
 ]
 
 .pull-right[
-<div id="htmlwidget-3b931adbca94796f66e2" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3b931adbca94796f66e2">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-34.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1a9f7f9db034736be34d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1a9f7f9db034736be34d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-34.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -898,8 +906,8 @@ Explore the range selector in the next plot in the HTML document.
 ]
 
 .pull-right[
-<div id="htmlwidget-e97d64725a896f83bf96" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e97d64725a896f83bf96">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-36.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-93ce3451e4e45414bf7d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-93ce3451e4e45414bf7d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-36.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -948,8 +956,8 @@ The labels we created are shown in the tooltip.
 
 .pull-right[
 
-<div id="htmlwidget-b70fef4ef822c05f24d6" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b70fef4ef822c05f24d6">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-39.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d96f8d63058b7b38ee11" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d96f8d63058b7b38ee11">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-39.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -1147,10 +1155,10 @@ class: with-logo logo-flex
 Since the dashboard is a simple HTML document, anyone will be able to view it and interact with the plots/objects in a browser. 
 
 &lt;br/&gt;
-While you can send it out to people individually, you could also host it as a page on your website.
+While you can send it out to people individually via email, you could also host it as a page on your website.
 
 &lt;br/&gt;
-Alternatively you can send people to a version on GitHub after making a small change to the default link to get a rendered document. Instruction shown in the tweet on the right.
+Alternatively you can send people to a version on GitHub after making a small change to the default link to get a rendered document. Instructions for this shown in the tweet on the right.
 ]
 
 .pull-right[
@@ -1162,10 +1170,12 @@ Alternatively you can send people to a version on GitHub after making a small ch
 
 ## Next week
 
-- We'll make animated graphics with package **gganimate**
+- We'll discuss how to report issues on GitHub repositories  
+- We will also practice making reproducible examples using package **reprex**  
+- Make sure you have e a current version of **reprex** installed
 
 .center[
-&lt;img src="figs/gganimate.png" title="Logo for package gganimate" alt="Logo for package gganimate" width="15%" /&gt;
+&lt;img src="figs/reprex.png" title="Logo for package gganimate" alt="Logo for package gganimate" width="15%" /&gt;
 ]
 
 .footnote[
