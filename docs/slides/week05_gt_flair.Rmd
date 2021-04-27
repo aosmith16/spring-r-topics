@@ -423,7 +423,7 @@ knitr::include_graphics("figs/week05_files/gt02.png")
 
 You can create a *heat map* vibe in a table with many columns of similar values, applying the same color scale across all columns together. This is done by choosing more `columns`.
 
-Here we'll choose all columns in `sza50` except the first one using `contains()`. We cannot currently use code like `vars(col1:col3)`, although that should be [fixed in the future](https://github.com/rstudio/gt/issues/611).
+Here we'll choose all columns in `sza50` except the first one using `contains()`. We cannot currently use code like `col1:col3`, although this has been [added in the development version of **gt**](https://github.com/rstudio/gt/issues/611).
 
 .pull-left[
 ```{r, eval = FALSE}
@@ -443,9 +443,10 @@ sza50 %>%
 
 ### Fill color, many columns
 
-To use the color scheme using values from all columns set the `domain` using range of all value. I use some helper functions from **dplyr** to get only the numeric columns when calculating the range.
+To use a color scheme across values from all columns set the `domain` accordingly. I used helper functions from **dplyr** to get only the numeric columns when calculating the overall range.
 
 .pull-left[
+.smaller[
 ```{r gt03, eval = FALSE}
 sza50 %>%
     gt() %>%
@@ -457,6 +458,7 @@ sza50 %>%
             )
     )
 ```
+]
 
 ***Code notes:***  
 -Here the palette is "magma" from viridis  
@@ -490,7 +492,7 @@ pops_small %>%
     )
 ```
 
-***Code notes:***  We can use a vector of values for `colors`
+***Code notes:***  We can use a vector of values for `colors` without a `scales::col_*` function
 ]
 
 .pull-right[
@@ -507,7 +509,7 @@ knitr::include_graphics("figs/week05_files/gt04.png")
 
 At the moment you cannot provide a named vector of colors in **gt** to map each category to each color like you can when making **ggplot2** plots. 
 
-Using `scales::col_factor()` and manually setting the `domain` in the desired order plus using `ordered = TRUE` allows us to assign colors to the correct factor levels.
+Using `scales::col_factor()` and manually setting the `domain` in the desired order along with `ordered = TRUE` allows us to assign colors to the correct factor levels.
 
 ---
 
@@ -653,6 +655,7 @@ countdown(minutes = 5,
 ### Your turn solution
 
 .pull-left[
+.smaller[
 ```{r yt1, eval = FALSE}
 pops_wide %>%
     gt() %>%
@@ -669,6 +672,7 @@ pops_wide %>%
         apply_to = "text"
     )
 ```
+]
 ]
 
 .pull-right[
@@ -816,7 +820,7 @@ pops_small %>%
             rows = year < 2015 #<<
         )
     ) %>%
-        tab_style(
+    tab_style(
         style = cell_text(color = "blue"),
         locations = cells_body(
             columns = vars(population),

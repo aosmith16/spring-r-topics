@@ -1815,7 +1815,7 @@ gtcars_small %>%
 <br/>
 ***Code notes:***  
 -Make black top and bottom lines  
--Remove other horizontal lines  
+-Set other horizontal lines to white but transparent another option
 ]
 
 .pull-right[
@@ -1828,7 +1828,7 @@ knitr::include_graphics("figs/week04_files/gt39.png")
 
 ### Table output options
 
-Get rid of the line above and below the header as follows.
+Get rid of the line above header and below header/note on white background as follows.
 
 .pull-left[
 .smaller[
@@ -1877,7 +1877,9 @@ From the documentation
 
 --
 
-You pass in a **gt** object to the `data` argument and then set the file name in `filename`. If you want to save a table somewhere outside your working directory set the path with `path`.
+You pass in a **gt** object to the `data` argument and then set the file name with extension in `filename`. 
+
+If you want to save a table somewhere outside your working directory set the path with `path`.
 
 ---
 

@@ -33,7 +33,7 @@ Week 05: **gt** flair: colors, images, and themes
 Week 06: Learn to write functions in R  
 Week 07: More Git: collaborators, merge conflicts, and pull requests  
 Week 08: Interactive graphics and tables     
-Week 09: GitHub issues and reproducible examples with **reprex**    
+Week 09: Reproducible examples with **reprex** + GitHub issues    
 Week 10: Catch up day or other topics of interest  
 
 ## Software

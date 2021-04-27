@@ -200,7 +200,7 @@ We are exploring a variety of packages this week. Make sure you have current ver
 [Week 08 slides](slides/week08_interactive_elements.html)  
 Save [`week08_interactivity.Rmd`](files/week08_interaction.Rmd) to knit to HTML output during the session  
 
-## Week 9: GitHub issues and reproducible examples with **reprex**  
+## Week 9: Reproducible examples with **reprex** + GitHub issues  
 
 ### Goals
 

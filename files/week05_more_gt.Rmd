@@ -156,7 +156,7 @@ pops_small %>%
 
 You can create a *heat map* vibe in a table with many columns of similar values, applying the same color scale across all columns together. This is done by choosing more `columns`.
 
-We'll choose all columns in `sza50` except the first one using `contains()`. We cannot currently use code like `vars(col1:col3)`, although that should be [fixed in the future](https://github.com/rstudio/gt/issues/611).
+We'll choose all columns in `sza50` except the first one using `contains()`. We cannot currently use code like `col1:col3`, although this is now available in the [development version of **gt**](https://github.com/rstudio/gt/issues/611).
 
 To use the color scheme across all columns we need to set the `domain` using the range of values from the entire dataset. I use some helper functions from **dplyr** to get only the numeric columns when calculating the range.
 
