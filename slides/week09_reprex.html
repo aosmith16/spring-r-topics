@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>How to reprex</title>
+    <meta charset="utf-8" />
+    <script src="week09_reprex_files/header-attrs/header-attrs.js"></script>
+    <meta name="github-repo" content="aosmith16/spring-r-topics"/>
+    <meta name="twitter:title" content="How to reprex"/>
+    <meta name="twitter:description" content="Making reproducible examples in R"/>
+    <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week09_reprex.html"/>
+    <meta name="twitter:image:src" content="https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week09-share-card.png"/>
+    <meta name="twitter:image:alt" content="Slides for how to reprex Working sessions class spring 2021"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:creator" content="@aosmith16"/>
+    <meta name="twitter:site" content="@aosmith16"/>
+    <meta property="og:title" content="How to reprex"/>
+    <meta property="og:description" content="Making reproducible examples in R"/>
+    <meta property="og:url" content="https://aosmith16.github.io/spring-r-topics/slides/week09_reprex.html"/>
+    <meta property="og:image" content="https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week09-share-card.png"/>
+    <meta property="og:image:alt" content="Slides for how to reprex Working sessions class spring 2021"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Ariel Muldoon"/>
+    <script src="week09_reprex_files/fabric/fabric.min.js"></script>
+    <link href="week09_reprex_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="week09_reprex_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30}) })</script>
+    <script src="week09_reprex_files/clipboard/clipboard.min.js"></script>
+    <link href="week09_reprex_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="week09_reprex_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="week09_reprex_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="week09_reprex_files/tile-view/tile-view.js"></script>
+    <script src="week09_reprex_files/js-cookie/js.cookie.js"></script>
+    <script src="week09_reprex_files/peerjs/peerjs.min.js"></script>
+    <script src="week09_reprex_files/tiny.toast/toast.min.js"></script>
+    <link href="week09_reprex_files/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="week09_reprex_files/xaringanExtra-broadcast/broadcast.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="wrap.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: center, middle, title-slide
+
+# How to reprex
+## Making reproducible examples in R
+
+&lt;img src="figs/reprex.png" title="Logo for package reprex" alt="Logo for package reprex" width="25%" /&gt;
+
+### Ariel Muldoon
+### May 25, 2021
+
+---
+
+## Today's Goal
+
+Overall  
+- **Learn how to make reproducible examples in R**   
+
+--
+
+We will  
+
+-     Use package **reprex** for creating examples with code and output     
+-     Add data to a reprex with package **datapasta**    
+-     Discuss etiquette for GitHub issues      
+-     Add a **reprex** to a GitHub issue
+
+---
+
+class: hide-logo
+
+## Resources
+
+- [Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website  
+- Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please.netlify.app/#1) and [recording](https://t.co/860RTqMvjy)   
+- [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html)  
+- See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is specific to repositories he maintains but contains good general advice.   
+
+.center[
+&lt;img src="figs/week09_files/datapasta.png" title="Logo for package datapasta" alt="Logo for package datapasta" width="25%" /&gt;
+]
+
+---
+
+## What is a reprex?
+
+The term *reprex* stands for **repr**oducible **ex**ample.
+
+If you ever ask for help in R on a help forum or want to report an issue on a GitHub repository you will be asked for minimal example code that others can run to reproduce whatever problem you are having.
+
+--
+
+There are several nice overviews of how to make a reproducible example.
+
+[RStudio Community guide](https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061)  
+[Stack Overflow canonical thread](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+[Tidyverse help guide](https://www.tidyverse.org/help/)
+
+---
+
+## What is in a repex?
+
+A reprex should include:    
+&gt;
+&gt; - A minimal dataset, necessary to reproduce the issue
+- The minimal runnable code necessary to reproduce the issue, which can be run
+on the given dataset, and including the necessary information on the used packages.  
+
+*From RStudio Community guide*
+
+---
+
+## What is in a repex?
+
+A reprex should include:
+&gt;
+&gt; - a minimal dataset, necessary to demonstrate the problem  
+&gt; - the minimal runnable code necessary to reproduce the error, which can be run on the given dataset  
+&gt; - all necessary information on the used packages, the R version, and the OS it is run on.  
+&gt; - in the case of random processes, a seed (set by set.seed()) for reproducibility  
+
+*From Stack Overflow thread*
+
+--
+
+Note the consistent use of the word *minimal*.
+
+---
+
+## Why should I reprex?
+
+&lt;blockquote class="twitter-tweet tw-align-center" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;Reproducible examples&lt;/p&gt;&amp;mdash; Sharla Gelfand (@sharlagelfand) &lt;a href="https://twitter.com/sharlagelfand/status/1365665149063987201"&gt;Tweet February 27, 2021&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+???
+
+First, because you will be asked for one!
+
+---
+
+## Why should I reprex?
+
+.center[
+&lt;img src="figs/week09_files/reprex_art.png" title="Artwork by Allison Horst showing cartoon monsters enjoying success when they provided  a reproducible example, helping others help them solve their problem" alt="Artwork by Allison Horst showing cartoon monsters enjoying success when they provided  a reproducible example, helping others help them solve their problem" width="70%" /&gt;
+Artwork by @allisonhorst  
+]
+
+???
+
+It helps people help you!  It also makes make it much more likely you will get a positive response.
+
+---
+
+
+class: hide-logo
+
+## Next week
+
+- Not sure yet
+
+
+
+.footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
+Slides created via the R packages:  
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(figs/reprex.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

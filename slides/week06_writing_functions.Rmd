@@ -129,7 +129,7 @@ R is built on functions, and people have already been using ones others have cre
 - When doing repetitive tasks
 
 
-<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Write same code three times, write a function</p>&mdash; David Robinson (@cantabile) <a href="https://twitter.com/drob/status/928447584712253440">Tweet November 8, 2017</a></blockquote>
+<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Write same code three times, write a function</p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/928447584712253440">Tweet November 8, 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <br/>
