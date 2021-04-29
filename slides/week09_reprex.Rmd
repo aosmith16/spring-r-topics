@@ -2,10 +2,7 @@
 title: "How to reprex"
 output:
   xaringan::moon_reader:
-    fig_caption: FALSE
     seal: FALSE
-    includes:
-      after_body: insert-logo.html
     css: [xaringan-themer.css, wrap.css]
     nature:
       slideNumberFormat: "%current%"
@@ -83,9 +80,9 @@ xaringanExtra::use_broadcast()
 class: center, middle, title-slide
 
 # How to reprex
-## Making reproducible examples in R
+## *Making reproducible examples in R*
 
-```{r distill, echo = FALSE, out.width = "25%", fig.cap = "Logo for package reprex"}
+```{r, echo = FALSE, out.width = "15%", fig.alt = "Logo for package reprex"}
 knitr::include_graphics("figs/reprex.png")
 ```
 
@@ -93,6 +90,8 @@ knitr::include_graphics("figs/reprex.png")
 ### May 25, 2021
 
 ---
+
+class: with-logo logo-reprex
 
 ## Today's Goal
 
@@ -103,24 +102,22 @@ Overall
 
 We will  
 
--     Use package **reprex** for creating examples with code and output     
+-     Discuss the components of a *minimal* reproducible example based on a real example
+-     Learn to use package **reprex** to help make code and output that you can paste into GitHub issues or help forums       
 -     Add data to a reprex with package **datapasta**    
--     Discuss etiquette for GitHub issues      
--     Add a **reprex** to a GitHub issue
 
 ---
 
-class: hide-logo
+class: with-logo logo-reprex
 
 ## Resources
 
 - [Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website  
 - Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please.netlify.app/#1) and [recording](https://t.co/860RTqMvjy)   
 - [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html)  
-- See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is specific to repositories he maintains but contains good general advice.   
 
 .center[
-```{r, echo = FALSE, out.width = "25%", fig.cap = "Logo for package datapasta"}
+```{r, echo = FALSE, out.width = "25%", fig.alt = "Logo for package datapasta"}
 knitr::include_graphics("figs/week09_files/datapasta.png")
 ```
 ]
@@ -131,46 +128,55 @@ knitr::include_graphics("figs/week09_files/datapasta.png")
 
 The term *reprex* stands for **repr**oducible **ex**ample.
 
-If you ever ask for help in R on a help forum or want to report an issue on a GitHub repository you will be asked for minimal example code that others can run to reproduce whatever problem you are having.
+If you ever ask for help in R on a forum or want to report an issue on a GitHub repository you will be asked for example code that others can run to reproduce whatever problem you are having.
 
 --
 
-There are several nice overviews of how to make a reproducible example.
+<br/><br/>
+There are several nice overviews of how to make a reproducible example that are worth reading.
 
 [RStudio Community guide](https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061)  
-[Stack Overflow canonical thread](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+[Stack Overflow canonical thread](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)  
 [Tidyverse help guide](https://www.tidyverse.org/help/)
 
 ---
 
 ## What is in a reprex?
 
-This is what we'll be practicing today.
-
+<br/>
 A reprex should include:    
->
-> - A minimal dataset, necessary to reproduce the issue
-- The minimal runnable code necessary to reproduce the issue, which can be run
+    
+> - A minimal dataset, necessary to reproduce the issue  
+
+> - The minimal runnable code necessary to reproduce the issue, which can be run
 on the given dataset, and including the necessary information on the used packages.  
 
-*From RStudio Community guide*
+*From the RStudio Community guide*
 
 ---
 
 ## What is in a reprex?
 
-A reprex should include:
->
-> - a minimal dataset, necessary to demonstrate the problem  
+<br/>
+A reprex should include:    
+    
+> - a minimal dataset, necessary to demonstrate the problem   
+
 > - the minimal runnable code necessary to reproduce the error, which can be run on the given dataset  
 > - all necessary information on the used packages, the R version, and the OS it is run on.  
+
 > - in the case of random processes, a seed (set by set.seed()) for reproducibility  
 
-*From Stack Overflow thread*
+*From the Stack Overflow thread on reproducible examples*
 
 --
 
-Note the consistent use of the word *minimal*.
+<br/>
+Note the consistent use of the word **minimal**.
+
+???
+
+We'll be talking about minimal later.
 
 ---
 
@@ -182,12 +188,12 @@ But the time is ultimately worth spending. `r emo::ji("dollar")`
 
 --
 
->
-- 80% of the time creating an excellent reprex reveals the source of your problem. It’s amazing how often the process of writing up a self-contained and minimal example allows you to answer your own question.
->
-- The other 20% of time you will have captured the essence of your problem in a way that is easy for others to play with. This substantially improves your chances of getting help!
 
-*From tidyverse guide*
+> - 80% of the time creating an excellent reprex reveals the source of your problem. It’s amazing how often the process of writing up a self-contained and minimal example allows you to answer your own question.  
+
+> - The other 20% of time you will have captured the essence of your problem in a way that is easy for others to play with. This substantially improves your chances of getting help!
+
+*From the tidyverse help guide*
 
 ???
 
@@ -201,7 +207,7 @@ A lot of times you can solve your own problem while working towards a minimal, r
 ```{r, echo = FALSE, out.width = "70%", fig.alt = "Artwork by Allison Horst showing cartoon monsters enjoying success when they provided  a reproducible example, helping others help them solve their problem"}
 knitr::include_graphics("figs/week09_files/reprex_art.png")
 ```
-Artwork by @allisonhorst  
+Artwork by @allisonhorst
 ]
 
 ???
@@ -217,18 +223,509 @@ It helps people help you!  It also makes make it much more likely you will get a
 
 ???
 
-And you will be asked for one!
+And you will be asked for one! I included this tweet to focus on the picture of the shared slide.
 
 ---
 
-## The plan
+## The plan for today
 
-We will
+- I will introduce an R coding scenario that I need your help solving
+- We'll go through my attempts to provide a reproducible example, with you running the code I provide to see the output
+- We'll discuss how I can improve things so my code meets the definition of a minimal reproducible example
+- Finally, we'll practice using package **reprex** to get code and output ready to paste into a forum and then discuss more features of the package  
 
-- Take an example coding problem and build a minimal, reproducible example
-- Use **reprex** to get code and output ready to paste  
+--
+
+<br/>
+This gets us ready for next week when we'll
 - Talk about GitHub issues and issue etiquette  
 - Practice making an issue, writing text and pasting **reprex** code
+
+???
+
+GitHub issues was originally in this same slide deck but I decided it'd be better to use the time in a separate working session.
+
+---
+
+class: center, middle, inverse
+
+# <font style="font-family: cursive; font-style:italic">Let's get started!</font>
+
+---
+
+## "I need help" take 1 `r emo::ji("clapper_board")`
+
+**Me:** "I'm having a problem with my **ggplot2** code. My points dodge but my error bars don't. Help! Here is my code."
+
+**You:** Copy and paste the code below into your R Console and run.  What happens?
+
+.smaller[
+```{r, eval = FALSE}
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2) +
+    scale_color_manual(values = c("#1c5253", "#F4790B"),
+                       labels = c("Douglas-fir", "Red alder")) +
+    labs(color = "Species",
+         x = "Overstory",
+         y = "Estimate") +
+    theme_minimal() +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          legend.direction = "horizontal",
+          legend.position = "bottom",
+          legend.box.spacing = unit(0, "pt"),
+          plot.margin = margin(b = 0))
+```
+]
+
+---
+
+## "I need help" take 1 `r emo::ji("clapper_board")`
+
+When the error message indicates a function can't be found, most often the package wasn't loaded. 
+
+That's the case here. I didn't provide the packages I'm using in my example code.
+
+```{r, echo = FALSE}
+cat('Error in ggplot(data = mydata, aes(x = over_species, y = est1)) : 
+  could not find function "ggplot"')
+```
+
+--
+
+<br/><br/>
+You might now be thinking something along the lines of, "Well, geez, people can easily guess what package I'm using."
+
+When asking for help you want to make it as easy as possible for people to help you. Providing all code, including packages, means they don't have to try to guess which packages you are using.
+
+???
+
+This is the classic "help me help you" slide
+
+---
+
+## "I need help" take 1 `r emo::ji("clapper_board")`
+
+Going back to the info in the guides for reproducible examples, I should provide:
+
+> ...runnable code necessary to reproduce the issue, which can be run
+on the given dataset, and including the necessary information on the used packages.
+
+<br/>
+OK, I didn't give code for the data or packages in my first attempt. Let me try again.
+
+---
+
+## "I need help" take 2 `r emo::ji("clapper_board")`
+
+**Me:** "Oh, you need my packages and dataset? Here you go."
+
+.tiny[
+```{r, eval = FALSE}
+library(covr)
+library(car)
+library(nlme)
+library(ggbiplot)
+library(devtools)
+library(ggplot2)
+library(dplyr)
+library(emmeans)
+
+setwd("C:/Users/USER/Documents/MyProject")
+
+data = read.csv("all_project_data.csv")
+mydata = read.csv("all_results.csv")
+
+table = data %>%
+    group_by(over_species, spp) %>%
+    summarize(mean = mean(variable),
+              sd = sd(variable))
+
+mod = lm(variable ~ over_species*spp, data = data)
+summary(mod) # Save these results!
+
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2) +
+    scale_color_manual(values = c("#1c5253", "#F4790B"),
+                       labels = c("Douglas-fir", "Red alder")) +
+    labs(color = "Species",
+         x = "Overstory",
+         y = "Estimate") +
+    theme_minimal() +
+    theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          legend.direction = "horizontal",
+          legend.position = "bottom",
+          legend.box.spacing = unit(0, "pt"),
+          plot.margin = margin(b = 0))
+```
+]
+
+---
+
+## "I need help" take 2 `r emo::ji("clapper_board")`
+
+**You:** Are likely feeling overwhelmed right now because I just gave you a bunch of code that isn't relevant to the problem. `r emo::ji("laughing")`
+
+--
+
+<br/>
+I asked you earlier to note the use of the word **minimal** used over and over in all the descriptions of a reproducible example.
+
+Let's talk more about that now.
+
+---
+
+## *Minimal* code
+
+When asked to provide the package and dataset I made a reasonable attempt to do so. However, I went way too far the other way and provided way more than I needed to.
+
+--
+
+<br/>
+When providing an example, give absolute minimum amount of code that can reproduce the problem. No extra packages, no extra data manipulation steps, etc. 
+
+<br/>
+Give the final dataset; the person helping you should not have to run a bunch of code to create the dataset. (*More on datasets coming up.*)
+
+???
+
+Don't make your potential helpers run all the code to create a dataset in a bunch of data manipulation steps. Provide them the final dataset.
+
+---
+
+## *Minimal* code.
+
+Even when I get rid of the extraneous packages and data manipulation steps my code isn't minimal.
+
+All tweaks to the plot appearance, such as those highlighted below, are not related to the problem I am having. These should be removed.
+
+.tiny[
+```{r, eval = FALSE}
+library(ggplot2)
+
+setwd("C:/Users/USER/Documents/MyProject")
+
+mydata = read.csv("all_results.csv")
+
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2) +
+    scale_color_manual(values = c("#1c5253", "#F4790B"), #<<
+                       labels = c("Douglas-fir", "Red alder")) + #<<
+    labs(color = "Species", #<<
+         x = "Overstory", #<<
+         y = "Estimate") + #<<
+    theme_minimal() + #<<
+    theme(panel.grid.major.x = element_blank(), #<<
+          panel.grid.minor.y = element_blank(), #<<
+          legend.direction = "horizontal", #<<
+          legend.position = "bottom", #<<
+          legend.box.spacing = unit(0, "pt"), #<<
+          plot.margin = margin(b = 0)) #<<
+```
+]
+
+---
+
+## "I need help" take 3 `r emo::ji("clapper_board")`
+
+Me: "OK, I got things down to just the code that produces the problem. Here you go!"
+
+You: Copy and paste the code into your R Console and run.  What happens now?
+
+```{r, eval = FALSE}
+library(ggplot2)
+
+setwd("C:/Users/USER/Documents/MyProject")
+
+mydata = read.csv("all_results.csv")
+
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2)
+```
+
+---
+
+## "I need help" take 3 `r emo::ji("clapper_board")`
+
+Now that the packages are loaded, the errors are related to the dataset.
+
+```{r, echo = FALSE}
+cat('Error in setwd("C:/Users/USER/Documents/MyProject") : 
+  cannot change working directory')
+cat(paste0('Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file),', "'all_project_data.csv': No such file or directory"))
+```
+
+---
+
+## The problem of setwd()
+
+We're going to talk more about how to provide datasets, but first let's talk about my use of `setwd()` while asking someone who isn't on my personal computer to run my code.
+
+--
+
+An excerpt from ["Reprex do's and don'ts"](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) captures the problem: 
+
+> **Pack it in, pack it out, and don’t take liberties with other people’s computers.** You are asking people to run this code!
+
+> - Don’t start with `rm(list = ls())`. It is anti-social to clobber other people’s workspaces.
+
+> - Don’t start with `setwd("C:\Users\jenny\path\that\only\I\have")`, because it won’t work on anyone else’s computer.
+
+--
+
+<br/>
+Your goal is to make it easy for someone else to run your code, and `setwd()` doesn't do that.
+
+If you reguarly use `setwd()` in your work, consider switching to [Project-oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/). 
+
+???
+
+Can add asides here about issues of `setwd()` for your future self or your self using a different computer.
+
+---
+
+## Providing a dataset
+
+The thing I've seen people struggle with the most is in providing a dataset to reproduce the problem.
+
+This is one place where making a reproducible example can get time-consuming.
+
+--
+
+<br/>
+The three most common ways to provide a dataset in a reproducible example:
+1. Create a fake dataset.
+2. Use a built-in dataset like `mtcars` or `iris`.
+3. Provide some portion of your real dataset using **datapasta**.
+
+---
+
+### Create a fake dataset
+
+If your data are proprietary or your dataset is too large to provide any other way, consider making fake dataset. 
+
+With practice, this is often one of the easiest ways to provide a *minimal* dataset.
+
+???
+
+Many problems can be reproduced without working with your entire real dataset
+
+---
+
+### Create a fake dataset
+
+.pull-left[
+Here is an example of making a small dataset that matches the features and variables in my real dataset. 
+
+Since my problem is with dodging it turns out I need a single `x` variable group to reproduce the problem. My example has only two rows of data.
+]
+
+.pull-right[
+```{r}
+mydata = data.frame(over_species = rep("ACMA", times = 2),
+                        spp = c("DF", "RA"),
+                        est1 = c(1, 2),
+                        lo1 = c(1, 2) - 2,
+                        hi1 = c(1, 2) + 2)
+mydata
+```
+]
+
+.footnote[See other ways to make fake data, such as with functions from package **tibble**, in this [RStudio Community thread](https://community.rstudio.com/t/best-practices-how-to-prepare-your-own-data-for-use-in-a-reprex-if-you-can-t-or-don-t-know-how-to-reproduce-a-problem-with-a-built-in-dataset/5346/8).]
+
+---
+
+### Create a fake dataset
+
+The beauty of making a fake dataset like this is that you can include the code for creating it along with the rest of your code.
+
+Copy the code and try running it in your R Console; you will finally get a plot as output!
+
+```{r, eval = FALSE}
+library(ggplot2)
+
+mydata = data.frame(over_species = rep("ACMA", times = 2),
+                        spp = c("DF", "RA"),
+                        est1 = c(1, 2),
+                        lo1 = c(1, 2) - 2,
+                        hi1 = c(1, 2) + 2)
+
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2)
+```
+
+**Note:** If your example contains randomly generated numbers, be sure to provide a seed with `set.seed()`.
+
+---
+
+### Use a built-in dataset
+
+Editing your code to work with one of the datasets built in to R is another good option and saves you the trouble of making a dataset. 
+
+--
+
+Commonly used datasets include `mtcars` `r emo::ji("car")` and `iris` `r emo::ji("blossom")`, but there are a ton of other ones.  Run `data()` in your R Console to see all available datasets that come with R.
+
+You can opt to use datasets that come with add-on packages, but remember that requires your potential helpers to have that package.
+
+---
+
+### Use a built-in dataset
+
+Using a built-in dataset means I have to change my code a little.  
+
+Here's how I can take `mtcars` and rewrite my code to reproduce the problem. I chose just two rows of the dataset that had the same value of `gear` but different values of `vs`.
+
+Copy the code and run it in your R Console to see what this looks like.
+
+```{r, eval = FALSE}
+library(ggplot2)
+
+ggplot(data = mtcars[2:3,], aes(x = factor(gear), y = mpg)) +
+    geom_point(aes(color = factor(vs)), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = mpg - 1, ymax = mpg + 1),
+                  position = position_dodge(width = .5),
+                  width = .2)
+```
+
+???
+
+Also note how I didn't need actual values in the dataset for making error bars.
+
+---
+
+class: with-logo logo-pasta
+
+## Using **datapasta** to provide data
+
+If you want to provide your actual dataset you can use helper functions from package **datapasta**. 
+
+There are other options for doing this, such as function `dput()`, but **datapasta** puts the result in a very readable format.
+
+<br/>
+We'll be using `datapasta::dpasta()` to briefly explore how this works.
+
+There is much more you can do with **datapasta** then how we are using it here. Check out [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html) for cool examples on copying and pasting data from online sources, etc.
+
+---
+
+class: with-logo logo-pasta
+
+## Using **datapasta** to provide data
+
+Run the code below in your R Console to see how `dpasta()` turns the first few rows and columns of `mtcars` into an easily copy-and-pasteable format. 
+
+```{r, eval = FALSE}
+datapasta::dpasta(mtcars[1:6, 1:3])
+```
+
+```{r, eval = FALSE}
+data.frame(
+   row.names = c("Mazda RX4","Mazda RX4 Wag","Datsun 710",
+                 "Hornet 4 Drive","Hornet Sportabout","Valiant"),
+         mpg = c(21, 21, 22.8, 21.4, 18.7, 18.1),
+         cyl = c(6, 6, 4, 6, 8, 6),
+        disp = c(160, 160, 108, 258, 360, 225)
+)
+```
+
+**Note:** I found slight alignment issue with the output format from `dpasta()`, as shown above. When using the output in a question `Ctrl + I` (MacOS `Cmd + I`) will fix that right up. `r emo::ji("+1")`
+
+---
+
+class: with-logo logo-pasta
+
+## Using **datapasta** to provide data
+
+This is exactly the approach I want in order to include my actual dataset with my code.
+
+Here's what my actual dataset looks like:
+
+```{r, echo = FALSE}
+set.seed(16)
+
+mydata = tibble::tibble(over_species = rep(c("ACMA", "ALRU", "PSME"), each = 2),
+                    spp = rep(c("DF", "RA"), times = 3),
+                    est1 = round(runif(n = 6, min = 5, max = 15), digits = 1),
+                    lo1 = est1 - 2,
+                    hi1 = est1 + 2,
+                    est2 = round(runif(n = 6, min = 10, max = 30), digits = 1),
+                    lo2 = est2 - 5,
+                    hi2 = est2 + 5,
+                    var1 = round(rnorm(n = 6), digits = 1),
+                    var2 = round(rnorm(n = 6), digits = 1)
+           )
+
+knitr::kable(mydata)
+```
+
+Take note of all the extra columns. In keeping with making things minimal, I'll remove any column that isn't directly relevant to the problem prior to including it in my dataset.
+
+---
+
+## "I need help" take 4 `r emo::ji("clapper_board")`
+
+**Me:** "I'm having a problem with my **ggplot2** code. My points dodge but my error bars don't. Help! Here is a minimal reproducible example."
+
+**You:** Since you can now copy and paste the code into your R Console and immediately get it to run, you can jump right to helping me find solutions. `r emo::ji("tada")`
+
+.smaller[
+```{r, eval = FALSE}
+library(ggplot2)
+
+mydata = data.frame(
+    stringsAsFactors = FALSE,
+    over_species = c("ACMA", "ACMA", "ALRU", "ALRU", "PSME", "PSME"),
+    spp = c("DF", "RA", "DF", "RA", "DF", "RA"),
+    est1 = c(11.8, 7.4, 9.5, 7.3, 13.6, 8.1),
+    lo1 = c(9.8, 5.4, 7.5, 5.3, 11.6, 6.1),
+    hi1 = c(13.8, 9.4, 11.5, 9.3, 15.6, 10.1)
+)
+
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2)
+```
+]
+
+???
+
+I did re-format the output from dpasta() with Ctrl + I
 
 ---
 
@@ -241,253 +738,71 @@ The goal of this package is to
 
 --
 
+<br/>
 The package takes a chunk of your code and runs it, returning both the code and the code output on your clipboard. Paste the result into your question on Stack Overflow or when reporting a potential issue on GitHub.
 
-Now someone can not only copy your code and run it, they can see what the output looks like. 
+Now someone can copy your code and run it but, importantly, the can also see what the output looks like without having to run any code at all. 
 
 ---
 
-## GitHub issues
+class: with-logo logo-reprex
 
-The **Issues** section on GitHub is where you can report possible bugs or make feature requests.
+## The reprex package
 
-This is part of a GitHub repository. See **Issues** in the second menu on the top navigation bar.
+One way simple way to use the **reprex** package is to copy the code from your minimal reproducible example onto your clipboard.
 
-.center[
-```{r, echo = FALSE, fig.alt = "Screen capture showing the issues menu on the top menu bar in aosmith16/practice-repo GitHub repository"}
-knitr::include_graphics("figs/week09_files/issue_menu.png")
+Here's my reprex to copy again:
+
+.smaller[
+```{r, eval = FALSE}
+library(ggplot2)
+
+mydata = data.frame(
+    stringsAsFactors = FALSE,
+    over_species = c("ACMA", "ACMA", "ALRU", "ALRU", "PSME", "PSME"),
+    spp = c("DF", "RA", "DF", "RA", "DF", "RA"),
+    est1 = c(11.8, 7.4, 9.5, 7.3, 13.6, 8.1),
+    lo1 = c(9.8, 5.4, 7.5, 5.3, 11.6, 6.1),
+    hi1 = c(13.8, 9.4, 11.5, 9.3, 15.6, 10.1)
+)
+
+ggplot(data = mydata, aes(x = over_species, y = est1)) +
+    geom_point(aes(color = spp), 
+               position = position_dodge(width = .5),
+               size = 2) +
+    geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                  position = position_dodge(width = .5),
+                  width = .2)
 ```
 ]
 
 ---
 
-## GitHub issues
+class: with-logo logo-reprex
 
-Take a moment to explore the issues section on the **ggplot2** repository at https://github.com/tidyverse/ggplot2/issues.
+## The reprex package
 
-.center[
-```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository"}
-knitr::include_graphics("figs/week09_files/ggplot2_issues.png")
-```
+.pull-left[
+Once you have code copied to your clipboard, run `reprex::reprex()` in your R Console.
+
+All code and output will be copied to your clipboard and a rendered HTML preview will show in your `Viewer` Pane.
 ]
 
----
-
-## GitHub issues
-
-Things to note:
-- There are separate pages for open and closed issues.
-- Note the search bar at the top so you can search within issues.
-- You can sort issues using the drop-down menu on the far right I sometimes look at "Recently updated" rather the newest.
-- You can create an issue by clicking on the "New issue" button on the right
-
----
-
-## GitHub issues 
-
-I think I found a bug; should I report it?
-
 --
 
-Absolutely!
+.pull-right[
 
-Reporting bugs is ultimately a way to help the package maintainer improve the package. It is a way for non-programmers like me to participate in and give back to an open source programming language like R.
-
---
-
-It can feel scary `r emo::ji("fearful")`to report an issue, I think particularly for those of us who feel like non-R experts. 
-
-To ease the process, let's go over some of the basic etiquette to follow when reporting an issue. 
-
-???
-
-I have occasionally reported bugs for students who found issues in packages. I hope this ultimately leads them to see the process so they will feel empowered to report issues in the future.
-
----
-
-## GitHub issues etiquette
-
-Yihui Xie's guide to etiquette on his repositories is a good place to start: https://yihui.org/issue/.
-
---
-
-**Report bugs and request features**
-
-The issues section on GitHub is for reporting potential bugs `r emo::ji("beetle")` and requesting features. It is not for asking general questions about how the package works.
-
-If you have a question, ask on help forums such as [Stack Overflow](https://stackoverflow.com/questions/tagged/r) and the [RStudio Community](https://community.rstudio.com/).  
-
-It may turn out that your question was due to a bug. In that case, go to the relevant GitHub repo and report it. `r emo::ji("smile")`
-
----
-
-## GitHub issues etiquette
-
-**Do your research.**
-
-- Before opening a new issue, check that no one else as reported it by searching both open and closed issues using the search tool.
-
-.center[
-```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository"}
-knitr::include_graphics("figs/week09_files/ggplot2_issues.png")
-```
 ]
 
----
 
-## GitHub issues etiquette
 
-**Do your research.**
 
-- Before opening a new issue, check that no one else as reported it by searching both open and closed issues using the search tool.
-- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`.
-
-.center[
-```{r, echo = FALSE, fig.alt = "Screen capture showing where to check for changes in NEWS.md on the ggplot2 GitHub repository"}
-knitr::include_graphics("figs/week09_files/news.png")
-```
-]
-
----
-
-## GitHub issues etiquette
-
-**Do your research.**
-
-- Before opening a new issue, check that no one else as reported it by searching both open and closed issues using the search tool.
-- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`.
-- If you feel unsure that what you found is really a bug, ask someone else to review your minimal reproducible example. This may be on one of the aforementioned forums.
-
----
-
-## GitHub issues etiquette
-
-**Follow all repository instructions.**
-
-Every repository is different, but some will give specific instructions on what you need to provide when opening an issue. 
-
-For example, if you open a **ggplot2** issue you will see the following set of instructions. Make sure you read them and then do what they say.
-
-.center[
-```{r, echo = FALSE, fig.alt = "Screen capture showing where to check for changes in NEWS.md on the ggplot2 GitHub repository"}
-knitr::include_graphics("figs/week09_files/ggplot2_instr.png")
-```
-]
-
-???
-
-Notice that this repo asks for session info only if requested or you can hide it using **reprex** collapsible session info with `session_info = TRUE`.
-
-Similarly, make sure you read Yihiu Xie's issue guide if opening issue on a repo he maintains. Most of his also have instructions included when opening the issue.
-
----
-
-## GitHub issues etiquette
-
-**Be kind and respectful.**
-
-This seems like it should go without saying, but I've seen issues that have an accusatory tone when something that used to work no longer does.
-
-You may decide to offer up appreciation (if instructions allow for it `r emo::ji("grin")`) but at the very least be civil and to the point.
-
-<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Issues can feel oppressive to maintainers</p>&mdash; Jim Hester (@jimhester_) <a href="https://twitter.com/jimhester_/status/1357680037470875649">Tweet February 5, 2021</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-???
-
-Issues are usually bug reports, which can feel really negative. Think about how the maintainer might feel when they see your report and try to set the tone accordingly.
-
----
-
-## GitHub issues etiquette
-
-**Provide a minimal reproducible example.**
-
-The simpler the example you can give, the easier it is for the maintainer to understand the problem. Our goal is to help, and reducing the burden of figuring out what we mean is a good start.
-
-Ideally you will provide very basic example code with output. This is a reason to use package **reprex**.  
-
-```{r distill, echo = FALSE, out.width = "25%", fig.cap = "Logo for package reprex"}
-knitr::include_graphics("figs/reprex.png")
-```
-
----
-
-## GitHub issues etiquette
-
-**Be patient.**
-
-You likely will not get an immediate response. Package maintainers are busy people and getting to issues takes time.
-
-If you have a potential fix for an issue, you might consider making a pull request. 
-
----
-
-## GitHub issues etiquette
-
-**Be responsive if more information requested.**
-
-The repo maintainer may ask you for more background on the issue or feature request. Be sure to be paying attention so you can get back to them.
-
-I've seen issues closed because the original poster never returned with follow up information.
-
----
-
-## GitHub issues etiquette
-
-Let's put these guidelines all in one slide.
-
-- **Report bugs and request features**
-- **Do your research.**
-- **Follow all repository instructions.**
-- **Be kind and respectful.**
-- **Provide a minimal reproducible example.**
-- **Be patient.**
-- **Be responsive if more information requested.**
-
----
-
-## Issue examples
-
-I want and found a could of old issues I put in for package **tidyr**.
-
-The first one is a feature request: https://github.com/tidyverse/tidyr/issues/387 
-
-You can see I initially didn't give enough background and so had to come back with more information.
-
-Also note that there was a delay before the maintainer was able to think about this, which is not uncommon with a feature request. 
-
-You can add emoji's to posts within GitHub issues. This is one way to show appreciation, and you can see this on the very last post in the thread.
-
----
-
-## Issue examples
-
-The second was a bug report `r emo::ji("beetle")`: https://github.com/tidyverse/tidyr/issues/324
-
-I did a better job of showing a really minimal example here to demonstrate the problem.
-
----
-
-## Practice issue
-
-Let's finish today by taking with we learned with **reprex** and armed with our GitHub issues etiquette to practice making an issue.
-
---
-
-Open an issue on my `practice-repo` repository: https://github.com/aosmith16/practice-repo
-
-Use some of the **reprex** code we wrote earlier.  Open an issue, add text to describe the issue, and then paste the code and output before submitting. Include collapsible session info. 
-
---
-
-Note how nicely the code and output is formatted when pasting from **reprex**. Even if you don't use **reprex** make sure your code is formatted correctly using Markdown syntax.  
 
 ---
 
 ## Next week
 
-- Not sure yet
+- Discuss the process and etiquette for reporting issues on GitHub repositories `r fontawesome::fa("github")`
 
 
 .footnote[

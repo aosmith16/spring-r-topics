@@ -38,3 +38,6 @@ pre {
 .logo-reprex::before {
 	background-image: url(figs/reprex.png);
 }
+.logo-pasta::before {
+	background-image: url(figs/week09_files/datapasta.png);
+}

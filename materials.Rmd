@@ -200,22 +200,39 @@ We are exploring a variety of packages this week. Make sure you have current ver
 [Week 08 slides](slides/week08_interactive_elements.html)  
 Save [`week08_interactivity.Rmd`](files/week08_interaction.Rmd) to knit to HTML output during the session  
 
-## Week 9: Reproducible examples with **reprex** + GitHub issues  
+## Week 9: Reproducible examples with **reprex**  
 
 ### Goals
 
-The ultimate goal this week is to understand how to make a reproducible example or *reprex* when asking a question or reporting an issue. We will alsodiscuss the etiquette of reporting an issue for R packages on GitHub.
+The ultimate goal this week is to understand how to make a reproducible example or *reprex* when asking a question or reporting an issue. 
 
 ### Resources
 
 [Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website  
 Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please.netlify.app/#1) and [recording](https://t.co/860RTqMvjy)   
 [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html)  
-See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is specific to repositories he maintains but contains good general advice.  
+[RStudio Community guide](https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061)  
+[Stack Overflow canonical thread](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)  
+[Tidyverse help guide](https://www.tidyverse.org/help/)  
 
 ### Materials for class
 
 We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** and **datapasta** installed.
 
-Week 09 slides go here
+pWeek 09 slides in progress](slides/week09_reprex.html) 
 
+## Week 10: GitHub issues
+
+### Goals
+
+We will discuss the etiquette of reporting an issue for R packages on GitHub, then practice making an issue using **reprex** for the code and output.
+
+### Resources
+
+See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is specific to repositories he maintains but contains good general advice.  
+
+### Materials for class
+
+We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** installed.
+
+Week 10 slides go here

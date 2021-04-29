@@ -1,0 +1,351 @@
+---
+title: "GitHub `r fontawesome::fa('github')` issues guide"
+date: June 01, 20201
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, wrap.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+      beforeInit: "https://platform.twitter.com/widgets.js"
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+library(formatR)
+```
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1c5253",
+  secondary_color = "#F4790B",
+  inverse_header_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  base_font_size = "22px",
+  link_color = "#F4790B",
+  code_highlight_color = "rgba(244, 121, 11, 0.5)"
+)
+```
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+    meta_name("github-repo" = "aosmith16/spring-r-topics") %>% 
+    meta_social(
+        title = "GitHub issues guide",
+        description = "The etiquette in reporting an issue on GitHub",
+        url = "https://aosmith16.github.io/spring-r-topics/slides/week10_issues.html",
+        image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week10-share-card.png",
+        image_alt = paste(
+            "Slides on the topic of GitHub issues", 
+            "Working sessions class spring 2021"
+        ),
+        og_type = "website",
+        og_author = "Ariel Muldoon",
+        twitter_card_type = "summary",
+        twitter_creator = "@aosmith16"
+    )
+```
+
+```{r xaringan-scribble, echo = FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r broadcast, echo=FALSE}
+xaringanExtra::use_broadcast()
+```
+
+## Today's Goal
+
+**Learn the process and etiquette for reporting issues on GitHub repositories `r fontawesome::fa("github")`**   
+
+Using **reprex** skills learned last week, we will end by making a practice issue.
+
+```{r, echo = FALSE, out.width = "25%", fig.cap = "Logo for package reprex"}
+knitr::include_graphics("figs/reprex.png")
+```
+
+---
+
+## Resources
+
+- See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is specific to repositories he maintains but contains good general advice for approaching the GitHub issue process.   
+## GitHub issues
+
+The **Issues** section on GitHub is where you can report possible bugs or make feature requests.
+
+This is part of a GitHub repository. See **Issues** in the second menu on the top navigation bar.
+
+.center[
+```{r, echo = FALSE, fig.alt = "Screen capture showing the issues menu on the top menu bar in aosmith16/practice-repo GitHub repository"}
+knitr::include_graphics("figs/week10_files/issue_menu.png")
+```
+]
+
+---
+
+## GitHub issues
+
+Take a moment to explore the issues section on the **ggplot2** repository at https://github.com/tidyverse/ggplot2/issues.
+
+.center[
+```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository"}
+knitr::include_graphics("figs/week10_files/ggplot2_issues.png")
+```
+]
+
+---
+
+## GitHub issues
+
+Things to note:
+- There are separate pages for open and closed issues.
+- Note the search bar at the top so you can search within issues.
+- You can sort issues using the drop-down menu on the far right I sometimes look at "Recently updated" rather the newest.
+- You can create an issue by clicking on the "New issue" button on the right
+
+---
+
+## GitHub issues 
+
+I think I found a bug; should I report it?
+
+--
+
+Absolutely!
+
+Reporting bugs is ultimately a way to help the package maintainer improve the package. It is a way for non-programmers like me to participate in and give back to an open source programming language like R.
+
+--
+
+It can feel scary `r emo::ji("fearful")`to report an issue, I think particularly for those of us who feel like non-R experts. 
+
+To ease the process, let's go over some of the basic etiquette to follow when reporting an issue. 
+
+???
+
+I have occasionally reported bugs for students who found issues in packages. I hope this ultimately leads them to see the process so they will feel empowered to report issues in the future.
+
+---
+
+## GitHub issues etiquette
+
+Yihui Xie's guide to etiquette on his repositories is a good place to start: https://yihui.org/issue/.
+
+--
+
+**Report bugs and request features**
+
+The issues section on GitHub is for reporting potential bugs `r emo::ji("beetle")` and requesting features. It is not for asking general questions about how the package works.
+
+If you have a question, ask on help forums such as [Stack Overflow](https://stackoverflow.com/questions/tagged/r) and the [RStudio Community](https://community.rstudio.com/).  
+
+It may turn out that your question was due to a bug. In that case, go to the relevant GitHub repo and report it. `r emo::ji("smile")`
+
+---
+
+## GitHub issues etiquette
+
+**Do your research.**
+
+- Before opening a new issue, check that no one else as reported it by searching both open and closed issues using the search tool.
+
+.center[
+```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository"}
+knitr::include_graphics("figs/week10_files/ggplot2_issues.png")
+```
+]
+
+---
+
+## GitHub issues etiquette
+
+**Do your research.**
+
+- Before opening a new issue, check that no one else as reported it by searching both open and closed issues using the search tool.
+- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`.
+
+.center[
+```{r, echo = FALSE, fig.alt = "Screen capture showing where to check for changes in NEWS.md on the ggplot2 GitHub repository"}
+knitr::include_graphics("figs/week10_files/news.png")
+```
+]
+
+---
+
+## GitHub issues etiquette
+
+**Do your research.**
+
+- Before opening a new issue, check that no one else as reported it by searching both open and closed issues using the search tool.
+- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`.
+- If you feel unsure that what you found is really a bug, ask someone else to review your minimal reproducible example. This may be on one of the aforementioned forums.
+
+---
+
+## GitHub issues etiquette
+
+**Follow all repository instructions.**
+
+Every repository is different, but some will give specific instructions on what you need to provide when opening an issue. 
+
+For example, if you open a **ggplot2** issue you will see the following set of instructions. Make sure you read them and then do what they say.
+
+.center[
+```{r, echo = FALSE, fig.alt = "Screen capture showing where to check for changes in NEWS.md on the ggplot2 GitHub repository"}
+knitr::include_graphics("figs/week10_files/ggplot2_instr.png")
+```
+]
+
+???
+
+Notice that this repo asks for session info only if requested or you can hide it using **reprex** collapsible session info with `session_info = TRUE`.
+
+Similarly, make sure you read Yihiu Xie's issue guide if opening issue on a repo he maintains. Most of his also have instructions included when opening the issue.
+
+---
+
+## GitHub issues etiquette
+
+**Be kind and respectful.**
+
+This seems like it should go without saying, but I've seen issues that have an accusatory tone when something that used to work no longer does.
+
+You may decide to offer up appreciation (if instructions allow for it `r emo::ji("grin")`) but at the very least be civil and to the point.
+
+<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Issues can feel oppressive to maintainers</p>&mdash; Jim Hester (@jimhester_) <a href="https://twitter.com/jimhester_/status/1357680037470875649">Tweet February 5, 2021</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+???
+
+Issues are usually bug reports, which can feel really negative. Think about how the maintainer might feel when they see your report and try to set the tone accordingly.
+
+---
+
+## GitHub issues etiquette
+
+**Provide a minimal reproducible example.**
+
+The simpler the example you can give, the easier it is for the maintainer to understand the problem. Our goal is to help, and reducing the burden of figuring out what we mean is a good start.
+
+Ideally you will provide very basic example code with output. The maintainer should be able to copy, paste, and run the code with no other steps.
+
+This is good usse-case for package **reprex**.  
+
+```{r distill, echo = FALSE, out.width = "25%", fig.cap = "Logo for package reprex"}
+knitr::include_graphics("figs/reprex.png")
+```
+
+---
+
+## GitHub issues etiquette
+
+**Be patient.**
+
+You likely will not get an immediate response. Package maintainers are busy people and getting to issues takes time.
+
+If you have a potential fix for an issue, you might consider making a pull request. 
+
+---
+
+## GitHub issues etiquette
+
+**Be responsive if more information requested.**
+
+The repo maintainer may ask you for more background on the issue or feature request. Be sure to be paying attention so you can get back to them.
+
+I've seen issues closed because the original poster never returned with follow up information.
+
+---
+
+## GitHub issues etiquette
+
+Let's put these guidelines all in one slide.
+
+- **Report bugs and request features**
+- **Do your research.**
+- **Follow all repository instructions.**
+- **Be kind and respectful.**
+- **Provide a minimal reproducible example.**
+- **Be patient.**
+- **Be responsive if more information requested.**
+
+A few other things:
+Include example of the expected result
+If have figured anything out during research (when change occurred, why it might be happening, what used to happen) you can include
+
+---
+
+## Issue examples
+
+I want and found a could of old issues I put in for package **tidyr**.
+
+The first one is a feature request: https://github.com/tidyverse/tidyr/issues/387 
+
+You can see I initially didn't give enough background and so had to come back with more information.
+
+Also note that there was a delay before the maintainer was able to think about this, which is not uncommon with a feature request. 
+
+You can add emoji's to posts within GitHub issues. This is one way to show appreciation, and you can see this on the very last post in the thread.
+
+---
+
+## Issue examples
+
+The second was a bug report `r emo::ji("beetle")`: https://github.com/tidyverse/tidyr/issues/324
+
+I did a better job of showing a really minimal example here to demonstrate the problem.
+
+---
+
+## Practice issue
+
+Let's finish today by taking with we learned with **reprex** and armed with our GitHub issues etiquette to practice making an issue.
+
+--
+
+Open an issue on my `practice-repo` repository: https://github.com/aosmith16/practice-repo
+
+Use some of the **reprex** code we wrote earlier.  Open an issue, add text to describe the issue, and then paste the code and output before submitting. Include collapsible session info. 
+
+--
+
+Note how nicely the code and output is formatted when pasting from **reprex**. Even if you don't use **reprex** make sure your code is formatted correctly using Markdown syntax.  
+
+---
+
+## Last slide
+
+We are done for the quarter. Enjoy your summer! `r emo::ji("sun_with_face")`
+
+.footnote[
+[Code for slides](https://github.com/aosmith16/spring-r-topics/tree/main/docs/slides)  
+Slides created via the R packages:  
+[**xaringan**](https://github.com/yihui/xaringan), 
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer), 
+[gadenbuie/xaringanExtra](https://github.com/gadenbuie/xaringanExtra) 
+.center[*This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.*]
+]
