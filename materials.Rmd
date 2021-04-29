@@ -219,7 +219,7 @@ Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please
 
 We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** and **datapasta** installed.
 
-pWeek 09 slides in progress](slides/week09_reprex.html) 
+[Week 09 slides in progress](slides/week09_reprex.html) 
 
 ## Week 10: GitHub issues
 

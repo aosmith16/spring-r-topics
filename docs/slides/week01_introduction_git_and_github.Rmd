@@ -154,6 +154,7 @@ Sign up at https://github.com/
 knitr::include_graphics("figs/week01_files/github_start_window.PNG")
 ```
 ]
+
 ---
 
 ## Create GitHub account `r icons::fontawesome("github")`
