@@ -609,6 +609,7 @@ The beauty of making a fake dataset is that you can include the code for creatin
 
 Copy the code and run it in your R Console to see the result.
 
+.smaller[
 
 ```r
 library(ggplot2)
@@ -627,6 +628,7 @@ ggplot(data = mydata, aes(x = over_species, y = est1)) +
                   position = position_dodge(width = .5),
                   width = .2)
 ```
+]
 
 **Note:** If your example contains randomly generated numbers, be sure to provide a seed with `set.seed()`.
 
