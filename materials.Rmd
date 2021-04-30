@@ -204,11 +204,11 @@ Save [`week08_interactivity.Rmd`](files/week08_interaction.Rmd) to knit to HTML 
 
 ### Goals
 
-The ultimate goal this week is to understand how to make a reproducible example or *reprex* when asking a question or reporting an issue. 
+The ultimate goal this week is to understand how to make a reproducible example or *reprex* when asking a question or reporting an issue. We'll discuss the elements of a reprex while working through a practice example and then use package **reprex** to create pasteable code and output.
 
 ### Resources
 
-[Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website  
+[Intro article](https://reprex.tidyverse.org/) and [Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website    
 Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please.netlify.app/#1) and [recording](https://t.co/860RTqMvjy)   
 [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html)  
 [RStudio Community guide](https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061)  
@@ -217,9 +217,9 @@ Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please
 
 ### Materials for class
 
-We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** and **datapasta** installed.
+We will be practice making reproducible examples with package **reprex**. Makes sure you have the current versions of **reprex** and **datapasta** installed.
 
-[Week 09 slides in progress](slides/week09_reprex.html) 
+[Week 09 slides](slides/week09_reprex.html) 
 
 ## Week 10: GitHub issues
 
