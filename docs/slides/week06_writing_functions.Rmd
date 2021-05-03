@@ -958,7 +958,7 @@ use_mean2(vector = c(1, 2, NA),
 
 ## Conditional returns
 
-Back when we made `sum_two()`, I had you look at the error you got when you passed in characters when the function was expecting numbers.
+Back when we made `sum_two()` I had you look at the error you got when you passed in characters when the function was expecting numbers.
 
 ```{r, error = TRUE}
 sum_two(num1 = "a", 
@@ -1066,6 +1066,8 @@ sum_two_if(num1 = 1,
 We can expand the condition with an *or* statement via `|`. 
 
 In this case it makes sense to test if the input to *either* argument is a character.
+
+If you need an *and* statement you can use `&`.
 ]
 
 .pull-right[
