@@ -22,7 +22,7 @@ We create functions with `function()`. This involves:
 
 1.  Assigning a name for the new function. Use your preferred assignment operator.
 2.  Allowing for inputs to the function as *arguments* within `function()`. The inputs are values or objects we will use within the function.
-3.  Writing code to create the function output. This code goes between the curly braces (`{`) and used the provided inputs to return a single output.
+3.  Writing code to create the function output. This code goes between the curly braces (`{`) and uses the provided inputs to return a single output.
 
 A skeleton of a function looks like this.
 
@@ -45,7 +45,9 @@ my_function(argument1 = input1, etc.)
 
 Let's start with a very basic function.
 
-This function, named `return_input`, will have a single argument, `input`. This function will simply return whatever we give as input as output.
+This function, named `return_input`, will have a single argument, `input`. This function will return whatever we give as input as output.
+
+Run this chunk to create the function.
 
 ```{r}
 return_input = function(input) {
@@ -81,9 +83,9 @@ Pass the following to the `input` argument:
 
 ## A function with two arguments
 
-A function can have as many arguments as we want. We keep adding them in `function()` when we define the function.
+A function can have as many arguments as we want to make. We keep adding them in `function()` when we define the function.
 
-Like with naming functions, keeping your argument names descriptive of what kind of input it takes is useful.
+Like with function naming, keeping your argument names descriptive of what kind of input it takes is useful.
 
 Our next function has two arguments and outputs the sum of these two inputs.
 
@@ -105,7 +107,7 @@ sum_two(num1 = 1,
 
 Write code in the empty code chunk below.
 
-First I want you to see what happens with a couple of different types of input to the two arguments in `sum_two`.
+First I want you to see what happens when using a couple of different types of input to the two arguments in `sum_two`.
 
 Pass the following to `num1`, and `num2`:
 
@@ -125,7 +127,7 @@ Now practice writing your own function called `norm_by_y`.
 
 The function should take two numbers as input and return the difference between the numbers divided by the second number.
 
-The equation for what I described looks like: (x - y)/y
+An equation for what I described looks like: (x - y)/y
 
 ```{r}
 # Write your code in this chunk and run to see the output
@@ -134,11 +136,11 @@ The equation for what I described looks like: (x - y)/y
 
 ## Remove explicit `return()`
 
-I wanted to start out using `return()` in the function because I think it makes what is returned explicit. This is useful when you are getting started thinking about inputs and outputs.
+I wanted to start out using `return()` in the function because I think it makes what is returned clearer. This is useful when you are getting started thinking about inputs and outputs.
 
-In R it is not standard to use this coding style. Simply printing the output object will *return* the output.
+In R it is not standard to use this coding style. Printing the output object will *return* the output.
 
-The following functions, without the explicit use of `return()`, do the exact same thing as the ones we defined previously. This function code is more like what you'll see in other R functions.
+The following functions, without the explicit use of `return()`, do the same thing as the ones we defined previously. This function code is more like what you'll see in other R functions.
 
 ```{r}
 return_input = function(input) {
@@ -158,15 +160,19 @@ sum_two(num1 = 1,
 
 ## Explore existing function
 
-Learning how to write functions helps you understand existing functions. Sometimes when we are having trouble with a function, taking a look at the underlying code will help us figure out what the function is doing and where our problem is coming from.
+Learning how to write functions helps you understand existing functions. Sometimes when we are having trouble with a function, taking a look at the underlying *source code* will help us figure out what the function is doing and where our problem is coming from.
 
-You can see the code within a function by running the function name without parentheses in R. Here's the code within `union()`. For now, don't worry about the last two lines.
+You can see the code within a function by running the function name without parentheses in R. Here's the code within `union()`. Don't worry about the last two printed lines when you do this.
 
 ```{r}
 union
 ```
 
-In RStudio you can use `View()` to open the function in a new window in your `Source` pane. This can be easier to look through, especially for long functions.
+**Note:** See `getAnywhere()` for printing function code for certain methods of generic functions, such as `plot.lm`.
+
+You can use `View()` to open the source code of a function in a new window in your `Source` pane. This can be easier to look through than printing in the Console.
+
+The `edit()` function is another useful option, and works better than `View()` when you need `getAnywhere()`.
 
 ```{r}
 View(union)
@@ -176,11 +182,11 @@ View(union)
 
 ### Your turn
 
-Take a few minutes and explore the code in the `union()` function.
+Take a few minutes and explore the code within the `union()` function.
 
 First, use the provided vectors for `x` and `y` as inputs to `union()`.
 
-Then, go through the function code outside the function one step at a time.
+Then, go through the `union()` source code one step at a time.
 
 1.  Use `as.vector()` on each object.
 2.  Concatenate the two objects with `c()`.
@@ -194,9 +200,9 @@ y = c(2, 3, 4)
 
 ## Returning multiple outputs
 
-A function in R can only return a single object, even if we try to return more.
+A function in R can only return a single object, even if we attempt to return more.
 
-Here let's try to return the sum of two numbers as well as the two original numbers.
+Here let's making a function that sums two numbers and returns the sum as well as the two original numbers.
 
 ```{r}
 return_all = function(num1, num2) {
@@ -221,7 +227,9 @@ A list is one option for this. This is actually a *named* list
 ```{r}
 return_all2 = function(num1, num2) {
     sum = num1 + num2
-    list(sum = sum, num1 = num1, num2 = num2)
+    list(sum = sum, 
+         num1 = num1, 
+         num2 = num2)
 }
 
 return_all2(num1 = 1, 
@@ -233,7 +241,9 @@ A data.frame as output is useful in some cases.
 ```{r}
 return_all3 = function(num1, num2) {
     sum = num1 + num2
-    data.frame(sum = sum, num1 = num1, num2 = num2)
+    data.frame(sum = sum, 
+               num1 = num1, 
+               num2 = num2)
 }
 
 return_all3(num1 = 1, 
@@ -246,7 +256,7 @@ Write code in the empty code chunk below.
 
 Go back to the function you made earlier called `norm_by_y()`.
 
--   Add a 2 to the end of the function name.
+-   Add a 2 to the end of the function name to name a new function `norm_by_y2`.
 -   Edit the function so it returns both (x - y)/y and (x - y) in a list.
 
 ```{r}
@@ -258,7 +268,7 @@ Go back to the function you made earlier called `norm_by_y()`.
 
 We can assign default values to arguments. You'll see this, for example, with logical arguments (i.e., arguments that take `TRUE`/`FALSE`).
 
-If we use the default we don't have to write the argument out.
+If we want the default when using the function we don't have to write the argument out.
 
 For example, `na.rm = FALSE` is the default in `mean()`. Let's make a function built around `mean()` where the default is `TRUE` instead, so NA values are automatically stripped.
 
@@ -276,7 +286,7 @@ Here's how this works if the vector contains `NA` by default. We don't need to w
 mean_nona(vector = c(1, 2, NA))
 ```
 
-If we wanted to change the default, pass `FALSE` to the argument.
+If we wanted to change the default, write the argument out.
 
 ```{r}
 mean_nona(vector = c(1, 2, NA),
@@ -285,9 +295,13 @@ mean_nona(vector = c(1, 2, NA),
 
 ## Arguments names vs positions
 
-This feels like a good juncture to talk about writing out argument names vs using argument positions. Both are allowed and work.
+This feels like a good time to talk about writing out argument names vs using argument positions. Both are allowed and work.
 
-However, using argument positions tends to lead to unclear code.
+Using argument positions means we pass inputs to arguments in the order they appear in the function.
+
+However, using argument positions tends to lead to unclear code. Here we pass a vector to the first argument in `mean()` and 0.1 to the second argument.
+
+What is the second argument in `mean()`?
 
 ```{r}
 mean(c(1:10, 50), 0.1)
@@ -315,20 +329,26 @@ You'll sometimes see code from advanced users where they've stopped writing out 
 For example, if I wanted to fit a weighted regression, I would leave off `formula` but then use the other argument names for the dataset and weights.
 
 ```{r}
-lm(mpg ~ disp, data = mtcars, weights = cyl)
+lm(mpg ~ disp, 
+   data = mtcars, 
+   weights = cyl)
 ```
 
 What would happen if I left these argument names off?
 
 ```{r}
-lm(mpg ~ disp, mtcars, cyl)
+lm(mpg ~ disp, 
+   mtcars, 
+   cyl)
 ```
 
-The third argument to `lm()` is actually `subset`, not `weights`. Luckily the `call` in the output shows the mistake, but that can be easy to miss. I've seen people do something very like this and not catch it in a real analysis.
+The third argument to `lm()` is actually `subset`, not `weights`. Luckily the `call` in the output shows the mistake, but that can be easy to miss.
+
+I've seen people do something very like this and not catch it in a real analysis.
 
 ## Dot-dot-dot to pass additional arguments
 
-Including `...` within `function()` is a way to pass additional arguments that can be used within the function. This is most common for passing arguments to existing functions inside the one you are making.
+Including `...` within `function()` is a way to pass additional arguments into a function. This is most common for passing arguments to existing functions used inside the one you are making.
 
 For example, let's say we were again using `mean()` inside our function to calculate a mean.
 
@@ -344,9 +364,9 @@ If we use a vector that contains `NA`, as you know, the `mean()` function will r
 new_mean(vector = c(1, 2, NA))
 ```
 
-We need the option to pass in `na.rm = TRUE` to the function. Since that already is an argument available in `mean()`, we can use `...` for this.
+We want the option to pass in `na.rm = TRUE` to the function. Since that already is an argument available in `mean()`, we can use `...` for this.
 
-Notice that we literally add `...` into the arguments of the function and then use it within our function where we want to use the additional arguments.
+Notice that we literally add `...` into the arguments of the function and then use it again within `mean()`, since this is where we want to be able to input the additional arguments.
 
 ```{r}
 use_mean2 = function(vector, ...) {
@@ -354,7 +374,7 @@ use_mean2 = function(vector, ...) {
 }
 ```
 
-Now we can give arguments for `mean()` through our function. Anything we put in after the `vector` argument is passed into `mean()`.
+Now we can pass arguments available in `mean()` into our function. Anything we put in after the `vector` argument is passed into `mean()`. We'll use `na.rm` here but could also use `trim`.
 
 ```{r}
 use_mean2(vector = c(1, 2, NA),
@@ -395,7 +415,7 @@ You can interpret this as:
 
 > Test some condition. If the condition is met, return one thing. If it's not met, return something else.
 
-Here's a skeleton of example of an if-else statement. Note the logical "condition" in the parentheses and the curly braces (`{`).
+Here's a skeleton example of an if-else statement. Note the logical "condition" in the parentheses and the sets of curly braces (`{`).
 
 ```{r, eval = FALSE}
 # Don't run this code chunk
@@ -427,14 +447,14 @@ sum_two_if(num1 = "a",
            num2 = "b")
 ```
 
-With two numbers:
+With numbers:
 
 ```{r}
 sum_two_if(num1 = 1, 
            num2 = 2)
 ```
 
-We can expand the condition with an or statement via `|`. In this case we'd want to test if the input to either argument is a character.
+We can expand the condition with an *or* statement via `|`. In this case we'd want to test if the input to *either* argument is a character.
 
 ```{r}
 sum_two_if2 = function(num1, num2) {
@@ -453,9 +473,9 @@ sum_two_if2(num1 = 1,
 
 Write code in the code chunk below.
 
-Starting with `use_mean2`, included in the chunk:
+Starting with function `use_mean2`, included in the chunk:
 
-1.  Add in a condition to test if the `vector` argument is numeric using `is.numeric`
+1.  Add in a condition to test if the `vector` argument is numeric using `is.numeric()`
 2.  If it is, return the mean of the vector
 3.  Otherwise return a message explaining what is wrong
 
@@ -474,12 +494,14 @@ Take a look at the code for the `as.factor()` function, which takes a vector of 
 View(as.factor)
 ```
 
-This function contains multiple conditions use if-elseif-else, which we haven't seen yet. Try to summarize what each condition is and generally what is done at each step.
+This function contains multiple conditions use if-elseif-else, which we haven't seen yet. Note the function authors left out curly braces for simple conditions.
+
+Try to summarize what each condition is and generally what is done at each step.
 
 I've gotten you started for each of the three return conditions.
 
 1.  First the function checks if...
-2.  Ignore the `!is.object(x)` part of the condition. Second the function checks...
+2.  Ignore the `!is.object(x)` part of the second condition. Second the function checks...
 3.  Finally, if the other two conditions aren't true the function...
 
 ## Doing more in a function
@@ -517,6 +539,6 @@ You'd use this sort of set-up to get ready to *iterate* through many similar dat
 
 ## More on functions
 
-You may reach a point where you need to know more about function environments or testing. Or maybe you find yourself with have a series of functions that you use a lot and want to make into a local R package.
+You may reach a point where you need to know more about function environments or testing. Or maybe you find yourself with have a series of functions that you use a lot and want to make them into a local R package.
 
-If that's ever the case for you, [Stephanie Kirmer's talk](https://skirmer.github.io/presentations/functions_with_r.html#1) and exercises is a good place to start.
+If that's ever the case for you, [Stephanie Kirmer's talk](https://skirmer.github.io/presentations/functions_with_r.html#1) and exercises are a good place to start!
