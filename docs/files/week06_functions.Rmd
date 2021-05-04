@@ -125,9 +125,9 @@ Write code in the empty code chunk below.
 
 Now practice writing your own function called `norm_by_y`.
 
-The function should take two numbers as input and return the difference between the numbers divided by the second number.
+-   The function should have two inputs. Name the arguments whatever you'd like.
 
-An equation for what I described looks like: (x - y)/y
+-   The function output will be the difference between the inputs divided by the second input. An equation for this looks like: (x - y)/y
 
 ```{r}
 # Write your code in this chunk and run to see the output
@@ -496,13 +496,13 @@ View(as.factor)
 
 This function contains multiple conditions use if-elseif-else, which we haven't seen yet. Note the function authors left out curly braces for simple conditions.
 
-Try to summarize what each condition is and generally what is done at each step.
+Try to summarize what each condition is and generally what is done at each step. You don't need to go into great detail.
 
-I've gotten you started for each of the three return conditions.
+I'll get you started for each of the three conditions:
 
-1.  First the function checks if...
-2.  Ignore the `!is.object(x)` part of the second condition. Second the function checks...
-3.  Finally, if the other two conditions aren't true the function...
+1.   First the function checks if...
+2.   Ignore the `!is.object(x)` part of the second condition. Second the function checks...
+3.   Finally, if the other two conditions aren't met the function...
 
 ## Doing more in a function
 
@@ -510,7 +510,13 @@ So far we've written very basic, one-step functions. Of course you can do many, 
 
 Let's make one slightly longer function.
 
-The `get_rsq()` functions takes a dataset as input. It fits a model to that dataset, gets the model summary, and then pulls out and returns the model $R^2$ value.
+The `get_rsq()` functions:
+
+-   Takes a dataset as input
+-    Fits a model to that dataset
+-   Gets the model summary
+-   Pulls out and round the model $R^2$ value
+-   Returns the rounded $R^2$
 
 ```{r}
 get_rsq = function(data) {

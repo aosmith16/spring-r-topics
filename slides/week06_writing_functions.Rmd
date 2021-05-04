@@ -299,6 +299,10 @@ return_input = function(input) {
 ```
 ]
 
+???
+
+Make sure you run this function in the Rmd document
+
 ---
 
 ## Basic function
@@ -355,11 +359,17 @@ A function can have as many arguments as we want to make. We keep adding them wi
 
 Like with function naming, keeping your argument names descriptive is useful.
 
+???
+
+You don't want argument names too long but it is nice to have them related to the kind of input will be giving
+
 --
 
 .pull-left[
 <br/>
-Our next function, named `sum_two`, has two arguments and outputs the sum of the two inputs.
+Our next function, named `sum_two`, has two input arguments. 
+
+It outputs the sum of the two inputs.
 ]
 
 .pull-right[
@@ -393,7 +403,7 @@ sum_two(num1 = 1,
 
 Write code in the empty code chunk that is provided. 
 
-First I want you to see what happens when using a couple of different types of input for the two arguments in `sum_two`.
+Explore what happens when using different types of input for the two arguments in `sum_two`.
 
 Pass the following inputs to `num1` and `num2`: 
 - Vectors of numbers, `c(1, 5, 9, 10)` and `c(2, 3, 4, 5)` 
@@ -409,6 +419,8 @@ countdown(minutes = 2,
 <br/><br/><br/>
 What happened when you put letters in? 
 
+???
+
 We'll talk about an option to address this later today.
 
 ---
@@ -419,9 +431,9 @@ Write code in the empty code chunk that is provided.
 
 Practice writing your own function, named `norm_by_y`.
 
-The function should take two numbers as input and return the difference between the numbers divided by the second number. 
+- The function should have two numeric inputs. Name the arguments whatever you'd like.  
 
-An equation for what I'm describing looks like: (x - y)/y
+- The function output will be the difference between the inputs divided by the second input. An equation for what I'm describing looks like: (x - y)/y
 
 
 ```{r, echo = FALSE}
@@ -435,7 +447,7 @@ countdown(minutes = 4,
 
 ```{r}
 norm_by_y = function(num1, num2) {
-    result = (num1 + num2)/num2
+    result = (num1 - num2)/num2
     return(result)
 }
 ```
@@ -474,6 +486,10 @@ sum_two(num1 = 1,
 ]
 
 ???
+
+Explicit returns are more common in other languages.
+
+Remove and the functions still work the same way.
 
 Using explicit returns are useful when you are getting started thinking about inputs and outputs.
 
@@ -539,6 +555,8 @@ knitr::include_graphics("figs/week06_files/view_function.png")
 ???
 
 May want to discuss the issue of functions not returning anything that is recognizable. Some is due to C++ but some is for functions that work on different types of objects like, e.g., plot.lm and the generic plot function doesn't show much
+
+edit() allows you to edit a function and make a new version, as well
 
 ---
 
@@ -616,7 +634,7 @@ return_all = function(num1, num2) {
 What happens when we use this function?
 
 .pull-left[
-It returns the very last thing we asked for. In this case, the last thing we asked for is the input to `num1`.
+It returns the very last thing we asked for. In this case, the last thing we asked for is the input to `num2`.
 ]
 
 .pull-right[
@@ -674,6 +692,10 @@ return_all3(num1 = 1,
 ```
 ]
 
+???
+
+Of course a data.frame is a kind of list. This may be out of scope
+
 ---
 
 ### Your turn
@@ -709,12 +731,16 @@ We can assign *default values* to arguments. If we want to use the default value
 
 For example, many of you may know that `na.rm = FALSE` is the default in `mean()`.
 
+???
+
+The next sections are to show some concepts but we won't take the time to practice.
+
 --
 
 .pull-left[
-Let's make a function built around `mean()` where the default is `TRUE`.  That way `NA` values are automatically stripped before calculating the mean.
+Let's make a function where the default for `na.rm` is `TRUE` so `NA` values are automatically stripped before calculating the mean.
 
-The key here is that we provide a default value within `function()` when we define the argument `remove.na`.
+The key here is that we provide a default value `TRUE` when we define the `remove.na` argument within `function()`.
 ]
 
 .pull-right[
@@ -726,7 +752,7 @@ mean_nona = function(vector,
 ```
 
 <br/>
-Note `remove.na` defaults to `TRUE`. This input is passed to the `na.rm` argument within `mean()` inside our function.
+Note `remove.na` is passed to the `na.rm` argument within `mean()` inside our function.
 ]
 
 ???
@@ -768,6 +794,8 @@ mean_nona(vector = c(1, 2, NA),
 
 This feels like a good time to talk about writing out argument *names* vs using argument *positions*. Both are allowed and can work fine.
 
+--
+
 .pull-left[
 Here is an example of using *positions* instead of writing out argument names. 
 
@@ -806,7 +834,11 @@ mean(x = c(1:10, 50),
 
 ## Argument names vs positions
 
-I most often recommend writing out argument names for clear code. However, there are cases where we don't need to do this for every single argument, especially for generally well-known functions.
+I most often recommend writing out argument names for clear code. However, there are cases where we don't need to write out every single argument name, especially for  well-known functions.
+
+???
+
+This is clear code for other but also for your future self
 
 --
 
@@ -822,9 +854,13 @@ lm(mpg ~ disp, data = mtcars)
 ```
 ]
 
+???
+
+But use argument names for other arguments in the function
+
 --
 
-Packages like **dplyr** use the dataset as the first argument as a standard, and you will rarely see the first argument name written out.
+Functions from packages like **dplyr** use the dataset as the first argument, and you will rarely see the first argument name written out.
 
 ---
 
@@ -871,16 +907,24 @@ Luckily the `call` in the output shows the mistake, but that can be easy to miss
 I've seen people make this sort of mistake and not catch it in a real analysis.
 ]
 
+???
+
+This problem arises because folks see more advanced user code without argument names written out without understanding that it relies on argument position
+
 ---
 
 ## Dot-dot-dot to pass additional arguments
 
-Including `...` within `function()` is a way to pass additional arguments into the function. This is most common for passing arguments to existing functions used inside the one you are making.
+Including `...` within `function()` is a way to pass additional arguments into the function. This is used to pass arguments to existing functions used inside the one you are making.
+
+???
+
+This description will make more sense with an example
 
 --
 
 .pull-left[
-For example, let's say we were again using `mean()` inside our function to calculate a mean.
+For example, let's say we were again using the existing function `mean()` inside a new function called `new_mean`.
 ]
 
 .pull-right[
@@ -901,10 +945,14 @@ new_mean(vector = c(1, 2, NA))
 
 ## Dot-dot-dot to pass additional arguments
 
-We want to be able to pass in `na.rm = TRUE` to the function. Since that already is an argument available in `mean()`, we can use `...` for this.
+We want to be able to pass in `na.rm = TRUE` to `mean()`. Since this is an existing argument to `mean()` we can use `...` to achieve this.
+
+--
 
 .pull-left[
-We literally add `...` into the arguments of the function and then use it again within `mean()`, since this is where we want to be able to input the additional arguments.
+We literally add `...` into the arguments of the function and place it inside `mean()`. 
+
+Inside the function we put `...` where we want to be able to input additional arguments.
 ]
 
 .pull-right[
@@ -954,6 +1002,10 @@ use_mean2(vector = c(1, 2, NA),
 ```
 ]
 
+???
+
+This is something that can happen when using functions someone else wrote, as well, so watch for `...` in the documentation
+
 ---
 
 ## Conditional returns
@@ -972,11 +1024,15 @@ That error message isn't particularly clear.
 
 Adding *conditions* in this function to return a useful message if the values aren't numeric is an example of what I've seen called conditional returns or *conditional execution*.
 
+???
+
+This starts getting at the idea of making functions that are more useful than for a single, specific use case. Like for other people to use. 
+
 ---
 
 ## Conditional returns
 
-We add *conditions* via logical statements, usually involving `if-else` statements.
+We add *conditions* via logical statements, often involving `if-else` statements.
 
 In the documentation for `if()` the **Usage** is: 
 > if(cond) expr  
@@ -994,7 +1050,7 @@ The if-else condition can be interpreted as:
 
 ## Conditional returns
 
-Here's a skeleton example of an if-else statement. Note the logical "condition" in the parentheses and the two sets of curly braces (`{`).
+Here's a skeleton example of an if-else statement. Note the logical "condition" within `if()` and the two sets of curly braces (`{`).
 
 ```{r, eval = FALSE}
 if(condition) {
@@ -1017,7 +1073,7 @@ OK, we're ready to see an example. We'll add conditional returns to our `sum_two
 .pull-left[
 This uses `is.character()` to test if the input to `num1` is a character. 
 
-If it is a character, it returns the message. If it is not, it returns the sum.
+If it is a character, it returns an informative message. If it is not a character, it returns the sum.
 ]
 
 .pull-right[
@@ -1086,6 +1142,10 @@ sum_two_if2(num1 = 1,
 ```
 ]
 
+???
+
+I'm keeping these examples basic with a single OR but they can be complex
+
 ---
 
 ### Your turn 1
@@ -1098,7 +1158,7 @@ Starting with `use_mean2()` function, included in the chunk:
 3. Otherwise return a message explaining what is wrong  
 
 ```{r, echo = FALSE}
-countdown(minutes = 5, 
+countdown(minutes = 4, 
           bottom = 0)
 ```
 
@@ -1124,16 +1184,16 @@ Take a look at the code for the `as.factor()` function, which takes a vector of 
 
 This function contains multiple conditions use if-elseif-else, which we haven't seen yet. Note the function authors left out curly braces for simple conditions.
 
-Try to summarize what each condition is and generally what is done at each step.
+Try to summarize what each condition is and generally what is done at each step. You don't need to go into great detail.
 
-I've gotten you started for each of the three return conditions.
+I'll get you started for each of the three conditions:
 
 1.  First the function checks if...
 2.  Ignore the `!is.object(x)` part of the second condition. Second the function checks...
-3.  Finally, if the other two conditions aren't true the function...
+3.  Finally, if the other two conditions aren't met the function...
 
 ```{r, echo = FALSE}
-countdown(minutes = 5, 
+countdown(minutes = 4, 
           bottom = 0)
 ```
 
@@ -1159,11 +1219,11 @@ Let's make one slightly longer function.
 
 .pull-left[
 The `get_rsq()` function:
-- Takes a dataset as input. 
-- Fits a model to that dataset.
-- Gets the model summary.
-- Pulls out and rounds the $R^2$ value.
-- Returns the rounded $R^2$.
+- Takes a dataset as input 
+- Fits a model to that dataset
+- Gets the model summary
+- Pulls out and rounds the $R^2$ value
+- Returns the rounded $R^2$
 ]
 
 .pull-right[
