@@ -186,6 +186,7 @@ class: center, middle, inverse, hide-logo
 
 - Open the copy of [`week06_functions.Rmd`](files/week06_functions.Rmd) that you saved  
 - I recommend switching to using the visual editor using the  ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png) button  
+- Make sure you are working in a clean R session (no other packages loaded)  
 
 --
 
@@ -337,7 +338,7 @@ Pass the following to the `input` argument:
 
 ```{r, echo = FALSE}
 library(countdown)
-countdown(minutes = 2, 
+countdown(minutes = 1, 
           bottom = 0,
           color_border = "#F4790B",
           color_text = "#1c5253",
@@ -517,7 +518,7 @@ union
 ]
 
 <br/>
-**Note::** Use function `getAnywhere()` to print source code for specific methods of generic functions, such as `plot.lm` for making plots based on **lm** objects.
+**Note:** Use function `getAnywhere()` to print source code for specific methods of generic functions, such as `plot.lm` for making plots based on **lm** objects.
 
 ???
 
@@ -574,7 +575,7 @@ Then go through the `union()` source code one step at a time.
 3. Use `unique()` on the vector from step 2.  
 
 ```{r, echo = FALSE}
-countdown(minutes = 5, 
+countdown(minutes = 4, 
           bottom = 0)
 ```
 
@@ -924,12 +925,12 @@ This description will make more sense with an example
 --
 
 .pull-left[
-For example, let's say we were again using the existing function `mean()` inside a new function called `new_mean`.
+For example, let's say we were again using the existing function `mean()` inside a new function called `use_mean`.
 ]
 
 .pull-right[
 ```{r}
-new_mean = function(vector) {
+use_mean = function(vector) {
   mean(vector)
 }
 ```
@@ -937,7 +938,7 @@ new_mean = function(vector) {
 As you know, if we use a vector that contains `NA` this returns `NA` by default.
 
 ```{r}
-new_mean(vector = c(1, 2, NA))
+use_mean(vector = c(1, 2, NA))
 ```
 ]
 

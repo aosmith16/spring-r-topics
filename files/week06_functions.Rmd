@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Use this document to follow along with the working session on writing functions, running provided code to see how it works as well as writing your own practice code. I recommend turning on the visual editor via the ![](https://rstudio.github.io/visual-markdown-editing/images/visual_mode_2x.png){width="3%"} button in the right-hand corner.
 
+Make sure you are working in a clean R session (no other packages loaded).
+
 You can find today's slides [here](https://aosmith16.github.io/spring-r-topics/slides/week06_writing_functions.html#1). The slides contain introductory material as well as a list of resources about functions in R.
 
 ## Structure of a function
@@ -353,7 +355,7 @@ Including `...` within `function()` is a way to pass additional arguments into a
 For example, let's say we were again using `mean()` inside our function to calculate a mean.
 
 ```{r}
-new_mean = function(vector) {
+use_mean = function(vector) {
   mean(vector)
 }
 ```
@@ -361,7 +363,7 @@ new_mean = function(vector) {
 If we use a vector that contains `NA`, as you know, the `mean()` function will return `NA`.
 
 ```{r}
-new_mean(vector = c(1, 2, NA))
+use_mean(vector = c(1, 2, NA))
 ```
 
 We want the option to pass in `na.rm = TRUE` to the function. Since that already is an argument available in `mean()`, we can use `...` for this.
@@ -500,9 +502,9 @@ Try to summarize what each condition is and generally what is done at each step.
 
 I'll get you started for each of the three conditions:
 
-1.   First the function checks if...
-2.   Ignore the `!is.object(x)` part of the second condition. Second the function checks...
-3.   Finally, if the other two conditions aren't met the function...
+1.  First the function checks if...
+2.  Ignore the `!is.object(x)` part of the second condition. Second the function checks...
+3.  Finally, if the other two conditions aren't met the function...
 
 ## Doing more in a function
 
@@ -513,7 +515,7 @@ Let's make one slightly longer function.
 The `get_rsq()` functions:
 
 -   Takes a dataset as input
--    Fits a model to that dataset
+-   Fits a model to that dataset
 -   Gets the model summary
 -   Pulls out and round the model $R^2$ value
 -   Returns the rounded $R^2$
