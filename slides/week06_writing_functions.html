@@ -12,7 +12,7 @@
     <meta name="twitter:url" content="https://aosmith16.github.io/spring-r-topics/slides/week06_writing_functions.html"/>
     <meta name="twitter:image:src" content="https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week06-share-card.png"/>
     <meta name="twitter:image:alt" content="Slides on writing functions in R Working sessions class spring 2021"/>
-    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:card" content="summary"/>
     <meta name="twitter:creator" content="@aosmith16"/>
     <meta name="twitter:site" content="@aosmith16"/>
     <meta property="og:title" content="Functions in R"/>
@@ -337,7 +337,7 @@ Pass the following to the `input` argument:
 - A vector of numbers like `c(1, 5, 9, 10)`  
 - The data.frame `mtcars`
 
-<div class="countdown" id="timer_6091aac1" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091ad32" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -409,7 +409,7 @@ Pass the following inputs to `num1` and `num2`:
 - Vectors of numbers, `c(1, 5, 9, 10)` and `c(2, 3, 4, 5)` 
 - Letters, `"a"` and `"b"`
 
-<div class="countdown" id="timer_6091a919" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091ac3d" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -435,7 +435,7 @@ Practice writing your own function, named `norm_by_y`.
 - The function output will be the difference between the inputs divided by the second input. An equation for what I'm describing looks like: (x - y)/y
 
 
-<div class="countdown" id="timer_6091a853" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091abe7" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -528,7 +528,7 @@ union
 ```
 ## function (x, y) 
 ## unique(c(as.vector(x), as.vector(y)))
-## &lt;bytecode: 0x000001ee6de6c398&gt;
+## &lt;bytecode: 0x000001243df8b4e8&gt;
 ## &lt;environment: namespace:base&gt;
 ```
 ]
@@ -589,7 +589,7 @@ Then go through the `union()` source code one step at a time.
 2. Concatenate the two objects with `c()`.  
 3. Use `unique()` on the vector from step 2.  
 
-<div class="countdown" id="timer_6091aaf0" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091adac" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -746,7 +746,7 @@ Go back to the function you made earlier called `norm_by_y()`.
 - Add a 2 to the end of the function name to name a new function `norm_by_y2`.  
 - Edit the function so it returns both (x - y)/y and (x - y) in a list.
 
-<div class="countdown" id="timer_6091ab5d" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091ad51" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1290,7 +1290,7 @@ Starting with `use_mean2()` function, included in the chunk:
 2. If it is, return the mean of the vector  
 3. Otherwise return a message explaining what is wrong  
 
-<div class="countdown" id="timer_6091aa11" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091ad72" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1325,7 +1325,7 @@ I'll get you started for each of the three conditions:
 2.  Ignore the `!is.object(x)` part of the second condition. Second the function checks...
 3.  Finally, if the other two conditions aren't met the function...
 
-<div class="countdown" id="timer_6091a89a" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6091aeb7" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 

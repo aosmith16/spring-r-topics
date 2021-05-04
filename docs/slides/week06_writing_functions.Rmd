@@ -59,7 +59,7 @@ meta() %>%
         ),
         og_type = "website",
         og_author = "Ariel Muldoon",
-        twitter_card_type = "summary_large_image",
+        twitter_card_type = "summary",
         twitter_creator = "@aosmith16"
     )
 ```
