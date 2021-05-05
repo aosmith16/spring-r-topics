@@ -9,9 +9,9 @@ Week 03: Deploy website using GitHub Pages
 Week 04: Explore **gt** for making tables  
 Week 05: **gt** flair: colors, images, and themes    
 Week 06: Learn to write functions in R  
-Week 07: More Git: merge conflicts and pull requests  
+Week 07: More Git: collaborators, merge conflicts, and pull requests  
 Week 08: Interactive graphics and tables     
-Week 09: Animated graphics (with **gganimate**)  
-Week 10: Catch up day or other topics of interest  
+Week 09: Reproducible examples with **reprex**      
+Week 10: GitHub issues   
 
 At the moment I plan on keeping the slides and other materials in this same repository so I can add them as links in the website.
