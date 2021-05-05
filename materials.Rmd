@@ -233,6 +233,6 @@ See Yihui Xie's [GitHub issue guide](https://yihui.org/issue/). This guide is sp
 
 ### Materials for class
 
-We will be practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** installed.
+We will practice making reproducible examples with package **reprex**. Makes sure you have the current version of **reprex** installed.
 
-Week 10 slides go here
+[Week 10 slides in progress](slides/week10_issues.html)
