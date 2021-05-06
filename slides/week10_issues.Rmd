@@ -94,9 +94,9 @@ knitr::include_graphics("https://github.githubassets.com/images/modules/logos_pa
 
 ## Today's Goal
 
-**Learn the process and etiquette for reporting issues on GitHub repositories `r fontawesome::fa("github")`**   
+**Learn the process and etiquette for reporting issues on GitHub `r fontawesome::fa("github")` repositories **   
 
-Using **reprex** skills learned last week, we will end by making a practice issue.
+Using **reprex** skills learned last week, we will go through the process of making a GitHub issue.
 
 .center[
 <br/>
@@ -117,7 +117,7 @@ knitr::include_graphics("figs/reprex.png")
 
 The **Issues** section on GitHub is where you can report possible bugs or make feature requests.
 
-This is part of a GitHub repository. See **Issues** in the second menu on the top navigation bar.
+This is part of a GitHub repository under **Issues**, the second menu on the top navigation bar.
 
 .center[
 ```{r, echo = FALSE, fig.alt = "Screen capture showing the issues menu on the top menu bar in aosmith16/practice-repo GitHub repository"}
@@ -129,11 +129,12 @@ knitr::include_graphics("figs/week10_files/issue_menu.png")
 
 ## GitHub `r icons::fontawesome("github")` issues
 
-Take a moment to explore the issues section on the **ggplot2** repository at https://github.com/tidyverse/ggplot2/issues.
+Take a few minutes to explore the issues section on the **ggplot2** repository:
+https://github.com/tidyverse/ggplot2/issues
 
 .center[
 <br/>
-```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository"}
+```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository, taken in late April 2021. It shows just the top of the issues section to demonstarte the open and closed issues panes and the search bar at the top"}
 knitr::include_graphics("figs/week10_files/ggplot2_issues.png")
 ```
 ]
@@ -143,10 +144,10 @@ knitr::include_graphics("figs/week10_files/ggplot2_issues.png")
 ## GitHub `r icons::fontawesome("github")` issues
 
 Things to note:
+- There is a search bar just below the navigation menus. This allows you to search within reported issues to, e.g., check if someone already reported an issue you are having
 - There are separate pages for open and closed issues
-- There is a search bar at the top so you can search within issues
-- You can sort issues using the drop-down menu on the far right; I sometimes look at "Recently updated" rather the newest
-- You can create an issue by clicking on the "New issue" button on the right
+- You can sort issues using the `Sort` drop-down menu on the far right. I sometimes look at recently updated issues rather than newest
+- You can create an issue by clicking on the green "New issue" button on the upper right
 
 ---
 
@@ -166,7 +167,7 @@ Reporting bugs is a way to help the package maintainer improve the package, whic
 <br/>
 It can feel scary `r emo::ji("fearful")`to report an issue, I think particularly for those of us who feel like non-R experts. 
 
-To ease the process, we'll spend much of today's time going over some of the basic etiquette to follow when reporting an issue. 
+To ease the process, we'll spend much of today's session going over some of the etiquette to follow when reporting an issue. 
 
 ???
 
@@ -195,7 +196,7 @@ Already mentioned Yihui Xie's guide to etiquette on his repositories is a good p
 
 **Do your research**
 
-- Make sure you are using the most current version of the package. 
+- Make sure you are using the most current version of the package 
 
 ???
 
@@ -207,8 +208,8 @@ I'm thinking CRAN here, although the development version is also fair game.
 
 **Do your research**
 
-- Make sure you are using the most current version of the package. 
-- Before opening a new issue, check that no one else has reported it by searching both open and closed issues using the search tool.
+- Make sure you are using the most current version of the package 
+- Before opening a new issue, check that no one else has reported it by searching both open and closed issues using the search tool
 
 .center[
 ```{r, echo = FALSE, fig.alt = "Screen capture of the issues section for the ggplot2 GitHub repository"}
@@ -222,9 +223,10 @@ knitr::include_graphics("figs/week10_files/ggplot2_issues.png")
 
 **Do your research**
 
-- Make sure you are using the most current version of the package. 
-- Before opening a new issue, check that no one else has reported it by searching both open and closed issues using the search tool.
-- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`. You may want to install the *development version* of the package directly from GitHub.
+- Make sure you are using the most current version of the package 
+- Before opening a new issue, check that no one else has reported it by searching both open and closed issues using the search tool
+- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`.  
+    You may also want to install the *development version* of the package directly from GitHub to see if the issue persists in the most up-to-date version  of the package
 
 .center[
 ```{r, echo = FALSE, fig.alt = "Screen capture showing where to check for changes in NEWS.md on the ggplot2 GitHub repository"}
@@ -232,16 +234,21 @@ knitr::include_graphics("figs/week10_files/news.png")
 ```
 ]
 
+???
+
+I'm showing the NEW.md file from the ggplot2 repo
+
 ---
 
 ## GitHub `r icons::fontawesome("github")` issues etiquette
 
 **Do your research**
 
-- Make sure you are using the most current version of the package. 
-- Before opening a new issue, check that no one else has reported it by searching both open and closed issues using the search tool.
-- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`. You may want to install the *development version* of the package directly from GitHub.
-- If you feel unsure that what you found is really a bug, ask someone else to review your minimal reproducible example. This may be on one of the aforementioned forums.
+- Make sure you are using the most current version of the package 
+- Before opening a new issue, check that no one else has reported it by searching both open and closed issues using the search tool
+- Go through the `NEWS` to check for any recent changes. This is usually on the first page of the repo and may be called `NEWS.md`.  
+    You may also want to install the *development version* of the package directly from GitHub to see if the issue persists in the most up-to-date version  of the package
+- If you feel unsure that what you found is really a bug, ask someone else to review your minimal reproducible example. This may be on one of the aforementioned forums
 
 ---
 
@@ -277,7 +284,7 @@ It seems like it would go without saying, but I've seen issues with an accusator
 
 You may decide to offer up appreciation (if instructions allow for it `r emo::ji("grin")`) but at the very least use a respectful tone while you efficiently outline the potential problem. 
 
-<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Issues can feel oppressive to maintainers</p>&mdash; Jim Hester (@jimhester_) <a href='https://twitter.com/jimhester%5F/status/1357680037470875649'>Tweet February 5, 2021</a></blockquote>
+<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Issues can feel oppressive to maintainers since they are mainly negative feedback</p>&mdash; Jim Hester (@jimhester_) <a href='https://twitter.com/jimhester%5F/status/1357680037470875649'>Tweet February 5, 2021</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ???
@@ -286,21 +293,19 @@ Discussion of tweet: Issues are usually bug reports, which can feel really negat
 
 ---
 
+class: with-logo logo-reprex
+
 ## GitHub `r icons::fontawesome("github")` issues etiquette
 
 **Provide a minimal reproducible example**
 
 The simpler the example you can give, the easier it is for the maintainer to understand the problem. 
 
-Ideally you will provide very basic example code with output (when relevant). The maintainer should be able to copy, paste, and run the code with no other steps.
+When relevant you should provide very basic example code with output that demonstrates the problem. The maintainer should be able to copy, paste, and run the code with no other steps needed.
 
-This is good use-case for package **reprex**.  
+Ideally the maintainer may not even need to run the code to understand the issue.
 
-.center[
-```{r distill, echo = FALSE, out.width = "20%", fig.alt = "Logo for package reprex"}
-knitr::include_graphics("figs/reprex.png")
-```
-]
+This is great use-case for package **reprex**.  
 
 ???
 
@@ -322,7 +327,7 @@ If you have a potential fix for an issue, you might consider making a pull reque
 
 **Be responsive if more information requested**
 
-The repo maintainer may ask you for more background on the issue or feature request. Be sure to be paying attention so you can get back to them.
+The repo maintainer may ask you for more background on the issue or feature request. Be sure to be paying enough attention that you can get back to them.
 
 I've seen issues closed because the original poster never returned with follow up information.
 
@@ -344,21 +349,27 @@ Let's put these guidelines all in one slide.
 
 ## GitHub `r icons::fontawesome("github")` issues etiquette
 
-Before we finish up this section, there are just a couple of other things to think about.
+Before we finish up this section, there are just a couple of other things I want to mention.
 
-First, if relevant, include an example of the result you expected vs the result you got.
+First, if relevant, include an example of the result you expected vs the result you got. Showing the expected output is clearer than trying to describe the expected output.
 
 Second, you may have found out important information in the **Do your research** stage that you should report to the maintainer.  
 
 For example, if you found out when the change occurred, where in the source code the issue may be coming from, what used to happen, etc., you can include that information in your report.
 
+???
+
+Showing what you expected is easier than trying to describe what you expected
+
 ---
 
 ## Issue examples
 
-I went and found a couple of old issues I put in for package **tidyr**.
+I went and found a couple of old issues I put in for package **tidyr** for us to look at.
 
-The first one is a feature request: https://github.com/tidyverse/tidyr/issues/387 
+The first one was a [feature request](https://github.com/tidyverse/tidyr/issues/387) 
+
+Navigate the to this now-closed issue and take a look at it.
 
 ???
 
@@ -366,30 +377,43 @@ Students should navigate to the issue
 
 --
 
-You can see I initially didn't give enough background and so had to come back with more information.
+A few things to note:
+- I initially didn't give enough background and so had to come back with more information
+- There was a delay before the maintainer was able to think about this 
+- You can "react" to posts within GitHub issues. Adding positive emoji reactions is one way to show appreciation. You can see such reactions on the very last post in the thread
 
-Also note that there was a delay before the maintainer was able to think about this, which is not uncommon with a feature request. 
-
-You can "react" to posts within GitHub issues. Adding positive emoji reactions is one way to show appreciation. You can see such reactions on the very last post in the thread.
+.center[
+<br/>
+```{r, echo = FALSE, out.width = "30%", fig.alt = "Screen capture showing how one can add reactions to posts in github issues. Here there are two `tada` reactions on the last post in the issue we are exploring"}
+knitr::include_graphics("figs/week10_files/issue_reaction.png")
+```
+]
 
 ---
 
 ## Issue examples
 
-The second was a bug report `r emo::ji("beetle")`: https://github.com/tidyverse/tidyr/issues/324
+The second was a [bug report](https://github.com/tidyverse/tidyr/issues/324) `r emo::ji("beetle")`
 
-I did a better job of showing a really minimal example here to demonstrate the problem.
+Navigate the to this now-closed issue and take a look at it.
 
-I also demonstrated the kind of output I was expecting to get.
+--
+
+<br/>
+Here:
+- I did a better job of showing a really minimal example here to demonstrate the problem
+- I included the kind of output I was expecting to get
+- The maintainer already had an idea of what was going on so could quickly close the issue
 
 ---
 
 ## Practice issue
 
-Let's finish today by taking with we learned with **reprex** last week and newly armed with our GitHub issues etiquette to practice making an issue.
+Let's finish today by taking with we learned about how to use package **reprex** last week and practice creating a GitHub issue.
 
 --
 
+<br/>
 You will practice opening an issue on my `practice-repo` repository: https://github.com/aosmith16/practice-repo
 
 Go to that repo, navigate to the **Issues** section, and click on the green "New Issue" button.
@@ -401,7 +425,8 @@ Go to that repo, navigate to the **Issues** section, and click on the green "New
 Fill in a title for your issue. In a real issue this title should be succinct but descriptive of the issue.
 
 .center[
-```{r, echo = FALSE, fig.alt = "Screen capture adding the title `Reporting a problem with something in this repo' to the practice issue on the aosmith16/practice-repo repo"}
+<br/>
+```{r, echo = FALSE, out.width = "70%", fig.alt = "Screen capture adding the title `Reporting a problem with something in this repo' to the practice issue on the aosmith16/practice-repo repo"}
 knitr::include_graphics("figs/week10_files/issue_title.png")
 ```
 ]
@@ -410,10 +435,11 @@ knitr::include_graphics("figs/week10_files/issue_title.png")
 
 ## Practice issue
 
-Then describe the issue in the text. GitHub issues are written using Markdown, so you can add emphasis using that syntax, if needed.
+Then describe the issue in the text. GitHub issues are written using Markdown syntax.
 
 .center[
-```{r, echo = FALSE, fig.alt = "Screen capture adding a written description of the problem into the main text box of the issue. This text is simple filler since this is a practice issue."}
+<br/>
+```{r, echo = FALSE, , out.width = "70%", fig.alt = "Screen capture adding a written description of the problem into the main text box of the issue. This text is simple filler since this is a practice issue."}
 knitr::include_graphics("figs/week10_files/issue_descrip.png")
 ```
 ]
@@ -422,7 +448,7 @@ knitr::include_graphics("figs/week10_files/issue_descrip.png")
 
 ## Practice issue
 
-Add some code and output via **reprex**. The two examples from last week are below for you to run in R if you'd like. Feel free to write your own **reprex** code. `r emo::ji("smile")`
+Add some code and output via **reprex**. The two examples from last week's session are below for you to run in R if you'd like. Feel free to write your own **reprex** code. `r emo::ji("slightly_smiling_face")`
 
 .pull-left[
 .smaller[
@@ -456,12 +482,16 @@ reprex::reprex(session_info = TRUE, {
 ```
 ]
 
+???
+
+Students may need some reminder instruction that **reprex** will automatically put code and output on clipboard for pasting
+
 ---
 
 ## Practice issue
 
 .pull-left[
-Here's what the main text box looks like after pasting the output of my **reprex** code.
+Here's what the main text box looks like after pasting the output of my **reprex**.
 ]
 
 .pull-right[
@@ -480,7 +510,13 @@ Go to the `Preview` pane in GitHub to see the rendered code and output.
 You will always want to check that the rendered output looks correct.
 
 <br/>
-Code should always be correctly formatted. If writing code directly instead of pasting from **reprex**, wrap code chunk in 3 back-ticks. See an example [here](https://yihui.org/issue/#please-format-your-issue-correctly).
+Code and output should be correctly formatted. If writing code directly instead of pasting from **reprex** you can use 3 backticks to format. 
+
+````
+```
+library(dplyr)
+```
+````
 ]
 
 .pull-right[
@@ -493,7 +529,7 @@ knitr::include_graphics("figs/week10_files/issue_preview.png")
 
 ## Practice issue
 
-Once you have written out the problem, included the example, and made sure everything was formatted correctly in the `Preview`, you're ready to submit! `r emo::ji("tada")`
+Once you have written out the problem, included the example code and output, and made sure everything was formatted correctly in the `Preview`, you're ready to submit! `r emo::ji("tada")`
 
 Submit your issue via the `Submit new issue` button at the bottom of your issue.
 
@@ -504,12 +540,14 @@ If you get a response on your issue you will be notified on GitHub and via email
 
 .center[
 <br/>
-```{r, echo = FALSE, out.width = "30%", fig.alt = "Screenshot showing the blue dot on the bell in GitHub that indicates you have a notification"}
+```{r, echo = FALSE, out.width = "15%", fig.alt = "Screenshot showing the blue dot on the bell in GitHub that indicates you have a notification"}
 knitr::include_graphics("figs/week07_files/notification.png")
 ```
 ]
 
 ???
+
+We saw the notification blue dot in an earlier session, but can point out again.
 
 Try to monitor for notifications at least a little so you can respond, if needed.
 
