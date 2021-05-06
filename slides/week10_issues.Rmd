@@ -47,7 +47,7 @@ meta() %>%
     meta_name("github-repo" = "aosmith16/spring-r-topics") %>% 
     meta_social(
         title = "GitHub issues guide",
-        description = "The etiquette in reporting an issue on GitHub",
+        description = "Overview of etiquette for reporting a GitHub issue",
         url = "https://aosmith16.github.io/spring-r-topics/slides/week10_issues.html",
         image = "https://raw.githubusercontent.com/aosmith16/spring-r-topics/main/slides/week10-share-card.png",
         image_alt = paste(
