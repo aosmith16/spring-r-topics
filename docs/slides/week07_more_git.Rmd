@@ -86,7 +86,7 @@ class: hide-logo
 
 ## Today's Goal
 
-**Practice working with version-controlled projects with Git, specifically focusing on tools for collaboration.**
+**Learn additional tools for working with Git version-controlled projects hosted on GitHub.**
 
 We will  
 
@@ -115,7 +115,7 @@ class: hide-logo
 - GitHub articles on [adding collaborators](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository) and [README files](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes) 
 - Brief [article](https://blog.axosoft.com/merge-conflict-tool/) from GitKraken on their merge conflict tool  
 - Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-functions.html) on pull request helpers  
-- A lecture in the [R programming for biologists class](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines the basic approach to pull requests *without* **usethis**  
+- A lecture in the [R programming for biologists class](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines an approach to pull requests *without* **usethis**  
 
 .center[
 ```{r, echo = FALSE, out.width = "25%", fig.alt = "usethis hex logo"}
@@ -134,9 +134,9 @@ It is standard to have a `README.md` file in your GitHub repository.  This file 
 --
 
 <br/><br/>
-The README file is a Markdown document.  Markdown files render to HTML on GitHub so the information in the file will automatically be included in an easily-readable format on the main page of your repository.
+The README file is a Markdown document.  Markdown files render to HTML on GitHub. This mean the information in the file will automatically be included in an easily-readable format on the main page of your repository.
 
-Markdown syntax is what you use to write R Markdown, so you already know the basic syntax for adding information to your README. `r emo::ji("tada")`
+Markdown syntax is what you use to write in R Markdown, so you already know the basic syntax for adding information to your README. `r emo::ji("tada")`
 
 
 ???
@@ -167,14 +167,16 @@ class: hide-logo
 
 ## Examples of wild-caught README's
 
-Let's spend a few minutes looking at examples of README files.
+Let's spend a few minutes looking at examples of README files in the wild.
 
-Some of the easiest examples to find of a good README in the wild is for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository.
+Some of the easiest examples to find of good README files is for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository. 
+
+Follow the link and scroll down to look through the README file there.
 
 --
 
 <br/>
-But plenty of people use repositories for other types of work. Here are examples for what others include in their README when working on a paper or talk/workshop instead of an R package.
+But plenty of people use repositories for other types of work. Here are two examples of non-R package repositories with information-filled README files:
 
 - [Hill and Grolemund's repository for a workshop](https://github.com/rstudio-conf-2020/intro-to-ml-tidy)  
 - [Christopherson et al.'s project repo](https://github.com/UW-MSDS-DATA-598-Reproducibility-WI20/Christopherson-Garcia-Todd-Winegarden-replication-project) demonstrates information you might want for a repository for an analysis    
@@ -186,6 +188,8 @@ For research projects you can use GitHub to make a *research compendium*. See th
 ???
 
 Purposefully focusing on more "applied" README examples, since that is audience here. Not all README's need to go into this much detail.
+
+Have students follow links to look at README files. Then move on to the practical work for the day
 
 ---
 
@@ -322,9 +326,9 @@ class: hide-logo
 
 ## Merge conflicts
 
-A *merge conflict* is when the same lines of a file have been changed in two places, most often by different people. These are more common once you have collaborators.
+A *merge conflict* is when the same lines of a file have been changed in two places, most often by different people. These can become more common once you have collaborators.
 
-I am going to have you create a merge conflict by changing a file on GitHub and in the local repository at the same time.  
+I am going to have you create a merge conflict by changing a file on GitHub and in the local version of the repository at the same time.  
 
 --
 
@@ -349,7 +353,7 @@ Go to your `merge-conflict` repository on GitHub and open the `README.md` file.
 Click on the edit button in the right-hand corner.
 
 .center[
-```{r, echo = FALSE, out.width = "75%", fig.alt = "Screenshot with the cursor hovering over the pencil shaped edit button when getting ready to edit the README file directly on GitHub"}
+```{r, echo = FALSE, out.width = "65%", fig.alt = "Screenshot with the cursor hovering over the pencil shaped edit button when getting ready to edit the README file directly on GitHub"}
 knitr::include_graphics("figs/week07_files/github_readme2.png")
 ```
 ]
@@ -380,7 +384,7 @@ class: hide-logo
 After making the change, scroll down to `Commit` the changes. Write a commit message in the first box and then hit the `Commit changes` box. I used `Update README` as my commit message.
 
 .center[
-```{r, echo = FALSE, out.width = "68%", fig.alt = "Screenshot of committing the changes to the README file made directly on GitHub"}
+```{r, echo = FALSE, out.width = "65%", fig.alt = "Screenshot of committing the changes to the README file made directly on GitHub"}
 knitr::include_graphics("figs/week07_files/commit_github2.png")
 ```
 ]
@@ -391,9 +395,9 @@ class: hide-logo
 
 ### Change README locally
 
-Now open the Project for your local version of the repository in RStudio.
+Now go to your local version of the repository in RStudio. 
 
-Open the README file and replace the current title and description with:
+Open the README file there and replace the current title and description with:
 
 ```
 # Practice a merge conflict
@@ -411,20 +415,20 @@ Save your changes and then `Stage` - `Commit` - `Push`.
 The `Push` will fail, but note the useful message.
 
 .center[
-```{r, echo = FALSE, out.width = "80%", fig.alt = "Screenshot of failure to push from local repository when there are changes on GitHub that haven't been pulled in yet"}
+```{r, echo = FALSE, out.width = "65%", fig.alt = "Screenshot of failure to push from local repository when there are changes on GitHub that haven't been pulled in yet"}
 knitr::include_graphics("figs/week07_files/push_fail.png")
 ```
 ]
 
 ???
 
-This tells us that we are missing work done elsewhere that is on GitHub so we need to `Pull`.
+This tells us that we are missing work done elsewhere that is on GitHub so we likely need to `Pull`.
 
 ---
 
 class: hide-logo
 
-## Pull changes from GitHub
+## Pull changes from GitHub `r icons::fontawesome("github")`
 
 When working with multiple people or working alone but from multiple devices you need to `Pull` changes from GitHub before you can `Push` changes you made locally.
 
@@ -439,14 +443,14 @@ Forgetting to pull before working on a local repo is one of my most common mista
 Now we get a message about a merge conflict.
 
 .center[
-```{r, echo = FALSE, out.width = "80%", fig.alt = "Screenshot of merge conflict message after trying to pull changes GitHub when we've changed the same files in the local repository"}
+```{r, echo = FALSE, out.width = "65%", fig.alt = "Screenshot of merge conflict message after trying to pull changes GitHub when we've changed the same files in the local repository"}
 knitr::include_graphics("figs/week07_files/merge_conflict.png")
 ```
 ]
 
 ???
 
-It attempted to auto-merge, which can work, but fails since the same lines are changed.
+Note Git attempted to auto-merge, which can work in many cases. Here it fails since the same lines are changed in both versions of the document.
 
 ---
 
@@ -459,7 +463,7 @@ We will now switch to GitKraken to make use of their merge conflict tool.
 You will be asked to sign in to GitKraken. Choose the first option to sign in with your GitHub account.
 
 .center[
-```{r, echo = FALSE, out.width = "50%", fig.alt = "Screenshot showing the initial window in GitKraken that asks for a sign in. The top button allows you to use GitHub as your sign in"}
+```{r, echo = FALSE, out.width = "45%", fig.alt = "Screenshot showing the initial window in GitKraken that asks for a sign in. The top button allows you to use GitHub as your sign in"}
 knitr::include_graphics("figs/week07_files/open_gitkraken.png")
 ```
 ]
@@ -473,7 +477,7 @@ class: hide-logo
 A new window will pop up in your web browser that will ask you to authorize GitKraken to access GitHub. Continue with the authorization.
 
 .center[
-```{r, echo = FALSE, fig.alt = "Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account"}
+```{r, echo = FALSE, out.width = "85%", fig.alt = "Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account"}
 knitr::include_graphics("figs/week07_files/authorize_gitkraken.png")
 ```
 ]
@@ -487,7 +491,7 @@ class: hide-logo
 You should then get a `Success` message, and you are ready to open the local `merge-conflict` repository in GitKraken.
 
 .center[
-```{r, echo = FALSE, out.width = "50%", fig.alt = "Screenshot to show a successful authorization of GitKraken through your GitHub account"}
+```{r, echo = FALSE, out.width = "45%", fig.alt = "Screenshot to show a successful authorization of GitKraken through your GitHub account"}
 knitr::include_graphics("figs/week07_files/success_gitkraken.png")
 ```
 ]
@@ -499,7 +503,7 @@ class: hide-logo
 ## Open repository in GitKraken `r icons::fontawesome("gitkraken")`
 
 .pull-left[
-In GitKraken click the `Open a repo` button.
+In GitKraken, click the `Open a repo` button.
 
 .center[
 ```{r, echo = FALSE, out.width = "70%", fig.alt = "Screenshot showing the 'Open a repo' button that is on the main screen of GitKraken after you've authorized"}
@@ -534,7 +538,7 @@ Any files with a merge conflict are listed in the window under the message.  Cur
 ]
 
 .pull-right[
-```{r, echo = FALSE, fig.alt = "Screenshot showing the right-hand side of GitKraken where the merge conflict message and files that have merge conflicts show up"}
+```{r, echo = FALSE, out.width = "90%", fig.alt = "Screenshot showing the right-hand side of GitKraken where the merge conflict message and files that have merge conflicts show up"}
 knitr::include_graphics("figs/week07_files/gitkraken_merge_message.png")
 ```
 ]
@@ -561,7 +565,7 @@ The top two panes show the two versions of the document.  The bottom pane, "Outp
 
 class: hide-logo
 
-### GitKraken merge `r icons::fontawesome("gitkraken")` conflict tool
+### GitKraken `r icons::fontawesome("gitkraken")` merge conflict tool
 
 We can choose all lines from one of the two versions. Here I show clicking on the "A" box to add all content from "A" to `Output`. I then remove the second line from `Output` by clicking next to that line. 
 
@@ -596,14 +600,14 @@ class: hide-logo
 ## GitKraken `r icons::fontawesome("gitkraken")` commit and push
 
 .pull-left[
-After saving, GitKraken will show that `README.md` has been staged on the right-hand side of the GitKraken window.
+After saving, you'll see in the right-hand side of the GitKraken window that final version of the `README.md` file has been staged.
 
 <br/><br/>
 Write a commit message and then click `Commit and Merge`.
 ]
 
 .pull-right[
-```{r, echo = FALSE, fig.alt = "Screenshot of the left side of GitKraken, where the merged files have been staged and you need to add message and commit the changes"}
+```{r, echo = FALSE, out.width = "90%", fig.alt = "Screenshot of the left side of GitKraken, where the merged files have been staged and you need to add message and commit the changes"}
 knitr::include_graphics("figs/week07_files/commit_merge.png")
 ```
 
@@ -618,13 +622,14 @@ class: hide-logo
 `Push` these changes to GitHub with the push button found at the top of the GitKraken window.
 
 .center[
-```{r, echo = FALSE, out.width = "50%", fig.alt = "Screenshot showing the GitKraken push button up at the top of your screen"}
+<br/>
+```{r, echo = FALSE, out.width = "40%", fig.alt = "Screenshot showing the GitKraken push button up at the top of your screen"}
 knitr::include_graphics("figs/week07_files/push_gitkraken.png")
 ```
 ]
 
 <br/><br/>
-Once you `Push` these changes you're done. If you go back to the project in RStudio you'll find the merge conflict message is gone and everything is up-to-date.
+Once you `Push` these changes you're done. If you go back to the Project in RStudio you'll find the merge conflict message is gone and everything is up-to-date.
 
 You can now close GitKraken and close the `merge-conflict` Project in RStudio.
 
@@ -656,7 +661,7 @@ We'll be using helper functions from package **usethis** for pull requests today
 We will start by setting up a *personal access token* or PAT from GitHub. This is required for using the pull request functions in package **usethis**.
 
 .center[
-```{r, echo = FALSE, out.width = "30%", fig.alt = "usethis hex sticker"}
+```{r, echo = FALSE, out.width = "25%", fig.alt = "usethis hex sticker"}
 knitr::include_graphics("figs/week07_files/usethis_logo.png")
 ```
 ]
@@ -707,7 +712,7 @@ It is also a great idea to store this token in any password-management software 
 In GitHub you will give the new PAT a name. This name should allow you to recognize which computer it is for.
 
 .center[
-```{r, echo = FALSE, out.width = "50%", fig.alt = "Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop"}
+```{r, echo = FALSE, out.width = "45%", fig.alt = "Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop"}
 knitr::include_graphics("figs/week07_files/new_PAT.png")
 ```
 ]
@@ -719,13 +724,13 @@ After naming, scroll down to the bottom and click `Create PAT`.  **usethis** has
 
 ## Get personal access token (PAT)
 
-Once you create the PAT you will see a page with the token. Once you leave this page you won't see it again.
+Once you create the PAT you will see a page with the token code visible. Once you leave this page you won't be able to see it again.
 
 **Important:** Make sure you copy the PAT for the next step using the clipboard button before exiting the page.
 
 <br/>
 .center[
-```{r, echo = FALSE, out.width = "70%", fig.alt = "Screenshot showing an example of a created PAT that needs to be copied to your clipboard"}
+```{r, echo = FALSE, out.width = "65%", fig.alt = "Screenshot showing an example of a created PAT that needs to be copied to your clipboard"}
 knitr::include_graphics("figs/week07_files/copy_PAT.png")
 ```
 ]
@@ -737,13 +742,14 @@ knitr::include_graphics("figs/week07_files/copy_PAT.png")
 .pull-left[
 Back in R, we can *store* the PAT using the **gitcreds** package. This package was installed when you installed **usethis**.
 
+<br/>
 **Note:** You *must* have package **gh** version 1.2.1 or higher installed for this to work.
 ]
 
 .pull-right[
 Type in and run the following code in R. 
 
-I'm avoiding copying and pasting here because your PAT is currently on your clipboard and you need that in your next step. `r emo::ji("slightly_smiling_face")`
+I'm avoiding copying and pasting here because your PAT is currently on your clipboard and you'll need it in this next step. `r emo::ji("slightly_smiling_face")`
 
 ```{r, eval = FALSE}
 gitcreds::gitcreds_set()
@@ -853,6 +859,8 @@ Copy the following fork and clone code and run it in R:
 usethis::create_from_github("aosmith16/practice-repo")
 ```
 
+Note you need both the user name and repo name for this step.
+
 ???
 
 Copy and paste the R code into your R Console to run it.
@@ -886,7 +894,7 @@ i Default branch is 'master'
 ]
 
 .pull-right[
-When this is finished a new RStudio Project will open from a new local directory for the forked repository.
+When the process finishes, a new RStudio Project will open from a new local directory for the forked repository.
 
 By default **usethis** will make the local directory on your Desktop. This is usually OK since the local version is temporary; most often you will delete it after finishing your pull request.
 
@@ -899,7 +907,9 @@ You can set a different location for the directory using the `destdir` argument 
 
 Before you commence making changes to the repository you need to make a new *branch*.  Avoid making changes to the default branch, which is `master` here but for newer repositories is often `main`.
 
-Name your branch with your last name plus "prac". Here I named mine `muldoonprac`; names yours based on your own last name. `r emo::ji("wink")`
+For this exercise, name your branch with your last name plus "prac". Here I named mine `muldoonprac`; names yours based on your own last name. `r emo::ji("wink")`
+
+Run this code with your own branch name in R:
 
 ```{r, eval = FALSE}
 usethis::pr_init(branch = "muldoonprac")
@@ -921,7 +931,7 @@ Now you are working in a new branch and can proceed making your proposed changes
 Today I want each of you to:
 - Create a new R Markdown document with HTML output 
 - Put your name as the title
-- Save the document using your last name, like `lastname.Rmd`
+- Save the document using your first and last name, like `firstname_lastname.Rmd`
 
 --
 
@@ -936,7 +946,9 @@ No need to knit. It's not the end of the world if they do but trying to keep thi
 
 ### Create pull request
 
-Once you have finished with the edits and committed them, create a pull request (PR) using `pr_push()`.
+After finishing any proposed edits and committing them, create a pull request (PR) using `pr_push()`.
+
+Run the following code in R:
 
 ```{r, eval = FALSE}
 usethis::pr_push()
@@ -959,7 +971,7 @@ And then you will be taken to GitHub. This may take a few minutes! `r emo::ji("h
 You will do the final steps to finish the pull request in GitHub. Click the `Create pull request` button.
 
 .center[
-```{r, echo = FALSE, out.width = "70%", fig.alt = "Screenshot showing the window you are taken from after using pr_push() from usethis"}
+```{r, echo = FALSE, out.width = "65%", fig.alt = "Screenshot showing the window you are taken from after using pr_push() from usethis"}
 knitr::include_graphics("figs/week07_files/create_pull_request.png")
 ```
 ]
@@ -968,7 +980,7 @@ knitr::include_graphics("figs/week07_files/create_pull_request.png")
 
 ### Create pull request
 
-You then have the option to add a description in addition to your commit message. This is where you can describe what you edited and why.
+You then have the option to add a description in addition to your commit message. This is where you can describe what you edited and why. Fill this is in now.
 
 Once you have added a description click the `Create pull request` button to create the pull request.
 
@@ -985,7 +997,9 @@ knitr::include_graphics("figs/week07_files/pull_message.png")
 Now you need to wait for the maintainer to respond. A simple pull request may be accepted or *merged* right away. That is what will happen today with your practice pull request. `r emo::ji("smile")`
 
 <br/><br/>
-A maintainer could ask you to make additional changes or they could make changes on top of the ones you proposed. See how to work with these alternatives in the **usethis** [Pull request helpers article](https://usethis.r-lib.org/articles/articles/pr-functions.html#review-of-the-pull-request).
+A maintainer could ask you to make additional changes or they could make changes on top of the ones you proposed. And, of course, they could decide not to accept any of your pull request.
+
+See how to work with some of these alternatives in the **usethis** [Pull request helpers article](https://usethis.r-lib.org/articles/articles/pr-functions.html#review-of-the-pull-request).
 
 ---
 
@@ -1012,7 +1026,7 @@ knitr::include_graphics("figs/week07_files/github_inbox.png")
 
 ???
 
-Notification is shown by the blue dot on the bell in the upper righthand corner.
+Notification is shown by the blue dot on the bell in the upper right-hand corner.
 
 --
 -
@@ -1033,6 +1047,8 @@ knitr::include_graphics("figs/week07_files/pull_merge.png")
 Once the pull request has been merged we can clean things up on our end.
 
 Back in R, use `pr_finish()` to delete the branch. 
+
+Run the following code in R:
 
 ```{r, eval = FALSE}
 usethis::pr_finish()
@@ -1062,7 +1078,7 @@ Back on GitHub, delete the forked repository.
 
 You can do this from the merged pull request if you still have it open. Click on `settings`.
 
-```{r, echo = FALSE, fig.alt = "Screenshot to show what the message in the pull request is after it has been merged and the branch close. You can click on 'settings' to delete the forked repository"}
+```{r, echo = FALSE, out.width = "90%", fig.alt = "Screenshot to show what the message in the pull request is after it has been merged and the branch close. You can click on 'settings' to delete the forked repository"}
 knitr::include_graphics("figs/week07_files/pull_request_closed.png")
 ```
 

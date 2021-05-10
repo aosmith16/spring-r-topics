@@ -73,7 +73,7 @@ class: hide-logo
 
 ## Today's Goal
 
-**Practice working with version-controlled projects with Git, specifically focusing on tools for collaboration.**
+**Learn additional tools for working with Git version-controlled projects hosted on GitHub.**
 
 We will  
 
@@ -102,7 +102,7 @@ class: hide-logo
 - GitHub articles on [adding collaborators](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository) and [README files](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes) 
 - Brief [article](https://blog.axosoft.com/merge-conflict-tool/) from GitKraken on their merge conflict tool  
 - Package **usethis** [article](https://usethis.r-lib.org/articles/articles/pr-functions.html) on pull request helpers  
-- A lecture in the [R programming for biologists class](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines the basic approach to pull requests *without* **usethis**  
+- A lecture in the [R programming for biologists class](https://r-bio.github.io/intro-git-rstudio/#pull-requests) outlines an approach to pull requests *without* **usethis**  
 
 .center[
 &lt;img src="figs/week07_files/usethis_logo.png" title="usethis hex logo" alt="usethis hex logo" width="25%" /&gt;
@@ -119,9 +119,9 @@ It is standard to have a `README.md` file in your GitHub repository.  This file 
 --
 
 &lt;br/&gt;&lt;br/&gt;
-The README file is a Markdown document.  Markdown files render to HTML on GitHub so the information in the file will automatically be included in an easily-readable format on the main page of your repository.
+The README file is a Markdown document.  Markdown files render to HTML on GitHub. This mean the information in the file will automatically be included in an easily-readable format on the main page of your repository.
 
-Markdown syntax is what you use to write R Markdown, so you already know the basic syntax for adding information to your README. 🎉
+Markdown syntax is what you use to write in R Markdown, so you already know the basic syntax for adding information to your README. 🎉
 
 
 ???
@@ -150,14 +150,16 @@ class: hide-logo
 
 ## Examples of wild-caught README's
 
-Let's spend a few minutes looking at examples of README files.
+Let's spend a few minutes looking at examples of README files in the wild.
 
-Some of the easiest examples to find of a good README in the wild is for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository.
+Some of the easiest examples to find of good README files is for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository. 
+
+Follow the link and scroll down to look through the README file there.
 
 --
 
 &lt;br/&gt;
-But plenty of people use repositories for other types of work. Here are examples for what others include in their README when working on a paper or talk/workshop instead of an R package.
+But plenty of people use repositories for other types of work. Here are two examples of non-R package repositories with information-filled README files:
 
 - [Hill and Grolemund's repository for a workshop](https://github.com/rstudio-conf-2020/intro-to-ml-tidy)  
 - [Christopherson et al.'s project repo](https://github.com/UW-MSDS-DATA-598-Reproducibility-WI20/Christopherson-Garcia-Todd-Winegarden-replication-project) demonstrates information you might want for a repository for an analysis    
@@ -169,6 +171,8 @@ For research projects you can use GitHub to make a *research compendium*. See th
 ???
 
 Purposefully focusing on more "applied" README examples, since that is audience here. Not all README's need to go into this much detail.
+
+Have students follow links to look at README files. Then move on to the practical work for the day
 
 ---
 
@@ -189,7 +193,7 @@ Remember in Week 1 you learned to
 2. Clone the repository via the "Code" button.  
 3. Use the copied URL to make a version-controlled RStudio Project on your computer.  
 
-<div class="countdown" id="timer_6092f0fb" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60996106" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -291,9 +295,9 @@ class: hide-logo
 
 ## Merge conflicts
 
-A *merge conflict* is when the same lines of a file have been changed in two places, most often by different people. These are more common once you have collaborators.
+A *merge conflict* is when the same lines of a file have been changed in two places, most often by different people. These can become more common once you have collaborators.
 
-I am going to have you create a merge conflict by changing a file on GitHub and in the local repository at the same time.  
+I am going to have you create a merge conflict by changing a file on GitHub and in the local version of the repository at the same time.  
 
 --
 
@@ -316,7 +320,7 @@ Go to your `merge-conflict` repository on GitHub and open the `README.md` file.
 Click on the edit button in the right-hand corner.
 
 .center[
-&lt;img src="figs/week07_files/github_readme2.png" title="Screenshot with the cursor hovering over the pencil shaped edit button when getting ready to edit the README file directly on GitHub" alt="Screenshot with the cursor hovering over the pencil shaped edit button when getting ready to edit the README file directly on GitHub" width="75%" /&gt;
+&lt;img src="figs/week07_files/github_readme2.png" title="Screenshot with the cursor hovering over the pencil shaped edit button when getting ready to edit the README file directly on GitHub" alt="Screenshot with the cursor hovering over the pencil shaped edit button when getting ready to edit the README file directly on GitHub" width="65%" /&gt;
 ]
 
 ???
@@ -345,7 +349,7 @@ class: hide-logo
 After making the change, scroll down to `Commit` the changes. Write a commit message in the first box and then hit the `Commit changes` box. I used `Update README` as my commit message.
 
 .center[
-&lt;img src="figs/week07_files/commit_github2.png" title="Screenshot of committing the changes to the README file made directly on GitHub" alt="Screenshot of committing the changes to the README file made directly on GitHub" width="68%" /&gt;
+&lt;img src="figs/week07_files/commit_github2.png" title="Screenshot of committing the changes to the README file made directly on GitHub" alt="Screenshot of committing the changes to the README file made directly on GitHub" width="65%" /&gt;
 ]
 
 ---
@@ -354,9 +358,9 @@ class: hide-logo
 
 ### Change README locally
 
-Now open the Project for your local version of the repository in RStudio.
+Now go to your local version of the repository in RStudio. 
 
-Open the README file and replace the current title and description with:
+Open the README file there and replace the current title and description with:
 
 ```
 # Practice a merge conflict
@@ -374,18 +378,18 @@ Save your changes and then `Stage` - `Commit` - `Push`.
 The `Push` will fail, but note the useful message.
 
 .center[
-&lt;img src="figs/week07_files/push_fail.png" title="Screenshot of failure to push from local repository when there are changes on GitHub that haven't been pulled in yet" alt="Screenshot of failure to push from local repository when there are changes on GitHub that haven't been pulled in yet" width="80%" /&gt;
+&lt;img src="figs/week07_files/push_fail.png" title="Screenshot of failure to push from local repository when there are changes on GitHub that haven't been pulled in yet" alt="Screenshot of failure to push from local repository when there are changes on GitHub that haven't been pulled in yet" width="65%" /&gt;
 ]
 
 ???
 
-This tells us that we are missing work done elsewhere that is on GitHub so we need to `Pull`.
+This tells us that we are missing work done elsewhere that is on GitHub so we likely need to `Pull`.
 
 ---
 
 class: hide-logo
 
-## Pull changes from GitHub
+## Pull changes from GitHub &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;
 
 When working with multiple people or working alone but from multiple devices you need to `Pull` changes from GitHub before you can `Push` changes you made locally.
 
@@ -400,12 +404,12 @@ Forgetting to pull before working on a local repo is one of my most common mista
 Now we get a message about a merge conflict.
 
 .center[
-&lt;img src="figs/week07_files/merge_conflict.png" title="Screenshot of merge conflict message after trying to pull changes GitHub when we've changed the same files in the local repository" alt="Screenshot of merge conflict message after trying to pull changes GitHub when we've changed the same files in the local repository" width="80%" /&gt;
+&lt;img src="figs/week07_files/merge_conflict.png" title="Screenshot of merge conflict message after trying to pull changes GitHub when we've changed the same files in the local repository" alt="Screenshot of merge conflict message after trying to pull changes GitHub when we've changed the same files in the local repository" width="65%" /&gt;
 ]
 
 ???
 
-It attempted to auto-merge, which can work, but fails since the same lines are changed.
+Note Git attempted to auto-merge, which can work in many cases. Here it fails since the same lines are changed in both versions of the document.
 
 ---
 
@@ -418,7 +422,7 @@ We will now switch to GitKraken to make use of their merge conflict tool.
 You will be asked to sign in to GitKraken. Choose the first option to sign in with your GitHub account.
 
 .center[
-&lt;img src="figs/week07_files/open_gitkraken.png" title="Screenshot showing the initial window in GitKraken that asks for a sign in. The top button allows you to use GitHub as your sign in" alt="Screenshot showing the initial window in GitKraken that asks for a sign in. The top button allows you to use GitHub as your sign in" width="50%" /&gt;
+&lt;img src="figs/week07_files/open_gitkraken.png" title="Screenshot showing the initial window in GitKraken that asks for a sign in. The top button allows you to use GitHub as your sign in" alt="Screenshot showing the initial window in GitKraken that asks for a sign in. The top button allows you to use GitHub as your sign in" width="45%" /&gt;
 ]
 
 ---
@@ -430,7 +434,7 @@ class: hide-logo
 A new window will pop up in your web browser that will ask you to authorize GitKraken to access GitHub. Continue with the authorization.
 
 .center[
-&lt;img src="figs/week07_files/authorize_gitkraken.png" title="Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account" alt="Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account" width="100%" /&gt;
+&lt;img src="figs/week07_files/authorize_gitkraken.png" title="Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account" alt="Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account" width="85%" /&gt;
 ]
 
 ---
@@ -442,7 +446,7 @@ class: hide-logo
 You should then get a `Success` message, and you are ready to open the local `merge-conflict` repository in GitKraken.
 
 .center[
-&lt;img src="figs/week07_files/success_gitkraken.png" title="Screenshot to show a successful authorization of GitKraken through your GitHub account" alt="Screenshot to show a successful authorization of GitKraken through your GitHub account" width="50%" /&gt;
+&lt;img src="figs/week07_files/success_gitkraken.png" title="Screenshot to show a successful authorization of GitKraken through your GitHub account" alt="Screenshot to show a successful authorization of GitKraken through your GitHub account" width="45%" /&gt;
 ]
 
 ---
@@ -452,7 +456,7 @@ class: hide-logo
 ## Open repository in GitKraken &lt;svg viewBox="0 0 592 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"&gt;&lt;/path&gt;&lt;/svg&gt;
 
 .pull-left[
-In GitKraken click the `Open a repo` button.
+In GitKraken, click the `Open a repo` button.
 
 .center[
 &lt;img src="figs/week07_files/open_repo1.png" title="Screenshot showing the 'Open a repo' button that is on the main screen of GitKraken after you've authorized" alt="Screenshot showing the 'Open a repo' button that is on the main screen of GitKraken after you've authorized" width="70%" /&gt;
@@ -483,7 +487,7 @@ Any files with a merge conflict are listed in the window under the message.  Cur
 ]
 
 .pull-right[
-&lt;img src="figs/week07_files/gitkraken_merge_message.png" title="Screenshot showing the right-hand side of GitKraken where the merge conflict message and files that have merge conflicts show up" alt="Screenshot showing the right-hand side of GitKraken where the merge conflict message and files that have merge conflicts show up" width="100%" /&gt;
+&lt;img src="figs/week07_files/gitkraken_merge_message.png" title="Screenshot showing the right-hand side of GitKraken where the merge conflict message and files that have merge conflicts show up" alt="Screenshot showing the right-hand side of GitKraken where the merge conflict message and files that have merge conflicts show up" width="90%" /&gt;
 ]
 
 ---
@@ -506,7 +510,7 @@ The top two panes show the two versions of the document.  The bottom pane, "Outp
 
 class: hide-logo
 
-### GitKraken merge &lt;svg viewBox="0 0 592 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"&gt;&lt;/path&gt;&lt;/svg&gt; conflict tool
+### GitKraken &lt;svg viewBox="0 0 592 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"&gt;&lt;/path&gt;&lt;/svg&gt; merge conflict tool
 
 We can choose all lines from one of the two versions. Here I show clicking on the "A" box to add all content from "A" to `Output`. I then remove the second line from `Output` by clicking next to that line. 
 
@@ -537,14 +541,14 @@ class: hide-logo
 ## GitKraken &lt;svg viewBox="0 0 592 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M565.7 118.1c-2.3-6.1-9.3-9.2-15.3-6.6-5.7 2.4-8.5 8.9-6.3 14.6 10.9 29 16.9 60.5 16.9 93.3 0 134.6-100.3 245.7-230.2 262.7V358.4c7.9-1.5 15.5-3.6 23-6.2v104c106.7-25.9 185.9-122.1 185.9-236.8 0-91.8-50.8-171.8-125.8-213.3-5.7-3.2-13-.9-15.9 5-2.7 5.5-.6 12.2 4.7 15.1 67.9 37.6 113.9 110 113.9 193.2 0 93.3-57.9 173.1-139.8 205.4v-92.2c14.2-4.5 24.9-17.7 24.9-33.5 0-13.1-6.8-24.4-17.3-30.5 8.3-79.5 44.5-58.6 44.5-83.9V170c0-38-87.9-161.8-129-164.7-2.5-.2-5-.2-7.6 0C251.1 8.3 163.2 132 163.2 170v14.8c0 25.3 36.3 4.3 44.5 83.9-10.6 6.1-17.3 17.4-17.3 30.5 0 15.8 10.6 29 24.8 33.5v92.2c-81.9-32.2-139.8-112-139.8-205.4 0-83.1 46-155.5 113.9-193.2 5.4-3 7.4-9.6 4.7-15.1-2.9-5.9-10.1-8.2-15.9-5-75 41.5-125.8 121.5-125.8 213.3 0 114.7 79.2 210.8 185.9 236.8v-104c7.6 2.5 15.1 4.6 23 6.2v123.7C131.4 465.2 31 354.1 31 219.5c0-32.8 6-64.3 16.9-93.3 2.2-5.8-.6-12.2-6.3-14.6-6-2.6-13 .4-15.3 6.6C14.5 149.7 8 183.8 8 219.5c0 155.1 122.6 281.6 276.3 287.8V361.4c6.8.4 15 .5 23.4 0v145.8C461.4 501.1 584 374.6 584 219.5c0-35.7-6.5-69.8-18.3-101.4zM365.9 275.5c13 0 23.7 10.5 23.7 23.7 0 13.1-10.6 23.7-23.7 23.7-13 0-23.7-10.5-23.7-23.7 0-13.1 10.6-23.7 23.7-23.7zm-139.8 47.3c-13.2 0-23.7-10.7-23.7-23.7s10.5-23.7 23.7-23.7c13.1 0 23.7 10.6 23.7 23.7 0 13-10.5 23.7-23.7 23.7z"&gt;&lt;/path&gt;&lt;/svg&gt; commit and push
 
 .pull-left[
-After saving, GitKraken will show that `README.md` has been staged on the right-hand side of the GitKraken window.
+After saving, you'll see in the right-hand side of the GitKraken window that final version of the `README.md` file has been staged.
 
 &lt;br/&gt;&lt;br/&gt;
 Write a commit message and then click `Commit and Merge`.
 ]
 
 .pull-right[
-&lt;img src="figs/week07_files/commit_merge.png" title="Screenshot of the left side of GitKraken, where the merged files have been staged and you need to add message and commit the changes" alt="Screenshot of the left side of GitKraken, where the merged files have been staged and you need to add message and commit the changes" width="100%" /&gt;
+&lt;img src="figs/week07_files/commit_merge.png" title="Screenshot of the left side of GitKraken, where the merged files have been staged and you need to add message and commit the changes" alt="Screenshot of the left side of GitKraken, where the merged files have been staged and you need to add message and commit the changes" width="90%" /&gt;
 
 ]
 
@@ -557,11 +561,12 @@ class: hide-logo
 `Push` these changes to GitHub with the push button found at the top of the GitKraken window.
 
 .center[
-&lt;img src="figs/week07_files/push_gitkraken.png" title="Screenshot showing the GitKraken push button up at the top of your screen" alt="Screenshot showing the GitKraken push button up at the top of your screen" width="50%" /&gt;
+&lt;br/&gt;
+&lt;img src="figs/week07_files/push_gitkraken.png" title="Screenshot showing the GitKraken push button up at the top of your screen" alt="Screenshot showing the GitKraken push button up at the top of your screen" width="40%" /&gt;
 ]
 
 &lt;br/&gt;&lt;br/&gt;
-Once you `Push` these changes you're done. If you go back to the project in RStudio you'll find the merge conflict message is gone and everything is up-to-date.
+Once you `Push` these changes you're done. If you go back to the Project in RStudio you'll find the merge conflict message is gone and everything is up-to-date.
 
 You can now close GitKraken and close the `merge-conflict` Project in RStudio.
 
@@ -593,7 +598,7 @@ We'll be using helper functions from package **usethis** for pull requests today
 We will start by setting up a *personal access token* or PAT from GitHub. This is required for using the pull request functions in package **usethis**.
 
 .center[
-&lt;img src="figs/week07_files/usethis_logo.png" title="usethis hex sticker" alt="usethis hex sticker" width="30%" /&gt;
+&lt;img src="figs/week07_files/usethis_logo.png" title="usethis hex sticker" alt="usethis hex sticker" width="25%" /&gt;
 ]
 
 ---
@@ -643,7 +648,7 @@ It is also a great idea to store this token in any password-management software 
 In GitHub you will give the new PAT a name. This name should allow you to recognize which computer it is for.
 
 .center[
-&lt;img src="figs/week07_files/new_PAT.png" title="Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop" alt="Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop" width="50%" /&gt;
+&lt;img src="figs/week07_files/new_PAT.png" title="Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop" alt="Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop" width="45%" /&gt;
 ]
 
 &lt;br/&gt;&lt;br/&gt;
@@ -653,13 +658,13 @@ After naming, scroll down to the bottom and click `Create PAT`.  **usethis** has
 
 ## Get personal access token (PAT)
 
-Once you create the PAT you will see a page with the token. Once you leave this page you won't see it again.
+Once you create the PAT you will see a page with the token code visible. Once you leave this page you won't be able to see it again.
 
 **Important:** Make sure you copy the PAT for the next step using the clipboard button before exiting the page.
 
 &lt;br/&gt;
 .center[
-&lt;img src="figs/week07_files/copy_PAT.png" title="Screenshot showing an example of a created PAT that needs to be copied to your clipboard" alt="Screenshot showing an example of a created PAT that needs to be copied to your clipboard" width="70%" /&gt;
+&lt;img src="figs/week07_files/copy_PAT.png" title="Screenshot showing an example of a created PAT that needs to be copied to your clipboard" alt="Screenshot showing an example of a created PAT that needs to be copied to your clipboard" width="65%" /&gt;
 ]
 
 ---
@@ -669,13 +674,14 @@ Once you create the PAT you will see a page with the token. Once you leave this 
 .pull-left[
 Back in R, we can *store* the PAT using the **gitcreds** package. This package was installed when you installed **usethis**.
 
+&lt;br/&gt;
 **Note:** You *must* have package **gh** version 1.2.1 or higher installed for this to work.
 ]
 
 .pull-right[
 Type in and run the following code in R. 
 
-I'm avoiding copying and pasting here because your PAT is currently on your clipboard and you need that in your next step. 🙂
+I'm avoiding copying and pasting here because your PAT is currently on your clipboard and you'll need it in this next step. 🙂
 
 
 ```r
@@ -787,6 +793,8 @@ Copy the following fork and clone code and run it in R:
 usethis::create_from_github("aosmith16/practice-repo")
 ```
 
+Note you need both the user name and repo name for this step.
+
 ???
 
 Copy and paste the R code into your R Console to run it.
@@ -820,7 +828,7 @@ i Default branch is 'master'
 ]
 
 .pull-right[
-When this is finished a new RStudio Project will open from a new local directory for the forked repository.
+When the process finishes, a new RStudio Project will open from a new local directory for the forked repository.
 
 By default **usethis** will make the local directory on your Desktop. This is usually OK since the local version is temporary; most often you will delete it after finishing your pull request.
 
@@ -833,7 +841,9 @@ You can set a different location for the directory using the `destdir` argument 
 
 Before you commence making changes to the repository you need to make a new *branch*.  Avoid making changes to the default branch, which is `master` here but for newer repositories is often `main`.
 
-Name your branch with your last name plus "prac". Here I named mine `muldoonprac`; names yours based on your own last name. 😉
+For this exercise, name your branch with your last name plus "prac". Here I named mine `muldoonprac`; names yours based on your own last name. 😉
+
+Run this code with your own branch name in R:
 
 
 ```r
@@ -856,7 +866,7 @@ Now you are working in a new branch and can proceed making your proposed changes
 Today I want each of you to:
 - Create a new R Markdown document with HTML output 
 - Put your name as the title
-- Save the document using your last name, like `lastname.Rmd`
+- Save the document using your first and last name, like `firstname_lastname.Rmd`
 
 --
 
@@ -871,7 +881,9 @@ No need to knit. It's not the end of the world if they do but trying to keep thi
 
 ### Create pull request
 
-Once you have finished with the edits and committed them, create a pull request (PR) using `pr_push()`.
+After finishing any proposed edits and committing them, create a pull request (PR) using `pr_push()`.
+
+Run the following code in R:
 
 
 ```r
@@ -895,14 +907,14 @@ And then you will be taken to GitHub. This may take a few minutes! ⏳
 You will do the final steps to finish the pull request in GitHub. Click the `Create pull request` button.
 
 .center[
-&lt;img src="figs/week07_files/create_pull_request.png" title="Screenshot showing the window you are taken from after using pr_push() from usethis" alt="Screenshot showing the window you are taken from after using pr_push() from usethis" width="70%" /&gt;
+&lt;img src="figs/week07_files/create_pull_request.png" title="Screenshot showing the window you are taken from after using pr_push() from usethis" alt="Screenshot showing the window you are taken from after using pr_push() from usethis" width="65%" /&gt;
 ]
 
 ---
 
 ### Create pull request
 
-You then have the option to add a description in addition to your commit message. This is where you can describe what you edited and why.
+You then have the option to add a description in addition to your commit message. This is where you can describe what you edited and why. Fill this is in now.
 
 Once you have added a description click the `Create pull request` button to create the pull request.
 
@@ -917,7 +929,9 @@ Once you have added a description click the `Create pull request` button to crea
 Now you need to wait for the maintainer to respond. A simple pull request may be accepted or *merged* right away. That is what will happen today with your practice pull request. 😄
 
 &lt;br/&gt;&lt;br/&gt;
-A maintainer could ask you to make additional changes or they could make changes on top of the ones you proposed. See how to work with these alternatives in the **usethis** [Pull request helpers article](https://usethis.r-lib.org/articles/articles/pr-functions.html#review-of-the-pull-request).
+A maintainer could ask you to make additional changes or they could make changes on top of the ones you proposed. And, of course, they could decide not to accept any of your pull request.
+
+See how to work with some of these alternatives in the **usethis** [Pull request helpers article](https://usethis.r-lib.org/articles/articles/pr-functions.html#review-of-the-pull-request).
 
 ---
 
@@ -940,7 +954,7 @@ Click on the notification &lt;svg viewBox="0 0 448 512" style="height:1em;positi
 
 ???
 
-Notification is shown by the blue dot on the bell in the upper righthand corner.
+Notification is shown by the blue dot on the bell in the upper right-hand corner.
 
 --
 -
@@ -959,6 +973,8 @@ In this case when you open the pull request you will see that it has been merged
 Once the pull request has been merged we can clean things up on our end.
 
 Back in R, use `pr_finish()` to delete the branch. 
+
+Run the following code in R:
 
 
 ```r
@@ -989,7 +1005,7 @@ Back on GitHub, delete the forked repository.
 
 You can do this from the merged pull request if you still have it open. Click on `settings`.
 
-&lt;img src="figs/week07_files/pull_request_closed.png" title="Screenshot to show what the message in the pull request is after it has been merged and the branch close. You can click on 'settings' to delete the forked repository" alt="Screenshot to show what the message in the pull request is after it has been merged and the branch close. You can click on 'settings' to delete the forked repository" width="100%" /&gt;
+&lt;img src="figs/week07_files/pull_request_closed.png" title="Screenshot to show what the message in the pull request is after it has been merged and the branch close. You can click on 'settings' to delete the forked repository" alt="Screenshot to show what the message in the pull request is after it has been merged and the branch close. You can click on 'settings' to delete the forked repository" width="90%" /&gt;
 
 Then enter your user name and repository name as requested to delete the forked repository.
 ]
