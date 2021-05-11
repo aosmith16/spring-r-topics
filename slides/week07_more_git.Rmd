@@ -125,11 +125,21 @@ knitr::include_graphics("figs/week07_files/usethis_logo.png")
 
 ---
 
+class: center, middle, inverse, hide-logo
+
+# <font style="font-family: cursive; font-style:italic">Let's get started!</font>
+
+---
+
 class: hide-logo
 
 ## The README file
 
-It is standard to have a `README.md` file in your GitHub repository.  This file is for describing what project you are working on and why it is important. 
+It is standard to have a `README.md` file in your GitHub repository.  This file is for describing the project you are working on. 
+
+???
+
+Such as why it is important, what the files contain, etc.
 
 --
 
@@ -169,17 +179,16 @@ class: hide-logo
 
 Let's spend a few minutes looking at examples of README files in the wild.
 
-Some of the easiest examples to find of good README files is for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository. 
+Some of the easiest examples to find of good README files are for R packages, such as on the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repository. 
 
-Follow the link and scroll down to look through the README file there.
+Follow the link to the the [palmerpenguins](https://github.com/allisonhorst/palmerpenguins) repo and scroll down to explore the README file there.
 
 --
 
-<br/>
-But plenty of people use repositories for other types of work. Here are two examples of non-R package repositories with information-filled README files:
+Of course people use repositories for other types of work. Here are two examples of non-R package repositories with information-filled README files:
 
 - [Hill and Grolemund's repository for a workshop](https://github.com/rstudio-conf-2020/intro-to-ml-tidy)  
-- [Christopherson et al.'s project repo](https://github.com/UW-MSDS-DATA-598-Reproducibility-WI20/Christopherson-Garcia-Todd-Winegarden-replication-project) demonstrates information you might want for a repository for an analysis    
+- [Christopherson et al.'s project repo](https://github.com/UW-MSDS-DATA-598-Reproducibility-WI20/Christopherson-Garcia-Todd-Winegarden-replication-project) demonstrates information you might want in a repo for an analysis    
 
 .footnote[
 For research projects you can use GitHub to make a *research compendium*. See the [Marwick et al. paper](https://peerj.com/preprints/3192v1/) and an [example compendium](https://github.com/benmarwick/1989-excavation-report-Madjedbebe).
@@ -190,12 +199,6 @@ For research projects you can use GitHub to make a *research compendium*. See th
 Purposefully focusing on more "applied" README examples, since that is audience here. Not all README's need to go into this much detail.
 
 Have students follow links to look at README files. Then move on to the practical work for the day
-
----
-
-class: center, middle, inverse, hide-logo
-
-# <font style="font-family: cursive; font-style:italic">Let's get started!</font>
 
 ---
 
@@ -330,9 +333,13 @@ A *merge conflict* is when the same lines of a file have been changed in two pla
 
 I am going to have you create a merge conflict by changing a file on GitHub and in the local version of the repository at the same time.  
 
+???
+
+I don't need collaborators to make merge conflicts, myself. I can manage that all on my own! :-D
+
 --
 
-We'll use GitKraken's `r icons::fontawesome("gitkraken")` merge conflict tool to address the conflict.
+We'll use GitKraken's merge conflict tool to address the conflict.
 
 Make sure you have GitKraken installed on your computer.
 
@@ -477,6 +484,7 @@ class: hide-logo
 A new window will pop up in your web browser that will ask you to authorize GitKraken to access GitHub. Continue with the authorization.
 
 .center[
+<br/>
 ```{r, echo = FALSE, out.width = "85%", fig.alt = "Screenshot of window that opens in the browser when authenticating GitKraken using your GitHub account"}
 knitr::include_graphics("figs/week07_files/authorize_gitkraken.png")
 ```
@@ -549,7 +557,7 @@ class: hide-logo
 
 ### GitKraken `r icons::fontawesome("gitkraken")` merge conflict tool
 
-Double-click on `README.md` in the merge conflict window to open GitKraken's merge conflict tool.
+Click on `README.md` in the merge conflict window to open GitKraken's merge conflict tool.
 
 .center[
 ```{r, echo = FALSE, out.width = "80%", fig.alt = "Screenshot of what merge conflict tool looks like when first opened, showing the two top boxes with the two different versions and the bottom box for the Output"}
@@ -559,6 +567,8 @@ knitr::include_graphics("figs/week07_files/merge_tool2.png")
 
 ???
 
+This took me a single click, not a double click
+
 The top two panes show the two versions of the document.  The bottom pane, "Output", shows the original file and will update to show changes as we choose which lines we want to keep.
 
 ---
@@ -567,7 +577,7 @@ class: hide-logo
 
 ### GitKraken `r icons::fontawesome("gitkraken")` merge conflict tool
 
-We can choose all lines from one of the two versions. Here I show clicking on the "A" box to add all content from "A" to `Output`. I then remove the second line from `Output` by clicking next to that line. 
+We can choose all lines from one of the two versions. Here I show clicking the "A" box to add all content from "A" to `Output`. I then remove the second line from `Output` by clicking next to that line. 
 
 .center[
 ```{r, echo = FALSE, out.width = "80%", fig.alt = "Screenshot showing clicking the box next to the left version to add all lines to the Output in the merge conflict tool. The cursor is on the the second line of Output to show I can remove the line by clicking next to it."}
@@ -600,9 +610,12 @@ class: hide-logo
 ## GitKraken `r icons::fontawesome("gitkraken")` commit and push
 
 .pull-left[
-After saving, you'll see in the right-hand side of the GitKraken window that final version of the `README.md` file has been staged.
+After saving you are taken back to the main GitKraken window.
 
-<br/><br/>
+<br/>
+In the right-hand side you can see that your final version of `README.md` has been staged.
+
+<br/>
 Write a commit message and then click `Commit and Merge`.
 ]
 
@@ -639,24 +652,28 @@ class: hide-logo
 
 ## Pull requests
 
-We will finish up today by going through the steps for making a *pull request* to propose changes to a repository.
+We will finish this session by going through the steps for making a *pull request* to propose changes to a repository.
 
 A pull request is how you can propose changes to a GitHub repository. If accepted, the person who maintains the repository will *pull* your changes in to change the contents of their repo.
+
+???
+
+Pull requests can be something as simple as to fix typos or help re-word documentation all the way up to proposing new functions or changing code in a package. For the latter, make sure you use the correct coding style for the package.
 
 --
 
 <br/><br/>
 Today we will practice making a pull request on someone else's repository.  
 
-Note that using pull requests is also a reasonable way to approach working with collaborators on a shared repository to avoid merge conflicts. 
+Using pull requests is also a reasonable way to approach working with collaborators on a shared repository to avoid merge conflicts. 
 
-One difference from the process shown here will be that you won't need to *fork* a repository you already own.
+If working on your own repository, you won't need the step to *fork and clone* the repository.
 
 ---
 
 ## Pull requests
 
-We'll be using helper functions from package **usethis** for pull requests today.
+We'll be using helper functions from package **usethis** for pull requests.
 
 We will start by setting up a *personal access token* or PAT from GitHub. This is required for using the pull request functions in package **usethis**.
 
@@ -677,7 +694,7 @@ See complete instructions and important additional information about managing yo
 --
 
 <br/><br/>
-**Important:** I will be showing you a screenshot and example code that includes a GitHub PAT. It is important you do not give or show your PAT to anyone. Since the PAT I used to create these slides is compromised I deleted it and created a new one.
+**Important:** I will be showing you a screenshot and example code that includes a GitHub PAT. It is important you do not give or show your PAT to anyone. Since the PAT I used to create these slides was compromised, I deleted it and created a new one.
 
 ???
 
@@ -687,7 +704,9 @@ Make sure they understand that a PAT should be protected and I'm showing one for
 
 ## Get personal access token (PAT)
 
-Make sure you are signed in to GitHub.
+Make sure you are signed in to GitHub. Open a clean R session in RStudio.
+
+--
 
 Create a token using function `create_github_token()` from package **usethis**. Run the following code in your R Console or paste into a script and run from there.
 
@@ -697,6 +716,7 @@ usethis::create_github_token()
 
 --
 
+<br/>
 You will see a message like the one below and then you will be taken to GitHub.
 
 ```
@@ -709,7 +729,7 @@ It is also a great idea to store this token in any password-management software 
 
 ## Get personal access token (PAT)
 
-In GitHub you will give the new PAT a name. This name should allow you to recognize which computer it is for.
+In GitHub you will give the new PAT a name. This name should allow you to recognize which computer it is for. In my example I create a PAT for my laptop.
 
 .center[
 ```{r, echo = FALSE, out.width = "45%", fig.alt = "Screenshot showing the name given to the created PAT so you can identify which computer it is for. I added 'laptop' to the name so I would remember it was the PAT for my laptop"}
@@ -724,7 +744,7 @@ After naming, scroll down to the bottom and click `Create PAT`.  **usethis** has
 
 ## Get personal access token (PAT)
 
-Once you create the PAT you will see a page with the token code visible. Once you leave this page you won't be able to see it again.
+Once you create the PAT you will see a page where the token code is visible. Once you leave this page you will not be able to see it again.
 
 **Important:** Make sure you copy the PAT for the next step using the clipboard button before exiting the page.
 
@@ -907,7 +927,7 @@ You can set a different location for the directory using the `destdir` argument 
 
 Before you commence making changes to the repository you need to make a new *branch*.  Avoid making changes to the default branch, which is `master` here but for newer repositories is often `main`.
 
-For this exercise, name your branch with your last name plus "prac". Here I named mine `muldoonprac`; names yours based on your own last name. `r emo::ji("wink")`
+For this exercise, name your branch with your last name plus "prac". Here I named mine `muldoonprac`; name yours based on your own last name. `r emo::ji("wink")`
 
 Run this code with your own branch name in R:
 
