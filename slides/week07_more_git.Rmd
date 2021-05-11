@@ -1123,8 +1123,8 @@ class: hide-logo
 
 ## Next week
 
-- We'll briefly explore a few packages for making interactive plots and tables  
-- We'll end by making a simple dashboard with package **flexdashboard**  
+- We'll briefly explore a few packages for making interactive plots and tables 
+- Download/save `week08_interaction.Rmd` from website prior to class  
 - Make sure you have current versions of **htmlwidgets**, **palmerpenguins**, **ggplot2**, **plotly**, **DT**, **leaflet**, **dygraphs**, and **flexdashboard** installed  
 
 .center[
