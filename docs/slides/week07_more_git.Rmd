@@ -738,7 +738,7 @@ knitr::include_graphics("figs/week07_files/new_PAT.png")
 ]
 
 <br/><br/>
-After naming, scroll down to the bottom and click `Create PAT`.  **usethis** has already filled in some recommended scopes and we'll leave them all as is.
+After naming, scroll down to the bottom and click `Generate token`.  **usethis** has already filled in some recommended scopes and we'll leave them all as is.
 
 ---
 
