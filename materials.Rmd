@@ -170,7 +170,7 @@ Install [GitKraken](https://www.gitkraken.com/) on your computer. Also make sure
 
 [Week 07 slides](slides/week07_more_git.html)
 
-## Week 8: Using interactive elements in static HTML documents
+## Week 8: Using interactive elements in HTML documents
 
 ### Goals
 

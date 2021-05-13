@@ -74,31 +74,37 @@ class: center, middle, inverse, title-slide
 
 ## Today's Goal
 
-**Practice adding interactive elements to static HTML documents**
+**Practice adding interactive elements to HTML output documents**
 
-Today is a tasting menu of tools 😋. We will briefly explore  
+We will briefly explore  
 
 - **plotly** to add interactivity to plots made with **ggplot2**  
-- **DT** to allow for users to interact with a dataset  
+- **DT** for interactive data objects    
 - **leaflet** for interactive maps  
-- **dygraph** to make interactive plots of time series data  
+- **dygraphs** to make interactive plots of time series data  
 - Adding interactive elements from packages above to a dashboard made with **flexdashboard**  
 
 --
 
-Adding interactive elements to static HTML elements allows for *pre-computed* interactive elements without needing a server. For more complex interactivity see package **shiny**.
+Adding interactive elements to HTML output documents allows for *pre-computed* interactive elements without needing a server. For more complex interactivity see package **shiny**.
+
+???
+
+Students won't necessarily know what it means to need a server, but the crux here is that adding basic interactivity to HTML is simpler. For complex interactivity, giving the user more control over the plot/table output, you'll need a different tool
+
+**htmlwidgets** must pre-compute everything that is included in the interactive element. With **shiny** we can allow users to choose different computations but also would need to have a server to host the resulting app
 
 --
 
 *Before we begin:*
 
-Make sure you saved `week08_interaction.Rmd` from the class website onto your computer. We will knitting this file and exploring the output.
+Make sure you saved [`week08_interaction.Rmd`](files/week08_interaction.Rmd) from the class website onto your computer. You will knit this file so you can explore the interactive output.
 
 ???
 
 There is so much more you can do with each of these tools that this session will barely scratch the surface
 
-**htmlwidgets** must pre-compute everything that is included in the interactive element. With **shiny** we can allow users to choose different computations but also would need to have a server to host the resulting app
+The goal of knitting rather than providing the document is so students can "see" that we insert these into HTML documents through R code in the Rmd
 
 ---
 
@@ -124,15 +130,18 @@ class: center, middle, inverse, hide-logo
 
 ---
 
-## Running code
+## Today's code
 
 - This week's session is in a tasting menu style, going over examples of interactive plots and data without a lot of detail. The idea is for you to get a *taste* of a variety of packages. 😋
 
-- Open the copy of [`week08_interaction.Rmd`](files/week08_interaction.Rmd) that you saved and knit it to explore the HTML output document.  
+- We'll be looking at the code and output from several **htmlwidgets**-packages that can be used to add interactive elements to HTML output documents.   
 
-- We'll be looking at the code and output from several **htmlwidgets**-packages that can be used to add interactive elements to HTML output.   
+- Since we're just getting quick tastes of these packages you won't practice writing your own code but will see code I have written. 
 
-- Since we're just getting quick tastes of these packages you won't practice writing your own code.
+--
+
+- Open your copy of [`week08_interaction.Rmd`](files/week08_interaction.Rmd) in a clean R session. Knit it now. We will go through the output document, looking at code and interactive output elements together.  
+
 
 ???
 
@@ -142,9 +151,9 @@ I originally was going to have students had the interactivity code and knit each
 
 ## R packages 
 
-Load **palmerpenguins 0.2.2** and **ggplot2 1.0.5** now.
+We'll load **palmerpenguins 0.1.0** and **ggplot2 3.3.3** now.
 
-We'll be loading additional packages as we go so it is clear which package we are using in each section.  
+You'll see additional packages loaded as we go through the slides/HTML output document. This is to help clarify which package we are using in each section.  
 
 
 ```r
@@ -158,7 +167,7 @@ class: with-logo logo-penguins
 
 ## Penguin dataset
 
-We will work with the Palmer penguin data while exploring the first two packages.
+We will work with the Palmer penguin data while exploring packages **plotly** and **DT**.
 
 This dataset includes various size measurements for three penguin species on the Palmer Archipelago, as well as `sex` and measurement `year`. See `?penguins` for more information.
 
@@ -186,7 +195,7 @@ class: with-logo logo-plotly
 
 [Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.  
 
-In R, the **plotly** package can be used to build stand-alone interactive graphics or to make a static plot interactive. 😲  
+In R, the **plotly** package can be used to build stand-alone interactive graphics or to make static plots interactive. 😲  
 
 --
 
@@ -223,7 +232,7 @@ g1 = ggplot(data = penguins,
 
 
 &lt;br/&gt;&lt;br/&gt;
-You are welcome to add code to the RMD file to print this plot if you'd like but we won't do it here. Instead let's jump to adding interactivity.
+You are welcome to add code to the RMD file to print this plot if you'd like but we won't do it here. Instead let's jump to adding interactivity with `ggplotly()`.
 
 
 ---
@@ -241,12 +250,10 @@ ggplotly(g1)
 ```
 ]
 
---
-
 .pull-right[
-Go to the knitted HTML output from `week08_interaction.Rmd` to see what this looks like. 
+Go to the rendered HTML document based on `week08_interaction.Rmd` to explore the interactive output plot. 
 
-There is a table of contents at the top to help you navigate, as needed.
+There is a table of contents at the top of the HTML document to help you navigate, if needed.
 ]
 
 ---
@@ -266,8 +273,8 @@ Double click the plot or click on the "Reset axes" button to reset.
 ]
 
 .pull-right[
-<div id="htmlwidget-923550606d75cd2084fd" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-923550606d75cd2084fd">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4e485639e5c5a93a6405" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4e485639e5c5a93a6405">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ???
@@ -287,7 +294,7 @@ A **tooltip** is generic term for the text that pops up when hovering over an in
 We can change this with the `tooltip` argument in `ggplotly()`. 
 
 &lt;br/&gt;
-Let's put just the `y` and `x` values (in that order) in the tooltip, leaving out the `color` values.
+Let's put just the `x` and `y` values in the tooltip, leaving out the `colour` values.
 ]
 
 .pull-right[
@@ -295,9 +302,13 @@ Let's put just the `y` and `x` values (in that order) in the tooltip, leaving ou
 
 ```r
 ggplotly(g1, 
-         tooltip = c("y", "x"))
+         tooltip = c("x", "y"))
 ```
 ]
+
+???
+
+The order is supposed to be set in `tooltip` but this appears not to work (open issue [here](https://github.com/ropensci/plotly/issues/849))
 
 ---
 
@@ -306,12 +317,12 @@ class: with-logo logo-plotly
 ### Changing the hover text
 
 .pull-left[
-The next plot in the HTML output doc shows the new tooltip info. 
+The next plot in the HTML output doc has our new version of the tooltip. 
 ]
 
 .pull-right[
-<div id="htmlwidget-9ed9b7a0ca3353e9625a" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9ed9b7a0ca3353e9625a">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-80d3545753cd8660d5bb" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-80d3545753cd8660d5bb">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -320,7 +331,7 @@ class: with-logo logo-plotly
 
 ### Linking two plots
 
-You may have noted that you could select or *highlight* points in the scatterplot but then couldn't do much with them.  
+You may have noticed that you could select or *highlight* points in the interactive scatterplots but then couldn't do much with them.  
 
 The select tool becomes most useful if including the plot in, e.g., a **shiny** app, but there are also some built-in tools in **plotly** where selection is useful. This makes use of package **crosstalk** under the hood.
 
@@ -333,6 +344,10 @@ We start by using `highlight_key()` on the dataset we are plotting.
 ```r
 peng2 = highlight_key(penguins)
 ```
+
+???
+
+Since we are doing a "tasting menu" of packages today I am not getting into detail with this function and how it links across the dataset.
 
 ---
 
@@ -392,16 +407,20 @@ class: with-logo logo-plotly
 ### Linking two plots
 
 .pull-left[
-When we select points in the first plot, points from the same rows are selected in the second. This allows the user to explore more variables at one time.
+Now when we select points in one plot points from the same rows are selected in the second. This allows the user to explore more variables at one time.
 
 &lt;br/&gt;
-I found things were a little awkward for plots with legends. It helps a bit if the legend is removed from one of the plots using `plotly::style()`.
+I found this approach was a little awkward for plots with legends. It helped a bit if the legend is removed from one of the plots using `plotly::style()`.
 ]
 
 .pull-right[
-<div id="htmlwidget-b9dee6fc4397e059fa92" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b9dee6fc4397e059fa92">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-12.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e48751ed10be4502194f" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e48751ed10be4502194f">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-12.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
+
+???
+
+I really didn't want to get bogged down into any details, which is why I didn't talk more about more options (such as `plotly:;style()`)
 
 ---
 
@@ -409,7 +428,7 @@ class: with-logo logo-DT
 
 ## DT for interactive data
 
-The [**DT** package](https://rstudio.github.io/DT/) allows us to display R data objects such as data.frames as interactive tables of data in HTML outputs.
+The [**DT** package](https://rstudio.github.io/DT/) allows us to display R data objects such as data.frames as interactive tables of data.
 
 For example, it provides the user the ability to filter and sort the data in the output table.  
 
@@ -432,6 +451,7 @@ class: with-logo logo-DT
 .pull-left[
 The `datatable()` function creates the interactive output.
 
+&lt;br/&gt;
 Using `datatable()` directly like this may be sufficient for the interactivity we want much of the time.
 ]
 
@@ -454,7 +474,7 @@ class: with-logo logo-DT
 Take a few minutes and explore the interactive output table in the HTML document.
 
 &lt;br/&gt;
-The results are *paginated*, defaulting to showing 10 rows per page. Click on a page to move through more rows. Change the number of rows showing with the drop-down menu.
+The results are *paginated*, defaulting to showing 10 rows per page. Click on a page number below the table to move through more rows. Change the number of rows showing with the top drop-down menu.
 
 &lt;br/&gt;
 You can sort by individual columns and filter to values using the overall search box at the top.
@@ -462,9 +482,13 @@ You can sort by individual columns and filter to values using the overall search
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-8bc0352705596bf0f90c" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8bc0352705596bf0f90c">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-15.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9901378eefde262d687d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9901378eefde262d687d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-15.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
+
+???
+
+The search box searches the whole table for values, so isn't very precise
 
 ---
 
@@ -500,12 +524,13 @@ class: with-logo logo-DT
 .pull-left[
 The resulting table now shows fewer rows on each page by default.
 
+&lt;br/&gt;
 We also now have only the three options we defined for how many rows to show on each page under `Show`.
 ]
 
 .pull-right[
-<div id="htmlwidget-4b2e0bef78d9e5fe0b82" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4b2e0bef78d9e5fe0b82">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-17.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3f0fa1793f3a2857bffd" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3f0fa1793f3a2857bffd">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-17.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -514,7 +539,7 @@ class: with-logo logo-DT
 
 ### Add column filters
 
-We can generate filters for each column in addition to the overall `Search` by adding the `filter` argument. We'll place the filters at the `top` of the table.
+In addition to the overall `Search`, we can generate filters for each column  by adding the `filter` argument. We'll place the filters at the `top` of the table.
 
 
 ```r
@@ -525,6 +550,7 @@ datatable(penguins,
                          columnDefs = list(list(width = '80px', targets = "_all"))))
 ```
 
+&lt;br/&gt;
 In some cases columns are too narrow for the categorical variable filter boxes. Here I widen them in `options` following [this Stack Overflow post](https://stackoverflow.com/a/31814197/2461552) and this [GitHub issue](https://github.com/rstudio/DT/issues/29).
 
 
@@ -541,14 +567,15 @@ class: with-logo logo-DT
 ### Add column filters
 
 .pull-left[
-Now you can filter by specific columns. 
+Now you can filter by values in specific columns. 
 
+&lt;br/&gt;
 Numeric columns get range sliders and character columns get select drop-down menus.
 ]
 
 .pull-right[
-<div id="htmlwidget-0104818d7c35ea6fb941" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0104818d7c35ea6fb941">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-19.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a43d34df4c9b82b9c5b0" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a43d34df4c9b82b9c5b0">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-19.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -559,7 +586,7 @@ class: with-logo logo-leaflet
 
 The [**leaflet** package](https://rstudio.github.io/leaflet/) is popular for making interactive maps.
 
-The package can render spatial objects created from **sf** or **sp** and also works with data.frames that contain latitude/longitude columns. Or center maps on a specific latitude/longitude.  
+The package can render spatial objects created from **sf** or **sp**, works with data.frames that contain latitude/longitude columns, or can center maps on defined latitude/longitude values.  
 
 --
 
@@ -581,7 +608,7 @@ We'll start with a map centered on Corvallis, OR, USA.  Note the pipes in the co
 
 
 .pull-left[
-We center the output  map by providing a latitude and longitude, setting the amount of space around the center with the `zoom` argument in `setView()`.
+We center the output  map by providing a latitude and longitude, setting the amount of space around the map center with the `zoom` argument in `setView()`.
 
 &lt;br/&gt;
 The `addTiles()` layer is key here. This function is how we add the base map. By default `OpenStreetMap` tiles are used but others can be used via `addProviderTiles()`.
@@ -606,15 +633,16 @@ class: with-logo logo-leaflet
 ### Center map with `setView()` 
 
 .pull-left[
-Take a a minute and explore the output map in the HTML document.
+Take a minute and explore the output map in the HTML document.
 
-You can pan and zoom around the resulting map.
+&lt;br/&gt;
+You can pan around as well as zoom the resulting map.
 ]
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-4913833cdf3f7241f23d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4913833cdf3f7241f23d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-22.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e0e07010cd5c1cddd112" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e0e07010cd5c1cddd112">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-22.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -664,8 +692,8 @@ Click on the icon to see the pop up information.
 ]
 
 .pull-right[
-<div id="htmlwidget-09862892760de53ccdea" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-09862892760de53ccdea">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-24.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-64bc5ffec83f5c7fab06" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-64bc5ffec83f5c7fab06">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-24.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -678,13 +706,15 @@ Now let's switch to plotting some spatial data from a data.frame.
 
 We'll work with annual temperature and precipitation data from climate stations throughout the state of Oregon, USA taken from the [UO GEOG 4/595 website](https://pjbartlein.github.io/GeogDataAnalysis/datasets.html).
 
-Note the `lat` and `lon` columns, which are key for mapping with **leaflet**.
+Note the `lat` and `lon` columns in the dataset, which are key for mapping from data.frames with **leaflet**.
 
+.smaller[
 
 ```r
 orstationc = read.csv("https://pjbartlein.github.io/GeogDataAnalysis/data/csv/orstationc.csv")
 head(orstationc)
 ```
+]
 
 .center[
 
@@ -709,10 +739,10 @@ class: with-logo logo-leaflet
 ### Mapping spatial data
 
 .pull-left[
-We now use the `data` argument in `leaflet()`. **leaflet** automatically finds lat/long columns if named something recognizable (e.g., `lng`, `long`, `lat`, `latitude`).
+We now use the `data` argument in `leaflet()`. **leaflet** automatically finds lat/long columns if named something recognizable (e.g., `lng`, `long`, `lat`, `latitude`) and reports what it used.
 
 &lt;br/&gt;
-Although we `addTiles()` first, the map extent is not set until we add the markers, based on lat/long.
+Although we `addTiles()` first, the map extent is not set until we add the markers, based on the range within the lat/long columns in the dataset.
 
 &lt;br/&gt;
 We add the climate station locations as circles with `addCircleMarkers()`. The `label` argument adds tooltip info from variables in the dataset; here, average July temperature.
@@ -728,12 +758,12 @@ We add the climate station locations as circles with `addCircleMarkers()`. The `
 ```
 
 &lt;br/&gt;
-**Note:** There are `lng` and `lat` arguments in `addCircleMarkers()`. There are needed if the column names of the lat/long columns aren't recognized by `leaflet()` in the dataset.
+**Note:** There are `lng` and `lat` arguments in `addCircleMarkers()`. You will need to define the lat/long variables manually if the column names of the lat/long columns in the dataset aren't recognized by `leaflet()`.
 ]
 
 ???
 
-Not showing writing out lat and lng arguments because it seems fairly standard to leave them out and let leaflet guess when lat/long named appropriately (which is likely usual for spatial data)
+Not showing writing out lat and lng arguments because it seems fairly standard to leave them out and let leaflet guess when lat/long named appropriately (which is likely usual for spatial data). They'll see the message where leaflet reports which columns were used in the HTML document
 
 ---
 
@@ -744,15 +774,17 @@ class: with-logo logo-leaflet
 .pull-left[
 Explore the map output.
 
+&lt;br/&gt;
 The map extent is based on the climate station locations, shown as circles.
 
-The average July temperature of each station pops up when you hover over each point.
+&lt;br/&gt;
+The average July temperature of each station pops up when you hover over each marker.
 ]
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-4ad190c355ed7fcec431" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4ad190c355ed7fcec431">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-28.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d21e6f6aaad3e8c32d72" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d21e6f6aaad3e8c32d72">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-28.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -764,12 +796,13 @@ class: with-logo logo-leaflet
 We can color markers based on the dataset as long as we define a palette.
 
 .pull-left[
-We'll color the markers based on the July temperature. We use the Yellow-Orange-Red `RColorBrewer` palette in `colorQuantile()`.
+We'll color the markers based on the average July temperature. We use the Yellow-Orange-Red `RColorBrewer` palette in `colorQuantile()`.
 
 &lt;br/&gt;
-The `color` argument is mapped to `tjul` in `addCircleMarkers()`, wrapped in the `pal()` we made. 
+The `color` argument in `addCircleMarkers()` is mapped to `tjul`, wrapped in the `pal()` we made. 
 
-We also add a second tooltip to show the name of the climate station when a marker is clicked using `popup`.
+&lt;br/&gt;
+We add a second tooltip to show the name of the climate station when a marker is clicked using `popup` in addition to `label`.
 ]
 
 .pull-right[
@@ -793,7 +826,7 @@ leaflet(data = orstationc) %&gt;%
 
 ???
 
-I'm not getting into the colorQuantile() code too much here, but it is from **leaflet** and for mapping data to colors. This is a quick demonstration with no real details
+I'm not getting into the colorQuantile() code here, but it is from **leaflet** and is for mapping data to colors. This is a quick demonstration with no real details
 
 ---
 
@@ -804,15 +837,17 @@ class: with-logo logo-leaflet
 .pull-left[
 Explore the new map output.
 
+&lt;br/&gt;
 Now the circles are colored based on the average July temperature.
 
+&lt;br/&gt;
 You can hover to get to see the temperature or click to see the climate station name.
 ]
 
 .pull-right[
 &lt;br/&gt;
-<div id="htmlwidget-a217e297f90fd946bf5a" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a217e297f90fd946bf5a">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-31.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fd86972561e587ddbe79" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fd86972561e587ddbe79">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-31.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -821,7 +856,7 @@ You can hover to get to see the temperature or click to see the climate station 
 
 The [**dygraphs** package](https://rstudio.github.io/dygraphs/index.html) is for plotting interactive time series data.
 
-It is specifically for **xts** time series objects or any object that is convertible to an **xts** object.
+It is specifically for **xts** time series objects or any object that can be converted to an **xts** object.
 
 --
 
@@ -837,14 +872,13 @@ library(dygraphs) # v. 1.1.1.6
 
 ### Basic time series
 
-We'll use the time series that come with **dygraphs** to look at a few plots.
+We'll use time series datasets that come with **dygraphs** to look at a few plots.
 
 .pull-left[
 The `dygraph()` function is the primary function for making the plots.
 
-First up is a plot of New Haven temperatures through time, using `nhtemp`.
-
-Add a title with `main`.
+&lt;br/&gt;
+First up is a plot of New Haven temperatures through time, using `nhtemp`. Add a title with `main`.
 ]
 
 .pull-right[
@@ -862,16 +896,19 @@ dygraph(data = nhtemp,
 .pull-left[
 Explore the output plot in the HTML document.
 
+&lt;br/&gt;
 Hovering over the plot shows the time as well as the data in the line.
 
+&lt;br/&gt;
 You can zoom into part of the time series by selecting a plot area.
 
+&lt;br/&gt;
 Double-click the plot to zoom back out.
 ]
 
 .pull-right[
-<div id="htmlwidget-1a9f7f9db034736be34d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1a9f7f9db034736be34d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-34.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-94763534f4322a9a7aea" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-94763534f4322a9a7aea">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-34.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -881,7 +918,8 @@ Double-click the plot to zoom back out.
 .pull-left[
 Add a range selector to the bottom of the plot for panning and zooming via `dyRangeSelector()`.
 
-Note the use of the pipe.
+&lt;br/&gt;
+Note the use of the pipe in the code.
 ]
 
 .pull-right[
@@ -902,25 +940,27 @@ While we won't explore it here, you can change, e.g., the size, color, and date 
 ### Add range selector
 
 .pull-left[
-Explore the range selector in the next plot in the HTML document.
+Explore the range selector in the interactive plot output.
 ]
 
 .pull-right[
-<div id="htmlwidget-93ce3451e4e45414bf7d" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-93ce3451e4e45414bf7d">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-36.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b4b66e626071697f289a" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b4b66e626071697f289a">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-36.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
 
 ### Multiple time series
 
-You can plot multiple time series in a single plot if you have multiple column of time series data in a single time series object.
+You can plot multiple time series in a single plot if you have multiple columns of time series data in a single time series object.
 
 .pull-left[
-We'll look at male and female deaths from lung disease in the UK from 1974-1979 from **dygraphs** for this example.
+We'll look at male and female deaths from lung disease in the UK from 1974-1979 for this example.
 
+&lt;br/&gt;
 The first step is to bind the two separate time series together into one with `cbind()`.
 
+&lt;br/&gt;
 Then the two time series can be plot together with `dygraphs()`.  Change the names and colors of the series using `dySeries()`.
 ]
 
@@ -951,13 +991,14 @@ dygraph(data = lungDeaths) %&gt;%
 .pull-left[
 The tooltip shows data from both time series at once.
 
-The labels we created are shown in the tooltip.
+&lt;br/&gt;
+Notice the labels we created in `dySeries()` are shown in the tooltip.
 ]
 
 .pull-right[
 
-<div id="htmlwidget-d96f8d63058b7b38ee11" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d96f8d63058b7b38ee11">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-39.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6febdfaa8ebeecbbabf9" style="width:100%;height:252px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6febdfaa8ebeecbbabf9">{"x":{"url":"week08_interactive_elements_files/figure-html//widgets/widget_unnamed-chunk-39.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -992,10 +1033,6 @@ class: with-logo logo-flex
 
 ## Build an interactive dashboard
 
-There are a variety of dashboard layouts. The default is called a `fill` layout, and has room for three charts. One large chart is on the left and two smaller charts are on the right. We'll proceed with this layout, adding code to make the dashboard.
-
---
-
 Give your dashboard a title in the YAML header. I called mine `My Dashboard`. Then save the file as a `.Rmd` document somewhere on your computer.  
 
 
@@ -1009,22 +1046,32 @@ output:
 ---
 ```
 
+--
+
+&lt;br/&gt;
+There are a variety of dashboard layouts. The default is called a `fill` layout with `columns`, and has room for three charts. One large chart is in the left column and two smaller charts are in the right column. We'll proceed with this layout, adding code to put interactive elements in the dashboard.
+
+???
+
+They'll see an example of the layout on the next slide (after knitting)
+
 ---
 
 class: with-logo logo-flex
 
 ## Build an interactive dashboard
 
-Knit the dashboard to see the basic layout, before adding any content.
+Knit the dashboard to see the basic default layout, before adding any content.
 
 .pull-left[
 You can see the overall title with the default blue color scheme.
 
-Note each of the three chart windows has been given a name.
+&lt;br/&gt;
+You can see that each of the three chart windows has been given a name.
 ]
 
 .pull-right[
-&lt;img src="figs/week08_files/first_dashboard.png" title="Image of the initial dashboard, after naming it 'My Dashboard' but before adding any content" alt="Image of the initial dashboard, after naming it 'My Dashboard' but before adding any content" width="100%" /&gt;
+&lt;img src="figs/week08_files/first_dashboard.png" title="Image of the initial dashboard with a blue color scheme and 3 chart windows after naming it 'My Dashboard' but before adding any content" alt="Image of the initial dashboard with a blue color scheme and 3 chart windows after naming it 'My Dashboard' but before adding any content" width="100%" /&gt;
 ]
 
 ---
@@ -1035,7 +1082,7 @@ class: with-logo logo-flex
 
 Add the packages you are using in the document into the *setup* chunk at the very top of the file. It is named `setup`. 
 
-You can see we load package **flexdashboard** by default.  Add **ggplot2**, **palmerpenguins**, **plotly**, **DT**, and **leaflet**.
+You can see it already loads package **flexdashboard** by default.  Add **ggplot2**, **palmerpenguins**, **plotly**, **DT**, and **leaflet**.
 
 This is what your setup chunk will look like after adding these.
 
@@ -1170,12 +1217,12 @@ Alternatively you can send people to a version on GitHub after making a small ch
 
 ## Next week
 
-- We'll discuss how to report issues on GitHub repositories  
-- We will also practice making reproducible examples using package **reprex**  
-- Make sure you have e a current version of **reprex** installed
+- We will discuss steps to create reproducible examples of R code  
+- We will then use package **reprex** to create pasteable code and output  
+- Make sure you have a current version of **reprex** and **datapasta** installed
 
 .center[
-&lt;img src="figs/reprex.png" title="Logo for package gganimate" alt="Logo for package gganimate" width="15%" /&gt;
+&lt;img src="figs/reprex.png" title="Logo for package reprex" alt="Logo for package reprex" width="15%" /&gt;
 ]
 
 .footnote[
