@@ -44,7 +44,7 @@ head(penguins, n = 5)
 
 [Plotly](https://plotly.com/graphing-libraries/) can be used to make a wide variety of interactive charts and maps in Python, R, and JavaScript.
 
-In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. `r emo::ji("astonished")`
+In R, the **plotly** package is for building stand-alone interactive graphics or for making our static plots interactive. 
 
 We will use `ggplotly()` to add interactive elements to plots we made with **ggplot2**.  **Of interest:** Another option for adding interactivity to **ggplot2** plots is package **ggiraph**. This package adds interactive layers within **ggplot2**.
 

@@ -181,7 +181,7 @@ We will
 - Use **plotly** to add interactivity to plots made with **ggplot2**  
 - Use **DT** to allow for users to interact with a dataset  
 - Look at **leaflet** for interactive maps  
-- Use **dygraph** to make interactive plots of time series data  
+- Use **dygraphs** to make interactive plots of time series data  
 - Add interactive elements from packages above to a dashboard made with **flexdashboard**  
 
 ### Resources
@@ -195,7 +195,7 @@ We will
 
 ### Materials for class
 
-We are exploring a variety of packages this week. Make sure you have current versions of: **htmlwidgets**, **palmerpenguins**, **ggplot2**, **plotly**, **DT**, **leaflet**, **dygraph**, **flexdashboard**
+We are exploring a variety of packages this week. Make sure you have current versions of: **htmlwidgets**, **palmerpenguins**, **ggplot2**, **plotly**, **DT**, **leaflet**, **dygraphs**, **flexdashboard**
 
 [Week 08 slides](slides/week08_interactive_elements.html)  
 Save [`week08_interaction.Rmd`](files/week08_interaction.Rmd) to knit to HTML output during the session  
