@@ -508,7 +508,7 @@ class: with-logo logo-DT
 
 ### Change table options
 
-There are so many options you can change via the `options` argument that they have their own [own article on the **DT** website](https://rstudio.github.io/DT/options.html).
+There are so many options you can change via the `options` argument that they have their own [article on the **DT** website](https://rstudio.github.io/DT/options.html).
 
 .pull-left[
 <br/>
@@ -1097,14 +1097,22 @@ output:
 ---
 ```
 
+???
+
+flexdashboard starts out with some default info filled in, like many Rmd docs
+
 --
 
 <br/>
-There are a variety of dashboard layouts. The default is called a `fill` layout with `columns`, and has room for three charts. One large chart is in the left column and two smaller charts are in the right column. We'll proceed with this layout, adding code to put interactive elements in the dashboard.
+**flexdashboard** has a variety of dashboard layouts available. See [here](https://rstudio.github.io/flexdashboard/articles/layouts.html) for some examples.  
+
+The default layout is a `fill` layout with `columns` orientation, which we will proceed with today. Column widths are set within the document; e.g., `Column {data-width=650}`.
 
 ???
 
 They'll see an example of the layout on the next slide (after knitting)
+
+I'm not going to talk any more about setting column widths and such, but the provided link should be useful
 
 ---
 
@@ -1115,10 +1123,13 @@ class: with-logo logo-flex
 Knit the dashboard to see the basic default layout, before adding any content.
 
 .pull-left[
-You can see the overall title with the default blue color scheme.
+You can see the overall title in a blue header from the [default theme](https://rstudio.github.io/flexdashboard/articles/using.html#appearance-1).
 
 <br/>
-You can see that each of the three chart windows has been given a name.
+The layout we used has three charts, with one chart in the wider left column and two charts in the narrower right column. 
+
+<br/>
+You can see that each chart window has been given a name (e.g., `Chart A`).
 ]
 
 .pull-right[
@@ -1126,6 +1137,10 @@ You can see that each of the three chart windows has been given a name.
 knitr::include_graphics("figs/week08_files/first_dashboard.png")
 ```
 ]
+
+???
+
+There are other built-in themes available or you can refer to a CSS file
 
 ---
 
@@ -1160,15 +1175,18 @@ Rename
 as  
 `### Penguin data`.
 
-Then put a `datatable()` of the penguins dataset in the code chunk in the first section.
+Then create a `datatable()` of the penguins dataset in the code chunk in the first section. That code chunk will then look like:
 
-```{r, eval = FALSE}
-datatable(penguins)
-```
+    `r ''````{r}
+    datatable(penguins)
+    `r ''````
 
-<br/>
 Knit to see the dashboard. Note all code is suppressed in the dashboard by default.
 ]
+
+???
+
+I wrote out whole code chunk here to try to be clear, but will only show code in later slides.
 
 --
 
@@ -1190,7 +1208,7 @@ Now rename
 as  
 `### Penguin plot`.
 
-Then add the following **ggplot2** and **plotly** code, which we used earlier today.
+Add the following **ggplot2** and **plotly** code to the code chunk, which we used earlier today.
 
 ```{r, eval = FALSE}
 g1 = ggplot(data = penguins, 
@@ -1228,7 +1246,7 @@ Finally rename
 as  
 `### Climate plot`.
 
-Then add the following **leaflet** code, which we also used earlier today.
+Then add the following **leaflet** code to the code chunk, which we also used earlier today.
 
 ```{r, eval = FALSE}
 orstationc = read.csv("https://pjbartlein.github.io/GeogDataAnalysis/data/csv/orstationc.csv")
