@@ -202,6 +202,10 @@ Save [`week08_interaction.Rmd`](files/week08_interaction.Rmd) to knit to HTML ou
 
 ## Week 9: Reproducible examples with **reprex**  
 
+A couple of packages that folks might be interested as a follow-up to topics discussed in week 8:
+[**gganimate** for animating plots](https://gganimate.com/)  
+[**geofacet** for faceting plots by geographic units](https://hafen.github.io/geofacet/)  
+
 ### Goals
 
 The ultimate goal this week is to understand how to make a reproducible example or *reprex* when asking a question or reporting an issue. We'll discuss the elements of a reprex while working through a practice example and then use package **reprex** to create pasteable code and output.

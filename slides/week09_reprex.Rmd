@@ -90,6 +90,34 @@ knitr::include_graphics("figs/reprex.png")
 
 ---
 
+## Before we begin
+
+I wanted to quickly show you a couple of packages that are relevant to topics that came up in the interactive plots/data session.
+
+1. You can *animate* plots in R and save the output as GIF's or videos with package **gganimate**. This works well to show patterns among groups, like through time.  
+
+    ```{r, echo = FALSE, out.width = "5%", out.extra='style="float:left;     padding:10px"', fig.alt = "Logo for package gganimate", fig.link = "https://gganimate.com/"}
+    knitr::include_graphics("figs/gganimate.png")
+    ```
+    <br/>
+    [**gganimate** website link](https://gganimate.com/)
+    <br/>    
+    
+2. If you are working with data collected across geographic units like states in the USA or provinces in Canada, etc., you can use package **geofacet** to make faceted plots across geographical space.
+
+    ```{r, echo = FALSE, out.width = "5%", out.extra='style="float:left; padding:10px"', fig.alt = "Logo for package geofacet", fig.link = "https://hafen.github.io/geofacet/"}
+    knitr::include_graphics("figs/geofacet.png")
+    ```
+
+<br/>
+    [**geofacet** website link](https://hafen.github.io/geofacet/)
+
+???
+
+Folks discussed graphing by state as well as adding animations in week 8
+
+---
+
 class: with-logo logo-reprex
 
 ## Today's Goal
@@ -102,8 +130,8 @@ Overall
 We will  
 
 -     Discuss the components of a minimal reproducible example 
--     Explore options to provide data to make code runnable
--     Use package **datapasta** to provide data    
+-     Explore options to provide example data to make code runnable
+-     Learn how to use package **datapasta** to provide a snippet of your own data    
 -     Use package **reprex** to create pasteable code and output        
 
 ---
@@ -131,7 +159,7 @@ If you ever ask for R help on a forum or want to report an issue on a GitHub rep
 --
 
 <br/><br/>
-Here are several nice overviews on how to make a reproducible example that are worth reading.
+Here are several nice overviews on how to make a reproducible example that are worth reviewing:
 
 [RStudio Community guide](https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061)  
 [Stack Overflow canonical thread](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)  
@@ -147,7 +175,7 @@ A reprex should include:
 > - A minimal dataset, necessary to reproduce the issue  
 
 > - The minimal runnable code necessary to reproduce the issue, which can be run
-on the given dataset, and including the necessary information on the used packages.  
+on the given dataset, and including the necessary information on the used packages  
 
 *From the RStudio Community guide*
 
@@ -161,7 +189,7 @@ A reprex should include:
 > - a minimal dataset, necessary to demonstrate the problem   
 
 > - the minimal runnable code necessary to reproduce the error, which can be run on the given dataset  
-> - all necessary information on the used packages, the R version, and the OS it is run on.  
+> - all necessary information on the used packages, the R version, and the OS it is run on  
 
 > - in the case of random processes, a seed (set by set.seed()) for reproducibility  
 
@@ -202,10 +230,10 @@ A lot of times you can solve your own problem while working towards a minimal, r
 ## Why should I reprex?
 
 .center[
-```{r, echo = FALSE, out.width = "70%", fig.alt = "Artwork by Allison Horst showing cartoon monsters enjoying success when they provided  a reproducible example, helping others help them solve their problem"}
+```{r, echo = FALSE, out.width = "70%", fig.alt = "Artwork by Allison Horst showing a cartoon monster first struggling to work with a support monster on a problem on the left and then the same monster enjoying success after providing a reproducible example on the right, helping others help them solve their problem"}
 knitr::include_graphics("figs/week09_files/reprex_art.png")
 ```
-Artwork by @allisonhorst
+Artwork by @allison_horst
 ]
 
 ???
@@ -228,16 +256,16 @@ And you will be asked for one! I included this tweet to focus on the picture of 
 ## The plan for today
 
 - I will introduce an R coding scenario that I need your help solving
-- We'll go through my attempts to provide a reproducible example, with you running the code I provide
+- We'll go through my attempts to provide a reproducible example, with you copying code I provide in the slides and running it in a clean R session
 - We'll discuss how I can improve things so my code meets the definition of a minimal reproducible example
-- Finally, we'll practice using package **reprex** to get code and output ready to paste into a forum and then discuss more features of the package  
+- Finally, we'll practice using package **reprex** to get code and output ready to paste into a forum and then discuss a few additional features of the package  
 
 --
 
 <br/>
 This gets us ready for next week when we'll
 - Talk about GitHub issues and issue etiquette  
-- Practice making an issue, writing text and pasting **reprex** code
+- Practice making an issue, writing text and pasting code and output via package **reprex** 
 
 ???
 
@@ -300,7 +328,7 @@ That's the case here. I didn't provide the packages I'm using in my example code
 <br/><br/>
 You might now be thinking, "Well, geez, people can easily guess what package I'm using based on my code."
 
-Help people help you! `r emo::ji("hugs")` To maximize the chance of getting help you should make it as easy as possible for people to provide that help.  Include your packages code, even if you think they're obvious.
+Help people help you! `r emo::ji("hugs")` To maximize the chance of getting help you should make it as easy as possible for people to provide that help.  Include your packages code, even if you think what you used is obvious.
 
 ???
 
@@ -322,7 +350,7 @@ OK, I didn't give code for the data or packages in my first attempt. Let me try 
 
 ## "I need help" take 2 `r emo::ji("clapper_board")`
 
-**Me:** "Oh, you need my packages and dataset? Here you go."
+**Me:** "Oh, you need my packages and dataset? No problem. Here you go."
 
 .tiny[
 ```{r, eval = FALSE}
@@ -379,9 +407,9 @@ ggplot(data = mydata, aes(x = over_species, y = est1)) +
 --
 
 <br/>
-I asked you earlier to note the use of the word ***minimal*** used over and over in the reproducible example descriptions we read.
+I asked you earlier to note the word ***minimal*** used over and over in the reproducible example descriptions we reviewed.
 
-Let's talk more about that now.
+We'll discuss that in more detail now.
 
 ---
 
@@ -395,7 +423,7 @@ When asked to provide the package and dataset I made a reasonable attempt to do 
 When providing an example, give the absolute minimum amount of code that can reproduce the problem. No extra packages, no extra data manipulation steps, etc. 
 
 <br/>
-Give the final dataset; the person helping you should not have to run a bunch of code to create it. (*More on datasets coming up.*)
+Provide a final dataset; the person helping you should not have to run a bunch of code to create it. (*More on datasets coming up.*)
 
 ???
 
@@ -479,17 +507,17 @@ In file(file, "rt") :
 <br/>
 These errors are related to the dataset. 
 
-I provided code for loading the dataset but you don't have access to the data stored on my computer.
+I provided code for loading the dataset but you don't have access to data stored on my computer.
 
 ---
 
 ## The problem of setwd()
 
-We're going to talk more about how to provide datasets. First let's talk about my use of `setwd()` when asking someone else to run my code who doesn't have access to my computer.
+We're going to talk more about how to provide datasets. Before we do that, though, let's talk about my use of `setwd()` when asking someone who doesn't have access to my computer to run my code.
 
 --
 
-An excerpt from ["Reprex do's and don'ts"](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) captures the problem better than I can: 
+An excerpt from ["Reprex do's and don'ts"](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) succinctly captures the problem: 
 
 > **Pack it in, pack it out, and don’t take liberties with other people’s computers.** You are asking people to run this code!
 
@@ -528,22 +556,22 @@ The three most common ways to provide a dataset in a reproducible example:
 
 ### Use a built-in dataset
 
-Our reprex focus is on making it as easy as possible for others to run our code.
+Our reprex focus is on making it as easy as possible for someone else to run our code.
 
-Editing your code to work with one of the datasets built in to R is a good approach for this. These datasets are available to all R users with no effort. 
+Editing your code to work with one of the datasets built in to R is a good way to achieve this. These datasets are available to all R users with no effort on their part. 
 
 --
 
 <br/>
 Commonly used datasets include `mtcars` `r emo::ji("car")` and `iris` `r emo::ji("blossom")`, but there are a bunch more.  Run `data()` in your R Console to see all available datasets that come with R.
 
-You can also opt to use datasets that come with add-on packages. However, that requires your potential helpers to have that package.
+You can also opt to use datasets that come with add-on packages. However, that requires your potential helpers to have that package installed.
 
 ---
 
 ### Use a built-in dataset
 
-Using built-in data means I have to edit my code to work with a different dataset. This can be a time-consuming process `r emo::ji("hourglass_flowing_sand")`, but gets easier with practice. 
+Using a built-in dataset means I have to edit my code to work with a different dataset. This can be time-consuming `r emo::ji("hourglass_flowing_sand")`, but gets easier with practice. 
 
 I took `mtcars` `r emo::ji("car")` and rewrote the code to reproduce my problem. I chose just two rows of the dateset with the same value of `gear` but different values of `vs`.
 
@@ -638,7 +666,7 @@ ggplot(data = mydata, aes(x = over_species, y = est1)) +
 ```
 ]
 
-**Note:** If your example contains randomly generated numbers, be sure to provide a seed with `set.seed()`.
+**Note:** If your example contains randomly generated numbers, be sure to provide the seed with `set.seed()`.
 
 ---
 
@@ -646,16 +674,16 @@ class: with-logo logo-pasta
 
 ### Using **datapasta** to provide data
 
-If you want to provide your actual dataset you can use helper functions from package **datapasta**. 
+If you want to provide some portion of your actual dataset you can use helper functions from package **datapasta**. 
 
-There are other options for doing this, such as function `dput()`, but **datapasta** puts the result in a nice, readable format.
+There are other options for doing this, such as function `dput()`, but **datapasta** puts the resulting dataset in a nice, readable format.
 
 --
 
 <br/>
 We'll be using `datapasta::dpasta()` to briefly explore how this works.
 
-There is much more you can do with **datapasta** then what we'll do here. Check out [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html) for neat examples on copying and pasting data from online sources, etc.
+There is much more you can do with **datapasta** then what we'll do here. Check out [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html) for neat examples on copying and pasting data into R from online sources, etc.
 
 ---
 
@@ -663,12 +691,15 @@ class: with-logo logo-pasta
 
 ### Using **datapasta** to provide data
 
-Run the code below in your R Console to see how `dpasta()` turns the first few rows and columns of `mtcars` into an easily copy-and-pasteable format. 
+Run the **datapasta** code below in your R Console to see how `dpasta()` turns the first few rows and columns of `mtcars` into an easily copy-and-pasteable format. 
 
 ```{r, eval = FALSE}
 datapasta::dpasta(mtcars[1:6, 1:3])
 ```
 
+--
+
+Output:
 ```{r, eval = FALSE}
 data.frame(
    row.names = c("Mazda RX4","Mazda RX4 Wag","Datsun 710",
@@ -679,7 +710,7 @@ data.frame(
 )
 ```
 
-**Note:** I found slight alignment issue with the output format from `dpasta()`, as shown above. When formatting the output `Ctrl + I` (MacOS `Cmd + I`) will fix that right up. `r emo::ji("+1")`
+**Note:** I found slight alignment issue with the output format from `dpasta()`, as shown above. Highlighting and using `Ctrl + I` (MacOS `Cmd + I`) will fix that right up. `r emo::ji("+1")`
 
 ---
 
@@ -687,7 +718,7 @@ class: with-logo logo-pasta
 
 ### Using **datapasta** to provide data
 
-This is the approach I want in order to include my actual dataset with my code.
+This is the approach I wanted to use in order to include my actual dataset with my code.
 
 Here's what my actual dataset looks like:
 
@@ -711,13 +742,17 @@ knitr::kable(mydata)
 
 Take note of all the extra columns. In keeping with making things minimal, I'll remove all columns not directly relevant to the problem prior to using `dpasta()`.
 
+???
+
+This works because my dataset is so small. Otherwise providing a portion of dataset with head() or something may be better
+
 ---
 
 ## "I need help" take 4 `r emo::ji("clapper_board")`
 
 **Me:** "I'm having a problem with my **ggplot2** code. My points dodge but my error bars don't. Help! Here is a minimal reproducible example."
 
-**You:** You can now copy and paste the code into your R Console and immediately get it to run. `r emo::ji("tada")`
+**You:** Can now copy and paste the code into your R Console and immediately get it to run. `r emo::ji("tada")`
 
 .smaller[
 ```{r, eval = FALSE}
@@ -770,7 +805,7 @@ class: with-logo logo-reprex
 
 ## The reprex package
 
-One way simple way to use the **reprex** package is to copy the code from your minimal reproducible example onto your clipboard.
+One simple way to use the **reprex** package is to copy the code from your minimal reproducible example onto your clipboard.
 
 Here's my working example to copy again:
 
@@ -823,13 +858,15 @@ knitr::include_graphics("figs/week09_files/reprex1.png")
 
 See the example Viewer pane on the right throughout this section
 
+Students can paste **reprex** output into an empty R script or something if they want to see how things look today but we will look at an actual example next week
+
 ---
 
 class: with-logo logo-reprex
 
 ## The reprex package
 
-An alternative to the copying + `reprex()` technique is to wrap your reproducible example code within curly braces inside `reprex::reprex()`. Copy and run the following:
+An alternative to the copying + `reprex()` technique is to wrap your reproducible example code within curly braces inside `reprex::reprex()`. Copy and run the following to see this in action:
 
 .smaller[
 ```{r, eval = FALSE}
@@ -996,7 +1033,7 @@ reprex::reprex(session_info = TRUE, {
 ```
 
 <br/>
-You can see a session info section is included but collapsed in the rendered view.
+You can see a section with your session info is included but collapsed in the rendered view. 
 ]
 
 .pull-right[
@@ -1005,13 +1042,17 @@ knitr::include_graphics("figs/week09_files/reprex_session.png")
 ```
 ]
 
+???
+
+This is an argument to `reprex()` so goes outside the curly braces
+
 ---
 
 class: with-logo logo-reprex
 
 ### Adding your session info
 
-Here's what opening the session info arrow looks like.
+Here's what the session info looks like if we expand the arrow:
 
 .pull-left[
 ```{r, echo = FALSE, fig.alt = "Screen shot showing the Viewer Pane after using the dplyr-plyr code in reprex::reprex() with session info uncollapsed"}
