@@ -202,7 +202,7 @@ Save [`week08_interaction.Rmd`](files/week08_interaction.Rmd) to knit to HTML ou
 
 ## Week 9: Reproducible examples with **reprex**  
 
-A couple of packages that folks might be interested as a follow-up to topics discussed in week 8:
+A couple of packages that folks might be interested as a follow-up to topics discussed in week 8:  
 [**gganimate** for animating plots](https://gganimate.com/)  
 [**geofacet** for faceting plots by geographic units](https://hafen.github.io/geofacet/)  
 

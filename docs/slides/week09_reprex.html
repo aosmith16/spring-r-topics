@@ -396,7 +396,7 @@ When asked to provide the package and dataset I made a reasonable attempt to do 
 When providing an example, give the absolute minimum amount of code that can reproduce the problem. No extra packages, no extra data manipulation steps, etc. 
 
 &lt;br/&gt;
-Provide a final dataset; the person helping you should not have to run a bunch of code to create it. (*More on datasets coming up.*)
+Provide a final dataset; the person helping you should not have to run a bunch of code to create the dataset your are using. (*More on datasets coming up.*)
 
 ???
 
@@ -408,7 +408,7 @@ Don't make your potential helpers run all the code to create a dataset in a bunc
 
 Even when I get rid of the extraneous packages and data manipulation steps my code isn't minimal.
 
-All tweaks to the plot appearance, such as those highlighted below, are not related to the problem I am having. This code should be removed.
+All tweaks to the plot appearance, such as those highlighted below, are not related to the problem I am having. This code should be removed from the reprex.
 
 .tiny[
 
@@ -507,7 +507,7 @@ An excerpt from ["Reprex do's and don'ts"](https://reprex.tidyverse.org/articles
 --
 
 &lt;br/&gt;
-Your goal is to make it easy for someone else to run your code, and `setwd()` doesn't do that.
+Your goal is to make it easy for someone else to run your code and `setwd()` doesn't do that.
 
 If you regularly use `setwd()` in your work, consider switching to [Project-oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/). 
 
@@ -529,7 +529,7 @@ This is a place where making a reproducible example can get a time-consuming.
 The three most common ways to provide a dataset in a reproducible example:
 1. Use a built-in dataset like `mtcars` 🚗.
 2. Create a fake dataset.
-3. Provide some portion of your real dataset using **datapasta**.
+3. Provide some portion of your real dataset.
 
 ---
 
@@ -629,9 +629,9 @@ mydata
 
 ### Create fake data
 
-The beauty of making a fake dataset is that you can include the code for creating it along with the rest of your code.
+You can include the code for creating the fake dataset along with the rest of your code.
 
-Copy the code and run it in your R Console to see the result.
+Copy the code and run it in your R Console to see the result:
 
 .smaller[
 
@@ -660,7 +660,7 @@ ggplot(data = mydata, aes(x = over_species, y = est1)) +
 
 class: with-logo logo-pasta
 
-### Using **datapasta** to provide data
+### Provide your own data
 
 If you want to provide some portion of your actual dataset you can use helper functions from package **datapasta**. 
 
@@ -677,7 +677,7 @@ There is much more you can do with **datapasta** then what we'll do here. Check 
 
 class: with-logo logo-pasta
 
-### Using **datapasta** to provide data
+### Provide your own data
 
 Run the **datapasta** code below in your R Console to see how `dpasta()` turns the first few rows and columns of `mtcars` into an easily copy-and-pasteable format. 
 
@@ -700,13 +700,14 @@ data.frame(
 )
 ```
 
+&lt;br/&gt;
 **Note:** I found slight alignment issue with the output format from `dpasta()`, as shown above. Highlighting and using `Ctrl + I` (MacOS `Cmd + I`) will fix that right up. 👍
 
 ---
 
 class: with-logo logo-pasta
 
-### Using **datapasta** to provide data
+### Provide your own data
 
 This is the approach I wanted to use in order to include my actual dataset with my code.
 
@@ -882,7 +883,86 @@ class: with-logo logo-reprex
 
 ## The reprex package
 
-Let's do another example.
+The **reprex** package helps you check if your code is reproducible or not. It returns errors if the code within `reprex()` can't be run as-is. 👍
+
+???
+
+This can be really useful because it draws your attention to things you may have loaded in your workspace but have forgotten to include in your example code.
+
+--
+
+.pull-left[
+Copy and run my original code within `reprex()`:
+
+.smaller[
+
+```r
+reprex::reprex({
+    ggplot(data = mydata, aes(x = over_species, y = est1)) +
+        geom_point(aes(color = spp), 
+                   position = position_dodge(width = .5),
+                   size = 2) +
+        geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                      position = position_dodge(width = .5),
+                      width = .2)
+})
+```
+]
+]
+
+--
+
+.pull-right[
+You'll see the reprex is created in your `Viewer` pane but outputs an error because the package wasn't loaded.
+
+&lt;img src="figs/week09_files/reprex_error1.png" title="Screen shot showing the Viewer Pane with code and output after running the original ggplot2 code I provided that didn't have the package or dataset. The output has an error message about not being able to find function ggplot" alt="Screen shot showing the Viewer Pane with code and output after running the original ggplot2 code I provided that didn't have the package or dataset. The output has an error message about not being able to find function ggplot" width="100%" /&gt;
+]
+
+---
+
+class: with-logo logo-reprex
+
+## The reprex package
+
+.pull-left[
+Next, copy and run the **ggplot2** reprex without including the dataset:
+
+.smaller[
+
+```r
+reprex::reprex({
+    library(ggplot2)
+    
+    ggplot(data = mydata, aes(x = over_species, y = est1)) +
+        geom_point(aes(color = spp), 
+                   position = position_dodge(width = .5),
+                   size = 2) +
+        geom_errorbar(aes(ymin = lo1, ymax = hi1),
+                      position = position_dodge(width = .5),
+                      width = .2)
+})
+```
+]
+]
+
+--
+
+.pull-right[
+Now the error is about the dataset not being found, indicating you need to add one to make your example code reproducible.
+
+&lt;img src="figs/week09_files/reprex_error2.png" title="Screen shot showing the Viewer Pane with code and output after running the ggplot2 code I provided without providing the dataset. The output has an error message about not being able to find the dataset." alt="Screen shot showing the Viewer Pane with code and output after running the ggplot2 code I provided without providing the dataset. The output has an error message about not being able to find the dataset." width="100%" /&gt;
+]
+
+&lt;br/&gt;
+**Note:** There is a `wd` argument in `reprex()` if you absolutely must use a local file in the reprex.
+
+---
+
+class: with-logo logo-reprex
+
+## The reprex package
+
+Let's practice making a reprex with different code so we explore a couple more options.
 
 .pull-left[
 Here's the classic **dplyr** before **plyr** problem with `summarise()`. Copy and run:
@@ -903,7 +983,7 @@ Note the many, many messages from the packages.
 ]
 
 .pull-right[
-&lt;img src="figs/week09_files/reprex_dplyr.png" title="Screen shot showing the Viewer Pane after using the dplyr-plyr code in reprex::reprex()" alt="Screen shot showing the Viewer Pane after using the dplyr-plyr code in reprex::reprex()" width="100%" /&gt;
+&lt;img src="figs/week09_files/reprex_dplyr.png" title="Screen shot showing the Viewer Pane with code and output after using the provided dplyr-plyr code in reprex::reprex(). It contains many messages from the packages about masking, and includes a message about the issue with loading plyr after dplyr" alt="Screen shot showing the Viewer Pane with code and output after using the provided dplyr-plyr code in reprex::reprex(). It contains many messages from the packages about masking, and includes a message about the issue with loading plyr after dplyr" width="100%" /&gt;
 ]
 
 ---
