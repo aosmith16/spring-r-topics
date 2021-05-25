@@ -1161,6 +1161,58 @@ Refer to the package website at https://reprex.tidyverse.org/index.html for more
 
 ---
 
+class: with-logo logo-reprex
+
+### Change venue
+
+The default output from **reprex** is in Markdown that will work well for pasting code and output onto GitHub or Stack Overflow. 
+
+You can change the venue with the `venue` argument. Options are:
+- `venue = "R"` for commented code and output. Uncomment code sections in RStudio using `Ctrl + Shift + C` (MacOS `Cmd + Shift + C`)
+- `venue = "slack"` for Markdown that works on Slack
+- `venue = "html"` to paste output to sites that don't support Markdown  
+- `venue = "rtf"` to paste [syntax-highlighted code snippets](https://reprex.tidyverse.org/articles/articles/rtf.html) into PowerPoint (experimental, requires installation of [highlight](http://www.andre-simon.de/doku/highlight/en/highlight.php))
+
+---
+
+class: with-logo logo-reprex
+
+### Change venue
+
+I found `venue = "slack"` useful for pasting code and output into an email.  
+
+.pull-left[
+```{r, eval = FALSE}
+reprex::reprex(venue = "slack", {
+    #+ message = FALSE, warning = FALSE
+    library(dplyr)
+    library(plyr)
+    
+    mtcars %>%
+        group_by(cyl) %>%
+        summarise(mpg = mean(mpg))
+})
+```
+]
+
+.pull-right[
+If I run the `reprex()` code and paste into an email or an R script the output looks like:
+
+```{r, eval = FALSE}
+library(dplyr)
+library(plyr)
+
+mtcars %>%
+    group_by(cyl) %>%
+    summarise(mpg = mean(mpg))
+#>        mpg
+#> 1 20.09062
+```
+
+]
+
+---
+
 ## Next week
 
 - We'll discuss the process and etiquette for reporting issues on GitHub `r fontawesome::fa("github")` repositories 
