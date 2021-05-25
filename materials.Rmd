@@ -214,10 +214,10 @@ The ultimate goal this week is to understand how to make a reproducible example 
 
 [Intro article](https://reprex.tidyverse.org/) and [Reprex do's and don'ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html) from the **reprex** website    
 Sharla Gelfand's "make a reprex... please" [slides](https://make-a-reprex-please.netlify.app/#1) and [recording](https://t.co/860RTqMvjy)   
-[How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html)  
 [RStudio Community guide](https://community.rstudio.com/t/faq-how-to-do-a-minimal-reproducible-example-reprex-for-beginners/23061)  
 [Stack Overflow canonical thread](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)  
-[Tidyverse help guide](https://www.tidyverse.org/help/)  
+[Tidyverse help guide](https://www.tidyverse.org/help/)    
+[How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html)  
 
 ### Materials for class
 

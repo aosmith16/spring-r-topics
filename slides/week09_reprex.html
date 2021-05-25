@@ -78,6 +78,7 @@ I wanted to quickly show you a couple of packages that are relevant to topics th
     &lt;br/&gt;
     [**gganimate** website link](https://gganimate.com/)
     &lt;br/&gt;    
+    &lt;br/&gt;
     
 2. If you are working with data collected across geographic units like states in the USA or provinces in Canada, etc., you can use package **geofacet** to make faceted plots across geographical space.
 
@@ -97,7 +98,11 @@ class: with-logo logo-reprex
 ## Today's Goal
 
 Overall  
-- **Learn how to make reproducible examples in R**   
+- **Learn how to make minimal reproducible examples in R**   
+
+???
+
+This is needed for asking for help on R code
 
 --
 
@@ -226,14 +231,14 @@ And you will be asked for one! I included this tweet to focus on the picture of 
 ## The plan for today
 
 - I will introduce an R coding scenario that I need your help solving
-- We'll go through my attempts to provide a reproducible example, with you copying code I provide in the slides and running it in a clean R session
+- We'll go through my attempts to provide a reproducible example, with you copying code I provide in the slides broadcast and running it in a clean R session
 - We'll discuss how I can improve things so my code meets the definition of a minimal reproducible example
 - Finally, we'll practice using package **reprex** to get code and output ready to paste into a forum and then discuss a few additional features of the package  
 
 --
 
 &lt;br/&gt;
-This gets us ready for next week when we'll
+This gets us ready for next week when we'll:
 - Talk about GitHub issues and issue etiquette  
 - Practice making an issue, writing text and pasting code and output via package **reprex** 
 
@@ -291,7 +296,7 @@ ggplot(data = mydata, aes(x = over_species, y = est1)) +
 ##   could not find function "ggplot"
 ```
 
-When the error message indicates a function can't be found, most often the package wasn't loaded. 
+When the error message indicates a function can't be found, most often the package hasn't been loaded. 
 
 That's the case here. I didn't provide the packages I'm using in my example code.
 
@@ -388,7 +393,7 @@ We'll discuss that in more detail now.
 
 ## *Minimal* code
 
-When asked to provide the package and dataset I made a reasonable attempt to do so. However, I went way too far and provided code that wasn't relevant to the problem.
+When asked to provide the package and dataset I made a reasonable attempt to do so. However, I went too far and provided code that wasn't relevant to the problem.
 
 --
 
@@ -396,7 +401,7 @@ When asked to provide the package and dataset I made a reasonable attempt to do 
 When providing an example, give the absolute minimum amount of code that can reproduce the problem. No extra packages, no extra data manipulation steps, etc. 
 
 &lt;br/&gt;
-Provide a final dataset; the person helping you should not have to run a bunch of code to create the dataset your are using. (*More on datasets coming up.*)
+If possible, provide the final version of a dataset. The person helping you should not have to run a bunch of code to create the dataset your are using. (*More on datasets coming up.*)
 
 ???
 
@@ -552,7 +557,7 @@ You can also opt to use datasets that come with add-on packages. However, that r
 
 Using a built-in dataset means I have to edit my code to work with a different dataset. This can be time-consuming ⏳, but gets easier with practice. 
 
-I took `mtcars` 🚗 and rewrote the code to reproduce my problem. I chose just two rows of the dateset with the same value of `gear` but different values of `vs`.
+I took `mtcars` 🚗 and rewrote my code using the new variables to reproduce the problem. I chose just two rows of the dateset with the same value of `gear` but different values of `vs`.
 
 Copy the code and run it in your R Console to see the result.
 
@@ -623,7 +628,7 @@ mydata
 ]
 ]
 
-.footnote[See other ways to make fake data, such as with functions from package **tibble**, in this [RStudio Community thread](https://community.rstudio.com/t/best-practices-how-to-prepare-your-own-data-for-use-in-a-reprex-if-you-can-t-or-don-t-know-how-to-reproduce-a-problem-with-a-built-in-dataset/5346/8).]
+.footnote[See other ways to make fake data, such as with functions from package **tibble**, in this [RStudio Community thread](https://community.rstudio.com/t/best-practices-how-to-prepare-your-own-data-for-use-in-a-reprex-if-you-can-t-or-don-t-know-how-to-reproduce-a-problem-with-a-built-in-dataset/5346).]
 
 ---
 
@@ -669,7 +674,7 @@ There are other options for doing this, such as function `dput()`, but **datapas
 --
 
 &lt;br/&gt;
-We'll be using `datapasta::dpasta()` to briefly explore how this works.
+We'll briefly use `datapasta::dpasta()` to explore how this works.
 
 There is much more you can do with **datapasta** then what we'll do here. Check out [How to Datapasta](https://milesmcbain.github.io/datapasta/articles/how-to-datapasta.html) for neat examples on copying and pasting data into R from online sources, etc.
 
@@ -779,7 +784,7 @@ The goal of this package is to
 --
 
 &lt;br/&gt;
-The package takes a chunk of your code and runs it, returning both the code and the code output on your clipboard. Paste the result into your question on Stack Overflow or when reporting a potential issue on GitHub.
+The package runs a chunk of code you provide, returning both the code and the code output on your clipboard. Paste the result into your question on Stack Overflow or when reporting a potential issue on GitHub.
 
 This allows someone to copy your code and run it. Importantly, they can also see what the output looks like *without having to run any code at all*. 
 
@@ -962,7 +967,7 @@ class: with-logo logo-reprex
 
 ## The reprex package
 
-Let's practice making a reprex with different code so we explore a couple more options.
+Let's practice making a reprex with different code in order to explore a couple more options.
 
 .pull-left[
 Here's the classic **dplyr** before **plyr** problem with `summarise()`. Copy and run:
@@ -1016,8 +1021,12 @@ reprex::reprex({
 &lt;img src="figs/week09_files/reprex_dplyr2.png" title="Screen shot showing the Viewer Pane after using the dplyr-plyr code in reprex::reprex() while suppressing messages" alt="Screen shot showing the Viewer Pane after using the dplyr-plyr code in reprex::reprex() while suppressing messages" width="100%" /&gt;
 
 &lt;br/&gt;
-Note the output from the code is commented out. This allows someone else to copy the entire chunk of example code, including any output, and run it without trouble.
+Note the output from the code is commented out. This allows someone else to copy the entire chunk of example code, including any output, and run it as-is in R.
 ]
+
+???
+
+If output isn't commented out, the helper may have to carefully avoid or skip output in between chunks of code
 
 ---
 
@@ -1077,7 +1086,7 @@ class: with-logo logo-reprex
 
 ### Adding your session info
 
-Add session info with `session_info = TRUE`.
+Add session info by using `session_info = TRUE` in `reprex()` (outside the curly braces).
 
 .pull-left[
 
