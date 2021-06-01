@@ -1,13 +1,14 @@
 ---
 title: "Class Materials"
 description: |
-     Materials for class will be added here throughout the term.
+     Slides and other materials for all 10 working sessions.
 editor_options: 
   markdown: 
     wrap: 72
 output: 
     distill::distill_article:
        toc: TRUE
+       toc_depth: 2
 creative_commons: CC BY
 ---
 
