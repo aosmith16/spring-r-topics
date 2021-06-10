@@ -22,9 +22,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Welcome to FES/FOR 505, Advanced R Topics. This is an informal class for students wanting to get a little extra practice in R.  We will work together through material in real time.
 
-The class will meet once per week for 2 hours over 10 weeks. Each class will be a mix of instruction on the topic, discussion, and active work in R.  Materials (slides, links, R scripts) will be listed on the [Materials](materials.html) page throughout the quarter, so check back each week.
+These are *advanced* topics in the sense that we cover tools that students are not often exposed to when they are introduced to R at OSU. It can be nice to work through such topics as a group rather than each student taking time to learn on their own.
 
-The plan so far:   
+The class will meet once per week for 1.5 hours over 10 weeks. Each class will be a mix of instruction on the topic, discussion, and active work in R.  Materials (slides, links, R scripts) area listed on the [Materials](materials.html) page for each class.
+
+The working sessions cover:   
 Week 01: Introduction to Git/GitHub  
 Week 02: Build a personal website with **distill** and **postcards**  
 Week 03: Deploy website using GitHub Pages  
@@ -38,7 +40,7 @@ Week 10: GitHub issues
 
 ## Software
 
-We will be working in R via RStudio. Make sure you have up-to-date versions of both of these. Current versions:  
+We will be working in R via RStudio. Make sure you have up-to-date versions of both of these. Current versions at the start of spring quarter 2021:  
 **R 4.0.4**  
 **RStudio 1.4**  
 
@@ -49,7 +51,7 @@ I'll be adding to the package list throughout the term as we hammer out exactly 
 **distill v. 1.2** (*Week 2*)  
 **postcards v. 0.2.0** (*Week 2*)  
 **devtools v. 2.3.2** (*Week 2*)  
-**fontawesome v. 0.1.0** (not 0.2.0; *Week 2*)  
+**fontawesome v. 0.1.0** or **0.2.1** (not 0.2.0; *Week 2*)  
 **gt v. 0.2.2**  (*Week 4*)  
 **webshot v. 0.5.2** (*Week 4*)  
 **dplyr v. 1.0.5 ** (*Week 4*)  
